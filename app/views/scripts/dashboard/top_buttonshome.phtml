@@ -1,0 +1,43 @@
+<form name="dashboardForm" id="dashboardForm" method="post"> 
+
+<?php 
+require_once('views/helpers/Location.php');
+require_once('views/helpers/ScriptContainer.php');
+
+$current_view = '/'.$path[1].'/'. $path[2]; 
+?>
+
+<?php  //file_put_contents('c:\wamp\logs\php_debug.log', 'top_buttons 1 >'.PHP_EOL, FILE_APPEND | LOCK_EX);	ob_start();   
+	   //var_dump("current_view=", $current_view, "END");
+	   //$result = ob_get_clean(); file_put_contents('c:\wamp\logs\php_debug.log', $result .PHP_EOL, FILE_APPEND | LOCK_EX); 
+?>
+<style type="text/css">
+    .mclass {
+    max-width: 132px !important;
+    overflow-wrap: break-word;
+    word-break: break-all !important;
+}
+</style>
+<p3>
+
+    
+    <div style="">
+        <?php region_filters_dropdown_db($this, $this->locations, $this->criteria, true, true); ?>
+        <p><strong>Maximum of six (6) locations allowed per filter</strong></p>
+    </div>
+    <br/>
+    
+    <div>
+        <input type="submit" value="Filter" class="dbbutton dbbutton_leftmenu">
+    </div>
+
+</p3>
+
+
+ </form>
+
+
+					
+
+
+

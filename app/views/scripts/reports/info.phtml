@@ -1,0 +1,1284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Info');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+               
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+
+		
+                <script type="text/javascript" charset="utf-8" src="views/helpers/jquery.js">
+			
+		</script>
+                <style>
+Table.GridOne {
+	padding: 1px;
+	margin: 0;
+	width:95%;
+	border-collapse: collapse;	
+        margin: 0 auto;
+	
+}
+
+Table.GridOne Td {	
+	padding:1px;
+	border: 1px solid #0000;
+	border-collapse: collapse;
+}
+.drnw:hover,.drne:hover,.drse:hover,.drss:hover,.drsw:hover,.drnc:hover{
+    background:khaki;
+    
+}
+
+#primary_nav_wrap
+{
+	margin-top:15px
+}
+
+#primary_nav_wrap ul
+{
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul a
+{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-weight:700;
+	font-size:12px;
+	line-height:32px;
+	padding:0 15px;
+	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+#primary_nav_wrap ul li
+{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul li.current-menu-item
+{
+	background:#ddd
+}
+
+#primary_nav_wrap ul li:hover
+{
+	background:#f6f6f6
+}
+
+#primary_nav_wrap ul ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background:#fff;
+	padding:0
+}
+
+#primary_nav_wrap ul ul li
+{
+	float:none;
+	width:150px
+}
+
+#primary_nav_wrap ul ul a
+{
+	line-height:120%;
+        width:150px;
+	padding:10px 15px
+}
+
+#primary_nav_wrap ul ul ul
+{
+	top:20%;
+	left:;
+}
+
+
+
+#primary_nav_wrap ul li:hover > ul
+{
+	display:block;
+        float:right;
+        margin-left:150px;
+        margin-top:-34px;
+}
+#primary_nav_wrap ul ul ul:hover {
+	display:block;
+        float:right;
+        margin-right:-150px;
+       
+}
+nav{
+    width:150px;
+    
+}
+#primary_nav_wrap ul ul li:hover > ul
+{
+	display:block;
+        float:right;
+        
+}
+nav ul li a{
+    width:150px;
+    border: 1px solid;
+    background:khaki;
+    
+}
+nav ul ul{
+    position:relative;
+}
+
+</style>
+
+  <script>
+    $(function() {
+       $('#hide').click(function() {
+                $('.john').hide();                
+       });
+
+	   $('#show').click(function() {
+                $('.john').show();                
+       });
+	   $('#toggle').click(function() {
+                $('.knowledge').toggle();                
+       });
+	    $('#togglenc').click(function() {
+                $('.nc').toggle(); 
+				$('.drnc').show();
+				
+       });
+	   $('#togglene').click(function() {
+                $('.ne').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#togglenw').click(function() {
+                $('.nw').toggle(); 
+				$('.drnw').show();
+				
+       });
+	   $('#togglese').click(function() {
+                $('.se').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#toggless').click(function() {
+                $('.ss').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#togglesw').click(function() {
+                $('.sw').toggle(); 
+				$('.drne').show();
+				
+       });
+        $('#togglecpr').click(function() {
+                $('.cpr').toggle(); 
+				
+				
+       });
+    });
+    </script>
+	</head>
+    
+        
+	<body class="yui-skin-sam" onload="toggle_it();" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			
+				<div id="subcontent">
+					<div id="contentheader">
+						 <h2 algin="">Nigeria’s DHS 2013 Indicators</h2>  <br/>
+					</div>
+                                    
+					<div class="clear" style=""></div>
+				</div>
+                         
+<span style="width:50%;margin: 0 auto; margin-left:30%;" align="center"> <input type="checkbox"  id="togglecpr" style="cursor:pointer;" title="Toggle CPR" align="right" /> Toggle CPR
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  id="toggle" style="cursor:pointer;" title="Toggle Knowledge" align="right" /> Toggle Knowledge</span>
+                                       
+<table border="1" class="GridOne">
+    
+                                        <thead style="text-align:center;">
+                                            <caption>Table 1:  Awareness and use of contraceptives in Nigeria</caption>
+                                            <tr  style="text-align:center;">
+                                                <th rowspan="3">Zone</th>
+                                                <th rowspan="3">State</th>
+                                          <th colspan="16" class="cpr">CPR </th>  
+                                            <th rowspan="3">Unmet need among currently married women aged 15-49</th>
+                                            <th colspan="4" class="knowledge">Knowledge </th>
+                                            </tr>
+                                            <tr  style="text-align:center;">
+                                             <th colspan="16" class="cpr">Currently married women aged 15 - 49</th>
+                                            <th colspan="2" class="knowledge">Women</th>
+                                            <th colspan="2" class="knowledge">Men</th>
+                                            </tr>
+                                            <tr  style="text-align:center;" >
+                                                <th class="cpr">CPR</th>
+                                                <th class="cpr">Any Modern Method</th>
+                                                <th class="cpr">Female Sterilization</th>
+                                                <th class="cpr">Pill</th>
+                                                <th class="cpr">IUD</th>
+                                                <th class="cpr">Injectables</th>
+                                                <th class="cpr">Implants</th>
+                                                <th class="cpr">Male Condoms</th>
+                                                <th class="cpr">LAM</th>
+                                                <th class="cpr">Standard days method</th>
+                                                <th class="cpr">Other</th>
+                                                <th class="cpr">Any other Traditional Method</th>
+                                                <th class="cpr">Rhythm</th>
+                                                <th class="cpr">Withdrawal</th>
+                                                <th class="cpr">Other</th>
+                                                <th class="cpr">Not Currently Using</th>
+                                                <th class="knowledge">Heard of Any Method</th>
+                                                <th class="knowledge">Heard of Any Modern Method</th>
+                                                <th class="knowledge">Heard of Any Method</th>
+                                                <th class="knowledge">Heard of Any Modern Method</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="text-align:right;" style="text-align:right;">
+                                                <td style="text-align:left;">National</td>
+                                                <td style="text-align:left;">Total</td>
+                                                <td class="cpr">15.1</td>
+                                                <td class="cpr">9.8</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">3.2</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">2.1</td>
+                                                <td class="cpr">0.4</td>
+                                                
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">5.4</td>
+                                                <td class="cpr">2.2</td>
+                                                <td class="cpr">2.5</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">84.9</td>
+                                                <td >16.1</td>
+                                                <td class="knowledge">84.6</td>
+                                                <td class="knowledge">82.8</td>
+                                                <td class="knowledge">97</td>
+                                                <td class="knowledge">95.8</td>
+                                                                               
+                                                
+                                            </tr>
+											    <tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drnc" style="text-align:left;"><a  id="togglenc" style="cursor:pointer;" title="toggle Region">NC +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="nc" >
+                                                <td  style="text-align:left;">North Central </td>
+                                                
+						<td style="text-align:left;">FCT-Abuja</td>
+                                                <td  class="cpr">25.2</td>
+                                                <td  class="cpr">20.6</td>
+                                                <td  class="cpr">0.5</td>
+                                                <td  class="cpr">3.5</td>
+                                                <td  class="cpr">4.4</td>
+                                                <td  class="cpr">4.7</td>
+                                                <td  class="cpr">3.1</td>
+                                                <td  class="cpr">3.2</td>
+                                                <td  class="cpr">0.2</td>
+                                                <td  class="cpr">0.3</td>
+                                                <td  class="cpr">0.6</td>
+                                                <td  class="cpr">4.6</td>
+                                                <td  class="cpr">3.2</td>
+                                                <td class="cpr" >1.1</td>
+                                                <td class="cpr" >0.3</td>
+                                                <td class="cpr" >74.8</td>
+                                                <td >19.7</td>
+                                                <td class="knowledge">92.7</td>
+                                                <td class="knowledge">92</td>
+                                                <td class="knowledge">96.7</td>
+                                                <td class="knowledge">96.7</td>
+                                                
+                                                
+                                            </tr>
+                                            <tr style="text-align:right;" class="nc">
+                                                <td style="text-align:left;">North Central</td>
+                                                <td style="text-align:left;">Benue</td>
+                                                <td class="cpr">16.5</td>
+                                                <td class="cpr">12.1</td>
+                                                <td class="cpr">2.9</td>
+                                                <td class="cpr">1.4</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">2.6</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.9</td>
+                                                <td class="cpr">4.4</td>
+                                                <td class="cpr">2.4</td>
+                                                <td class="cpr">1.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">83.5</td>
+                                                <td>31.4</td>
+                                                <td class="knowledge">96.4</td>
+                                                <td class="knowledge">96</td>
+                                                <td class="knowledge">99.2</td>
+                                                <td class="knowledge">99.2</td>
+                                                
+                                                
+                                            </tr>
+                                            
+                                            <tr style="text-align:right;" class="nc">
+                                                <td style="text-align:left;">North Central</td>
+                                                <td style="text-align:left;">Kogi</td>
+                                                <td class="cpr">10.5</td>
+                                                <td class="cpr">8.5</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">2.3</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.5</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">2</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">89.5</td>
+                                                <td>20.9</td>
+                                                <td class="knowledge">77.5</td>
+                                                <td class="knowledge">77</td>
+                                                <td class="knowledge">96.3</td>
+                                                <td class="knowledge">96.1</td>
+                                                
+                                                
+                                            </tr>
+                                            <tr style="text-align:right;" class="nc">
+                                              <td style="text-align:left;">North Central</td>
+                                              <td style="text-align:left;">Kwara</td>
+                                              <td class="cpr">40.2</td>
+                                              <td class="cpr">27.7</td>
+                                              <td class="cpr">0.6</td>
+                                              <td class="cpr">5.9</td>
+                                              <td class="cpr">2.5</td>
+                                              <td class="cpr">8.5</td>
+                                              <td class="cpr">0.4</td>
+                                              <td class="cpr">7.8</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.2</td>
+                                              <td class="cpr">1.7</td>
+                                              <td class="cpr">12.5</td>
+                                              <td class="cpr">1.2</td>
+                                              <td class="cpr">8.4</td>
+                                              <td class="cpr">2.9</td>
+                                              <td class="cpr">59.8</td>
+                                              <td>12.2</td>
+                                              <td class="knowledge">94.7</td>
+                                              <td class="knowledge">94.6</td>
+                                              <td class="knowledge">100</td>
+                                              <td class="knowledge">99.5</td>
+                                                
+                                              
+                                            </tr>
+                                            <tr style="text-align:right;" class="nc">
+                                                <td style="text-align:left;">North Central</td>
+                                                <td style="text-align:left;">Nasarawa</td>
+                                                <td class="cpr">18.1</td>
+                                                <td class="cpr">16.3</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">3</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">9.1</td>
+                                                <td class="cpr">1.4</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">81.9</td>
+                                                <td>20.8</td>
+                                                <td class="knowledge">84.4</td>
+                                                <td class="knowledge">83.6</td>
+                                                <td class="knowledge">97.8</td>
+                                                <td class="knowledge">97.8</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nc">
+                                                <td style="text-align:left;">North Central</td>
+                                                <td style="text-align:left;">Niger</td>
+                                                <td class="cpr">6.6</td>
+                                                <td class="cpr">5.6</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">2.7</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">93.4</td>
+                                                <td>24.3</td>
+                                                <td class="knowledge">55.5</td>
+                                                <td class="knowledge">54.6</td>
+                                                <td class="knowledge">89.1</td>
+                                                <td class="knowledge">84</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nc">
+                                                <td style="text-align:left;">North Central</td>
+                                                <td style="text-align:left;">Plateau</td>
+                                                <td class="cpr">15.2</td>
+                                                <td class="cpr">14.4</td>
+                                                <td class="cpr">0.9</td>
+                                                <td class="cpr">2.3</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">8.9</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">1.4</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">84.8</td>
+                                                <td>23</td>
+                                                <td class="knowledge">82.4</td>
+                                                <td class="knowledge">82</td>
+                                                <td class="knowledge">90.2</td>
+                                                <td class="knowledge">89.9</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drne" style="text-align:left;"><a  id="togglene" style="cursor:pointer;" title="toggle Region">NE +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="ne">
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Adamawa</td>
+                                                <td class="cpr">4.4</td>
+                                                <td class="cpr">3.5</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.2</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">95.6</td>
+                                                <td>21.8</td>
+                                                <td class="knowledge">83.7</td>
+                                                <td class="knowledge">83.7</td>
+                                                <td class="knowledge">98.1</td>
+                                                <td class="knowledge">96.7</td>
+
+                                            </tr>
+											
+                                            <tr style="text-align:right;" class="ne">
+                                                
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Bauchi</td>
+                                                <td class="cpr">2.2</td>
+                                                <td class="cpr">2.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.4</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">97.8</td>
+                                                <td>16.4</td>
+                                                <td class="knowledge">66.8</td>
+                                                <td class="knowledge">66.6</td>
+                                                <td class="knowledge">94.6</td>
+                                                <td class="knowledge">93.3</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="ne">
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Borno</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">98.2</td>
+                                                <td>17.1</td>
+                                                <td class="knowledge">64.3</td>
+                                                <td class="knowledge">57.5</td>
+                                                <td class="knowledge">96.4</td>
+                                                <td class="knowledge">88.1</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="ne">
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Gombe</td>
+                                                <td class="cpr">4</td>
+                                                <td class="cpr">4</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">1.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">96</td>
+                                                <td>19.4</td>
+                                                <td class="knowledge">64</td>
+                                                <td class="knowledge">61.8</td>
+                                                <td class="knowledge">91.3</td>
+                                                <td class="knowledge">90.5</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="ne">
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Taraba</td>
+                                                <td class="cpr">8</td>
+                                                <td class="cpr">6.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">1.2</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">3</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">1.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">92</td>
+                                                <td>19.5</td>
+                                                <td class="knowledge">86.9</td>
+                                                <td class="knowledge">86.7</td>
+                                                <td class="knowledge">96.3</td>
+                                                <td class="knowledge">96.3</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="ne">
+                                                <td style="text-align:left;">North East</td>
+                                                <td style="text-align:left;">Yobe</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">98.9</td>
+                                                <td>14.1</td>
+                                                <td class="knowledge">80.5</td>
+                                                <td class="knowledge">74.2</td>
+                                                <td class="knowledge">86.3</td>
+                                                <td class="knowledge">86</td>
+
+                                            </tr>
+											<tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drnw" style="text-align:left;"><a  id="togglenw" style="cursor:pointer;" title="toggle Region">NW +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                              <td style="text-align:left;">North West</td>
+                                              <td style="text-align:left;">Jigawa</td>
+                                              <td class="cpr">0.9</td>
+                                              <td class="cpr">0.6</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.2</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.2</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.2</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.4</td>
+                                              <td class="cpr">0.1</td>
+                                              <td class="cpr">0</td>
+                                              <td class="cpr">0.3</td>
+                                              <td class="cpr">99.1</td>
+                                              <td>16.5</td>
+                                              <td class="knowledge">75.1</td>
+                                              <td class="knowledge">70.9</td>
+                                              <td class="knowledge">95.9</td>
+                                              <td class="knowledge">94.2</td>
+  
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Kaduna</td>
+                                                <td class="cpr">20.2</td>
+                                                <td class="cpr">18.5</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">2.1</td>
+                                                <td class="cpr">1.2</td>
+                                                <td class="cpr">9</td>
+                                                <td class="cpr">2.6</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">1.7</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">79.8</td>
+                                                <td>5.8</td>
+                                                <td class="knowledge">98.2</td>
+                                                <td class="knowledge">93.7</td>
+                                                <td class="knowledge">98.2</td>
+                                                <td class="knowledge">98.2</td>
+
+                                                
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Kano</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">99.4</td>
+                                                <td>11.1</td>
+                                                <td class="knowledge">82</td>
+                                                <td class="knowledge">79.8</td>
+                                                <td class="knowledge">99.1</td>
+                                                <td class="knowledge">95.9</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Katsina</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">98.7</td>
+                                                <td>14.5</td>
+                                                <td class="knowledge">89.8</td>
+                                                <td class="knowledge">89</td>
+                                                <td class="knowledge">99.1</td>
+                                                <td class="knowledge">96</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                
+                                                
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Kebbi</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">1.2</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">98.7</td>
+                                                <td>18.2</td>
+                                                <td class="knowledge">51</td>
+                                                <td class="knowledge">47</td>
+                                                <td class="knowledge">91.7</td>
+                                                <td class="knowledge">91.5</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Sokoto</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">98.9</td>
+                                                <td>7.5</td>
+                                                <td class="knowledge">75.3</td>
+                                                <td class="knowledge">74.9</td>
+                                                <td class="knowledge">96.8</td>
+                                                <td class="knowledge">96.8</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="nw">
+                                                <td style="text-align:left;">North West</td>
+                                                <td style="text-align:left;">Zamfara</td>
+                                                <td class="cpr">3</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.9</td>
+                                                <td class="cpr">0.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.7</td>
+                                                <td class="cpr">97</td>
+                                                <td>12.8</td>
+                                                <td class="knowledge">84.1</td>
+                                                <td class="knowledge">80.9</td>
+                                                <td class="knowledge">98</td>
+                                                <td class="knowledge">98</td>
+
+                                            </tr>
+											<tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drse" style="text-align:left;"><a  id="togglese" style="cursor:pointer;" title="toggle Region">SE +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="se">
+                                                <td style="text-align:left;">South East</td>
+                                                <td style="text-align:left;">Abia</td>
+                                                <td class="cpr">33.4</td>
+                                                <td class="cpr">15.6</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">2</td>
+                                                <td class="cpr">1.5</td>
+                                                <td class="cpr">7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">3.5</td>
+                                                <td class="cpr">0.9</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">17.9</td>
+                                                <td class="cpr">7.8</td>
+                                                <td class="cpr">9.5</td>
+                                                <td class="cpr">0.6</td>
+                                                <td class="cpr">66.6</td>
+                                                <td>11.2</td>
+                                                <td class="knowledge">95.4</td>
+                                                <td class="knowledge">94.5</td>
+                                                <td class="knowledge">98.7</td>
+                                                <td class="knowledge">98.7</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="se">
+                                                <td style="text-align:left;">South East</td>
+                                                <td style="text-align:left;">Anambra</td>
+                                                <td class="cpr">35</td>
+                                                <td class="cpr">11.7</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">2</td>
+                                                <td class="cpr">2.3</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">4.6</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">23.3</td>
+                                                <td class="cpr">14.7</td>
+                                                <td class="cpr">8.2</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">65</td>
+                                                <td>7.1</td>
+                                                <td class="knowledge">97.1</td>
+                                                <td class="knowledge">96.6</td>
+                                                <td class="knowledge">99.3</td>
+                                                <td class="knowledge">99.3</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="se">
+                                                
+                                                <td style="text-align:left;">South East</td>
+                                                <td style="text-align:left;">Ebonyi</td>
+                                                <td class="cpr">15.7</td>
+                                                <td class="cpr">5.6</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">1.7</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">10.1</td>
+                                                <td class="cpr">3.2</td>
+                                                <td class="cpr">6.7</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">84.3</td>
+                                                <td>20.5</td>
+                                                <td class="knowledge">89.1</td>
+                                                <td class="knowledge">88.8</td>
+                                                <td class="knowledge">100</td>
+                                                <td class="knowledge">100</td>
+
+                                            </tr>
+											
+                                            <tr style="text-align:right;" class="se">
+                                                <td style="text-align:left;">South East</td>
+                                                <td style="text-align:left;">Enugu</td>
+                                                <td class="cpr">31.4</td>
+                                                <td class="cpr">14.3</td>
+                                                <td class="cpr">0.2</td>
+                                                <td class="cpr">2.1</td>
+                                                <td class="cpr">2.9</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">6.6</td>
+                                                <td class="cpr">0.7</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">17.1</td>
+                                                <td class="cpr">5.6</td>
+                                                <td class="cpr">11.5</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">68.6</td>
+                                                <td>11.7</td>
+                                                <td class="knowledge">99.4</td>
+                                                <td class="knowledge">99.2</td>
+                                                <td class="knowledge">100</td>
+                                                <td class="knowledge">98.5</td>
+
+                                            </tr>
+                                            <tr style="text-align:right;" class="se">
+                                                <td style="text-align:left;">South East</td>
+                                                <td style="text-align:left;">Imo</td>
+                                                <td class="cpr">34.1</td>
+                                                <td class="cpr">10.7</td>
+                                                <td class="cpr">0.5</td>
+                                                <td class="cpr">1.6</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">2.3</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">4.2</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.3</td>
+                                                <td class="cpr">23.4</td>
+                                                <td class="cpr">7.7</td>
+                                                <td class="cpr">14.4</td>
+                                                <td class="cpr">1.3</td>
+                                                <td class="cpr">65.9</td>
+                                                <td>11.1</td>
+                                                <td class="knowledge">99.7</td>
+                                                <td class="knowledge">98.9</td>
+                                                <td class="knowledge">99.5</td>
+                                                <td class="knowledge">99.5</td>
+
+                                            </tr>
+											<tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drss" style="text-align:left;"><a  id="toggless" style="cursor:pointer;" title="toggle Region">SS +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="ss">
+                                            <td style="text-align:left;">South South</td>
+                                            <td style="text-align:left;">Akwa Ibom</td>
+                                            <td class="cpr">25.5</td>
+                                            <td class="cpr">16.5</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">5.1</td>
+                                            <td class="cpr">0.6</td>
+                                            <td class="cpr">6.6</td>
+                                            <td class="cpr">0.7</td>
+                                            <td class="cpr">2.2</td>
+                                            <td class="cpr">0.8</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.1</td>
+                                            <td class="cpr">9</td>
+                                            <td class="cpr">7.2</td>
+                                            <td class="cpr">1.5</td>
+                                            <td class="cpr">0.2</td>
+                                            <td class="cpr">74.5</td>
+                                            <td>29.1</td>
+                                            <td class="knowledge">98.2</td>
+                                            <td class="knowledge">98</td>
+                                            <td class="knowledge">99.7</td>
+                                            <td class="knowledge">98.8</td>
+</tr>
+                                            <tr style="text-align:right;" class="ss">
+                                                <td style="text-align:left;">South South</td>
+                                                <td style="text-align:left;">Bayelsa</td>
+                                                <td class="cpr">13.3</td>
+                                                <td class="cpr">10.1</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">2.9</d>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">4.2</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">1.8</td>
+                                                <td class="cpr">0.4</td>
+                                                <td class="cpr">0</td>
+                                                <td class="cpr">0.8</td>
+                                                <td class="cpr">3.2</td>
+                                                <td class="cpr">1</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">1.1</td>
+                                                <td class="cpr">86.7</td>
+                                                <td>28.5</td>
+                                                <td class="knowledge">99.6</td>
+                                                <td class="knowledge">99.6</td>
+                                                <td class="knowledge">100</td>
+                                                <td class="knowledge">100</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="ss">
+                                            <td style="text-align:left;">South South</td>
+                                            <td style="text-align:left;">Cross River</td>
+                                            <td class="cpr">24</td>
+                                            <td class="cpr">14.4</td>
+                                            <td class="cpr">0.1</td>
+                                            <td class="cpr">3.6</td>
+                                            <td class="cpr">1.5</td>
+                                            <td class="cpr">5.9</td>
+                                            <td class="cpr">0.2</td>
+                                            <td class="cpr">2.1</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.9</td>
+                                            <td class="cpr">9.7</td>
+                                            <td class="cpr">4.2</td>
+                                            <td class="cpr">4</td>
+                                            <td class="cpr">1.4</td>
+                                            <td class="cpr">76</td>
+                                            <td>30.8</td>
+                                            <td class="knowledge">96</td>
+                                            <td class="knowledge">95.8</td>
+                                            <td class="knowledge">98.2</td>
+                                            <td class="knowledge">97.7</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="ss">
+                                            <td style="text-align:left;">South South</td>
+                                            <td style="text-align:left;">Delta</td>
+                                            <td class="cpr">28.7</td>
+                                            <td class="cpr">16.8</td>
+                                            <td class="cpr">0.6</td>
+                                            <td class="cpr">2.4</td>
+                                            <td class="cpr">1.2</td>
+                                            <td class="cpr">2.5</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">2.1</td>
+                                            <td class="cpr">5.8</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">1.8</td>
+                                            <td class="cpr">11.9</td>
+                                            <td class="cpr">4.6</td>
+                                            <td class="cpr">4.3</td>
+                                            <td class="cpr">3.1</td>
+                                            <td class="cpr">71.3</td>
+                                            <td>16.1</td>
+                                            <td class="knowledge">94.8</td>
+                                            <td class="knowledge">94.4</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">100</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="ss">
+                                            <td style="text-align:left;">South South</td>
+                                            <td style="text-align:left;">Edo</td>
+                                            <td class="cpr">30.3</td>
+                                            <td class="cpr">19.1</td>
+                                            <td class="cpr">0.6</td>
+                                            <td class="cpr">5.6</td>
+                                            <td class="cpr">0.9</td>
+                                            <td class="cpr">6.8</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">2.4</td>
+                                            <td class="cpr">2.4</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">11.2</td>
+                                            <td class="cpr">5.1</td>
+                                            <td class="cpr">4.1</td>
+                                            <td class="cpr">2</td>
+                                            <td class="cpr">69.7</td>
+                                            <td>18.9</td>
+                                            <td class="knowledge">98.5</td>
+                                            <td class="knowledge">98.5</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">99.3</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="ss">
+                                            <td style="text-align:left;">South South</td>
+                                            <td style="text-align:left;">Rivers</td>
+                                            <td class="cpr">34.5</td>
+                                            <td class="cpr">17.5</td>
+                                            <td class="cpr">1</td>
+                                            <td class="cpr">3.3</td>
+                                            <td class="cpr">1.1</td>
+                                            <td class="cpr">6.6</td>
+                                            <td class="cpr">0.5</td>
+                                            <td class="cpr">3.3</td>
+                                            <td class="cpr">0.8</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">0.5</td>
+                                            <td class="cpr">17.1</td>
+                                            <td class="cpr">8.1</td>
+                                            <td class="cpr">7.6</td>
+                                            <td class="cpr">1.3</td>
+                                            <td class="cpr">65.5</td>
+                                            <td>17.6</td>
+                                            <td class="knowledge">99.8</td>
+                                            <td class="knowledge">99.6</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">100</td>
+                                            </tr>
+											<tr style="text-align:right;" style="text-align:right;">
+                                                <td class="drsw" style="text-align:left;"><a  id="togglesw" style="cursor:pointer;" title="toggle Region">SW +</a></td>
+                                                </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                            <td style="text-align:left;"> South West</td>
+                                            <td style="text-align:left;">Ekiti</td>
+                                            <td class="cpr">34.5</td>
+                                            <td class="cpr">26.6</td>
+                                            <td class="cpr">0.1</td>
+                                            <td class="cpr">7.1</td>
+                                            <td class="cpr">3.6</td>
+                                            <td class="cpr">6.9</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">8.2</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.6</td>
+                                            <td class="cpr">7.8</td>
+                                            <td class="cpr">4.4</td>
+                                            <td class="cpr">3.1</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">65.5</td>
+                                            <td>18.7</td>
+                                            <td class="knowledge">98.9</td>
+                                            <td class="knowledge">98.9</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">100</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                            <td style="text-align:left;">South West</td>
+                                            <td style="text-align:left;">Lagos</td>
+                                            <td class="cpr">48.3</td>
+                                            <td class="cpr">26.4</td>
+                                            <td class="cpr">0.1</td>
+                                            <td class="cpr">6.5</td>
+                                            <td class="cpr">2.4</td>
+                                            <td class="cpr">4.6</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">10.3</td>
+                                            <td class="cpr">0.9</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">1.2</td>
+                                            <td class="cpr">21.9</td>
+                                            <td class="cpr">10.2</td>
+                                            <td class="cpr">9</td>
+                                            <td class="cpr">2.7</td>
+                                            <td class="cpr">51.7</td>
+                                            <td>11.8</td>
+                                            <td class="knowledge">99.9</td>
+                                            <td class="knowledge">99.9</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">100</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                            <td style="text-align:left;">South West</td>
+                                            <td style="text-align:left;">Ogun</td>
+                                            <td class="cpr">26</td>
+                                            <td class="cpr">21.5</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">5.3</td>
+                                            <td class="cpr">1</td>
+                                            <td class="cpr">9</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">4.4</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">0.2</td>
+                                            <td class="cpr">0.9</td>
+                                            <td class="cpr">4.6</td>
+                                            <td class="cpr">0.9</td>
+                                            <td class="cpr">2.2</td>
+                                            <td class="cpr">1.4</td>
+                                            <td class="cpr">74</td>
+                                            <td>23.4</td>
+                                            <td class="knowledge">99.1</td>
+                                            <td class="knowledge">99.1</td>
+                                            <td class="knowledge">96.7</td>
+                                            <td class="knowledge">95</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                            <td style="text-align:left;">South West</td>
+                                            <td style="text-align:left;">Ondo</td>
+                                            <td class="cpr">31.1</td>
+                                            <td class="cpr">20.4</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">3</td>
+                                            <td class="cpr">5.9</td>
+                                            <td class="cpr">5.7</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">4.1</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">0.3</td>
+                                            <td class="cpr">0.7</td>
+                                            <td class="cpr">10.7</td>
+                                            <td class="cpr">4.6</td>
+                                            <td class="cpr">4.9</td>
+                                            <td class="cpr">1.2</td>
+                                            <td class="cpr">68.9</td>
+                                            <td>16.9</td>
+                                            <td class="knowledge">92.8</td>
+                                            <td class="knowledge">91.3</td>
+                                            <td class="knowledge">94.8</td>
+                                            <td class="knowledge">94.1</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                            <td style="text-align:left;">South West</td>
+                                            <td style="text-align:left;">Osun</td>
+                                            <td class="cpr">38.3</td>
+                                            <td class="cpr">31.6</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">5</td>
+                                            <td class="cpr">5.3</td>
+                                            <td class="cpr">7.2</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">13.1</td>
+                                            <td class="cpr">0.6</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.4</td>
+                                            <td class="cpr">6.7</td>
+                                            <td class="cpr">1.5</td>
+                                            <td class="cpr">4.7</td>
+                                            <td class="cpr">0.5</td>
+                                            <td class="cpr">61.7</td>
+                                            <td>16.5</td>
+                                            <td class="knowledge">99.5</td>
+                                            <td class="knowledge">99.5</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">99.6</td>
+                                            </tr>
+                                            <tr style="text-align:right;" class="sw">
+                                                
+                                            <td style="text-align:left;">South West</td>
+                                            <td style="text-align:left;">Oyo</td>
+                                            <td class="cpr">37.4</td>
+                                            <td class="cpr">24.4</td>
+                                            <td class="cpr">0.2</td>
+                                            <td class="cpr">3.7</td>
+                                            <td class="cpr">6.1</td>
+                                            <td class="cpr">6.5</td>
+                                            <td class="cpr">0.5</td>
+                                            <td class="cpr">5.4</td>
+                                            <td class="cpr">1.2</td>
+                                            <td class="cpr">0</td>
+                                            <td class="cpr">0.7</td>
+                                            <td class="cpr">13</td>
+                                            <td class="cpr">3.9</td>
+                                            <td class="cpr">7.5</td>
+                                            <td class="cpr">1.6</td>
+                                            <td class="cpr">62.6</td>
+                                            <td>13.2</d>
+                                            <td class="knowledge">90.9</td>
+                                            <td class="knowledge">88.9</td>
+                                            <td class="knowledge">100</td>
+                                            <td class="knowledge">100</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+				<div class="clear" style=""></div>
+			   
+			
+							
+	
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+

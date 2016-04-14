@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><?php echo $this->translation['Application Name'];?> | <?php echo t('Edit').space.t('Facility');?></title>
+<?php
+require_once('views/helpers/Location.php');
+require_once('views/helpers/ScriptContainer.php');
+require_once('views/helpers/TrainingViewHelper.php');
+require_once('views/helpers/FormHelper.php');
+print ScriptContainer::$instance->renderCSSHead();
+print ScriptContainer::$instance->renderJSHead();
+?>
+<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+			} );
+		</script>
+</head>
+<body class="yui-skin-sam" >
+<div id="pageHolder">
+  <div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+  <div id="content">
+
+		<h1><?php echo t('Edit').space.t('Facility');?></h1>
+
+
+<div class="fieldLabel" id="facility_name_lbl"><?php tp('Facility');?></div>
+	<form id="change" action="<?php echo $this->base_url;?>/facility/edit" method="get">
+	<div class="fieldInput"><select name="id"  id="id" onchange="if(this.value != '') this.form.submit();">
+	<option value="">-- <?php tp('choose');?> --</option>
+	<?php foreach ( $this->facilities as $facility) {
+		echo '<option value="'.($facility['id']).'" '.((@$this->facility['id']) == $facility['id']? 'SELECTED':'').' >'.($facility['facility_name']).'</option>';
+	}
+	?>
+	</select>
+	</div>
+	</form>
+
+	<form id="edit" action="" method="post">
+	<div class="fieldLabel" id="facility_name_lbl"><?php tp('Facility name');?></div>
+	<div class="fieldInput"><input type="text" name="facility_name"  id="facility_name" value="<?php echo $this->facility['facility_name'];?>" size="40" maxlength="128"/></div>
+	<input type="hidden" name="id" value="<?php echo $this->facility['id'];?>"></input>
+	
+	<!-- TA:17: 09/03/2014 -->
+	<?php if($this->setting['display_facility_address']) { ?>
+	<div class="fieldLabel" id="facility_address1_lbl"><?php tp('Address ');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_address1" id="facility_address1" value="<?php echo $this->facility['address_1'];?>" size="40" maxlength="128"/></div>
+	<div class="fieldLabel" id="facility_address2_lbl"><?php tp('Address 2');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_address2" id="facility_address2" value="<?php echo $this->facility['address_2'];?>" size="40" maxlength="128"/></div>
+	<?php }?>
+	
+<?php region_filters_dropdown($this, $this->locations, $this->facility, false, false, 'facility'); ?>
+
+<!-- TA:17: 09/03/2014 -->
+	<?php if($this->setting['display_facility_city']) { ?>
+	<div class="fieldLabel" id="facility_city_lbl"><?php echo (@$this->translation['City or Town']); ?></div><div id="cityAutoComplete">
+	    <div class="fieldInput"><input name="facility_city" id="facility_city" type="text" size="40" maxlength="128" value="<?php echo $this->facility['facility_city'];?>" /><input style="margin-left:10px;" type="checkbox" id="is_new_city" name="is_new_city" value="is_new_city" /><label class="label"><?php tp('New city'); ?></label><div class="clear"></div>
+	    <div id="cityContainer"  class="autocomplete"></div></div>
+	</div>
+	<?php renderCityAutocomplete('facility','cityContainer',$this->base_url.'/facility/cityList/outputType/text/',$this->setting['num_location_tiers']);?>
+	<?php }?>
+
+<?php if ($this->setting['display_facility_postal_code'] ) { ?>
+	<div class="fieldLabel" id="facility_postal_code_lbl"><?php tp('Postal code');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_postal_code" id="facility_postal_code" value="<?php echo $this->facility['postal_code'];?>" size="40" maxlength="20"/></div>
+<?php } ?>
+<?php if ($this->setting['display_facility_lat_long'] ) { ?>
+	<div class="fieldLabel" id="facility_latitude_lbl"><?php tp('Latitude');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_latitude" id="facility_latitude" value="<?php echo $this->facility['lat'];?>" size="40" maxlength="11"/></div>
+	<div class="fieldLabel" id="facility_longitude_lbl"><?php tp('Longitude');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_longitude" id="facility_longitude" value="<?php echo $this->facility['long'];?>" size="40" maxlength="11"/></div>
+<?php } ?>
+
+<!-- TA:17: 09/03/2014 -->
+	<?php if($this->setting['display_facility_phone']) { ?>
+	<div class="fieldLabel" id="facility_phone_lbl"><?php tp('Phone');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_phone" id="facility_phone" value="<?php echo $this->facility['phone'];?>" size="40" maxlength="32"/></div>
+	  <?php }?>
+	  
+	  <!-- TA:17: 09/03/2014 -->
+	<?php if($this->setting['display_facility_fax']) { ?>
+	<div class="fieldLabel" id="facility_fax_lbl"><?php tp('Fax');?></div>
+	  <div class="fieldInput"><input type="text" name="facility_fax" id="facility_fax" value="<?php echo $this->facility['fax'];?>" size="40" maxlength="32"/></div>
+	  <?php }?>
+	  
+<?php if ( $this->setting['display_facility_custom1'] ) { ?>
+  <div id="custom1AutoComplete" >
+      <div class="fieldLabel" id="custom1Input_lbl"><?php echo (@$this->translation['Facility Custom 1']); ?> </div><div class="fieldInput"><input id="facility_custom1" name="facility_custom1" type="text" size="40" maxlength="128" value="<?php echo @$this->facility['custom_1'];?>" /><div class="clear"></div><div id="custom1Container" class="autoComplete"></div></div>
+  </div><br/>
+<?php } ?>
+
+<!-- TA:17: 09/03/2014 -->
+	<?php if($this->setting['display_facility_type']) { ?>
+	<div class="fieldLabel" id="facility_type_id_lbl"><?php tp('Facility'); echo ' '; tp('type');?></div>
+	<div class="fieldInput"><select id="facility_type_id" name="facility_type_id">
+		<option value="">--<?php tp('choose');?>--</option>
+		<?php
+			foreach ( $this->facility_types as $vals ) {
+				echo '<option value="'.$vals['id'].'" '.((@$this->facility['type_option_id']) == $vals['id']? 'SELECTED':'').' >'.$vals['facility_type_phrase'].'</option>';
+		}
+		?>
+	</select></div>
+	<?php }?>
+	
+<?php if($this->setting['display_facility_sponsor']) { ?>
+<?php foreach($this->sponsor_data as $i => $sponsorRow) { ?>
+	<div class="fieldLabel" id="<?php if ($i==0) echo 'facility_sponsor_id_lbl'; ?>"><?php tp('Facility'); echo ' '; tp('sponsor');?></div>
+	  <div class="fieldInput" id="<?php if ($i==0) echo 'facility_sponsor_wrapper'; ?>">
+		<select id="facility_sponsor_id" name="facility_sponsor_id[]">
+		<option value="">--<?php tp('choose');?>--</option>
+		<?php
+			if ( @$this->facility_sponsors ) {
+				foreach ( $this->facility_sponsors as $vals ) {
+					$sel = ($vals['id'] == $sponsorRow['facility_sponsor_phrase_id'] ? 'selected' : '');
+					echo '<option value="'.$vals['id'].'" '.$sel.' >'.$vals['facility_sponsor_phrase'].'</option>';
+				}
+			}
+		?>
+		</select>
+		<?php if ( $this->hasACL( 'acl_editor_facility_sponsors' ) && $i==0 ) { echo '<a href="#" onclick="addToSelect(\''.t('Please enter your new').' '.t('Facility sponsor').':'.'\', \'facility_sponsor_id\', \''.Settings::$COUNTRY_BASE_URL.'/training/insert-table/table/facility_sponsor_option/column/facility_sponsor_phrase/outputType/json\'); return false;">'.t('Insert New').'</a>'; } ?>
+		<?php if ( @$this->setting['allow_multi_sponsors'] && $i==0 ) {         echo '<a id="sponsor_add" href="#" onclick="addSponsorRow();return false;">'.t('Add another sponsor to this Facility').'</a>'; } ?>
+		<?php echo hasACLEdit( 'acl_editor_facility_sponsors', 'admin/facilities-sponsors' , $this ); ?>
+	</div>
+<?php if ( @$this->setting['display_sponsor_dates'] ) { ?>
+	<div class="fieldLabel" id="<?php if ($i==0) echo 'facility_sponsor_id_lbl'; ?>"><?php if( @$this->setting['require_sponsor_dates'] ) echo '<span class="required">*</span>'; ?><?php tp('Sponsor Date');?></div>
+	<div class="fieldInput sponsorDates" id="<?php if ($i==0) echo 'facility_sponsor_wrapper'; ?>">
+		<span><input class="datepicker" type="text" name="sponsor_start_date[]" value="<?php echo formhelperdate($sponsorRow['start_date']); ?>" /><a class="calendarbtn" href="#"><img src="<?php echo $this->base_url; ?>/js/yui/assets/calbtn.gif" /></a></span>&nbsp;&nbsp;
+		<?php if( @$this->setting['require_sponsor_dates'] ) echo '<span class="required">*</span>'; ?><label class="label"><?php tp('to'); ?></label>
+		<span><input class="datepicker" type="text" name="sponsor_end_date[]" value="<?php echo formhelperdate($sponsorRow['end_date']); ?>" /><a class="calendarbtn" href="#"><img src="<?php echo $this->base_url; ?>/js/yui/assets/calbtn.gif" /></a></span>
+	</div>
+<?php } ?>
+<?php } ?>
+<?php } ?>
+
+<?php if ( @$this->setting['display_facility_comments'] ) { ?>
+	<div class="fieldLabel" id="facility_comments_lbl"><?php tp('Facility Comments');?></div>
+	<div class="fieldInput"><textarea name="facility_comments" id="facility_comments" size="40" maxlength="255" ><?php echo $this->facility['facility_comments'];?></textarea></div>
+<?php } ?>
+
+
+	<div class="clear" ></div>
+	
+	<!-- TA:17: 09/04/2014 START -->
+
+	 
+	<?php if ( @$this->setting['display_facility_commodity'] ) { 
+
+	/************ Commodity table  ******************************************************************************/ ?>
+	<div class="clear"></div>
+        <br/>
+        <?php
+ //print_r($this->tocktack);
+    
+if (isset($this->output)) {
+	if (count ($this->output) == 0){
+           echo '  <br/><h2><b>Commodity Summary: Monthly consumption by method for last 12 months</b></h2>';
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+                                    <h2><b>Commodity Summary: Monthly consumption by method for last 12 months</b></h2>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			
+                    echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->output as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+				
+<?php
+	}
+}
+?>
+        <br/><br/>
+        
+        <?php
+ //print_r($this->tocktack);
+
+if (isset($this->outputs)) {
+	if (count ($this->outputs) == 0){
+            echo 
+            '<br/>
+            <h2><b>Stock Out Summary: Stock outs over last 12 months</b></h2>';
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+                                    <h2><b>Stock Out Summary: Stock outs over last 12 months</b></h2>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->outputs as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+				
+<?php
+	}
+}
+?>
+  <div class="hrGrey"></div>
+  <div class="clear"></div>
+  <!-- TA:17: rows count must have this format <span id="[label]_total">-->
+  <!--<div class="fieldIndentNoMargin"><?php //tp('Commodity Information');?> <span class="total"><?php // tp('Total Records For Last 12 Months:');?> <span id="commodity_total"><?php //echo $this->escape($this->totalCommodities);?></span></span></div>!-->
+  <div class="fieldIndent2">
+  <!-- TA:17: table div id must have this format  <div id="[label]Table">-->
+  <div name="commodityTable" id="commodityTable"></div>
+  
+  <script>
+     		
+    		// fired on "insert" button click
+        	function addCommodity(oButton) {
+        	    var oCName = YAHOO.util.Dom.get('name');
+        	    var oCDateMM = YAHOO.util.Dom.get('dateMM');
+        	    var oCDateYY = YAHOO.util.Dom.get('dateYY');
+        	    var oCCons = YAHOO.util.Dom.get('consumption');
+        	    var oCStockOut = YAHOO.util.Dom.get('stock_out');
+
+        	    if(oCName.value == ""){
+            	    alert("Commodity name cannot be empty.");
+            	    return;
+        	    }
+
+        	    if(oCStockOut.value == ""){
+            	    alert("Select 'Out of Stock' value.");
+            	    return;
+        	    }
+
+        	    if(oCDateMM.value == ""){
+            	    alert("Date: month cannot be empty.");
+            	    return;
+        	    }else if(oCDateMM.value > 12){
+        	    	alert("Date: month can be between 1 and 12.");
+            	    return;
+        	    }
+        	    if(oCDateYY.value == ""){
+            	    alert("Date: year cannot be empty.");
+            	    return;
+        	    }else if(oCDateYY.value > 99 || oCDateYY.value < 10){
+        	    	alert("Date: year can be between 10 and 99.");
+            	    return;
+        	    }
+
+            var jsonAdd = { }
+           
+           addAjaxSubmit('submitFacility','edit','<?php echo $this->base_url;?>/facility/edit/outputType/json');
+           
+           /*
+
+            jsonAdd.id = oCName.value;
+            jsonAdd.name = $('#name option:selected').text();
+            var month = oCDateMM.value;
+            if(month.length == 1){month = "0" + month;}
+            jsonAdd.date = month + "/" + oCDateYY.value;
+            jsonAdd.consumption = oCCons.value;
+            jsonAdd.stock_out = oCStockOut.value;
+          	ITECH.commodityTable.addDataRow(jsonAdd, oCName.options[oCName.selectedIndex].text);
+            
+            oCName.value = "";
+            oCDateMM.value = "";
+            oCDateYY.value = "";
+            oCCons.value = "";
+            oCStockOut.value = "";
+            */
+
+          }
+
+    	</script>
+  
+  <?php //echo $this->tableCommodities; 
+  if($this->hasACL( 'edit_commodity' )) {
+  ?><br>
+  
+  <input type="hidden" id="commodity_new_data" name="commodity_new_data"/>
+  <input type="hidden" id="commodity_delete_data" name="commodity_delete_data"/>
+  
+  <?php echo (@$this->translation['Facility Commodity Column Table Commodity Name']);?>
+  <?php echo "<select id='name' name='name'>";
+								echo "<option value='0'>" . t('Select...') . "</option>";
+								foreach ($this->commodity_names as $name){
+									echo "<option value='" . $name['id'] . "'>" . $name['commodity_name'] . "</option>";
+								}
+								echo "</select>";
+  ?>
+  
+  &nbsp;&nbsp;&nbsp;&nbsp;<?php echo (@$this->translation['Facility Commodity Column Table Date']);?>
+  <input type="number" id="dateMM"  min="1" max="12" placeholder="MM" style="width:3em;"/>/
+ <input type="number" id="dateYY"  min="10" max="99" placeholder="YY" style="width:3em;"/>
+ &nbsp;&nbsp;&nbsp;&nbsp;<?php echo (@$this->translation['Facility Commodity Column Table Consumption']);?>
+  <input type="text" id="consumption" size="10"  placeholder="Consumption">
+  &nbsp;&nbsp;&nbsp;&nbsp;<?php echo (@$this->translation['Facility Commodity Column Table Out of Stock']);?>
+  <select id='stock_out'><option value='' selected='selected'></option><option value='N'>N</option><option value='Y'>Y</option></select>
+   &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" name="Insert" value="<?php tp("Insert");?>" class="insert" id="commodityInsertButton" onclick="addCommodity(this);return false;">
+       &nbsp;&nbsp;&nbsp;
+       <?php } ?>
+        <a href='<?php echo $this->base_url;?>/reports/commodityByFacility/id/<?php echo $this->facility['id'];?>'><?php tp('Commodity Report');?></a>
+     
+
+  </div> <!-- table ends -->
+<?php   } ?>
+	<!-- TA:17: 09/04/2014 END -->
+
+	<button type="button" id="submitFacility" class="submitNoArrow"><?php tp('Save changes');?></button>
+	<div style="float:right;">&nbsp;</div><?php if ($this->okToDelete) { ?><input type="button" id="deleteFacility" name="deleteFacility" value="Delete" class="submitNoArrow"  onclick="doDelete();" /><?php } ?>
+	<script type="text/javascript">
+		addAjaxSubmit('submitFacility','edit','<?php echo $this->base_url;?>/facility/edit/outputType/json');
+	</script>
+	</form>
+	<div class="clear" ></div>
+  </div>
+  <div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+</div>
+
+<script language="JavaScript">
+// on load
+$(document).ready(function () {
+  $('.datepicker').datepicker();
+  $('.calendarbtn').click(openNearestDatePicker);
+});
+
+function doDelete() {
+	if(confirm("<?php tp('Are you sure you wish to delete this facility?');?>")) {
+		window.location = '<?php echo $this->base_url;?>/facility/delete/id/<?php echo $this->facility['id'];?>';
+		return false;
+	}
+}
+</script>
+
+</body>
+</html>

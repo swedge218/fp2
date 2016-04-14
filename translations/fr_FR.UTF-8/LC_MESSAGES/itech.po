@@ -1,0 +1,3531 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TrainSMART\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-19 13:32-0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: DB\n"
+"Language-Team: Fuse IQ <todd@fuseiq.com>\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-KeywordsList: t;tp\n"
+"X-Poedit-Basepath: C:\\Users\\rossumg\\Zend\\workspaces"
+"\\Workspace20\\trainsmart.git\\app\n"
+"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-SearchPath-0: views\n"
+"X-Poedit-SearchPath-1: desktop\n"
+"X-Poedit-SearchPath-2: models\n"
+"X-Poedit-SearchPath-3: Output\n"
+"X-Poedit-SearchPath-4: controllers\n"
+
+#: desktop/distro/Resources/strings.Designer.cs:68
+msgid "CONTINUE"
+msgstr ""
+
+#: desktop/distro/Resources/strings.Designer.cs:77
+msgid "INCORRECT_PWD"
+msgstr ""
+
+#: desktop/distro/Resources/strings.Designer.cs:86
+msgid "PASSWORD"
+msgstr ""
+
+#: desktop/distro/Resources/strings.Designer.cs:95
+msgid "PLEASE_LOGIN"
+msgstr ""
+
+#: controllers/AdminController.php:24
+#, fuzzy
+msgid "Administration"
+msgstr "Affiliations"
+
+#: controllers/AdminController.php:172 controllers/AdminController.php:516
+#: controllers/AdminController.php:868 controllers/AdminController.php:987
+#: controllers/AdminController.php:1391 controllers/AdminController.php:2457
+#: controllers/AdminController.php:2814
+msgid "Your settings have been updated."
+msgstr "Vos paramètres ont été mis à jour."
+
+#: controllers/AdminController.php:611 controllers/FacilityController.php:803
+#: controllers/FacilityController.php:991
+#: controllers/PersonController.php:1868
+#: controllers/TrainingController.php:1544
+#, fuzzy
+msgid "Your changes have been saved."
+msgstr "Vos paramètres ont été mis à jour."
+
+#: controllers/AdminController.php:716
+msgid "Move Regions"
+msgstr "Déplacer les régions"
+
+#: controllers/AdminController.php:1275
+msgid "That user is now a master approver"
+msgstr ""
+
+#: controllers/AdminController.php:1275
+msgid "Unable to make that user a master approver"
+msgstr ""
+
+#: controllers/AdminController.php:1281
+msgid "That user is now a regular approver"
+msgstr ""
+
+#: controllers/AdminController.php:1281
+msgid "Unable to remove that user as a master approver"
+msgstr ""
+
+#: controllers/AdminController.php:1287
+msgid "That user is no longer an approver"
+msgstr ""
+
+#: controllers/AdminController.php:1287
+msgid "Unable to delete that approver"
+msgstr ""
+
+#: controllers/AdminController.php:1309 controllers/PersonController.php:1824
+#: controllers/PersonController.php:1860
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: controllers/ReportsController.php:5692
+#: controllers/TrainingController.php:545
+#: controllers/TrainingController.php:1950
+msgid "Name"
+msgstr "Nom"
+
+#: controllers/AdminController.php:1310
+#, fuzzy
+msgid "Approver"
+msgstr "Approbation"
+
+#: controllers/AdminController.php:1312
+#, fuzzy
+msgid "Master Approver"
+msgstr "En attente d'approbation"
+
+#: controllers/AdminController.php:1315
+#, fuzzy
+msgid "Actions"
+msgstr "Affiliations"
+
+#: controllers/AdminController.php:1318 controllers/AdminController.php:1331
+#: controllers/ReportpreserviceController.php:231
+#: controllers/ReportsController.php:1516
+#: controllers/ReportsController.php:1520
+#: controllers/ReportsController.php:2270
+#: controllers/ReportsController.php:2274
+#: controllers/ReportsController.php:2925
+#: controllers/ReportsController.php:3643
+#: controllers/ReportsController.php:4572
+#: controllers/ReportsController.php:6238
+#: controllers/ReportsController.php:6239
+msgid "Yes"
+msgstr "Oui"
+
+#: controllers/AdminController.php:1327 controllers/PersonController.php:1701
+#: controllers/ReportpreserviceController.php:231
+#: controllers/ReportsController.php:1516
+#: controllers/ReportsController.php:1520
+#: controllers/ReportsController.php:2270
+#: controllers/ReportsController.php:2274
+#: controllers/ReportsController.php:2925
+#: controllers/ReportsController.php:3643
+#: controllers/ReportsController.php:4572
+#: controllers/ReportsController.php:6238
+#: controllers/ReportsController.php:6239
+msgid "No"
+msgstr "Non"
+
+#: controllers/AdminController.php:1328 controllers/AdminController.php:1333
+#: views/helpers/ITechTranslate_adds.php:37
+msgid "Remove"
+msgstr ""
+
+#: controllers/AdminController.php:1329
+msgid "Make Master"
+msgstr ""
+
+#: controllers/AdminController.php:1332
+msgid "Make Low Level Approver"
+msgstr ""
+
+#: controllers/AdminController.php:1680
+msgid "Error updating people. Table:"
+msgstr ""
+
+#: controllers/AdminController.php:1684 controllers/AdminController.php:1685
+#: controllers/EmployeeController.php:453
+#: controllers/PeopleaddController.php:30
+#: controllers/PeopleaddController.php:31 controllers/PersonController.php:400
+#: controllers/PersonController.php:723
+#: controllers/StudenteditController.php:40
+#: controllers/StudenteditController.php:41
+#: controllers/StudenteditController.php:276
+#: controllers/TutoreditController.php:91
+#: controllers/TutoreditController.php:92
+#, fuzzy
+msgid "The person was saved."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/AdminController.php:1697
+msgid "You must select a valid person to merge"
+msgstr ""
+
+#: controllers/AdminController.php:1711
+msgid "Person"
+msgstr "Personne"
+
+#: controllers/AdminController.php:1711 controllers/AdminController.php:2030
+msgid "Merge"
+msgstr ""
+
+#: controllers/AdminController.php:1805
+msgid "Require at least one trainer skill per trainer"
+msgstr ""
+
+#: controllers/AdminController.php:1999
+msgid "Error updating facilities. Table:"
+msgstr ""
+
+#: controllers/AdminController.php:2003 controllers/AdminController.php:2004
+#: controllers/FacilityController.php:220
+#: controllers/FacilityController.php:226
+#: controllers/PsfacilityController.php:205
+#: controllers/PsfacilityController.php:211
+msgid "The facility was saved."
+msgstr "L'institution a été enregistrée."
+
+#: controllers/AdminController.php:2023
+msgid "You must select a valid facility to merge"
+msgstr ""
+
+#: controllers/AdminController.php:2030 controllers/FacilityController.php:748
+#: controllers/FacilityController.php:757
+#: controllers/FacilityController.php:790 controllers/PersonController.php:464
+#: controllers/PersonController.php:1807 controllers/ReportsController.php:82
+#: controllers/ReportsController.php:88 controllers/TrainingController.php:822
+#: controllers/TrainingController.php:824
+#: controllers/TrainingController.php:826
+#: controllers/TrainingController.php:2076
+#: views/helpers/ITechTranslate.php:128
+msgid "Facility"
+msgstr "Institution"
+
+#: controllers/AdminController.php:3048 controllers/AdminController.php:3121
+#: controllers/AdminController.php:3194 controllers/AdminController.php:3265
+#: controllers/AdminController.php:3341 controllers/EmployeeController.php:176
+#: controllers/MechanismController.php:124
+#: controllers/PartnerController.php:145
+msgid "All fields"
+msgstr ""
+
+#: controllers/AdminController.php:3048 controllers/AdminController.php:3121
+#: controllers/AdminController.php:3194 controllers/AdminController.php:3265
+#: controllers/AdminController.php:3341 controllers/EmployeeController.php:176
+#: controllers/MechanismController.php:124
+#: controllers/PartnerController.php:145
+#, fuzzy
+msgid "are required"
+msgstr "La ville est obligatoire."
+
+#: controllers/AdminController.php:3059 controllers/AdminController.php:3127
+#: controllers/AdminController.php:3200 controllers/AdminController.php:3271
+#: controllers/AdminController.php:3347
+#: controllers/MechanismController.php:130
+#, fuzzy
+msgid "Record exists"
+msgstr "existe déjà"
+
+#: controllers/AdminController.php:3063 controllers/AdminController.php:3132
+#: controllers/AdminController.php:3205 controllers/AdminController.php:3276
+#: controllers/AdminController.php:3352 controllers/EmployeeController.php:179
+#: controllers/MechanismController.php:134
+#: controllers/PartnerController.php:148
+#, fuzzy
+msgid "That funding mechanism could not be saved."
+msgstr "Le centre de formation n'a pas pu être enregistré."
+
+#: controllers/AdminController.php:3075 controllers/AdminController.php:3147
+#: controllers/AdminController.php:3220 controllers/AdminController.php:3291
+#: controllers/AdminController.php:3367 controllers/EmployeeController.php:201
+#: controllers/MechanismController.php:148
+#: controllers/PartnerController.php:169
+#, fuzzy
+msgid "The funding mechanism was saved."
+msgstr "L'institution a été enregistrée."
+
+#: controllers/CalendarController.php:105
+msgid "No future"
+msgstr ""
+
+#: controllers/CalendarController.php:105
+#: controllers/EvaluationController.php:367
+#: controllers/EvaluationController.php:368
+#: controllers/PersonController.php:1701
+msgid "Trainings"
+msgstr "Formations"
+
+#: controllers/CalendarController.php:105
+msgid "found."
+msgstr ""
+
+#: controllers/EditTableController.php:146
+msgid "A record already exists with this value."
+msgstr "Un dossier existe déjà avec cette valeur."
+
+#: controllers/EmployeeController.php:29
+msgid "The employee module is not enabled on this site."
+msgstr ""
+
+#: controllers/EmployeeController.php:45
+msgid "Employee Tracking System"
+msgstr ""
+
+#: controllers/EmployeeController.php:107
+msgid "Error creating record."
+msgstr ""
+
+#: controllers/EmployeeController.php:116
+#: controllers/EmployeeController.php:120
+#: controllers/EmployeeController.php:465
+#: controllers/PartnerController.php:343
+msgid "Error finding that record in the database."
+msgstr ""
+
+#: controllers/EmployeeController.php:235
+#: controllers/TrainingController.php:51
+#, fuzzy
+msgid "Add New"
+msgstr "Ajouter un nouvel utilisateur"
+
+#: controllers/EmployeeController.php:235
+msgid "Employee"
+msgstr ""
+
+#: controllers/EmployeeController.php:255
+#, fuzzy
+msgid "That employee was deleted."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/EmployeeController.php:257
+#, fuzzy
+msgid "That employee could not be found."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/EmployeeController.php:287
+#: controllers/MechanismController.php:70 controllers/PartnerController.php:95
+msgid "Cannot find that record in the database."
+msgstr ""
+
+#: controllers/EmployeeController.php:298
+#: controllers/MechanismController.php:81
+#: controllers/PartnerController.php:106
+#, fuzzy
+msgid "That mechanism was deleted."
+msgstr "Ce lieu a été supprimé."
+
+#: controllers/EmployeeController.php:302
+#: controllers/MechanismController.php:85
+#: controllers/PartnerController.php:110
+#, fuzzy
+msgid "That mechanism was not deleted."
+msgstr "Ce lieu a été supprimé."
+
+#: controllers/EmployeeController.php:350
+msgid "Employee Code"
+msgstr ""
+
+#: controllers/EmployeeController.php:352
+#: controllers/ReportsController.php:5779
+#: controllers/TrainingController.php:822
+#: controllers/TrainingController.php:824
+#: controllers/TrainingController.php:826
+#: controllers/TrainingController.php:2076
+msgid "Date of Birth"
+msgstr "Date de naisance"
+
+#: controllers/EmployeeController.php:355
+#, fuzzy
+msgid "Employee Nationality"
+msgstr "Institutions"
+
+#: controllers/EmployeeController.php:357
+msgid "Staff Cadre"
+msgstr ""
+
+#: controllers/EmployeeController.php:360 controllers/PersonController.php:412
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: views/helpers/FormHelper.php:175 views/helpers/ITechTranslate.php:134
+msgid "Gender"
+msgstr "Sexe"
+
+#: controllers/EmployeeController.php:362
+msgid "Race"
+msgstr ""
+
+#: controllers/EmployeeController.php:364
+#, fuzzy
+msgid "Disability"
+msgstr "Institution"
+
+#: controllers/EmployeeController.php:366
+msgid "Nature of Disability"
+msgstr ""
+
+#: controllers/EmployeeController.php:369
+msgid "Salary"
+msgstr ""
+
+#: controllers/EmployeeController.php:371
+msgid "Benefits"
+msgstr ""
+
+#: controllers/EmployeeController.php:373
+#, fuzzy
+msgid "Additional Expenses"
+msgstr "Affiliations"
+
+#: controllers/EmployeeController.php:375
+msgid "Stipend"
+msgstr ""
+
+#: controllers/EmployeeController.php:377
+#: controllers/PartnerController.php:227
+msgid "Partner"
+msgstr ""
+
+#: controllers/EmployeeController.php:381
+#, fuzzy
+msgid "Intended Transition"
+msgstr "Ajouter un lieu de formation"
+
+#: controllers/EmployeeController.php:383
+#: controllers/EmployeeController.php:385
+#: controllers/FacilityController.php:843
+#: controllers/FacilityController.php:1018
+#: controllers/PartnerController.php:232 controllers/PersonController.php:1769
+#: controllers/PersonController.php:1781 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:246
+msgid "Region A (Province)"
+msgstr ""
+
+#: controllers/EmployeeController.php:383
+#: controllers/EmployeeController.php:385 controllers/PersonController.php:89
+#: controllers/TrainingController.php:1570
+msgid "or"
+msgstr ""
+
+#: controllers/EmployeeController.php:383
+#: controllers/EmployeeController.php:385
+msgid "Employee Based at"
+msgstr ""
+
+#: controllers/EmployeeController.php:387
+#, fuzzy
+msgid "Primary Role"
+msgstr "Langue maternelle"
+
+#: controllers/EmployeeController.php:389
+msgid "Funded hours per week"
+msgstr ""
+
+#: controllers/EmployeeController.php:391
+#, fuzzy
+msgid "Contract End Date"
+msgstr "Date de la fin :"
+
+#: controllers/EmployeeController.php:402
+msgid " Warn: Total Funded Percentage > 100 "
+msgstr ""
+
+#: controllers/EmployeeController.php:420
+#: controllers/PersonController.php:1860
+#: controllers/StudenteditController.php:46
+#: controllers/StudenteditController.php:47
+#, fuzzy
+msgid "That person could not be saved."
+msgstr "Cette personne ne peut pas être enregistrée."
+
+#: controllers/EmployeeController.php:531
+#, fuzzy
+msgid "Add Employee"
+msgstr "Personnes"
+
+#: controllers/EmployeeController.php:531
+msgid "Edit Employee"
+msgstr ""
+
+#: controllers/EvaluationController.php:88
+msgid "The evaluation could not be loaded."
+msgstr "Impossible de charger l'évaluation."
+
+#: controllers/EvaluationController.php:105
+#: controllers/EvaluationController.php:210
+#: controllers/EvaluationController.php:220
+#: controllers/EvaluationController.php:271
+#: controllers/EvaluationController.php:282
+msgid "The evaluation could not be saved."
+msgstr "Impossible de sauvegarder l'évaluation."
+
+#: controllers/EvaluationController.php:191
+#: controllers/EvaluationController.php:251
+#: views/helpers/ITechTranslate.php:176
+msgid "Title"
+msgstr "Titre"
+
+#: controllers/EvaluationController.php:194
+#: controllers/EvaluationController.php:254
+msgid "You must choose a question type for each question."
+msgstr "Vous devez choisir un type de question pour chaque question."
+
+#: controllers/EvaluationController.php:198
+#: controllers/EvaluationController.php:258
+msgid "You must enter question text for each question."
+msgstr "Vous devez saisir le texte de la question pour chaque question."
+
+#: controllers/EvaluationController.php:217
+msgid "The new evaluation was created."
+msgstr "La nouvelle évaluation a été crée."
+
+#: controllers/EvaluationController.php:278
+msgid "Error saving questions."
+msgstr ""
+
+#: controllers/EvaluationController.php:279
+#, fuzzy
+msgid "The evaluation was saved."
+msgstr "La nouvelle évaluation a été crée."
+
+#: controllers/EvaluationController.php:316
+#, fuzzy
+msgid "This evaluation has been deleted."
+msgstr "L'évaluation a été assignée."
+
+#: controllers/EvaluationController.php:319
+#, fuzzy
+msgid "This evaluation could not be deleted."
+msgstr "Impossible de charger l'évaluation."
+
+#: controllers/EvaluationController.php:367
+#: controllers/EvaluationController.php:368
+#: controllers/PersonController.php:765 controllers/PersonController.php:1698
+#: controllers/TrainingController.php:1715
+#: controllers/TrainingController.php:1716
+#: controllers/TrainingController.php:1724
+#: controllers/TrainingController.php:1725
+#: controllers/TrainingController.php:1737
+msgid "The"
+msgstr ""
+
+#: controllers/EvaluationController.php:367
+#: controllers/EvaluationController.php:368
+#, fuzzy
+msgid "have been assigned."
+msgstr "Les formations ont été assignées."
+
+#: controllers/EvaluationController.php:402
+msgid "The evaluation has been assigned."
+msgstr "L'évaluation a été assignée."
+
+#: controllers/ExternalController.php:46 controllers/PersonController.php:1698
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: controllers/ReportsController.php:5691
+#: controllers/ReportsController.php:5692
+#: controllers/ReportsController.php:5696
+#: controllers/ReportsController.php:5697
+#: controllers/TrainingController.php:51 controllers/TrainingController.php:60
+#: controllers/TrainingController.php:65 controllers/TrainingController.php:72
+#: controllers/TrainingController.php:125
+#: controllers/TrainingController.php:152
+#: controllers/TrainingController.php:153
+#: controllers/TrainingController.php:185
+#: controllers/TrainingController.php:189
+#: controllers/TrainingController.php:252
+#: controllers/TrainingController.php:307
+#: controllers/TrainingController.php:313
+#: controllers/TrainingController.php:485
+#: controllers/TrainingController.php:983
+#: controllers/TrainingController.php:1417
+#: controllers/TrainingController.php:1421
+#: controllers/TrainingController.php:1425
+#: controllers/TrainingController.php:1429
+#: controllers/TrainingController.php:1522
+#: controllers/TrainingController.php:1534
+#: models/table/TrainingApprovalHistory.php:66
+#: models/table/TrainingApprovalHistory.php:71
+#: models/table/TrainingApprovalHistory.php:76
+msgid "Training"
+msgstr "Formation"
+
+#: controllers/ExternalController.php:46
+#: controllers/TrainingController.php:185
+msgid "start"
+msgstr ""
+
+#: controllers/ExternalController.php:49
+msgid "The person could not be saved."
+msgstr "Cette personne ne peut pas être enregistrée."
+
+#: controllers/ExternalController.php:65
+msgid "The external course could not be saved."
+msgstr "Le cours externe n'a pas pu être sauvegardé."
+
+#: controllers/FacilityController.php:46
+#, fuzzy
+msgid "Error approving facility: That record could not be found."
+msgstr "Le nom de cette institution n'a pas été retrouvé."
+
+#: controllers/FacilityController.php:53
+#, fuzzy
+msgid "That facility has been approved."
+msgstr "Cette institution a été supprimée."
+
+#: controllers/FacilityController.php:98
+#: controllers/PsfacilityController.php:96
+msgid "That name already exists."
+msgstr "Ce nom existe déjà."
+
+#: controllers/FacilityController.php:103
+#: controllers/PsfacilityController.php:113
+msgid "Facility type"
+msgstr "Type d'institution"
+
+#: controllers/FacilityController.php:130
+#: controllers/FacilityController.php:133
+#: controllers/PsfacilityController.php:107
+#: controllers/PsfacilityController.php:110
+msgid "That latitude and longitude does not appear to be valid."
+msgstr ""
+
+#: controllers/FacilityController.php:145 controllers/PersonController.php:510
+#: controllers/PsfacilityController.php:127
+#: controllers/TrainingController.php:1665
+msgid ""
+"That city does not appear to be located in the chosen region. If you want to "
+"create a new city, check the new city box."
+msgstr ""
+"Cette ville n'est pas située dans la région choisie. Si vous voulez créer "
+"une nouvelle ville, cochez la case nouvelle ville."
+
+#: controllers/FacilityController.php:161
+#: controllers/FacilityController.php:165
+#: controllers/FacilityController.php:167
+#: controllers/PsfacilityController.php:140
+#: controllers/PsfacilityController.php:143
+#: controllers/PsfacilityController.php:147
+#: controllers/PsfacilityController.php:149
+msgid "Sponsor dates are required."
+msgstr ""
+
+#: controllers/FacilityController.php:174
+#: controllers/PsfacilityController.php:156
+msgid "The facility could not be saved."
+msgstr "L'institution n'a pas pu être enregistrée."
+
+#: controllers/FacilityController.php:180 controllers/PersonController.php:528
+#: controllers/PsfacilityController.php:162
+#: controllers/TrainingController.php:1674
+msgid "Could not save that city."
+msgstr "La ville ne peut pas être enregistrée."
+
+#: controllers/FacilityController.php:215
+#: controllers/FacilityController.php:757
+#: controllers/PsfacilityController.php:200
+msgid ""
+"The facility could not be saved. A facility with this name already exists in "
+"that location."
+msgstr ""
+
+#: controllers/FacilityController.php:223
+#: controllers/FacilityController.php:790
+#: controllers/PsfacilityController.php:208
+msgid "There was an error saving sponsor data though."
+msgstr ""
+
+#: controllers/FacilityController.php:231
+#: controllers/FacilityController.php:777
+#: controllers/PsfacilityController.php:216
+msgid "ERROR: The facility could not be saved."
+msgstr "ERREUR : l'institution ne peut pas être enregistrée."
+
+#: controllers/FacilityController.php:348
+#: controllers/PsfacilityController.php:331
+msgid "That facility was deleted."
+msgstr "Cette institution a été supprimée."
+
+#: controllers/FacilityController.php:350
+#: controllers/PsfacilityController.php:333
+msgid "That facility could not be found."
+msgstr "Cette institution n'a pas été retrouvée."
+
+#: controllers/FacilityController.php:352
+#: controllers/PsfacilityController.php:335
+msgid "That facility is in use and could not be deleted."
+msgstr "On ne peut pas supprimer cette institution, elle est ouverte."
+
+#: controllers/FacilityController.php:374
+#: controllers/PsfacilityController.php:359
+msgid "That location was deleted."
+msgstr "Ce lieu a été supprimé."
+
+#: controllers/FacilityController.php:376
+#: controllers/PsfacilityController.php:361
+msgid "That location could not be found."
+msgstr "Ce lieu n'a pas été retrouvé"
+
+#: controllers/FacilityController.php:378
+#: controllers/PsfacilityController.php:363
+msgid "That location is in use and could not be deleted."
+msgstr "Ce lieu est en cours d'utilisation et n'a pas pu être supprimé."
+
+#: controllers/FacilityController.php:646
+#, fuzzy
+msgid "Import a facility"
+msgstr "Insérer une nouvelle institution"
+
+#: controllers/FacilityController.php:718
+msgid "Error adding facility, Facility name cannot be empty."
+msgstr ""
+
+#: controllers/FacilityController.php:748
+#: controllers/FacilityController.php:958
+#: controllers/TrainingController.php:1350
+msgid "Error locating/creating region or city:"
+msgstr ""
+
+#: controllers/FacilityController.php:771
+#, fuzzy
+msgid "Couldn't save facility type for facility:"
+msgstr "La ville ne peut pas être enregistrée."
+
+#: controllers/FacilityController.php:805
+#: controllers/FacilityController.php:993
+#: controllers/PersonController.php:1870
+#: controllers/TrainingController.php:1546
+msgid ""
+"Error importing data. Some data may have been imported and some may not have."
+msgstr ""
+
+#: controllers/FacilityController.php:844
+#: controllers/FacilityController.php:1019
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:251
+#, fuzzy
+msgid "Region B (Health District)"
+msgstr "Districts sanitaires"
+
+#: controllers/FacilityController.php:845
+#: controllers/FacilityController.php:1020
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:257
+msgid "Region C (Local Region)"
+msgstr ""
+
+#: controllers/FacilityController.php:846
+#: controllers/FacilityController.php:1021
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:263
+#, fuzzy
+msgid "Region D"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:847
+#: controllers/FacilityController.php:1022
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:269
+#, fuzzy
+msgid "Region E"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:848
+#: controllers/FacilityController.php:1023
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:275
+#, fuzzy
+msgid "Region F"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:849
+#: controllers/FacilityController.php:1024
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:281
+#, fuzzy
+msgid "Region G"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:850
+#: controllers/FacilityController.php:1025
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:287
+#, fuzzy
+msgid "Region H"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:851
+#: controllers/FacilityController.php:1026
+#: controllers/PersonController.php:1769 controllers/PersonController.php:1930
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1576 views/helpers/Location.php:293
+#, fuzzy
+msgid "Region I"
+msgstr "Configuration région"
+
+#: controllers/FacilityController.php:858
+#: controllers/FacilityController.php:1032
+#: controllers/PartnerController.php:231 controllers/PersonController.php:1936
+#: controllers/TrainingController.php:1324
+#: controllers/TrainingController.php:1340
+#: controllers/TrainingController.php:1342
+#: controllers/TrainingController.php:1582
+#: views/helpers/ITechTranslate_adds.php:10
+msgid "City"
+msgstr "Ville"
+
+#: controllers/FacilityController.php:870
+#, fuzzy
+msgid "Import a training location"
+msgstr "Lieu de formation"
+
+#: controllers/FacilityController.php:935
+msgid "Error adding training location, training location name cannot be empty."
+msgstr ""
+
+#: controllers/FacilityController.php:958
+#: controllers/TrainingController.php:1350
+#: controllers/TrainingController.php:1382
+msgid "Training Location"
+msgstr "Lieu de la formation"
+
+#: controllers/FacilityController.php:966
+msgid ""
+"The training location could not be saved. A training location with this name "
+"already exists in that location."
+msgstr ""
+
+#: controllers/FacilityController.php:966
+msgid "training location"
+msgstr "Lieu de formation"
+
+#: controllers/FacilityController.php:979
+#: controllers/TrainingController.php:1375
+#, fuzzy
+msgid "ERROR: The training location could not be saved."
+msgstr "On ne peut pas enregistrer les informations du formateur."
+
+#: controllers/ITechController.php:357
+msgid "You do not have access rights to the requested action."
+msgstr "Vous n'avez pas les privilèges pour effectuer cette action."
+
+#: controllers/IndexController.php:70 controllers/ReportsController.php:5691
+msgid "ID"
+msgstr "ID"
+
+#: controllers/IndexController.php:70
+msgid "Course Name"
+msgstr "Nom du cours"
+
+#: controllers/IndexController.php:70
+msgid "Start Date"
+msgstr "Date de début"
+
+#: controllers/IndexController.php:70 controllers/ReportsController.php:5693
+#: controllers/TrainingController.php:1715
+#: controllers/TrainingController.php:1716
+#: controllers/TrainingController.php:1724
+#: controllers/TrainingController.php:1725
+#: controllers/TrainingController.php:1737
+msgid "Training Center"
+msgstr "Centre de Formation"
+
+#: controllers/IndexController.php:70
+msgid "Budget Code"
+msgstr ""
+
+#: controllers/IndexController.php:70
+msgid "Created By"
+msgstr "Créé par"
+
+#: controllers/IndexController.php:128
+msgid "Message"
+msgstr "Message"
+
+#: controllers/MechanismController.php:58 controllers/PartnerController.php:83
+msgid "That record is in use."
+msgstr ""
+
+#: controllers/PartnerController.php:48
+#: controllers/TrainingPartnerController.php:237
+#, fuzzy
+msgid "That partner was deleted."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/PartnerController.php:50
+#: controllers/TrainingPartnerController.php:143
+#: controllers/TrainingPartnerController.php:239
+#, fuzzy
+msgid "That partner could not be found."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/PartnerController.php:230
+msgid "Address 1"
+msgstr "Adresse ligne 1"
+
+#: controllers/PartnerController.php:239
+#, fuzzy
+msgid "Agreement End Date"
+msgstr "Date de la fin :"
+
+#: controllers/PartnerController.php:241
+msgid "Importance"
+msgstr ""
+
+#: controllers/PartnerController.php:242
+msgid "HR Contact Person Name"
+msgstr ""
+
+#: controllers/PartnerController.php:243
+msgid "HR Contact Office Phone"
+msgstr ""
+
+#: controllers/PartnerController.php:245
+msgid "HR Contact Email"
+msgstr ""
+
+#: controllers/PartnerController.php:281
+#, fuzzy
+msgid "That partner could not be saved."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/PartnerController.php:324
+#: controllers/TrainingPartnerController.php:166
+#: controllers/TrainingPartnerController.php:170
+#, fuzzy
+msgid "The partner was saved."
+msgstr "L'institution a été enregistrée."
+
+#: controllers/PartnerController.php:392
+#, fuzzy
+msgid "Add Partner"
+msgstr "Ajouter une personne"
+
+#: controllers/PartnerController.php:392
+#, fuzzy
+msgid "View Partner"
+msgstr "Afficher le lieu de formation"
+
+#: controllers/PersonController.php:54
+#, fuzzy
+msgid "Error approving person: That account could not be found."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/PersonController.php:61
+#, fuzzy
+msgid "That person has been approved."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/PersonController.php:85
+msgid "That person was deleted."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/PersonController.php:87
+msgid "That person could not be found."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/PersonController.php:89
+#, fuzzy
+msgid "That person is an active"
+msgstr "Cette personne a été supprimée."
+
+#: controllers/PersonController.php:89 controllers/TrainingController.php:1156
+#, fuzzy
+msgid "participant"
+msgstr "Participants"
+
+#: controllers/PersonController.php:89 controllers/PersonController.php:765
+#: controllers/TrainingController.php:1119
+#, fuzzy
+msgid "trainer"
+msgstr "Formateurs"
+
+#: controllers/PersonController.php:89
+#, fuzzy
+msgid "and could not be deleted."
+msgstr "Ce lieu est en cours d'utilisation et n'a pas pu être supprimé."
+
+#: controllers/PersonController.php:287
+#, fuzzy
+msgid "Data cannot be saved."
+msgstr "L'institution n'a pas pu être enregistrée."
+
+#: controllers/PersonController.php:300
+#, fuzzy
+msgid "Data saved."
+msgstr "L'institution a été enregistrée."
+
+#: controllers/PersonController.php:399
+msgid "The person was saved. Refreshing history..."
+msgstr "Cette personne est enregistrée. Metttre à jour son historique..."
+
+#: controllers/PersonController.php:410 controllers/PersonController.php:422
+msgid "Professional qualification"
+msgstr "Qualification professionnelle"
+
+#: controllers/PersonController.php:419
+#, fuzzy
+msgid "Persal Number"
+msgstr "Numéro de fichier"
+
+#: controllers/PersonController.php:427 views/helpers/ITechTranslate.php:131
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#: controllers/PersonController.php:432 controllers/PersonController.php:434
+#, fuzzy
+msgid "Trainer"
+msgstr "Formateurs"
+
+#: controllers/PersonController.php:432 controllers/ReportsController.php:82
+msgid "type"
+msgstr ""
+
+#: controllers/PersonController.php:434
+#, fuzzy
+msgid "skill"
+msgstr "Compétences"
+
+#: controllers/PersonController.php:447
+msgid "Enter a reason, or select a different reason above."
+msgstr ""
+
+#: controllers/PersonController.php:453
+msgid "You can not type in a reason with the reason selected above."
+msgstr ""
+
+#: controllers/PersonController.php:495
+msgid "That facility name could not be found."
+msgstr "Le nom de cette institution n'a pas été retrouvé."
+
+#: controllers/PersonController.php:521
+#, fuzzy
+msgid "The person could not be saved. <br>"
+msgstr "Cette personne ne peut pas être enregistrée."
+
+#: controllers/PersonController.php:722
+msgid "The person was saved. Refreshing change history..."
+msgstr "Cette personne est enregistrée. Mettre à jour son historique..."
+
+#: controllers/PersonController.php:765
+#, fuzzy
+msgid "information could not be saved."
+msgstr "On ne peut pas enregistrer les informations du formateur."
+
+#: controllers/PersonController.php:842
+#, fuzzy
+msgid "ERROR: The person could not be saved. "
+msgstr "ERREUR : cette personne n'a pas pu être  enregistrée."
+
+#: controllers/PersonController.php:1042
+msgid "Insert new facility"
+msgstr "Insérer une nouvelle institution"
+
+#: controllers/PersonController.php:1698
+#, fuzzy
+msgid "(s) have been assigned."
+msgstr "Les formations ont été assignées."
+
+#: controllers/PersonController.php:1701
+#, fuzzy
+msgid "selected"
+msgstr "sélectionner"
+
+#: controllers/PersonController.php:1713
+#, fuzzy
+msgid "Import a person"
+msgstr "Résumé des données"
+
+#: controllers/PersonController.php:1807
+msgid "Error locating region or city:"
+msgstr ""
+
+#: controllers/PersonController.php:1807 controllers/PersonController.php:1810
+#: controllers/PersonController.php:1816
+msgid "This person will have no assigned facility if the save is successful."
+msgstr ""
+
+#: controllers/PersonController.php:1810 controllers/PersonController.php:1816
+msgid "Error locating facility:"
+msgstr ""
+
+#: controllers/PersonController.php:1824
+msgid ""
+"A person with this name already exists in the database, the user was not "
+"added."
+msgstr ""
+
+#: controllers/PersonController.php:1856
+msgid "ERROR: The person could not be saved."
+msgstr "ERREUR : cette personne n'a pas pu être  enregistrée."
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Count"
+msgstr "Nombre"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Language"
+msgstr "Langue"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: controllers/TrainingController.php:2087
+#, fuzzy
+msgid "Location"
+msgstr "Ajouter un lieu"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: views/helpers/ITechTranslate.php:156
+msgid "Date"
+msgstr "Date"
+
+#: controllers/ReportpreserviceController.php:31
+msgid "Training Topic"
+msgstr "Sujet de la Formation"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Funding"
+msgstr "Financement"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "TOT"
+msgstr "Formation de formateurs"
+
+#: controllers/ReportpreserviceController.php:31
+msgid "Facility Name"
+msgstr "Nom de l'Institution"
+
+#: controllers/ReportpreserviceController.php:31
+msgid "Facility Type"
+msgstr "Type d'Institution"
+
+#: controllers/ReportpreserviceController.php:31
+msgid "Facility Sponsor"
+msgstr "Bailleur"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Recommended classes"
+msgstr "Cours recommandés"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Recommended"
+msgstr "Recommandé(es)"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportpreserviceController.php:34
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:85
+#: controllers/ReportsController.php:88 controllers/ReportsController.php:91
+#: views/helpers/ITechTranslate.php:168
+msgid "Qualification"
+msgstr "Qualification"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "(primary)"
+msgstr "(primaire)"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "(secondary)"
+msgstr "(secondaire)"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: controllers/UserController.php:458 views/helpers/ITechTranslate.php:150
+msgid "Email"
+msgstr "Courriel"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Phone"
+msgstr "Téléphone"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Category"
+msgstr "Catégorie"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Type"
+msgstr "Type"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+msgid "Skill"
+msgstr "Compétences"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:88
+msgid "Topics Taught"
+msgstr " thèmes enseignés"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:88
+msgid "Work Phone"
+msgstr "Téléphone au bureau"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:88
+msgid "Home Phone"
+msgstr "Téléphone à la maison"
+
+#: controllers/ReportpreserviceController.php:31
+#: controllers/ReportsController.php:88
+msgid "Mobile Phone"
+msgstr "Téléphone portable"
+
+#: controllers/ReportpreserviceController.php:34
+#: controllers/ReportsController.php:85 controllers/ReportsController.php:91
+msgid "Participants"
+msgstr "Participants"
+
+#: controllers/ReportpreserviceController.php:34
+#: controllers/ReportsController.php:91
+msgid "Unique Participants"
+msgstr "Participants uniques"
+
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: views/helpers/ITechTranslate_adds.php:15
+#, fuzzy
+msgid "Organizer"
+msgstr "Accès des organisateurs"
+
+#: controllers/ReportsController.php:82 controllers/ReportsController.php:88
+#: controllers/ReportsController.php:5697
+#: views/helpers/ITechTranslate_adds.php:14
+msgid "Level"
+msgstr ""
+
+#: controllers/ReportsController.php:82
+#, fuzzy
+msgid "topic"
+msgstr "Editer les thèmes"
+
+#: controllers/ReportsController.php:82
+#, fuzzy
+msgid "name"
+msgstr "Nom du fichier"
+
+#: controllers/ReportsController.php:82
+#, fuzzy
+msgid "sponsor"
+msgstr "Bailleur"
+
+#: controllers/ReportsController.php:82
+#, fuzzy
+msgid "Topics taught"
+msgstr " thèmes enseignés"
+
+#: controllers/ReportsController.php:82
+msgid "Work phone"
+msgstr "Téléphone au bureau"
+
+#: controllers/ReportsController.php:82
+msgid "Home phone"
+msgstr "Téléphone à la maison"
+
+#: controllers/ReportsController.php:82
+msgid "Mobile phone"
+msgstr "Téléphone portable"
+
+#: controllers/ReportsController.php:85
+#, fuzzy
+msgid "Unique participants"
+msgstr "Participants uniques"
+
+#: controllers/ReportsController.php:88 controllers/ReportsController.php:5696
+#, fuzzy
+msgid "Topic"
+msgstr "Sujet(s)"
+
+#: controllers/ReportsController.php:88
+msgid "Sponsor"
+msgstr "Bailleur"
+
+#: controllers/ReportsController.php:2642
+#: controllers/ReportsController.php:5687
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: controllers/ReportsController.php:2643 views/helpers/FormHelper.php:182
+msgid "Female"
+msgstr "Femme"
+
+#: controllers/ReportsController.php:2644 views/helpers/FormHelper.php:181
+msgid "Male"
+msgstr "Homme"
+
+#: controllers/ReportsController.php:5694
+msgid "Dates"
+msgstr "Dates"
+
+#: controllers/ReportsController.php:5695
+msgid "Course Length"
+msgstr "Durée du cours"
+
+#: controllers/ReportsController.php:5748
+msgid "Course"
+msgstr "Cours"
+
+#: controllers/ReportsController.php:5748
+msgid "Trainers"
+msgstr "Formateurs"
+
+#: controllers/ReportsController.php:5752
+#: controllers/TrainingController.php:2060
+#: controllers/TrainingController.php:2072
+msgid "Days"
+msgstr "Jours"
+
+#: controllers/ReportsController.php:5773
+msgid "Course Participants"
+msgstr "Participants "
+
+#: controllers/ReportsController.php:5791
+msgid "Primary Qualification"
+msgstr "Qualification principale"
+
+#: controllers/ReportsController.php:5792
+msgid "Secondary Qualification"
+msgstr "Qualification secondaire"
+
+#: controllers/ReportsController.php:5795
+#, fuzzy
+msgid "Days Attended"
+msgstr "Formations suivies"
+
+#: controllers/ReportsController.php:5796
+msgid "Complete"
+msgstr ""
+
+#: controllers/ReportsController.php:5799
+#: controllers/TrainingController.php:919
+msgid "Pre-Test"
+msgstr "Pré-test"
+
+#: controllers/ReportsController.php:5800
+#: controllers/TrainingController.php:924
+msgid "Post-Test"
+msgstr "Post-test"
+
+#: controllers/ReportsController.php:5801
+msgid "Change in Score"
+msgstr "Changement de résultats"
+
+#: controllers/ReportsController.php:5899
+msgid "Evaluations"
+msgstr "Evaluations"
+
+#: controllers/ReportsController.php:6126
+#, fuzzy
+msgid "Evaluation Report"
+msgstr "Rapports d'evaluation"
+
+#: controllers/ReportsController.php:10774
+#: controllers/ReportsController.php:10885
+#: controllers/ReportsController.php:11011
+msgid "Reports"
+msgstr "Rapports"
+
+#: controllers/StudenteditController.php:277
+#, fuzzy
+msgid "The person was saved"
+msgstr "Cette personne a été supprimée."
+
+#: controllers/SyncController.php:74
+msgid "There was a problem with file types <code>"
+msgstr ""
+
+#: controllers/SyncController.php:81
+msgid "There was a problem creating <code>"
+msgstr ""
+
+#: controllers/SyncController.php:86
+msgid "There was a problem moving files <code>"
+msgstr ""
+
+#: controllers/SyncController.php:101
+msgid "The file uploaded to the server was too large, maximum file size:"
+msgstr ""
+
+#: controllers/SyncController.php:103
+msgid "There was a problem uploading the file to the server"
+msgstr ""
+
+#: controllers/SyncController.php:150
+msgid "Sync database file uploaded."
+msgstr ""
+
+#: controllers/SyncController.php:155
+msgid "Invalid desktop database file"
+msgstr ""
+
+#: controllers/SyncController.php:170 controllers/SyncController.php:213
+msgid "Please upload a file to continue"
+msgstr ""
+
+#: controllers/SyncController.php:283
+msgid "Done"
+msgstr ""
+
+#: controllers/TrainingController.php:60 controllers/TrainingController.php:65
+#, fuzzy
+msgid "View/Edit"
+msgstr "Afficher/Modifier une personne"
+
+#: controllers/TrainingController.php:72
+#: controllers/TrainingController.php:125
+#, fuzzy
+msgid "View"
+msgstr "Voir les données"
+
+#: controllers/TrainingController.php:152
+msgid "Length"
+msgstr "Durée"
+
+#: controllers/TrainingController.php:153
+#, fuzzy
+msgid "Interval"
+msgstr "Intervalle de formation"
+
+#: controllers/TrainingController.php:162
+msgid "Training length is required."
+msgstr "La durée de la formation est requise."
+
+#: controllers/TrainingController.php:168
+#: controllers/TrainingController.php:175
+msgid "must be numeric."
+msgstr "Doit être numérique."
+
+#: controllers/TrainingController.php:170
+#: controllers/TrainingController.php:177
+msgid "must be between 1-100."
+msgstr "Doit être compris entre 1 et 100."
+
+#: controllers/TrainingController.php:182
+#, fuzzy
+msgid "Start date is required."
+msgstr "La ville est obligatoire."
+
+#: controllers/TrainingController.php:189
+#, fuzzy
+msgid "end"
+msgstr "et"
+
+#: controllers/TrainingController.php:194
+msgid "End date must be after start date."
+msgstr "La date de fin doit superieure à  la date de début."
+
+#: controllers/TrainingController.php:228
+msgid "Number of days is required."
+msgstr "Le nombre de jours est obligatoire."
+
+#: controllers/TrainingController.php:252
+msgid "Total"
+msgstr "Total"
+
+#: controllers/TrainingController.php:252
+#, fuzzy, php-format
+msgid "length is %s, but PEPFAR category total is %d days. "
+msgstr ""
+"La durée de formation est de %s, mais la catégorie PEPFAR totale est de %d "
+"jours."
+
+#: controllers/TrainingController.php:252
+msgid "day"
+msgstr "jour"
+
+#: controllers/TrainingController.php:252
+#: controllers/TrainingController.php:1570
+msgid "days"
+msgstr "jours"
+
+#: controllers/TrainingController.php:307
+#: controllers/TrainingController.php:313
+#: controllers/TrainingController.php:485
+#: controllers/TrainingController.php:1119
+#: controllers/TrainingController.php:1156
+msgid "This"
+msgstr ""
+
+#: controllers/TrainingController.php:307
+#, fuzzy
+msgid ""
+"session could not be deleted. Some participants or trainers may still be "
+"attached."
+msgstr ""
+"Cette session de formation ne peut pas être supprimée. Certains participants "
+"ou formateurs y sont peut-être toujours associés."
+
+#: controllers/TrainingController.php:313
+#, fuzzy
+msgid "session could not be saved."
+msgstr "Cette personne ne peut pas être enregistrée."
+
+#: controllers/TrainingController.php:485
+#, fuzzy
+msgid "session has been saved."
+msgstr "Cette session de formation a été enregistrée."
+
+#: controllers/TrainingController.php:545 views/helpers/DropDown.php:134
+#: views/helpers/DropDown.php:246
+msgid "Please enter your new"
+msgstr "S'il vous plaît entrez votre nouveau"
+
+#: controllers/TrainingController.php:545
+#: controllers/TrainingController.php:657 views/helpers/DropDown.php:134
+#: views/helpers/DropDown.php:246
+msgid "Insert new"
+msgstr "Insérer un nouveau"
+
+#: controllers/TrainingController.php:645
+#, fuzzy
+msgid "Please enter the name your new topic item"
+msgstr "Inscrire le nom du nouveau bailleur/agence de financement : "
+
+#: controllers/TrainingController.php:645
+#: controllers/TrainingController.php:703
+#: controllers/TrainingController.php:716
+#, fuzzy
+msgid "Insert New"
+msgstr "Insérer un nouveau"
+
+#: controllers/TrainingController.php:703
+msgid "Please enter the name your new funding item:"
+msgstr "Inscrire le nom du nouveau bailleur/agence de financement : "
+
+#: controllers/TrainingController.php:716
+#, fuzzy
+msgid "Please enter the name your new refresher item"
+msgstr "Inscrire le nom du nouveau bailleur/agence de financement : "
+
+#: controllers/TrainingController.php:928
+msgid "Scores"
+msgstr "Notes"
+
+#: controllers/TrainingController.php:983
+#, fuzzy
+msgid ""
+"session has been duplicated.<br>You can edit the duplicate session below."
+msgstr ""
+"Cette session de formation a été dupliquée. <br> Vous pouvez modifier la "
+"session dupliquée ci-dessous. "
+
+#: controllers/TrainingController.php:1055
+msgid "already exists"
+msgstr "existe déjà"
+
+#: controllers/TrainingController.php:1119
+#: controllers/TrainingController.php:1156
+#, fuzzy
+msgid "is already in this training session."
+msgstr "Ce formateur est déjà dans cette session de formation."
+
+#: controllers/TrainingController.php:1139
+#: controllers/TrainingController.php:1172
+#: controllers/TrainingController.php:1184
+#: controllers/TrainingController.php:1196
+#: controllers/TrainingController.php:1208
+msgid "Could not update this record."
+msgstr "Impossible de mettre à jour cet enregistrement."
+
+#: controllers/TrainingController.php:1231
+#, fuzzy
+msgid "Import a training"
+msgstr "Formations approuvées"
+
+#: controllers/TrainingController.php:1382
+msgid "Error locating/creating"
+msgstr ""
+
+#: controllers/TrainingController.php:1382
+#, fuzzy
+msgid "Region"
+msgstr "Configuration région"
+
+#: controllers/TrainingController.php:1412
+msgid "Successfully imported training #"
+msgstr ""
+
+#: controllers/TrainingController.php:1417
+#: controllers/TrainingController.php:1421
+#: controllers/TrainingController.php:1425
+#: controllers/TrainingController.php:1429
+msgid "Some Data not imported"
+msgstr ""
+
+#: controllers/TrainingController.php:1448
+#, fuzzy
+msgid "You did not set a qualification for a group of unknown participants."
+msgstr ""
+"Vous devez choisir une qualification pour tous les participants enregistrés."
+
+#: controllers/TrainingController.php:1472
+#, fuzzy
+msgid "Error saving unknown participant information."
+msgstr "Formations avec participants inconus uniquement"
+
+#: controllers/TrainingController.php:1522
+msgid ""
+"Could not add user to training because they were not found in the system."
+msgstr ""
+
+#: controllers/TrainingController.php:1534
+#, fuzzy
+msgid "ERROR: The training data could not be saved."
+msgstr "ERREUR : l'institution ne peut pas être enregistrée."
+
+#: controllers/TrainingController.php:1534
+msgid "Warning: Some data imported."
+msgstr ""
+
+#: controllers/TrainingController.php:1534
+msgid ""
+"Check Funding, PEPFAR, Topic, Refresher options and Participants and "
+"Trainers Data; or delete the training and try again."
+msgstr ""
+
+#: controllers/TrainingController.php:1570
+msgid "hours"
+msgstr "heures"
+
+#: controllers/TrainingController.php:1570
+msgid "weeks"
+msgstr "semaines"
+
+#: controllers/TrainingController.php:1715
+#: controllers/TrainingController.php:1716
+#, fuzzy
+msgid "has been updated."
+msgstr "Vos paramètres ont été mis à jour."
+
+#: controllers/TrainingController.php:1724
+#: controllers/TrainingController.php:1725
+#, fuzzy
+msgid "has been saved."
+msgstr "Cette personne a été supprimée."
+
+#: controllers/TrainingController.php:1737
+#, fuzzy
+msgid "could not be saved."
+msgstr "Cette personne ne peut pas être enregistrée."
+
+#: controllers/TrainingController.php:1853
+#: controllers/TrainingController.php:1950
+msgid "Label"
+msgstr "Étiquette"
+
+#: controllers/TrainingController.php:1853
+#: controllers/TrainingController.php:1950
+msgid "Score"
+msgstr "Note"
+
+#: controllers/TrainingController.php:1931
+#: controllers/TrainingController.php:1974
+#: controllers/TrainingController.php:1983
+#: controllers/TrainingController.php:1989
+#: controllers/TrainingController.php:1995
+#: views/helpers/ITechTranslate.php:113
+#: views/helpers/ITechTranslate_adds.php:29
+msgid "First Name"
+msgstr "Prénom"
+
+#: controllers/TrainingController.php:1940
+msgid ""
+"The following users could not be found while importing, perhaps they were "
+"not adding to the training:<br>"
+msgstr ""
+
+#: controllers/TrainingController.php:1975
+#: controllers/TrainingController.php:1984
+#: controllers/TrainingController.php:1990
+#: controllers/TrainingController.php:1996
+#: views/helpers/ITechTranslate.php:119
+#: views/helpers/ITechTranslate_adds.php:31
+msgid "Last Name"
+msgstr "Nom"
+
+#: controllers/TrainingController.php:1976
+#: controllers/TrainingController.php:1985
+#: controllers/TrainingController.php:1991
+#: controllers/TrainingController.php:1997
+#, fuzzy
+msgid "Training Date"
+msgstr "Nom de la formation"
+
+#: controllers/TrainingController.php:1977
+#: controllers/TrainingController.php:1986
+#: controllers/TrainingController.php:1992
+#: controllers/TrainingController.php:1998
+#, fuzzy
+msgid "Score Label"
+msgstr "Étiquette"
+
+#: controllers/TrainingController.php:1978
+#: controllers/TrainingController.php:1987
+#: controllers/TrainingController.php:1993
+#: controllers/TrainingController.php:1999
+#, fuzzy
+msgid "Score Value"
+msgstr "Note"
+
+#: controllers/TrainingController.php:2163 views/helpers/DropDown.php:82
+#: views/helpers/DropDown.php:197 views/helpers/Location.php:426
+#: views/helpers/Location.php:459
+msgid "select"
+msgstr "sélectionner"
+
+#: controllers/TrainingController.php:2186
+#: views/helpers/ITechTranslate_adds.php:43
+#: views/helpers/TrainingViewHelper.php:8
+#, fuzzy
+msgid "Edit"
+msgstr "Modifier utilisateur"
+
+#: controllers/TrainingPartnerController.php:44
+msgid "Preview"
+msgstr "Aperçu"
+
+#: controllers/TrainingPartnerController.php:174
+#: controllers/TrainingPartnerController.php:204
+#, fuzzy
+msgid "ERROR: The partner could not be saved."
+msgstr "ERREUR : cette personne n'a pas pu être  enregistrée."
+
+#: controllers/TrainingPartnerController.php:241
+#, fuzzy
+msgid "That partner is in use and could not be deleted."
+msgstr "Ce lieu est en cours d'utilisation et n'a pas pu être supprimé."
+
+#: controllers/UserController.php:412
+#, fuzzy
+msgid "That user was activated."
+msgstr "L'institution a été enregistrée."
+
+#: controllers/UserController.php:416
+#, fuzzy
+msgid "That user could not be found."
+msgstr "Cette personne n'a pas ete retrouvée."
+
+#: controllers/UserController.php:455
+#, fuzzy
+msgid "Starting..."
+msgstr "Supprimer le lieu"
+
+#: controllers/UserController.php:504
+msgid ""
+"Your new password has been sent. Please check your email for further "
+"instructions."
+msgstr ""
+"Votre nouveau mot de passe a été envoyé. Merci de vérifier vos courriels "
+"pour les instructions à suivre."
+
+#: controllers/UserController.php:507
+msgid "Mail send error."
+msgstr ""
+
+# Verifier que ceci concorde mieux que identifiant
+#: controllers/UserController.php:566
+msgid "Login"
+msgstr "Ouvrir une session"
+
+#: controllers/UserController.php:566
+msgid "Password"
+msgstr "Mot de passe"
+
+#: controllers/UserController.php:567
+msgid "The system could not log you in."
+msgstr "Le système n'a pas pu vous identifier."
+
+#: controllers/UserController.php:589
+msgid "That user account has been disabled."
+msgstr "Ce compte d'utilisateur a été desactivé."
+
+#: controllers/UserController.php:610 controllers/UserController.php:615
+msgid "That username or password is invalid."
+msgstr "Ce nom d'utilisateur ou  mot de passe n'est pas valide."
+
+#: models/ValidationContainer.php:40
+#, fuzzy
+msgid "required"
+msgstr "La ville est obligatoire."
+
+#: models/ValidationContainer.php:48
+msgid " > 100"
+msgstr ""
+
+#: models/ValidationContainer.php:78
+msgid "is not a valid date"
+msgstr ""
+
+#: models/table/TrainingApprovalHistory.php:66
+#: views/helpers/ITechTranslate.php:209
+#, fuzzy
+msgid "Approved"
+msgstr "Approbation"
+
+#: models/table/TrainingApprovalHistory.php:71
+msgid "Rejected"
+msgstr ""
+
+#: models/table/TrainingApprovalHistory.php:76
+msgid "Resubmitted"
+msgstr ""
+
+#: views/helpers/Calendar.php:420 views/helpers/Calendar.php:441
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: views/helpers/Calendar.php:423
+msgid "Monday"
+msgstr "Lundi"
+
+#: views/helpers/Calendar.php:426
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: views/helpers/Calendar.php:429
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: views/helpers/Calendar.php:432
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: views/helpers/Calendar.php:435
+msgid "Friday"
+msgstr "Vendredi"
+
+#: views/helpers/Calendar.php:438
+msgid "Saturday"
+msgstr "Samedi"
+
+#: views/helpers/DropDown.php:271 views/helpers/DropDown.php:308
+#: views/helpers/FormHelper.php:180 views/helpers/FormHelper.php:200
+#: views/helpers/Location.php:36 views/helpers/Location.php:157
+#: views/helpers/Location.php:165 views/helpers/Location.php:751
+#: views/helpers/Location.php:846
+msgid "choose"
+msgstr "choisir"
+
+#: views/helpers/DropDown.php:286
+msgid "All"
+msgstr "Tout"
+
+#: views/helpers/FileUpload.php:28
+msgid "Filename"
+msgstr "Nom du fichier"
+
+#: views/helpers/FileUpload.php:28
+msgid "Size"
+msgstr "Taille"
+
+#: views/helpers/FileUpload.php:28
+msgid "Author"
+msgstr "Auteur"
+
+#: views/helpers/FileUpload.php:28
+msgid "Upload Date"
+msgstr "Date du chargement"
+
+#: views/helpers/FileUpload.php:29
+msgid "Attached Documents"
+msgstr "Documents joints"
+
+#: views/helpers/FileUpload.php:68
+msgid "Allowed file extensions"
+msgstr "Extensions de fichier autorisées"
+
+#: views/helpers/FileUpload.php:69
+msgid "Max upload size: "
+msgstr "Taille maximum à télécharger"
+
+#: views/helpers/FormHelper.php:201
+msgid "NO"
+msgstr ""
+
+#: views/helpers/FormHelper.php:202
+msgid "YES"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:116
+#: views/helpers/ITechTranslate_adds.php:30
+msgid "Middle Name"
+msgstr "2e prénom"
+
+#: views/helpers/ITechTranslate.php:122
+#: views/helpers/ITechTranslate_adds.php:27
+msgid "National ID"
+msgstr "Numéro d'identification nationale "
+
+#: views/helpers/ITechTranslate.php:125
+msgid "File Number"
+msgstr "Numéro de fichier"
+
+#: views/helpers/ITechTranslate.php:137
+msgid "Phone (work)"
+msgstr "Téléphone (bureaul)"
+
+#: views/helpers/ITechTranslate.php:140
+msgid "Phone (home)"
+msgstr "Téléphone (maison)"
+
+#: views/helpers/ITechTranslate.php:143
+msgid "Phone (mobile)"
+msgstr "Téléphone (portable)"
+
+#: views/helpers/ITechTranslate.php:146
+msgid "Fax"
+msgstr "Numéro de télécopie"
+
+#: views/helpers/ITechTranslate.php:153
+msgid "Comments"
+msgstr "Commentaires"
+
+#: views/helpers/ITechTranslate.php:159
+msgid "Deleted"
+msgstr "Supprimé"
+
+#: views/helpers/ITechTranslate.php:162 views/helpers/ITechTranslate.php:191
+msgid "Active"
+msgstr "Actif"
+
+#: views/helpers/ITechTranslate.php:165
+msgid "Responsibility"
+msgstr "Responsabilité"
+
+#: views/helpers/ITechTranslate.php:173
+msgid "Address"
+msgstr "Adresse"
+
+#: views/helpers/ITechTranslate.php:179
+msgid "Suffix"
+msgstr "Suffixe"
+
+#: views/helpers/ITechTranslate.php:182
+msgid "People Custom 1"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:185
+msgid "People Custom 2"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:188
+#, fuzzy
+msgid "Home Location"
+msgstr "Lieu"
+
+#: views/helpers/ITechTranslate.php:194
+#, fuzzy
+msgid "M&E Responsibility"
+msgstr "Responsabilité"
+
+#: views/helpers/ITechTranslate.php:197 views/helpers/ITechTranslate.php:206
+msgid "Highest Education Level"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:200 views/helpers/ITechTranslate.php:203
+msgid "Reason Attending"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:212
+msgid "People Custom 3"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:215
+msgid "People Custom 4"
+msgstr ""
+
+#: views/helpers/ITechTranslate.php:218
+msgid "People Custom 5"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:9
+msgid "Department"
+msgstr "Department"
+
+#: views/helpers/ITechTranslate_adds.php:11
+msgid "Training Name"
+msgstr "Nom de la formation"
+
+#: views/helpers/ITechTranslate_adds.php:12
+msgid "Training Organizer"
+msgstr "Organisateur de la formation"
+
+#: views/helpers/ITechTranslate_adds.php:13
+msgid "Training Level"
+msgstr "Niveau de la formation"
+
+#: views/helpers/ITechTranslate_adds.php:16
+msgid "PEPFAR topic"
+msgstr "Catégorie PEPFAR"
+
+#: views/helpers/ITechTranslate_adds.php:17
+msgid "Training of Trainers"
+msgstr "Formation des formateurs"
+
+#: views/helpers/ITechTranslate_adds.php:18
+#: views/helpers/ITechTranslate_adds.php:21
+msgid "Course Objectives"
+msgstr "Objectifs de la formation"
+
+#: views/helpers/ITechTranslate_adds.php:19
+msgid "Pre Test Score"
+msgstr "Note du pre test"
+
+#: views/helpers/ITechTranslate_adds.php:20
+msgid "Post Test Score"
+msgstr "Note du post test"
+
+#: views/helpers/ITechTranslate_adds.php:22
+msgid "Custom field 1"
+msgstr "Champ personnalisé 1"
+
+#: views/helpers/ITechTranslate_adds.php:23
+msgid "Custom field 2"
+msgstr "Champ personnalisé 2"
+
+#: views/helpers/ITechTranslate_adds.php:24
+#, fuzzy
+msgid "Custom field 3"
+msgstr "Champ personnalisé 1"
+
+#: views/helpers/ITechTranslate_adds.php:25
+#, fuzzy
+msgid "Custom field 4"
+msgstr "Champ personnalisé 1"
+
+#: views/helpers/ITechTranslate_adds.php:26
+#, fuzzy
+msgid "Custom field 5"
+msgstr "Champ personnalisé 1"
+
+#: views/helpers/ITechTranslate_adds.php:28
+msgid "Is Active"
+msgstr "Est actif"
+
+#: views/helpers/ITechTranslate_adds.php:32
+msgid "English"
+msgstr "Anglais"
+
+#: views/helpers/ITechTranslate_adds.php:33
+msgid "French"
+msgstr "Français"
+
+#: views/helpers/ITechTranslate_adds.php:34
+msgid "Dutch"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:35
+msgid "Russian"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:36
+msgid "Ukranian"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:39
+#, fuzzy
+msgid "Deleting..."
+msgstr "Supprimer le lieu"
+
+#: views/helpers/ITechTranslate_adds.php:40
+#, fuzzy
+msgid "Are you sure you want to remove"
+msgstr "Etes-vous sûr de vouloir supprimer cette note ?"
+
+#: views/helpers/ITechTranslate_adds.php:41
+msgid "Undeleting..."
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:42
+msgid "Saving..."
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:44
+#, fuzzy
+msgid "Delete"
+msgstr "Supprimé"
+
+#: views/helpers/ITechTranslate_adds.php:45
+#, fuzzy
+msgid "Are you sure you want to delete"
+msgstr "Etes-vous sûr de vouloir supprimer cette note ?"
+
+#: views/helpers/ITechTranslate_adds.php:46
+msgid "Pick a Date"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:47
+#, fuzzy
+msgid "No records found."
+msgstr "Aucune prochaine formation trouvée."
+
+#: views/helpers/ITechTranslate_adds.php:48
+msgid "Loading..."
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:49
+msgid "You have not selected a training category for your new title."
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:50
+msgid ""
+"Do you still wish to add a title without a training category associated with "
+"it?"
+msgstr ""
+
+#: views/helpers/ITechTranslate_adds.php:52
+msgid ""
+"If you have made any changes to this page without clicking the Save button, "
+"your changes will be lost.  Are you sure you wish to leave this page?"
+msgstr ""
+
+#: views/helpers/Location.php:450 views/helpers/Location.php:481
+msgid "unknown"
+msgstr "Inconnu"
+
+#: views/helpers/Location.php:644
+#, fuzzy
+msgid "Delete Funder"
+msgstr "Supprimé"
+
+#: views/helpers/PrintAndExport.php:37
+msgid "Print"
+msgstr "Imprimer"
+
+#: views/helpers/PrintAndExport.php:37
+msgid "Export"
+msgstr "Exporter"
+
+#~ msgid "Training start"
+#~ msgstr "Début de la formation"
+
+#~ msgid ""
+#~ "That person is an active participant or trainer and could not be deleted."
+#~ msgstr ""
+#~ "Cette personne est un participant ou un formateur actif et ne peut pas "
+#~ "être supprimée."
+
+#~ msgid "Trainer type"
+#~ msgstr "Type de formateur"
+
+#~ msgid "Trainer skill"
+#~ msgstr "Compétences du formateur"
+
+#~ msgid "No trainings selected."
+#~ msgstr "Aucune formation sélectionnée."
+
+#~ msgid "Course Trainers"
+#~ msgstr "Formateurs"
+
+#~ msgid "Add New Training"
+#~ msgstr "Ajouter une nouvelle formation"
+
+#~ msgid "View/Edit Training"
+#~ msgstr "Afficher/Modifier la formation"
+
+#~ msgid "View Training"
+#~ msgstr "Afficher la formation"
+
+#~ msgid "Training Length"
+#~ msgstr "Durée de la formation"
+
+#~ msgid "Training end"
+#~ msgstr "Fin de la formation"
+
+#~ msgid "This training session could not be saved."
+#~ msgstr "La session de formation ne peut pas être enregistrée."
+
+#~ msgid "This participant is already in this training session."
+#~ msgstr "Ce participant est déjà enregistré dans cette session de formation."
+
+#~ msgid "The training center has been updated."
+#~ msgstr "Le centre de formation a été mis à jour."
+
+#~ msgid "The training center has been saved."
+#~ msgstr "Le centre de formation a été enregistré."
+
+#~ msgid "Developed and funded by I-TECH. For questions or help,"
+#~ msgstr "Développé et financé par I-TECH. Pour des questions ou aide,"
+
+#~ msgid "click here"
+#~ msgstr "Cliquer ici"
+
+#~ msgid "Home"
+#~ msgstr "Accueil"
+
+#~ msgid "People"
+#~ msgstr "Personnes"
+
+#~ msgid "Add New Person"
+#~ msgstr "Ajouter une nouvelle personne"
+
+#~ msgid "View person"
+#~ msgstr "Afficher une personne"
+
+#~ msgid "Places"
+#~ msgstr "Lieux"
+
+#~ msgid "View/Edit Facility"
+#~ msgstr "Afficher/Modifier une Institution"
+
+#~ msgid "View facility"
+#~ msgstr "Afficher une institution"
+
+#~ msgid "Add Facility"
+#~ msgstr "Ajouter une institution"
+
+#~ msgid "View/Edit Training Location"
+#~ msgstr "Afficher/Modifier le lieu de formation"
+
+#~ msgid "View Training Location"
+#~ msgstr "Afficher le lieu de formation"
+
+#~ msgid "Training Reports"
+#~ msgstr "Rapports de formation"
+
+#~ msgid "Participant Reports"
+#~ msgstr "Rapports des participants"
+
+#~ msgid "Trainer Reports"
+#~ msgstr "Rapports des formateurs"
+
+#~ msgid "Facility Reports"
+#~ msgstr "Rapport des institutions"
+
+#~ msgid "Assessment Reports"
+#~ msgstr "Rapport d'évaluation"
+
+#~ msgid "Roster Reports"
+#~ msgstr "Rapports par session"
+
+#~ msgid "Data Downloads"
+#~ msgstr "Téléchargements de données"
+
+#~ msgid "My Account"
+#~ msgstr "Mon compte"
+
+#~ msgid "Country Setup"
+#~ msgstr "Configuration pays"
+
+#~ msgid "Training Settings"
+#~ msgstr "Paramètres de la formation"
+
+#~ msgid "People Settings"
+#~ msgstr "Paramètres des personnes"
+
+#~ msgid "Facility Settings"
+#~ msgstr "Paramètres du local"
+
+#, fuzzy
+#~ msgid "Training Partners"
+#~ msgstr "Début de la formation"
+
+#, fuzzy
+#~ msgid "Upload Data"
+#~ msgstr "Date du chargement"
+
+# Verifier que ceci concorde mieux que identifiant
+#~ msgid "login"
+#~ msgstr "Ouvrir une session"
+
+#~ msgid "logout"
+#~ msgstr "Fermer la session"
+
+#~ msgid "Welcome"
+#~ msgstr "Bienvenue"
+
+#~ msgid "Training Category"
+#~ msgstr "Catégorie de formation"
+
+#~ msgid "Assign Titles"
+#~ msgstr "Assigner des titres"
+
+#~ msgid "Training Title"
+#~ msgstr "Titre de la formation"
+
+#~ msgid "PEPFAR Category"
+#~ msgstr "Catégorie PEPFAR"
+
+#~ msgid "Recommended Topic"
+#~ msgstr "Thèmes recommandés"
+
+#~ msgid "Nat. Curriculum"
+#~ msgstr "Curriculum national"
+
+#~ msgid "Training Method"
+#~ msgstr "Méthode de formation"
+
+#~ msgid "Qualifications"
+#~ msgstr "Qualifications"
+
+#~ msgid "Trainer Types"
+#~ msgstr "Types de formateur"
+
+#~ msgid "Trainer Skills"
+#~ msgstr "Compétences des formateurs"
+
+#~ msgid "Languages"
+#~ msgstr "Langues"
+
+#~ msgid "Titles"
+#~ msgstr "Titres"
+
+#~ msgid "Active Trainer"
+#~ msgstr "Formateurs actif"
+
+#~ msgid "Facilities"
+#~ msgstr "Institutions"
+
+#~ msgid "Facilities Settings"
+#~ msgstr "Paramètres de l'institution"
+
+#~ msgid "Facility Types"
+#~ msgstr "Types d'institution"
+
+#~ msgid "Facility Sponsors"
+#~ msgstr "Bailleurs"
+
+#, fuzzy
+#~ msgid "Classes"
+#~ msgstr "Cours suivis"
+
+#, fuzzy
+#~ msgid "Cadres"
+#~ msgstr "Adresse"
+
+#, fuzzy
+#~ msgid "Nationalities"
+#~ msgstr "Institutions"
+
+#, fuzzy
+#~ msgid "Sponsors"
+#~ msgstr "Bailleur"
+
+#, fuzzy
+#~ msgid "Tutor types"
+#~ msgstr "Type de formateur"
+
+#, fuzzy
+#~ msgid "Course types"
+#~ msgstr "Liste des participants du cours"
+
+#~ msgid "Users"
+#~ msgstr "Utilisateurs"
+
+#~ msgid "Add Users"
+#~ msgstr "Ajouter des utilisateurs"
+
+#, fuzzy
+#~ msgid "Institution Search"
+#~ msgstr "Rechercher une personne"
+
+#, fuzzy
+#~ msgid "Add New Institution"
+#~ msgstr "Ajouter une nouvelle evaluation"
+
+#, fuzzy
+#~ msgid "Cohort Search"
+#~ msgstr "Rechercher"
+
+#, fuzzy
+#~ msgid "Add New Cohort"
+#~ msgstr "Ajouter un nouvel utilisateur"
+
+#~ msgid "People Search"
+#~ msgstr "Recherche de personnes"
+
+#, fuzzy
+#~ msgid "Students Trained"
+#~ msgstr "Participants formés"
+
+#, fuzzy
+#~ msgid "Students By Name"
+#~ msgstr "Participants par nom"
+
+#, fuzzy
+#~ msgid "Course by Name"
+#~ msgstr "Nom du cours"
+
+#, fuzzy
+#~ msgid "PS Classes"
+#~ msgstr "Cours suivis"
+
+#, fuzzy
+#~ msgid "PS Funding"
+#~ msgstr "Financement"
+
+#, fuzzy
+#~ msgid "PS Languages"
+#~ msgstr "Langues"
+
+#, fuzzy
+#~ msgid "PS Sponsors"
+#~ msgstr "Bailleur"
+
+#, fuzzy
+#~ msgid "PS Course Types"
+#~ msgstr "Formateurs"
+
+#~ msgid "Move"
+#~ msgstr "Déplacer"
+
+#~ msgid "Training Calendar"
+#~ msgstr "Calendrier de Formation"
+
+#~ msgid "Print Calendar"
+#~ msgstr "Imprimer le calendrier"
+
+#~ msgid "Data"
+#~ msgstr "Données"
+
+#~ msgid "Persons"
+#~ msgstr "Personnes"
+
+#~ msgid "A training was approved by "
+#~ msgstr "Une formation a été approuvée par"
+
+#~ msgid "You have been assigned a new temporary password."
+#~ msgstr "Un nouveau mot de passe temporaire vous a été attribué."
+
+#~ msgid "Please change your password once you log in"
+#~ msgstr "Merci de changer votre mot de passe après avoir ouvert une session"
+
+#~ msgid "here"
+#~ msgstr "ici"
+
+#~ msgid "Your login is as follows:"
+#~ msgstr "Votre session est comme indiquée :"
+
+#~ msgid "username:"
+#~ msgstr "nom d'utilisateur :"
+
+#~ msgid "password:"
+#~ msgstr "mot de passe :"
+
+#~ msgid "Dear"
+#~ msgstr "Cher/ Chère"
+
+#~ msgid "Your new account has been created and is ready for use."
+#~ msgstr "Votre nouveau compte a été créé et vous pouvez l'utiliser."
+
+#~ msgid "website:"
+#~ msgstr "Site internet :"
+
+#, fuzzy
+#~ msgid "Your password has been changed as requested."
+#~ msgstr "Vous devez changer votre mot de passe"
+
+#~ msgid "A training was rejected by "
+#~ msgstr "Une formation a été rejetée par"
+
+#~ msgid "A training was resubmitted by "
+#~ msgstr "Une formation a été à nouveau soumise par"
+
+# Il faudra verifier si ceci concorde
+#~ msgid "Please change your password once you log in here"
+#~ msgstr "Merci de changer votre mot de passe en ouvrant la session ici"
+
+#~ msgid "Oops"
+#~ msgstr "Oups"
+
+#~ msgid ""
+#~ "Sorry. An error just occurred. Please try again, or contact a system "
+#~ "administrator."
+#~ msgstr ""
+#~ "Désolé. Une erreur s'est produite. Merci de réessayer ou de prendre "
+#~ "contact avec l'administrateur système."
+
+#~ msgid "Enter title of Evaluation"
+#~ msgstr "Entrer le titre de l'evaluation"
+
+#~ msgid "Number"
+#~ msgstr "Nombre"
+
+#~ msgid "Question"
+#~ msgstr "Question"
+
+#~ msgid "Likert"
+#~ msgstr "Likert"
+
+#~ msgid "Text"
+#~ msgstr "Texte"
+
+#~ msgid "Add Evaluation"
+#~ msgstr "Ajouter une evaluation"
+
+#~ msgid "Assign Evaluation to Training"
+#~ msgstr "Assigner une evaluation à la formation"
+
+#~ msgid "Assign"
+#~ msgstr "Assigner"
+
+#~ msgid "Submit"
+#~ msgstr "Soumettre"
+
+#~ msgid "Copy"
+#~ msgstr "Copier"
+
+#~ msgid "Date created"
+#~ msgstr "Date de création"
+
+#~ msgid "Add New Evaluation"
+#~ msgstr "Ajouter une nouvelle evaluation"
+
+#~ msgid "Evaluation Data Entry"
+#~ msgstr "Entrée des données de l'evaluation"
+
+#~ msgid "Save and Exit"
+#~ msgstr "Sauvegarder et quitter"
+
+#~ msgid "Save and Continue"
+#~ msgstr "Sauvegarder et continuer"
+
+#~ msgid "Add External Course"
+#~ msgstr "Ajouter un cours externe"
+
+#~ msgid "Add new External Course for "
+#~ msgstr "Ajouter un nouveau cours externe pour"
+
+#~ msgid "Day"
+#~ msgstr "Jour"
+
+#~ msgid "Month"
+#~ msgstr "Mois"
+
+#~ msgid "Year"
+#~ msgstr "Année"
+
+#~ msgid "Who Funded"
+#~ msgstr "Quel est le bailleur"
+
+#~ msgid "Add Course"
+#~ msgstr "Ajouter un cours"
+
+#~ msgid "Please enter training location information"
+#~ msgstr "Inscrire les informations du lieu de formation"
+
+#~ msgid "Add new Facility"
+#~ msgstr "Ajouter une nouvelle institution"
+
+#~ msgid "Address 2"
+#~ msgstr "Adresse ligne 2"
+
+#~ msgid "New city"
+#~ msgstr "Nouvelle ville"
+
+#~ msgid "Postal code"
+#~ msgstr "Code postal"
+
+#~ msgid "Facility sponsor"
+#~ msgstr "Bailleur de l'institution"
+
+#, fuzzy
+#~ msgid "Facility Comments"
+#~ msgstr "Nom de l'Institution"
+
+#~ msgid "Delete Location"
+#~ msgstr "Supprimer le lieu"
+
+#~ msgid "Delete Facility"
+#~ msgstr "Supprimer l'institution"
+
+#~ msgid "Edit Facility"
+#~ msgstr "Modifier l'institution"
+
+#~ msgid "Facility name"
+#~ msgstr "Nom de l'institution"
+
+#~ msgid "Address "
+#~ msgstr "Adresse"
+
+#~ msgid "Save changes"
+#~ msgstr "Enregistrer les changements"
+
+#~ msgid "Are you sure you wish to delete this facility?"
+#~ msgstr "Etes-vous sûr de vouloir supprimer cette institution ?"
+
+#~ msgid "Search for Training Location"
+#~ msgstr "Rechercher un lieu de formation"
+
+#~ msgid "Select Criteria"
+#~ msgstr "Sélectionner un critère"
+
+#~ msgid "Training Location Name"
+#~ msgstr "Nom du lieu de la formation"
+
+#~ msgid "Training locations"
+#~ msgstr "Lieux de formation"
+
+#~ msgid "Results"
+#~ msgstr "Résultats"
+
+#~ msgid "Add new training location"
+#~ msgstr "Ajouter un nouveau lieu de formation"
+
+#~ msgid "Location Name"
+#~ msgstr "Nom du lieu"
+
+#~ msgid "Limited to 100 rows"
+#~ msgstr "Limité à 100 lignes"
+
+#~ msgid "Full Results"
+#~ msgstr "Résultats complets"
+
+#~ msgid "Search Facilities"
+#~ msgstr "Rechercher les institutions"
+
+#~ msgid "Add New Facility"
+#~ msgstr "Ajouter une nouvelle Institution"
+
+#~ msgid "Save Changes"
+#~ msgstr "Enregistrer les modifications"
+
+#~ msgid "Are you sure you wish to delete this location?"
+#~ msgstr "Etes-vous sûr de vouloir supprimer ce lieu ?"
+
+#~ msgid "View Facility"
+#~ msgstr "Afficher l'institution"
+
+#~ msgid "Postal Code"
+#~ msgstr "Code postal"
+
+#~ msgid "Welcome to"
+#~ msgstr "Bienvenue à"
+
+#~ msgid "Training System Monitoring and Reporting Tool"
+#~ msgstr "Outil pour le rapportage et le suivi des formations"
+
+#~ msgid "Data Summary"
+#~ msgstr "Résumé des données"
+
+#~ msgid "unique"
+#~ msgstr "unique"
+
+#~ msgid "Fiscal Year"
+#~ msgstr "Année fiscale"
+
+#~ msgid "Future Trainings"
+#~ msgstr "Prochaines formations "
+
+#~ msgid "View Printable Calendar"
+#~ msgstr "Voir le calendrier imprimable"
+
+#~ msgid "Incomplete Trainings that already occurred"
+#~ msgstr "Formations imcompletes déjà réalisées"
+
+#~ msgid "Right-click and select \"Save Target As...\" to download."
+#~ msgstr ""
+#~ "Faire un clic droit et sélectionner \"Sauvegarder la cible comme...\" "
+#~ "pour télécharger."
+
+#~ msgid "Document Upload"
+#~ msgstr "Charger un document"
+
+#~ msgid "Please login below"
+#~ msgstr "S'il vous plait ouvrir une session ci-dessous"
+
+#~ msgid "User name"
+#~ msgstr "Nom d'utilisateur"
+
+#~ msgid "Forgot your password?"
+#~ msgstr "Mot de passe oublié ?"
+
+#~ msgid "Assign Person to Training"
+#~ msgstr "Assigner une personne à la formation"
+
+#~ msgid "Delete Person"
+#~ msgstr "Supprimer la personne"
+
+#~ msgid "Current Contact Information"
+#~ msgstr "Coordonnées actuelles "
+
+#~ msgid "Address and Phone"
+#~ msgstr "Addresse et téléphone"
+
+#~ msgid "Email Secondary"
+#~ msgstr "E-mail secondaire"
+
+#, fuzzy
+#~ msgid "Qualification Comments"
+#~ msgstr "Qualifications"
+
+#~ msgid "Trainer Information"
+#~ msgstr "Information sur le formateur"
+
+#~ msgid "Show/Hide"
+#~ msgstr "Afficher/Masquer"
+
+#~ msgid "Is person an active trainer?"
+#~ msgstr "La personne est-elle un formateur actif ?"
+
+#~ msgid "Active trainer"
+#~ msgstr "Formateur actif"
+
+#~ msgid "Trainer Affiliation"
+#~ msgstr "Affiliation du formateur"
+
+#~ msgid "Trainer skills"
+#~ msgstr "Compétences du formateur"
+
+#~ msgid "check all that apply"
+#~ msgstr "Cocher tout ce qui s'applique"
+
+#~ msgid "Secondary languages"
+#~ msgstr "Deuxièmes langues"
+
+#~ msgid "Created by"
+#~ msgstr "Créé par"
+
+#~ msgid "Date modified"
+#~ msgstr "Date de modification"
+
+#~ msgid "Modified by"
+#~ msgstr "Modifié par"
+
+#~ msgid "Delete this Person"
+#~ msgstr "Supprimer cette personne"
+
+#~ msgid "Are you sure you wish to delete this person?"
+#~ msgstr "Etes-vous sûr de vouloir supprimer cette personne ?"
+
+#~ msgid "Edit person's record"
+#~ msgstr "Modifier le dossier d'une personne"
+
+#~ msgid "Add person's record"
+#~ msgstr "Ajouter le dossier d'une personne"
+
+#~ msgid "Personal Information"
+#~ msgstr "Information personnelle"
+
+#~ msgid "Birth date"
+#~ msgstr "Date de naissance"
+
+#~ msgid "Duplicate Check"
+#~ msgstr "Vérifier à nouveau"
+
+#~ msgid "Continue"
+#~ msgstr "Continuer"
+
+#~ msgid "If the person already exists, please select their name below."
+#~ msgstr ""
+#~ "Si la personne existe déjà, veuillez sélectionner son nom ci-dessous."
+
+#~ msgid "Please enter a first and last name."
+#~ msgstr "Veuillez entrer les noms et prénoms"
+
+#~ msgid "Submission failed:"
+#~ msgstr "Echec de la requête :"
+
+#~ msgid "Primary responsibility"
+#~ msgstr "Responsabilité principale"
+
+#~ msgid "Secondary responsibility"
+#~ msgstr "Responsabilité secondaire"
+
+#~ msgid "Trainer languages"
+#~ msgstr "Langues du formateur"
+
+#~ msgid "Recommended Training Topics"
+#~ msgstr "Thèmes de formation recommandés"
+
+#~ msgid ""
+#~ "No recommended classes were found for the above primary qualification"
+#~ msgstr ""
+#~ "Aucun cours recommandé n'a été trouvé pour la qualification principale "
+#~ "sci-dessous"
+
+#~ msgid "Upcoming Trainings"
+#~ msgstr "Prochaines formations"
+
+#~ msgid "Class History"
+#~ msgstr "Historique du cours"
+
+#~ msgid "Topics(s)"
+#~ msgstr "Sujets"
+
+#~ msgid "Please add or verify the trainer information below."
+#~ msgstr ""
+#~ "Veuillez ajouter ou vérifier les informations du formateur ci-dessous"
+
+#~ msgid "Please enter facility information"
+#~ msgstr "Inscrire les informations de l'institution"
+
+#~ msgid "Assign this person to a class"
+#~ msgstr "Assigner cette personne à une classe"
+
+#~ msgid "External Class History"
+#~ msgstr "Historique de la Classe Externe"
+
+#~ msgid "Add an external class"
+#~ msgstr "Ajouter une classe externe"
+
+#~ msgid "Change History"
+#~ msgstr "Modifier l'historique"
+
+#~ msgid "Change"
+#~ msgstr "Changer"
+
+#~ msgid "Previous entry"
+#~ msgstr "Entrée précédente"
+
+#~ msgid "No duplicates found."
+#~ msgstr "Pas de doublons trouvés."
+
+#~ msgid "Age"
+#~ msgstr "Âge"
+
+#~ msgid "Edit Person"
+#~ msgstr "Modifier le profil d'une personne"
+
+#~ msgid "Person Search"
+#~ msgstr "Rechercher une personne"
+
+#~ msgid "Trainers only"
+#~ msgstr "Formateurs uniquement"
+
+#~ msgid "Participants only"
+#~ msgstr "Participants uniquement"
+
+#~ msgid "Unattached only"
+#~ msgstr "Détaché uniquement"
+
+#~ msgid "Everyone"
+#~ msgstr "Tout le monde"
+
+#~ msgid "View Person"
+#~ msgstr "Afficher la personne"
+
+#~ msgid "First name"
+#~ msgstr "Prénom"
+
+#~ msgid "Middle name"
+#~ msgstr "Second prénom"
+
+#~ msgid "Last name"
+#~ msgstr "Nom"
+
+#~ msgid "Trainer Type"
+#~ msgstr "Type de formateur"
+
+#~ msgid "Training History"
+#~ msgstr "Historique de la formation"
+
+#~ msgid "Search"
+#~ msgstr "Rechercher"
+
+#~ msgid "show"
+#~ msgstr "Montrer"
+
+#~ msgid "group"
+#~ msgstr "Groupe"
+
+#, fuzzy
+#~ msgid "course name"
+#~ msgstr "Nom du cours"
+
+#~ msgid "Min"
+#~ msgstr "Min"
+
+#~ msgid "Max"
+#~ msgstr "Max"
+
+#~ msgid "End date"
+#~ msgstr "Date de fin"
+
+#~ msgid "Start date"
+#~ msgstr "Date du début"
+
+#~ msgid "Trainings with known participants only"
+#~ msgstr "Formations avec participants connus uniquement"
+
+#~ msgid "All trainings"
+#~ msgstr "Toutes formations"
+
+#~ msgid "Refresher"
+#~ msgstr "Rafraîchir"
+
+#~ msgid "facility"
+#~ msgstr "Institution"
+
+#~ msgid "Trainings matched with Facilities"
+#~ msgstr "Formations correspondant aux institutions"
+
+#~ msgid "PEPFAR"
+#~ msgstr "PEPFAR"
+
+#~ msgid "Evaluation"
+#~ msgstr "Evaluation"
+
+#~ msgid "Generate Report"
+#~ msgstr "Générer le rapport"
+
+#~ msgid "Evaluation Name"
+#~ msgstr "Nom de l'evaluation"
+
+#~ msgid "Responses"
+#~ msgstr "Réponses"
+
+#~ msgid "Select facility report"
+#~ msgstr "Choisir le rapport des institutions"
+
+#~ msgid "Trainings by Facility Name"
+#~ msgstr "Formations par nom d'institution"
+
+#~ msgid "Trainings by Facility Participant Count"
+#~ msgstr "Formations par nombre de participants et par institution"
+
+#~ msgid "filter"
+#~ msgstr "Trier"
+
+#~ msgid "Training location"
+#~ msgstr "Lieu de la formation"
+
+#~ msgid "Report"
+#~ msgstr "Rapport"
+
+#~ msgid "Select trainer report"
+#~ msgstr "Sélectionner le rapport de formateurs"
+
+#~ msgid "Trainers by Skill, Language, and PEPFAR"
+#~ msgstr "Formateurs par compétences, langue et PEPFAR"
+
+#~ msgid "Select training report"
+#~ msgstr "Sélectionner le rapport de formation"
+
+#~ msgid "Trainings by Name"
+#~ msgstr "Formations par Nom"
+
+#~ msgid "Trainings by Participant Count"
+#~ msgstr "Formations par nombre de participants"
+
+#, fuzzy
+#~ msgid "Pre-service reports"
+#~ msgstr "Rapports par session"
+
+#, fuzzy
+#~ msgid "Course By Name"
+#~ msgstr "Nom du cours"
+
+#, fuzzy
+#~ msgid "Cohort By Participant Count"
+#~ msgstr "Nombre de participants"
+
+#, fuzzy
+#~ msgid "Institution Information"
+#~ msgstr "Information personnelle"
+
+#, fuzzy
+#~ msgid "Tutor By Name"
+#~ msgstr "Formations par Nom"
+
+#, fuzzy
+#~ msgid "Facility Report"
+#~ msgstr "Rapport des institutions"
+
+#~ msgid "primary"
+#~ msgstr "primaire"
+
+#~ msgid "secondary"
+#~ msgstr "secondaire"
+
+#~ msgid "Classes taken"
+#~ msgstr "Cours suivis"
+
+#~ msgid "Upcoming classes"
+#~ msgstr "Prochains cours"
+
+#~ msgid "Training topic"
+#~ msgstr "Sujet de la formation"
+
+#~ msgid "Recommended topics"
+#~ msgstr "Sujets recommandés"
+
+#~ msgid "Combine First and Last Names"
+#~ msgstr "Combiner prénom et nom"
+
+#~ msgid "Person Count"
+#~ msgstr "Nombre de personnes"
+
+#~ msgid "Select person report"
+#~ msgstr "Sélectionner rapport personnes"
+
+#~ msgid "Needs by Person's Name"
+#~ msgstr "Besoins par nom "
+
+#~ msgid "Needs by Person Count"
+#~ msgstr "Besoin par nombre de personnes"
+
+#~ msgid "Unique by"
+#~ msgstr "Unique par"
+
+#~ msgid "Not unique overall."
+#~ msgstr "Pas unique en général"
+
+#~ msgid "Unique by "
+#~ msgstr "Unique par"
+
+#~ msgid "facility location"
+#~ msgstr "Adresse de l'institution"
+
+#~ msgid "Total Participants by"
+#~ msgstr "Nombre de participants par"
+
+#~ msgid "Participants Report"
+#~ msgstr "Rapport sur les participants"
+
+#~ msgid "male"
+#~ msgstr "Homme"
+
+#~ msgid "female"
+#~ msgstr "Femme"
+
+#~ msgid "na"
+#~ msgstr "na"
+
+#~ msgid "min"
+#~ msgstr "minimum"
+
+#~ msgid "max"
+#~ msgstr "maximum"
+
+#~ msgid "clear"
+#~ msgstr "Effacer"
+
+#~ msgid "active"
+#~ msgstr "actif"
+
+#~ msgid "inactive"
+#~ msgstr "inactif"
+
+#~ msgid ""
+#~ "Note: This report may contain multiple rows for participants who attended "
+#~ "multiple trainings"
+#~ msgstr ""
+#~ "A noter : ce rapport peut contenir plusieurs lignes pour les personnes "
+#~ "qui ont suivi plusieurs formations "
+
+#~ msgid "Participant Count"
+#~ msgstr "Nombre de participants"
+
+#, fuzzy
+#~ msgid "Trainers by Name"
+#~ msgstr "Formations par Nom"
+
+#~ msgid "Show post-test scores above"
+#~ msgstr "Montrer les résultats du post-test ci-dessus"
+
+#~ msgid "Show score increase above"
+#~ msgstr "Montrer l'amélioration du résultat ci-dessus"
+
+#~ msgid "Return Unique Participants"
+#~ msgstr "Retour unique participants"
+
+#~ msgid "% Change"
+#~ msgstr "% des modifications"
+
+#~ msgid "Match primary/secondary"
+#~ msgstr "Faire correspondre primaire/secondaire"
+
+#~ msgid "Recommended classes (based on topic)"
+#~ msgstr "Formations recommandées (en fonction du sujet)"
+
+#~ msgid "Select participant report"
+#~ msgstr "Sélectionner le rapport des participants"
+
+#~ msgid "Unique Participants by "
+#~ msgstr "Trier les participants par"
+
+#~ msgid "Unique Participants by"
+#~ msgstr "Participant unique par"
+
+#~ msgid "Unique Participants by Qualification"
+#~ msgstr "Participant unique par qualification"
+
+#~ msgid "Participants Trained"
+#~ msgstr "Participants formés"
+
+#~ msgid "Participants by Facility"
+#~ msgstr "Participants par institution"
+
+#~ msgid "Participants by Name"
+#~ msgstr "Participants par nom"
+
+#~ msgid "Participants with Scores"
+#~ msgstr "Participants avec résultats"
+
+#, fuzzy
+#~ msgid "Course By Name Report"
+#~ msgstr "Nom du cours"
+
+#, fuzzy
+#~ msgid "Graduated Students Report"
+#~ msgstr "Générer le rapport"
+
+#, fuzzy
+#~ msgid "Missing Cohort By Participant Count Report"
+#~ msgstr "Formations par nombre de participants"
+
+#, fuzzy
+#~ msgid "Missing Cohort By Participant Count"
+#~ msgstr "Formations par nombre de participants"
+
+#, fuzzy
+#~ msgid "Missing Course By Name"
+#~ msgstr "Nom du cours"
+
+#, fuzzy
+#~ msgid "Missing Facility Report Report"
+#~ msgstr "Rapport des institutions"
+
+#, fuzzy
+#~ msgid "Missing Facility Report"
+#~ msgstr "Rapport des institutions"
+
+#, fuzzy
+#~ msgid "Students Trained Report"
+#~ msgstr "Rapport sur le formateur"
+
+#, fuzzy
+#~ msgid "Trainings By Participants Report"
+#~ msgstr "Formations par nombre de participants"
+
+#, fuzzy
+#~ msgid "Trainings By Participants"
+#~ msgstr "Formations par nombre de participants"
+
+#, fuzzy
+#~ msgid "Trainings By Name Report"
+#~ msgstr "Formations par Nom"
+
+#, fuzzy
+#~ msgid "Trainings By Name"
+#~ msgstr "Formations par Nom"
+
+#~ msgid "Extended Report with Test Scores"
+#~ msgstr "Rapport étendu avec résultats de test"
+
+#~ msgid "Extended Report with Regions and Qualification"
+#~ msgstr "Rapport étendu avec des régions et qualifications"
+
+#~ msgid "Trainer Report"
+#~ msgstr "Rapport sur le formateur"
+
+#~ msgid "Trainer language"
+#~ msgstr "Langue du formateur"
+
+#~ msgid "Select topic taught"
+#~ msgstr "Sélectionner le sujet enseigné"
+
+#~ msgid "Combine first and last names"
+#~ msgstr "Combiner prénom et nom"
+
+#, fuzzy
+#~ msgid "with Unknown Participants"
+#~ msgstr "Formations avec participants inconus uniquement"
+
+#, fuzzy
+#~ msgid "Trainings with Unknown Participants"
+#~ msgstr "Formations avec participants inconus uniquement"
+
+#, fuzzy
+#~ msgid "Uploaded Data"
+#~ msgstr "Date du chargement"
+
+#, fuzzy
+#~ msgid "Resolution"
+#~ msgstr "Question"
+
+#, fuzzy
+#~ msgid "Preview Upload Data"
+#~ msgstr "Date du chargement"
+
+#, fuzzy
+#~ msgid "Modifications"
+#~ msgstr "Qualifications"
+
+#, fuzzy
+#~ msgid "Training Conflicts"
+#~ msgstr "Sujet de la Formation"
+
+#, fuzzy
+#~ msgid "Facility Conflicts"
+#~ msgstr "Ville de l'Institution"
+
+#, fuzzy
+#~ msgid "Training Location Conflicts"
+#~ msgstr "Lieu de la formation"
+
+#~ msgid "Training Session Deleted"
+#~ msgstr "Session de formation supprimée"
+
+#~ msgid "This training session has been deleted."
+#~ msgstr "Cette session de formation a été supprimée."
+
+#~ msgid "Edit Trainer Topic"
+#~ msgstr "Editer le thème de la formation"
+
+#~ msgid "Training Roster"
+#~ msgstr "Tableau de service de la formation"
+
+#~ msgid "Course Roster"
+#~ msgstr "Liste des participants du cours"
+
+#~ msgid "Start Date:"
+#~ msgstr "Date du début :"
+
+#~ msgid "End Date:"
+#~ msgstr "Date de la fin :"
+
+#~ msgid "Total Trainers:"
+#~ msgstr "Nombre total de formateurs :"
+
+#~ msgid "Total Participants:"
+#~ msgstr "Nombre total de participants :"
+
+#~ msgid "Return to training"
+#~ msgstr "Retour à la formation"
+
+#~ msgid "Return to Training Session"
+#~ msgstr "Retourner à la session de formation"
+
+#~ msgid "Save Training"
+#~ msgstr "Sauvegarder la Formation"
+
+#~ msgid "Add new Training Location"
+#~ msgstr "Ajouter un nouveau lieu de formation"
+
+#~ msgid "Please enter training location information:"
+#~ msgstr "Inscrire les informations sur le lieu de formation :"
+
+#~ msgid ""
+#~ "It looks like the training dates do not match the length. Please double "
+#~ "check these fields."
+#~ msgstr ""
+#~ "Les dates de la formation ne correspondent pas à sa durée. Veuillez "
+#~ "vérifier ces champs."
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Date created:"
+#~ msgstr "Date de création :"
+
+#~ msgid "Created by:"
+#~ msgstr "Créé par :"
+
+#~ msgid "Date modified:"
+#~ msgstr "Date de modification :"
+
+#~ msgid "Modified by:"
+#~ msgstr "Modifié par :"
+
+#~ msgid "View/Print Training Roster"
+#~ msgstr "Afficher/Imprimer le tableau de service de la formation"
+
+#~ msgid "Enter Evaluation Data"
+#~ msgstr "Entrer les données de l'evaluation"
+
+#~ msgid "unassigned"
+#~ msgstr "pas attribué"
+
+#~ msgid "Duplicate this Training"
+#~ msgstr "Dupliquer cette formation"
+
+#~ msgid "Delete this Training"
+#~ msgstr "Supprimer cette formation"
+
+#~ msgid "Training start date"
+#~ msgstr "Date de début de formation"
+
+#~ msgid "Training end date"
+#~ msgstr "Date de fin de formation"
+
+#~ msgid "Training length"
+#~ msgstr "Durée de la formation"
+
+#~ msgid "Participants are known"
+#~ msgstr "Les participants sont connus"
+
+#~ msgid "Check all that apply below"
+#~ msgstr "Cocher la ou les cases ci-dessous qui s'appliquent"
+
+#~ msgid "Insert"
+#~ msgstr "Insérer"
+
+#~ msgid "New Person Form"
+#~ msgstr "Formulaire pour une nouvelle personne"
+
+#~ msgid ""
+#~ "The entered trainer name could not be found.\\n\\nPlease select one from "
+#~ "the list or add a new person."
+#~ msgstr ""
+#~ "Le nom saisi pour le formateur n'a pas été retrouvé.\\n\\nChoisissez l'un "
+#~ "des noms de la liste ou ajoutez un nouveau nom."
+
+#~ msgid "Please enter the number of days for this trainer."
+#~ msgstr "Inscrire le nombre de jours pour ce formateur."
+
+#~ msgid ""
+#~ "You must edit this person's trainer profile before adding them to this "
+#~ "session.\\n\\nWould you like to do this now?"
+#~ msgstr ""
+#~ "Vous devez modifier le profil de ce formateur avant de l'ajouter à cette "
+#~ "session. Voulez-vous le faire maintenant ?"
+
+#~ msgid "Participant Information"
+#~ msgstr "Information sur les participants"
+
+#~ msgid "Course Average Test Scores"
+#~ msgstr "Notes moyennes pre et post test"
+
+#~ msgid "Participant Qualifications"
+#~ msgstr "Qualification des participants"
+
+#~ msgid "Approval Status"
+#~ msgstr "Statut approuvé"
+
+#~ msgid "Location name"
+#~ msgstr "Nom du lieu"
+
+#, fuzzy
+#~ msgid "Add new Training Partner"
+#~ msgstr "Ajouter un nouveau lieu de formation"
+
+#, fuzzy
+#~ msgid "Training Sub Partner"
+#~ msgstr "Début de la formation"
+
+#, fuzzy
+#~ msgid "Funder Name"
+#~ msgstr "Prénom"
+
+#, fuzzy
+#~ msgid "Delete Training Partner"
+#~ msgstr "Sélectionner le rapport de formation"
+
+#, fuzzy
+#~ msgid "Edit Training Partner"
+#~ msgstr "Afficher/Modifier le lieu de formation"
+
+#, fuzzy
+#~ msgid "Are you sure you wish to delete this partner?"
+#~ msgstr "Etes-vous sûr de vouloir supprimer cette personne ?"
+
+#, fuzzy
+#~ msgid "Search for Training Partner"
+#~ msgstr "Rechercher un lieu de formation"
+
+#, fuzzy
+#~ msgid "Training Partner Name"
+#~ msgstr "Nom du lieu de la formation"
+
+#, fuzzy
+#~ msgid "Funder"
+#~ msgstr "Sexe"
+
+#, fuzzy
+#~ msgid "Training organizer"
+#~ msgstr "Organisateur de la formation"
+
+#~ msgid "Activate User"
+#~ msgstr "Activer un utilisateur"
+
+#~ msgid "Add User"
+#~ msgstr "Ajouter un utilisateur"
+
+#~ msgid "User Set Up"
+#~ msgstr "Paramètres utilisateur"
+
+#~ msgid "Block User"
+#~ msgstr "Bloquer un utilisateur"
+
+#~ msgid "Edit Account"
+#~ msgstr "Editer le compte"
+
+#~ msgid "E-mail"
+#~ msgstr "Courriel"
+
+#~ msgid "New password"
+#~ msgstr "Nouveau mot de passe"
+
+#~ msgid "Confirm new password"
+#~ msgstr "Confirmer le nouveau mot de passe"
+
+#~ msgid "Access Level"
+#~ msgstr "Niveau d'accès"
+
+#~ msgid "Add/Edit/Delete"
+#~ msgstr "Ajouter/Editer/Supprimer"
+
+#~ msgid "View only"
+#~ msgstr "Voir seulement"
+
+#~ msgid "View/create reports"
+#~ msgstr "Voir/créer des rapports"
+
+#~ msgid "Edit country options"
+#~ msgstr "Editer les options du pays"
+
+#~ msgid "Add Training Titles"
+#~ msgstr "Ajouter les titres des formations"
+
+#~ msgid "Add/Edit users"
+#~ msgstr "Ajouter/Editer les utilisateurs"
+
+#, fuzzy
+#~ msgid "Files"
+#~ msgstr "Nom du fichier"
+
+#, fuzzy
+#~ msgid "Upload and delete"
+#~ msgstr "Date du chargement"
+
+#~ msgid "All Training Organizers"
+#~ msgstr "Tous les organisateurs de formation"
+
+#~ msgid "Block this User"
+#~ msgstr "Bloquer cet utilisateur"
+
+#~ msgid "Are you sure you wish to block this user?"
+#~ msgstr "Etes-vous certain de vouloir bloquer cet utilisateur?"
+
+#~ msgid "Activate this User"
+#~ msgstr "Activer cet utilisateur"
+
+#~ msgid "Are you sure you wish to activate this user?"
+#~ msgstr "Etes-vous certain de vouloir activer cet utilisateur?"
+
+#~ msgid "Forgot Password"
+#~ msgstr "Mot de passe oublié"
+
+#~ msgid ""
+#~ "Enter your email address, and a new temporary password will be sent to "
+#~ "you."
+#~ msgstr ""
+#~ "Inscrire votre adresse électronique et un nouveau mot de passe temporaire "
+#~ "vous sera envoyé."
+
+#~ msgid "Send Password"
+#~ msgstr "Envoyer le mot de passe"
+
+#~ msgid "Confirm New password"
+#~ msgstr "Confirmer le nouveau mot de passe"
+
+#~ msgid "User List"
+#~ msgstr "Liste des utilisateurs"
+
+#~ msgid "Browse Users"
+#~ msgstr "Lister les utilisateurs"
+
+#~ msgid "blocked"
+#~ msgstr "Bloqué"
+
+#~ msgid "First"
+#~ msgstr "Prénom"
+
+#~ msgid "Last"
+#~ msgstr "Nom"
+
+#~ msgid "Username"
+#~ msgstr "Nom d'utilisateur"
+
+#~ msgid "Status"
+#~ msgstr "Etat"
+
+#~ msgid "Admin"
+#~ msgstr "Admin"
+
+#~ msgid "Send email with login information"
+#~ msgstr "Envoyer un courriel avec les informations d'identification"
+
+#~ msgid "Finished"
+#~ msgstr "Fini"
+
+#~ msgid "Trainer affiliation"
+#~ msgstr "Affiliation du formateur"
+
+#~ msgid "Please choose a region before entering a new city name."
+#~ msgstr "Veuillez choisir une région avant d'entrer le nom de la ville"
+
+#~ msgid "Please verify the locations below."
+#~ msgstr "Vérifier les lieux ci-dessous."
+
+#~ msgid "Provinces/States"
+#~ msgstr "Provinces/Etats"
+
+#~ msgid "Districts"
+#~ msgstr "Districts"
+
+#~ msgid "Unique by training organization not unique overall."
+#~ msgstr "Unique par organisateur de formation seulement"
+
+#~ msgid "Objectives"
+#~ msgstr "objectifs"
+
+#~ msgid "Edit Country Options"
+#~ msgstr "Afficher les Options Pays"
+
+#~ msgid "Labels"
+#~ msgstr "Étiquettes"
+
+#~ msgid "Welcome to TrainSMART"
+#~ msgstr "Bienvenue sur TrainSMART"
+
+#~ msgid "PEPFAR category"
+#~ msgstr "Catégorie PEPFAR"
+
+#~ msgid ""
+#~ "Unique by pepfar category and training organization not unique overall."
+#~ msgstr "unique par categorie PEPFAR et organisateur de formation seulement"
+
+#~ msgid ""
+#~ "Unique training by level and training organization, not unique overall."
+#~ msgstr ""
+#~ "Formation unique par niveau de formation et organisateur de formation "
+#~ "seulement"
+
+#~ msgid "Monthy"
+#~ msgstr "Mois"
+
+#~ msgid "Yeary"
+#~ msgstr "Année"
+
+#~ msgid "Unique Participants by PEPFAR"
+#~ msgstr "Participant unique par PEPFAR"
+
+#~ msgid "Recommended Classes / Topics"
+#~ msgstr "Cours /sujets recommandés"
+
+#~ msgid "You have incomplete trainings"
+#~ msgstr "Vous n'avez pas fini les formations"
+
+#~ msgid "People by Facility (Recommended Classes)"
+#~ msgstr "Personne par Infrastructure (Formations recommandées)"

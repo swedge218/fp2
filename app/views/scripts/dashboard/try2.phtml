@@ -1,0 +1,105 @@
+<html>
+<head>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="https://canvg.googlecode.com/svn-history/r157/trunk/canvg.js"></script>
+<script>
+  function getImgData(chartContainer) {
+    var chartArea = chartContainer.getElementsByTagName('svg')[0].parentNode;
+    var svg = chartArea.innerHTML;
+    var doc = chartContainer.ownerDocument;
+    var canvas = doc.createElement('canvas');
+    canvas.setAttribute('width', chartArea.offsetWidth);
+    canvas.setAttribute('height', chartArea.offsetHeight);
+
+    canvas.setAttribute(
+        'style',
+        'position: absolute; ' +
+        'top: ' + (-chartArea.offsetHeight * 2) + 'px;' +
+        'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
+    doc.body.appendChild(canvas);
+    canvg(canvas, svg);
+    var imgData = canvas.toDataURL("image/png");
+    canvas.parentNode.removeChild(canvas);
+    return imgData;
+  }
+
+  function saveAsImg(chartContainer) {
+    var imgData = getImgData(chartContainer);
+
+    // Replacing the mime-type will force the browser to trigger a download
+    // rather than displaying the image in the browser window.
+    // must guarantee filename = "download"
+    <?php
+    		//$fh = fopen('C:\Users\rossumg\Downloads\download', 'a');
+    		//fclose($fh);
+    		unlink('C:\Users\rossumg\Downloads\download');
+    		?>
+    window.location = imgData.replace("image/png", "image/octet-stream");
+  }
+
+  function toImg(chartContainer, imgContainer) { 
+    var doc = chartContainer.ownerDocument;
+    var img = doc.createElement('img');
+    img.src = getImgData(chartContainer);
+
+    while (imgContainer.firstChild) {
+      imgContainer.removeChild(imgContainer.firstChild);
+    }
+    imgContainer.appendChild(img);
+  }
+</script>
+
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart11);
+
+  function drawChart11() {
+	  // Create and populate the data table.
+	  var chart11Data = google.visualization.arrayToDataTable([
+['', ''],
+['Female Condoms', 40000],
+['Male Condoms', 98000],
+['Injectables', 44000],
+['Implants', 21000],
+['IUDs', 10000],
+['Oral Pills', 79000],
+['Sterilization', 6000],
+]);		    
+	  <?php echo  " var title_data = 'Monthly consumption by method $this->title_data ' " ?>;
+	  var chart11Options = {
+			  title: title_data,
+			  titleTextStyle: { fontSize: 16 },
+		      is3D:true,
+		      legend: 'none',
+		};
+	  var chart11 = new google.visualization.ColumnChart(document.getElementById('google_visualization_div'));
+	  chart11.draw(chart11Data, chart11Options);
+
+	  toImg(document.getElementById('google_visualization_div'), document.getElementById('img_div'));
+	  saveAsImg(document.getElementById('google_visualization_div'));
+
+	}
+	
+</script>
+</head>
+<body>
+<div id="google_visualization_div" style="width: 500px; height: 300px;"></div>
+
+<button onclick="saveAsImg(document.getElementById('google_visualization_div'));">Save as PNG Image</button>
+<button onclick="toImg(document.getElementById('google_visualization_div'), document.getElementById('img_div'));">Convert to image</button>
+<hr>
+<div id="img_div">
+  Image will be placed here
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+    <input type="text" value="defaultFilename" name="File">
+</form>
+
+</body>
+</html>

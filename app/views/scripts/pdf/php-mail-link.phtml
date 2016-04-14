@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Facility Summary Report');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+			} );
+		</script>
+	</head>
+    <style type="text/css">
+        
+        select{
+            
+      
+           
+        }
+        .mclass{
+    min-height:100px;
+    
+}
+        </style>
+	<body class="yui-skin-sam" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			<div id="content">
+				<div id="subcontent">
+					<div id="contentheader">
+						<h2><?php tp('Mailing List');?></h2><br>
+                                                  
+					</div>
+                                 
+                                    </div>
+					<div class="clear" style=""></div>
+				</div>
+				<div class="clear" style=""></div>
+			</div>   
+			<div class="clear" style="height : 100px;"></div>
+			<div class="clear" style=""></div>
+				
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+

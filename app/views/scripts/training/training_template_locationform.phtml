@@ -1,0 +1,15 @@
+<?php require_once('views/helpers/Location.php');?>
+<form id="addLocationForm"  action="<?php echo $this->base_url;?>/training/location-add/outputType/json" method="POST" <?php if($this->viewonly) echo 'disabled="disabled"'; ?>>
+
+  <div class="fieldLabel" id="training_location_name_lbl"><span class="required">*</span><?php tp('Location name');?></div>
+  <div class="fieldInput" >
+    <input type="text" size="70" name="training_location_name" id="locationName" required value="<?php if(isset($this->rowLocation)) echo $this->rowLocation['training_location_name']; ?>" <?php echo $this->viewonly; ?>>
+  </div>
+
+  <?php region_filters_dropdown($this, $this->locations, $this->rowLocation,false,false,false,'',true); ?>
+
+ 
+
+</form>
+
+<div class="clear"></div>

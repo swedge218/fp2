@@ -1,0 +1,370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#homecontent {
+	background: url("images/content-bg.png") repeat-x scroll 0 0 #FAFAFA;
+	position: relative;
+}
+
+#homecontent-mid {
+	background: url("images/bg-stage.png") repeat-y scroll right top #FFFFFF;
+	min-height: 100%;
+	outline: medium none;
+	top: -40px;
+}
+
+#homebanner {
+	background: url("images/bg-stage-shade.png") repeat-x scroll 0 0
+		transparent;
+	padding-right: 20px;
+	position: relative;
+}
+
+.rounded {
+	border-radius: 10px 10px 10px 10px;
+}
+
+.sliderdiv {
+	background: none repeat scroll 0 0 FFFFFF;
+	float: left;
+}
+
+.main-search {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+.nav-buttons {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+</style>
+
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+	rel="stylesheet" type="text/css">
+
+<?php
+require_once('views/helpers/ScriptContainer.php');
+print ScriptContainer::$instance->renderCSSHead();
+print ScriptContainer::$instance->renderJSHead();
+?>
+
+
+      <link rel="stylesheet" type="text/css"
+	href="https://google-developers.appspot.---com/_static/f7a896e076/css/screen-docs.css" />
+<link rel="stylesheet"
+	href="//www.google.com/cse/style/look/default.css" type="text/css" />
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Open+Sans:300,400"
+	type="text/css">
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/prettify-bundle.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script id="jqueryui"
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+	defer async></script>
+<script
+	src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/framebox.js"></script>
+
+</head>
+<body class="yui-skin-sam">
+    
+	<div id="pageHolder">
+
+		<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+		<div id="content">
+
+			<!-------   /////////////////////////// get data ////////////////////// -->
+
+			<div>
+				<?php  // require_once('views/scripts/dashboard/load_data.phtml');?>
+
+			<!-------   /////////////////////////// make top buttons ////////////////////// -->
+
+			<div class="rightdiv" style="float: right;">
+				<?php require_once('views/scripts/dashboard/top_buttons.phtml');?>
+			</div>
+
+			<!-------   /////////////////////////// make left buttons ////////////////////// -->
+
+			<div class="nav-buttons">
+				<?php  require_once('views/scripts/dashboard/left_buttons.phtml');?>
+				<?php  //require_once('views/scripts/dashboard/geo_button.phtml');?>
+				
+			</div>
+			
+			<!-------   /////////////////////////// load scripts ////////////////////// -->
+            <div class="nav-buttons">
+				<?php require_once('views/scripts/dashboard/displayScripts.phtml');?>
+			</div>
+
+			<!-------   /////////////////////////// charts ////////////////////// -->
+
+
+			<body class="docs slim framebox_body">
+
+				<div id="allCharts" class="container">
+
+				<div id="toprow" class="container">
+						<div id="homecontent" class="container">
+							<div id="homecontent-mid" class="row rounded">
+                                                                <div id="homebanner" class="rounded">
+                                                                    <div class="sliderdiv">
+									<div id="chart_div" style="width: 600px; height: 400px;"></div>
+                                                                    </div>
+                                                                    
+                                                                    <div class="main-search">
+									<div id="chart12_div" style="width: 500px; height: 300px;"></div>
+                                                                    </div>
+								</div>
+							</div>
+						</div>			
+					</div>
+					
+					</div>
+
+								<!-------   /////////////////////////// chart 2,1 ////////////////////// -->
+								
+					<div id="bottomrow" class="container">
+						<div id="homecontent" class="container">
+							<div id="homecontent-mid" class="row rounded">
+								<div id="homebanner" class="rounded">
+								<div class="sliderdiv">
+									<div id="fpchart_div" style="width: 500px; height: 300px;"></div>
+									</div>
+									<div class="main-search">
+										<div id="larcchart_div" style="width: 500px; height: 300px;"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+								
+								<!-------   /////////////////////////// chart 2,2 ////////////////////// -->
+								
+								
+								<div class="main-search"></div>
+
+					</div>
+				</div>
+		
+	</div>
+
+		<div class="clear"></div>
+		<div class="hrGrey"></div> 
+		<div class="clear"></div>
+		
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+		<!-------   /////////////////////////// main gnr ////////////////////// -->
+
+                
+<!----------------------    Prepare the values for FP and LARC when GEO is selected -------------->
+<?php
+        $firstLocation = $this->ttc_locations[0];  // get the location to be used as key in next stmts
+        $firstElement = $this->ttc_larc_data[$firstLocation]; //years are keys for each child element
+        $yearsArray = array_keys($firstElement);
+        //sort($yearsArray);
+        
+        $legend = "[' ', ";
+        foreach ($yearsArray as $year)
+            $legend .= "'$year',";
+        $legend = substr($legend, 0, -1) . "],";
+        //echo $legend . ","; exit;
+
+        $fp_series = ''; $larc_series = '';
+        foreach($this->ttc_fp_data as $key=>$locationData) {
+            $fp_series .= "['" . $key . "',";
+            $larc_series .= "['" . $key . "',";
+            foreach ($locationData as $year=>$data){
+                $fp_series .= $data['fp'] . ",";
+                //echo 'larcyear: ' . $year . ' Key: ' . $key . '<br/>'; 
+                //echo 'lv: ' .($this->ttc_larc_data[$key][$year]['larc']);//[$year]['larc']; 
+                //exit;
+                $larc_series .= $this->ttc_larc_data[$key][$year]['larc'] . ",";
+            }
+            $fp_series = substr($fp_series, 0, -1) . "],";
+            $larc_series = substr($larc_series, 0, -1) . "],";
+        }
+
+            $fp_series = substr($fp_series, 0, -1);
+            $larc_series = substr($larc_series, 0, -1);
+
+            //echo 'fp: ' .$fp_chartData =  $legend . $fp_series; 
+            //echo '<br/>';
+            //echo 'larc: ' . $larc_chartData =  $legend . $larc_series; 
+            //exit;
+            
+            $fp_chartData =  $legend . $fp_series; 
+            $larc_chartData =  $legend . $larc_series; 
+            
+  ?>
+                
+<script type="text/javascript">
+		
+  google.load('visualization', '1.0', {'packages':['corechart', 'table', 'gauge', 'controls']});
+  google.setOnLoadCallback(apiLoaded);
+  function apiLoaded() {
+	  document.getElementById("allCharts").style.marginLeft="130px";
+
+	
+        
+        
+		
+	var currentLevel;
+	currentLevel = <?php echo '\'' . $this->location_data[0][name] . '\''; ?>;
+		 
+    
+        drawChart();
+        <?php if(isset($this->ttc_locations)) { ?>
+                drawFPChart();
+                drawLARCChart();
+        <?php } ?>
+   
+  }
+
+  <!-------   /////////////////////////// script 1,1 ////////////////////// -->
+  //TA:17:17: Coverage HW Trained chart
+  function drawChart() {
+      //alert('This is from drwChart');
+      //console.log('This is from drwChart'); return;
+      //var trainedHw = new Array();
+      
+      <?php //for($i=0; $i < $this->tp_data; $i++) {?>
+              //trainedHW.push(<?php //echo $this->data[$i]['tp_fp'], $this->data[$i]['tp_larc']; ?>);
+      <?php //} ?>
+          
+       //console.log(trainedHW);
+       //return;
+      
+      var chartData = google.visualization.arrayToDataTable([
+
+        [' ', 'Total FP Trained', 'Total LARC Trained', '2015 Target # HWs to be Trained in LARC'],
+        <?php
+                     foreach($this->tp_data as $key=> $value) {
+                        echo "['" . $key . "', " . $value['tp_fp'] . ", " . $value['tp_larc'] . ",5500],";
+                     }
+        ?>                                        
+      ]);
+
+      <?php echo  " var title_data = 'Number of HWs trained as of $this->tp_date' " ?>;
+
+      var chartOptions = {
+                title: title_data,
+                titleTextStyle: { fontSize: 16 },
+                vAxis: {format: '#'}, 
+                seriesType: "bars",
+                series: {2: {type: "line", color: 'red'}},
+                chartArea: {width: '50%', left: 80}//new       
+                //tooltip: {'text' : 'both', isHtml : true}
+      };
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+     chart.draw(chartData, chartOptions);
+      
+      
+      //this will help to control the mouseover on the line chart combined with this material chart
+//      google.visualization.events.addListener(chart, 'onmouseover', function (e) { 
+//                    // e.row contains the selected row number in the data table
+//                    console.log(JSON.stringify(e));
+//                    
+//                    var rowIndex = e['row'];
+//                    var columnIndex = e['column'];
+//                    var val = trainedHW[rowIndex][columnIndex];
+//                    
+//                    //var contentCount = contentJSONObj[rowIndex][contentType];
+//                    //var longName = getContentTypeLongName(contentType,contentCount);
+//                    
+//                    console.log(e['column']);
+//                    
+//                    
+//                    
+//                    html = '<strong>' +
+//                            'i am row ' + val;
+//                            //contentJSONObj[rowIndex]['content_overview'] +  
+//                           '</strong><br/>';
+//                           
+//                    $(".google-visualization-tooltip").html(html);
+//             });
+      
+    }
+  
+  function drawFPChart(){
+//      var chartData = google.visualization.arrayToDataTable([
+//          ['', '2012', '2013', '2014'],
+//          ['AA', 1000, 400, 200],
+//          ['BB', 1170, 460, 250],
+//          ['CC', 660, 1120, 300]
+//        ]);
+
+    
+           
+              
+      var chartData = google.visualization.arrayToDataTable([
+                                <?php echo $fp_chartData; ?>
+                            ]);
+      
+       
+
+      <?php echo  " var title_data = 'Number of HWs trained in FP as of $this->tp_date' " ?>;
+
+      var chartOptions = {
+                title: title_data,
+                titleTextStyle: { fontSize: 16 },
+                vAxis: {format: '#', minValue: 10}, 
+                //seriesType: "bars",
+                //series: {2: {type: "line", color: 'red'}},
+                chartArea: {width: '60%', left: 80}//new       
+                //tooltip: {'text' : 'both', isHtml : true}
+      };
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('fpchart_div'));
+     chart.draw(chartData, chartOptions);
+  }
+  
+  function  drawLARCChart(){
+      var chartData = google.visualization.arrayToDataTable([
+                                <?php echo $larc_chartData; ?>
+                        ]);
+
+      <?php echo  " var title_data = 'Number of HWs trained in LARC as of $this->tp_date' " ?>;
+
+      var chartOptions = {
+                title: title_data,
+                titleTextStyle: { fontSize: 16 },
+                vAxis: {format: '#', minValue: 10}, 
+                //seriesType: "bars",
+                //series: {2: {type: "line", color: 'red'}},
+                chartArea: {width: '60%', left: 80}//new       
+                //tooltip: {'text' : 'both', isHtml : true}
+      };
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('larcchart_div'));
+     chart.draw(chartData, chartOptions);
+  }
+
+</script>
+
+
+<script>
+  //devsite.github.Link.convertAnchors();
+  //window.prettyPrint();
+</script>	
+
+  <div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+
+
+
+</body>
+
+</html>
+

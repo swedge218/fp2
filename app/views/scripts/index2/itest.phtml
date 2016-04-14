@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#homecontent {
+	background: url("images/content-bg.png") repeat-x scroll 0 0 #FAFAFA;
+	position: relative;
+}
+
+#homecontent-mid {
+	background: url("images/bg-stage.png") repeat-y scroll right top #FFFFFF;
+	min-height: 100%;
+	outline: medium none;
+	top: -40px;
+}
+
+#homebanner {
+	background: url("images/bg-stage-shade.png") repeat-x scroll 0 0
+		transparent;
+	padding-right: 20px;
+	position: relative;
+}
+
+.rounded {
+	border-radius: 10px 10px 10px 10px;
+}
+
+.sliderdiv {
+	background: none repeat scroll 0 0 FFFFFF;
+	float: left;
+}
+
+.main-search {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+.nav-buttons {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+</style>
+
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+	rel="stylesheet" type="text/css">
+
+<?php
+require_once('views/helpers/ScriptContainer.php');
+print ScriptContainer::$instance->renderCSSHead();
+print ScriptContainer::$instance->renderJSHead();
+?>
+
+
+      <link rel="stylesheet" type="text/css"
+	href="https://google-developers.appspot.---com/_static/f7a896e076/css/screen-docs.css" />
+<link rel="stylesheet"
+	href="//www.google.com/cse/style/look/default.css" type="text/css" />
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Open+Sans:300,400"
+	type="text/css">
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/prettify-bundle.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script id="jqueryui"
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+	defer async></script>
+<script
+	src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/framebox.js"></script>
+
+</head>
+<body class="yui-skin-sam">
+    
+    <?php
+        
+        //var_dump(array_keys($this->national_consumption_by_method)); exit;
+    ?>
+	<div id="pageHolder">
+
+		<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+		<div id="content">
+
+			<!-------   /////////////////////////// get data ////////////////////// -->
+
+			<div>
+
+				<?php  //require_once('views/scripts/dashboard/load_data.phtml');?>
+
+
+
+			<!-------   /////////////////////////// make top buttons ////////////////////// -->
+
+			<div class="rightdiv" style="float: right;">
+				<?php  //require_once('views/scripts/dashboard/top_buttons.phtml');?>
+					
+			</div>
+			
+			<!-------   /////////////////////////// make left buttons ////////////////////// -->
+
+			<div class="nav-buttons">
+				<?php  require_once('views/scripts/dashboard/left_buttons.phtml');?>
+				
+			</div>
+			
+			<!-------   /////////////////////////// load scripts ////////////////////// -->
+            <div class="nav-buttons">
+				<?php require_once('views/scripts/dashboard/displayScripts.phtml');?>
+			</div>
+
+			<!-------   /////////////////////////// charts ////////////////////// -->
+
+			<body class="docs slim framebox_body">
+
+				<div id="allCharts" class="container">
+				
+				<div align="right"><font size="4"><label><?php echo 'National Contraceptive Prevalence Rate 15% Target 36%'; ?></label></font></div>
+				
+				<div class="hrNav"></div>
+				
+				    <div id="toprow" class="container">
+						<div id="homecontent" class="container">
+							<div id="homecontent-mid" class="row rounded">
+								<div id="homebanner" class="rounded">
+                                                                    <div class="sliderdiv" style="width: 53%;"> 
+                                                                        <div class="hrNav"></div>
+                                                                        <div id="chart11_div" style="width: 100%; height: 300px;"></div>
+                                                                        <!--<div style="text-align: center;margin-top: 10px; font-weight: bold;">
+                                                                            <small>Male Condom Figures x10</small>
+                                                                        </div>-->
+                                                                    </div>
+								
+                                                                    <div class="main-search" style="width: 47%;">
+                                                                        <div class="hrNav"></div>
+                                                                        <div id="chart12_div" style="width: 100%; height: 300px;"></div>
+                                                                    </div>
+                                                                    
+								</div>
+							</div>
+						</div>			
+					</div>
+					
+					<!-------   /////////////////////////// chart 2,1 ////////////////////// -->
+					
+					<div id="bottomrow" class="container">
+						<div id="homecontent" class="container">
+							<div id="homecontent-mid" class="row rounded">
+								<div id="homebanner" class="rounded">
+                                                                    <div class="sliderdiv" style="width: 53%;">
+                                                                        <div class="hrNav"></div>
+                                                                        <div id="chart13_div" style="width: 100%; height: 300px;"></div>
+                                                                    </div>
+								
+                                                                    <div class="main-search" style="width: 47%;">
+                                                                        <div class="hrNav"></div>
+                                                                        <div id="chart14_div" style="width: 100%; height: 300px;"></div>
+                                                                    </div>
+								</div>
+							</div>
+						</div>
+								<!-------   /////////////////////////// chart 2,2 ////////////////////// -->
+								<div class="main-search"></div>
+					</div>
+				</div>
+	</div>
+
+		<div class="hrNav"></div>
+		<div class="clear"></div>
+		
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+		<!-------   /////////////////////////// main gnr ////////////////////// -->
+
+		<script type="text/javascript">
+		
+  google.load('visualization', '1.1', {'packages':['corechart', 'table', 'gauge', 'controls']});
+  google.load('visualization', '1.1', {'packages':['bar']});
+  google.setOnLoadCallback(apiLoaded);
+  function apiLoaded() {
+	  document.getElementById("allCharts").style.marginLeft="130px";
+
+	//drawChart11();
+	drawChart12();
+	//drawChart13();
+	//drawChart14();
+		
+	var currentLevel;
+	currentLevel = <?php echo '\'' . $this->location_data[0][name] . '\''; ?>;
+
+<?php  //file_put_contents('c:\wamp\logs\php_debug.log', 'dash3 193 >'.PHP_EOL, FILE_APPEND | LOCK_EX);	ob_start();
+	   //var_dump("location_data=", $this->location_data[0],"END");
+	   //var_dump("facility_data=",$this->facility_data[0],"END");
+	   //$result = ob_get_clean(); file_put_contents('c:\wamp\logs\php_debug.log', $result .PHP_EOL, FILE_APPEND | LOCK_EX); 
+?>
+		 
+  }
+
+  <!-------   /////////////////////////// script 1,1 ////////////////////// -->
+  
+//  function drawChart11_demo() {
+//        // Create and populate the data table.
+//        var data = new google.visualization.DataTable();
+//        data.addColumn('string', 'x');
+//        data.addColumn('number', 'Cats');
+//        data.addColumn('number', 'Blanket 1');
+//        data.addColumn('number', 'Blanket 2');
+//        data.addRow(["A", 1, 1, 0.5]);
+//        data.addRow(["B", 2, 0.5, 1]);
+//        data.addRow(["C", 4, 1, 0.5]);
+//        data.addRow(["D", 8, 0.5, 1]);
+//        data.addRow(["E", 7, 1, 0.5]);
+//        data.addRow(["F", 7, 0.5, 1]);
+//        data.addRow(["G", 8, 1, 0.5]);
+//        data.addRow(["H", 4, 0.5, 1]);
+//        data.addRow(["I", 2, 1, 0.5]);
+//        data.addRow(["J", 3.5, 0.5, 1]);
+//        data.addRow(["K", 3, 1, 0.5]);
+//        data.addRow(["L", 3.5, 0.5, 1]);
+//        data.addRow(["M", 1, 1, 0.5]);
+//        data.addRow(["N", 1, 0.5, 1]);
+//
+//
+//        // Create and draw the visualization.
+//        new google.visualization.LineChart(document.getElementById('chart11_div')).
+//            draw(data, {curveType: "function",width: 500, height: 400,
+//          vAxes: {0: {logScale: false},
+//                  1: {logScale: false, maxValue: 2}},
+//          series:{
+//             0:{targetAxisIndex:0},
+//             1:{targetAxisIndex:1},
+//             2:{targetAxisIndex:1}}}
+//           );
+//  }
+//  
+//  function drawChart11_demo2(){
+//      //google.load("visualization", "1.1", {packages:["bar"]});
+//      //google.setOnLoadCallback(drawStuff);
+//
+////        var data = new google.visualization.arrayToDataTable([
+////          ['Galaxy', 'Distance', 'Brightness'],
+////          ['Canis Major Dwarf', 8000, 23.3],
+////          ['Sagittarius Dwarf', 24000, 4.5],
+////          ['Ursa Major II Dwarf', 30000, 14.3],
+////          ['Lg. Magellanic Cloud', 50000, 0.9],
+////          ['Bootes I', 60000, 13.1]
+////        ]);
+//
+//        var options = {
+//          width: 450,
+//          chart: {
+//            title: 'Nearby galaxies',
+//            subtitle: 'distance on the left, brightness on the right'
+//          },
+//          series: {
+//            0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+//            1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+//          },
+//          axes: {
+//            y: {
+//              distance: {label: 'parsecs'}, // Left y-axis.
+//              brightness: {side: 'right', label: 'apparent magnitude'} // Right y-axis.
+//            }
+//          }
+//        };
+//
+//      var chart = new google.charts.Bar(document.getElementById('chart11_div'));
+//      chart.draw(data, options);
+//  }
+  
+//TA:17:17 landing page chart: Monthly Consumption by method
+function drawChart11() {
+	  // Create and populate the data table.
+          //,{ role: 'style' }
+	var chart11Data = google.visualization.arrayToDataTable([
+            ['', ''],
+<?php
+     foreach ($this->consumption_by_method as $key=>$row){
+                $consumption = $row['consumption'];
+                $malecondoms = 0;
+                $method = $row['method'];
+                $color = 'blue';
+                
+                if($key == 1){
+                    //$malecondoms = $consumption;
+                    $consumption = round($consumption/10,0);  
+                    $method = $row['method'] . '(unit x10)';
+                } 
+  	?>
+                [<?php echo  "'$method', $consumption"; ?>],
+  	<?php
+  		}
+  	?>
+]);
+	    
+
+	  <?php //echo  " var title_date = 'Monthly Consumption by Method$this->title_date ' " ?>;
+          
+          var title_data = <?php echo "'Consumption by Method, $this->title_date'"; ?>;
+	  
+	  var chart11Options = {  
+                      title: title_data,
+                      titleTextStyle: { fontSize: 16 },
+		      is3D:true,
+		      legend: 'none',
+                      groupWidth : 10,
+                      //fontSize: 12
+                      hAxis : {textStyle: {fontSize: 12}}
+//                      series:{
+//                            0:{targetAxisIndex:0},
+//                            1:{targetAxisIndex:1},
+//                            2:{targetAxisIndex:0},
+//                            3:{targetAxisIndex:0},
+//                            4:{targetAxisIndex:0},
+//                            5:{targetAxisIndex:0},
+//                            6:{targetAxisIndex:0}
+//                        },
+//                      vAxes:{
+//                          0:{title:'Consumption'
+//                             //textStyle:{color: 'green'}
+//                             //ticks: [{v:20000}, {v:40000}, {v:60000}]
+//                          },
+//                          1:{title:'Male Condoms',
+//                             textStyle:{}
+//                             //ticks: [{v:40000}, {v:80000}, {v:120000}, {v:160000}, {v:200000}],
+//                             //gridlines: {color:'#fff'}
+//                             //ticks: [{v:1, f:40000}, {v:2, f:80000}, {v:3, f:120000}, {v:4, f:160000}, {v:4, f:200000}]
+//                            }
+//                      }
+                      
+		};
+
+	  var chart11 = new google.visualization.ColumnChart(document.getElementById('chart11_div'));
+	  chart11.draw(chart11Data, chart11Options);
+}
+
+//TA:17:18  01/21/2015 Coverage Summary chart
+  function drawChart12() {
+      var chart12Data = google.visualization.arrayToDataTable([
+        [' ', 
+         '% of facilities with FP or LARC-trained HW', 
+         '% of FP or LARC trained facilities providing FP or LARC', 
+         '% of FP or LARC trained facilities stocked out of FP or implants'],
+        [ 'FP', <?php echo $this->csummary['cs_fp_facility_count']*100;?> , <?php echo $this->csummary['cs_fp_consumption_facility_count']*100;?>,<?php echo $this->csummary['cs_fp_stock_out_facility_count']*100;?> ],
+        [ 'LARC', <?php echo $this->csummary['cs_larc_facility_count']*100?>,<?php echo $this->csummary['cs_larc_consumption_facility_count']*100?>,<?php echo $this->csummary['cs_larc_stock_out_facility_count']*100?> ],	        
+      ]);
+
+//        var chart12Data = google.visualization.arrayToDataTable([
+//          ['Year', 'Sales', 'Expenses', 'Profit'],
+//          ['2014', 1000, 400, 200],
+//          ['2015', 1170, 460, 250],
+//          ['2016', 660, 1120, 300],
+//          ['2017', 1030, 540, 350]
+//        ]);
+
+      <?php //echo  " var title_data = 'Coverage summary, $this->cs_date ' " ?>;
+      
+      //var date = <?php //echo "'" . $this->csummary['cs_date'] . "'"; ?>;
+      var title_data = <?php echo "'HR Summary, $this->title_date '"; ?>;
+
+      var chart12Options = {
+    		  title: title_data,
+    		  titleTextStyle: { fontSize: 16 },
+    		  bar: {groupWidth: "80%"},
+    		  vAxis: {format: '#\'%\''}, //new
+    		  chartArea: {width: '50%', left: 80},//new
+                  legend: {textStyle: {'margin-bottom': '100px'}}
+                  //vAxis: { ticks: [{v:1, f:'1%'}, {v:2, f:'2%'}, {v:3, f:'3%'}, {v:4, f:'4%'}] }
+                  //% of FP or LARC trained facilities stocked out of FP or implants
+      };
+
+      var chart12 = new google.visualization.ColumnChart(document.getElementById('chart12_div'));
+
+      chart12.draw(chart12Data, chart12Options);
+  }
+
+//TA:17:17 Landing page charts: Percent of facilities providing FP andLARC
+  function drawChart13() {
+	  
+      var chart13Data = google.visualization.arrayToDataTable([
+['Month', 'FP', 'LARC'],
+
+<?php
+$start_date = '';
+$end_date = '';
+for($i=0; $i<count($this->national_percent_facilities_providing); $i++){
+	$row = $this->national_percent_facilities_providing[$i];
+	if($i == 0)
+		$start_date = $row[month] . " " . $row[year];
+	if($i == count($this->national_percent_facilities_providing)-1)
+		$end_date = $row[month] . " " . $row[year];
+  	//	foreach ($this->national_percent_facilities_providing as $row){
+  	?>
+  	[<?php echo  " '$row[month]'," . round($row[fp_percent],2)*100 . "," . round($row[larc_percent],2)*100 ?>],
+  	<?php
+  		}
+  	?>
+
+]);		
+
+      <?php echo  " var title_data = 'Percent of Facilities Providing FP and LARC, " . $start_date . " to " . $end_date ."' " ?>;
+
+      var chart13Options = {
+        title: title_data,
+        titleTextStyle: { fontSize: 16 },
+        vAxis: {format: '#\'%\''},
+        legend: {textStyle: {'margin-bottom': '100px', 'margin-top': '50px'}, position: 'bottom'}
+      };
+
+      var chart13 = new google.visualization.LineChart(document.getElementById('chart13_div'));
+
+      chart13.draw(chart13Data, chart13Options);
+    }
+
+//TA:17:17 Landing page charts: Percent of facilities stocked out of FP commodities
+  function drawChart14() {
+	  
+      var chart14Data = google.visualization.arrayToDataTable([
+    ['Month', 
+     '% FP facilities stocked out of any FP commodity for 7 days', 
+     '% implant facilities stocked out of implants'],
+
+<?php
+$start_date = '';
+$end_date = '';
+for($i=0; $i<count($this->national_percent_facilities_stock_out); $i++){
+	$row = $this->national_percent_facilities_stock_out[$i];
+	if($i == 0)
+		$start_date = $row[month] . " " . $row[year];
+	if($i == count($this->national_percent_facilities_stock_out)-1)
+		$end_date = $row[month] . " " . $row[year];
+	//foreach ($this->national_percent_facilities_stock_out as $row){
+  	?>
+  	[<?php echo  " '$row[month]'," . round($row[seven_days_percent],2)*100 . "," . round($row[implant_percent],2)*100 ?>],
+  	<?php
+  		}
+  	?>
+
+]);
+
+     <?php echo  " var title_data = 'Stock Outs, " . $start_date . " to " . $end_date ."' " ?>;
+      
+      var chart14Options = {
+        title: title_data,
+        titleTextStyle: { fontSize: 16 },
+        vAxis: {format: '#\'%\''},
+        chartArea: {width: '90%', left: 60},//new
+        legend: {textStyle: {'margin-bottom': '100px', 'margin-top': '100px'}, position: 'bottom'}
+      };
+
+      var chart14 = new google.visualization.LineChart(document.getElementById('chart14_div'));
+
+      chart14.draw(chart14Data, chart14Options);
+
+    }
+
+  <!-------   /////////////////////////// 2,1 script gnr  ////////////////////// -->
+
+	
+
+  <!-------   /////////////////////////// 2,1 end script ////////////////////// -->
+
+
+  <!-------   /////////////////////////// 2,2 script ////////////////////// -->
+
+	
+
+
+  <!-------   /////////////////////////// 2,2 end script ////////////////////// -->
+  
+
+  
+
+</script>
+
+
+<script>
+  devsite.github.Link.convertAnchors();
+  window.prettyPrint();
+</script>	
+
+  <div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+
+
+
+</body>
+
+</html>
+

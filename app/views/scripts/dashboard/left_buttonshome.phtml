@@ -1,0 +1,203 @@
+<div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Coverage</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse <?php echo $activationBar=='coverage'?'in':'';?>">
+                <div class="panel-body">
+                 <div>
+      <ul>
+          <li> <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/cummhwtrained'; ?>" 
+         id="cummhwtrained"
+         class="<?php echo $fileID == 'cummhwtrained' ? 'active': ''?>">
+          Trained HWs
+      </a>
+          </li>
+          <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/percentfacswithtrainedhw'; ?>"
+         id="percentfacswithtrainedhw"
+         class="<?php echo $fileID == 'percentfacswithtrainedhw' ? 'active': ''?>">
+          Facilities with Trained HWs
+      </a></li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/percentfacsproviding'; ?>"
+         id="percentfacsproviding"
+         class="<?php echo $fileID == 'percentfacsproviding' ? 'active': ''?>">
+          Facilities Providing FP
+      </a>
+      </li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/providingovertime'; ?>"
+         id="providingovertime"
+         class="<?php echo $fileID == 'providingovertime' ? 'active': ''?>">
+          Facilities Providing FP Over Time
+      </a>
+      </li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/facswithhwproviding'; ?>"
+         id="facswithhwproviding"
+         class="<?php echo $fileID == 'facswithhwproviding' ? 'active': ''?>">
+          Facilities with Trained HWs Providing FP
+      </a>
+      </li>
+      <li>
+      
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/coverageovertime'; ?>"
+         id="coverageovertime"
+         class="<?php echo $fileID == 'coverageovertime' ? 'active': ''?>">
+          Facilities with Trained HWs Providing FP Over Time
+      </a>
+      </li>
+      </ul>
+  </div>    
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Consumption</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse <?php echo $activationBar=='consumption'?'in':'';?>">
+                <div class="panel-body">
+                     <div>
+      <ul>
+          <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/consumption/consumption'; ?>"
+         id="consumption"
+         class="<?php echo $fileID == 'consumption' ? 'active': ''?>">
+              Client Consumptions
+      </a></li>
+      </ul>
+  </div>
+  
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Stock Outs</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse <?php echo $activationBar=='stockout'?'in':'';?>"">
+                <div class="panel-body">
+                    <div>
+      <ul>
+          <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/percentstockoutwithtrainedhw'; ?>"
+         id="percentstockoutwithtrainedhw"
+         class="<?php echo $fileID == 'percentstockoutwithtrainedhw' ? 'active': ''?>">
+          Stock Outs at Facilities with Trained HWs
+      </a></li>
+      
+      <li> <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/percentfacsprovidingbutstockedout'; ?>"
+         id="percentfacsprovidingbutstockedout"
+         class="<?php echo $fileID == 'percentfacsprovidingbutstockedout' ? 'active': ''?>">
+          Stock Outs at Facilities Providing FP
+      </a></li>
+      
+      <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/stockouts'; ?>"
+         id="stockouts"
+         class="<?php echo $fileID == 'stockouts' ? 'active': ''?>">
+          Stock Outs at Facilities Providing FP Over Time
+      </a></li>
+      </ul>
+  </div>
+  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                               
+                                        
+<style> 
+    .active{
+        background: #eeeeee; text-decoration: none;
+    }
+    .panel-title h4:active{
+        text-decoration:none !important;
+    }
+    #accordion{width:100% !important;}
+
+    .panel-title h4{
+        width:100% !important;
+    }
+    
+    .panel-title h4 a{
+        width:100% !important;
+    }
+    
+    .panel-title h4:hover{
+        cursor:pointer !important;
+    }
+    .panel .panel-default,.panel-heading{
+        padding: 5px 10px !important;
+        background: #008C00 !important;
+        color:#fff !important;
+         font: 16px/1.231 arial,helvetica,clean,sans-serif !important;
+        
+    }
+    .panel{
+        margin-bottom:-5px !important;
+    }
+    .panel-body ul{
+        margin:0 !important;
+         font-size: 13px !important;
+           font: 13px/1.231 arial,helvetica,clean,sans-serif !important;
+    }
+    .panel-body ul li{
+          font:  arial,helvetica,clean,sans-serif !important;
+       border-bottom: 1px dotted white;
+        
+    }
+    .panel-body ul li a{
+         color:black !important;
+        
+    }
+    .panel-body ul li a:hover{
+         color:#fff !important;
+        
+    }
+    .panel-body a{
+        display: block; 
+        padding-bottom:5px;
+        padding:1px 5px 1px 10px !important;
+        text-decoration: none;
+        padding-bottom: 5px !important;
+        padding-top:5px !important;
+        
+        /*border-bottom: 1px solid #222222;*/
+    }
+    .panel-body a:hover{
+        color:#fff !important;  background: #2AA92A; text-decoration: none;
+        
+    }
+    .panel-title .ui-accordion-header .ui-helper-reset .ui-state-default .ui-corner-all .ui-accordion-icons{display: none !important;}
+    
+    .panel-title .ui-accordion-header .ui-helper-reset .ui-state-default .ui-corner-all .ui-accordion-icons :hover{display: none !important;}
+    .panel-body {
+        padding: 1em 0 !important; 
+        border: 0 !important; 
+        height: 100% !important;
+        background:#fed636;
+    }
+    .ui-widget-content a:hover{
+        color:#fff;  background: #2AA92A; text-decoration: none;
+        
+    }
+    .ui-accordion-header-icon{display: none;}
+    .ui-accordion-content {
+        padding: 1em 0 !important; 
+        border: 0 !important; 
+        height: 100% !important;
+        background:#fed636;
+    }
+    .panel-title .ui-accordion-header .ui-helper-reset .ui-state-default .ui-corner-all .ui-accordion-icons{display: none;}
+    
+</style>

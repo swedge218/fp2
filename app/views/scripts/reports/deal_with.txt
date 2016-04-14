@@ -1,0 +1,41 @@
+public function allqueriesReportAction() {
+		$this->_countrySettings = array();
+		$this->_countrySettings = System::getAll();
+
+		$this->view->assign ( 'mode', 'search' );
+
+		require_once ('models/table/TrainingLocation.php');
+		require_once('views/helpers/TrainingViewHelper.php');
+
+		$criteria = array ();
+		$where = array ();
+		$display_training_partner = ( isset($this->_countrySettings['display_training_partner']) && $this->_countrySettings['display_training_partner'] == 1 ) ? true : false;
+
+		//find the first date in the database
+		$db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+		$qualificationsArray = OptionList::suggestionList ( 'person_qualification_option', array('qualification_phrase','id'), false, 30 );
+		$this->viewAssignEscaped ( 'qualifications', $qualificationsArray );
+                $sql = "SELECT COUNT(*) FROM facility";
+                $rowArray = $db->fetchAll($sql);
+                $number = $rowArray['COUNT(*)'];
+		//facilities list
+		$rowArray = OptionList::suggestionList ( 'facility', array ('facility_name', 'id' ), false, $number );
+		$facilitiesArray = array ();
+		foreach ( $rowArray as $key => $val ) {
+			if ($val ['id'] != 0)
+			$facilitiesArray [] = $val;
+		}
+		$this->viewAssignEscaped ( 'facilities', $facilitiesArray );
+		$locations = Location::getAll();
+		$this->viewAssignEscaped('locations', $locations);
+		//course
+		$courseArray = TrainingTitleOption::suggestionList ( false, 10000 );
+		$this->viewAssignEscaped ( 'courses', $courseArray );
+		//location
+		// location drop-down
+		$tlocations = TrainingLocation::selectAllLocations ($this->setting('num_location_tiers'));
+		$this->viewAssignEscaped ( 'tlocations', $tlocations );
+		
+
+	}
+

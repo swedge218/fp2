@@ -1,0 +1,441 @@
+<?php
+	if (isset ($_GET['csv'])){
+
+		$data = array();
+		
+		$_row = array();
+		foreach ($this->headers as $key=>$value){
+			$_row[] = $value;
+		}
+		$data[] = $_row;
+		
+		foreach ($this->output as $row){
+			$_row = array();
+			foreach ($row as $key=>$value){
+				$_row[] = $value;
+			}
+			$data[] = $_row;
+		}
+		
+
+
+		$delimiter = ',';
+		$enclosure = '"';
+		$encloseAll = false;
+		$nullToMysqlNull = false;
+	
+		$delimiter_esc = preg_quote($delimiter, '/');
+		$enclosure_esc = preg_quote($enclosure, '/');
+	
+		$output = array();
+
+		foreach ($data as $row){
+			$outputrow = array();
+			foreach ($row as $field){
+				if ($field === null && $nullToMysqlNull) {
+					$outputrow[] = 'NULL';
+					continue;
+				}
+		
+				// Enclose fields containing $delimiter, $enclosure or whitespace
+				if ( $encloseAll || preg_match( "/(?:${delimiter_esc}|${enclosure_esc}|\s)/", $field ) ) {
+					$outputrow[] = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $field) . $enclosure;
+				}
+				else {
+					$outputrow[] = $field;
+				}
+			}
+			$output[] = implode($delimiter,$outputrow);
+		}
+		$output = implode("\n", $output);
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=facility-report-" . date("d.m.Y.H.m.s") . ".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $output;
+		exit;
+	}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('All Queries');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+			} );
+		</script>
+	</head>
+    <style type="text/css">
+        
+        select{
+            
+      
+           min-height:auto;
+        }
+        .mclass{
+    min-height:100px;
+    
+}
+        </style>
+	<body class="yui-skin-sam" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			<div id="content">
+				<div id="subcontent">
+					<div id="contentheader">
+						<h2><?php tp('All Queries');?></h2><br>
+					</div>
+                                      <?php 
+                                                    // print_r($this->criteria['error']);
+                                                     foreach($this->criteria['error'] as $error){
+                                                         echo '<h3 align="center" style="color:red;"><b>* '.$error.'</b></h3>';
+                                                     }
+                                                     ?>
+					<div class="pad50 clear"></div>
+                                        <div class="iner_form">
+					<form  action="" method="get">
+						
+					<input type="hidden" name="process" id="process" value="1">
+					<br/>
+<fieldset style="width:100%;margin:0 auto;">
+                                        <div class="maintoucher" >
+
+							<div class="queryquestion"><span class="required">*</span> Zone</div><br/>
+							
+							<div class="queryquestion"><?php renderFilter($this->locations, 1, 'province_id', $this->criteria['province_id'], 'district_id', true,false); ?></div>
+                                        </div>
+					<div class="space"></div>		
+	 <div class="maintoucher" >
+							<div class="queryquestion"><span class="required">*</span> State</div><br/>
+							
+							<div class="queryquestion"><?php renderFilter($this->locations, 2, 'district_id', $this->criteria['district_id'], 'region_c_id', true,false); ?></div>
+							 </div>
+												<div class="space"></div>		
+
+	<div class="maintoucher" >
+							<div class="queryquestion">LGA </div><br/>
+							
+							<div class="queryquestion"><?php renderFilter($this->locations, 3, 'region_c_id', $this->criteria['region_c_id'],'facility_id', true, false); ?></div>
+        </div>
+                                                                                                <div class="space"></div>
+                                                                                               
+							
+
+							<!-- TA:17: 09/04/2014 START-->
+<?php ?>
+                                                       
+                                                      <div class="maintoucher">
+                                                        <div class="queryquestion"> Facility</div><br/>
+							<div class="queryquestion">
+							
+<?php renderFilter($this->locations, 4, 'facility_id', $this->criteria['facility_id'],'', true, false,'10'); ?></div><br/>
+</div><br/>
+                                                                                            
+ 
+  <div class="maintoucher" >
+  </div>
+   
+							  <div class="maintoucher" >
+							<div class="space"></div>
+							<?php ?>
+	
+
+							<div class="queryquestion"><?php echo 'Training Organizer'; ?></div><br/><br/>
+							
+							<div class="queryquestion"><select name="trainingorganizer[]" id="trainingorganizer"  size="8" multiple="multiple" class="mclass" style="width:190px;">
+	<?php
+       // print_r($this->criteria['trainingorganizer']);
+        //echo 'This is the thing '.$this->trainingorganizer;
+         echo "<option value='' disabled>--choose--</option>";
+		foreach ($this->trainingorganizer as $item){
+                    
+                   if(in_array($item['id'],$this->criteria['trainingorganizer'])){
+                $selected = "selected='selected'";
+            }else{
+                $selected = "";
+            }
+			echo "<option value=\"" . $item['id'] . "\" ".$selected." title='".$item['training_organizer_phrase']."'>" . $item['training_organizer_phrase'] . "</option>\n";
+		}
+	?>
+							</select></div></div>
+                                        </fieldset>
+                                                        <fieldset style="width:100%;height:200px; margin:0 auto;">
+								<div class="maintoucher" >
+
+	
+							<div class="queryquestion"><?php echo t('Professional Qualification'); ?></div><br/><br/>
+							
+							<div class="queryquestion"><select name="cadre"  size="1" style="width:190px;"/>
+	<?php
+        echo "<option value='' >--choose--</option>";
+        
+		foreach ($this->qualifications as $item){
+                    if($item['id']== $this->criteria['cadre']){
+                        $selected = "selected='selected'";
+                    }else{
+                        $selected = "";
+                    }
+			echo "<option value=\"" . $item['id'] . "\" ".$selected." title='".$item['qualification_phrase']."'>" . $item['qualification_phrase'] . "</option>\n";
+		}
+	?>
+							</select></div>
+							
+							<br/><br/><br/>
+							  
+							<div class="queryquestion"><span class="required"></span> <?php echo t('Training Type'); ?></div><br/>
+							
+							<div class="queryquestion"><select name="training_type[]" multiple="multiple" id="trainingtype" size="6" style="width:190px;">
+<?php
+echo "<option value='' disabled>--choose--</option>";
+	foreach ($this->trainingtypes as $item){
+            if(in_array($item['id'], $this->criteria['training_type'])){
+                $selected = "selected='selected'";
+            }else{
+                $selected = "";
+            }
+           
+		echo "<option value=\"" . $item['id'] . "\" ".$selected." title='".$item['training_title_phrase']."'>" . $item['training_title_phrase'] . "</option>\n";
+	
+        }
+?>
+							</select>
+							</div> </div>
+								<div class="maintoucher" >
+
+
+							
+							
+							<div class="queryquestion"><span class="required">*</span> <input type="radio" name="cumu" value="Cumulative" <?php if($this->criteria['cumu']=="Cumulative"){ echo "checked='checked'";} ?> /> Cumulative <br/><br/><input type="radio" name="cumu" value="trained_in"  <?php if($this->criteria['cumu']=="trained_in"){ echo "checked='checked'";} ?>/> Trained in</div>
+							
+                                                               <br/><br/> <div class="clear pad20">&nbsp;</div>
+
+                                                                                                       
+																									   </div>
+                                                                                                	<div class="maintoucher" >
+
+                                                         <div class="queryquestion">Providing</div><br/>
+                          <div class="queryquestion"><select name="providing[]"  size="1" multiple="mutliple" class="mclass">
+                                  <option value="" disabled>--choose--</option>
+                                
+                                  <option value="fp" <?php  if(in_array("fp",$this->criteria['providing'])){echo 'selected="selected"';}?>>Any FP</option>
+                                  <option value="larc" <?php  if(in_array("larc",$this->criteria['providing'])){echo 'selected="selected"';}?>>Any LARC</option>
+                              </select>
+                          </div>
+                                                                                                        </div>             
+					
+                                                        	<div class="maintoucher" >
+
+                                                        <div class="queryquestion"><span class="required">*</span> Consumption</div><br/>
+							
+							<div class="queryquestion"><select name="consumption[]"  multiple="multiple" size="10" class="mclass" style="width:200px;">
+	
+                                                        <?php
+                                                      //  $this->commodity_name_option = array_unique($this->commodity_name_option);
+        echo "<option value='' disabled>--choose--</option>";
+        $exist  = array();
+		foreach ($this->commodity_name_option as $item){
+                    
+                    if(!in_array($item['id'],$exist)){
+                    if(in_array($item['id'], $this->criteria['consumption'])){
+                       $selected = "selected='selected'"; 
+                    }else{
+                        $selected = "";
+                    }
+                     $dnt_show = array("31","32","38","37","36");
+            if(!in_array($item['id'],$dnt_show)){
+			echo "<option value=\"" . $item['id'] . "\"  ".$selected." title='".$item['commodity_name']."'>" . $item['commodity_name'] . "</option>\n";
+		}
+                $exist[] = $item['id'];
+                    }
+                }
+	?>
+							</select></div></div>
+								<div class="maintoucher" >
+
+                                                        <div class="queryquestion">Stock Out</div><br/>
+							
+							<div class="queryquestion"><select name="stock_out" style="width:200px;"> 
+                                                                <option value="" d>--choose</option>
+                                                                <option value="38" <?php if($this->criteria['stock_out']=="38") echo 'selected="selected"';?> title="Stocked Out of Implant">Stocked Out of Implant</option>
+                                                                <option value="31" <?php if($this->criteria['stock_out']=="31") echo 'selected="selected"';?> title="Stocked Out of emergency contraception">Stocked Out of emergency contraception</option>
+                                                                <option value="32" <?php if($this->criteria['stock_out']=="32") echo 'selected="selected"';?> title="Stocked Out of any commodity for 7 days">Stocked Out of any commodity for 7 days</option>
+                                                                
+                                                            </select>    </div> <br/><br/>
+							<div class="queryquestion"><?php echo t('Range'); ?></div><br/>
+							
+							<div class="querylongerdates" style="max-width:100%;">
+                                                           
+                                                           <div class="queryq" id="startdate" style="float:left">
+                                                               
+                                                               
+																 <input id="start-day" class="dayfield" type="text" placeholder="sDD" name="start-day" maxlength="2" size="2" value="<?php echo $this->criteria['start_day']; ?>" style="width : 30px; margin-right : 10px; margin-left : 0px;" />
+																 <input id="start-month" class="monthfield" type="text" placeholder="MM" name="start-month" maxlength="2" size="2"value="<?php echo $this->criteria['start_month']; ?>" style="width : 30px; margin-right : 10px; margin-left : 0px;"  />
+																 <input id="start-year" class="yearfield" type="text" placeholder="YYYY" name="start-year" maxlength="4" size="4" value="<?php echo $this->criteria['start_year'];  ?>" style="width : 50px; margin-right : 10px; margin-left : 0px;" />
+																<script  type="text/javascript">
+																	YAHOO.util.Event.onDOMReady(function () {
+																		makeCalendar("startdate","start-day", "start-month", "start-year");
+																	});
+																</script>
+															
+                                                           </div>          <br/>
+                                                            <div style="queryquestion"> to &nbsp;</div><br/>    
+                                                                        
+                                                                                
+                                                                                
+                                                                                
+                                                                                     
+															<div class="queryq" style="float:right" id="enddate" style="margin-top:1em;">
+																 <input id="end-day" class="dayfield" type="text" placeholder="DD" name="end-day" maxlength="2" value="<?php echo $this->criteria['end_day']; ?>"  style="width : 30px; margin-right : 10px; margin-left : 0px;"/>
+																 <input id="end-month" class="monthfield" type="text" placeholder="MM" name="end-month" maxlength="2" value="<?php echo $this->criteria['end_month']; ?>" style="width : 30px; margin-right : 10px; margin-left : 0px;" />
+																<input id="end-year" class="yearfield" type="text" name="end-year" placeholder="YYYY" maxlength="4" value="<?php echo $this->criteria['end_year'];  ?>" style="width : 50px; margin-right : 10px; margin-left : 0px;"/>
+																<script  type="text/javascript">
+																	YAHOO.util.Event.onDOMReady(function () {
+																		makeAdditionalCalendar("enddate","end-day", "end-month", "end-year");
+																	});
+																</script>
+															</div>   
+                                                        
+                                                      
+                                                       
+
+						</div> <br/><br/><br/>
+						
+						
+                                                      <span class="required">*</span>  <input type="radio" name="period" value="monthly"  <?php if($this->criteria['period']=="monthly"){ echo "checked='checked'";} ?>/> Monthly &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="period" value="annual" <?php if($this->criteria['period']=="annual"){ echo "checked='checked'";} ?>/> Annual&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="period" value="total" <?php if($this->criteria['period']=="total"){ echo "checked='checked'";} ?>/> Total
+                                </div>
+						
+						
+						 
+						</fieldset>
+                                                    
+                                                <fieldset style="width:100%;height:auto; margin:0 auto;">
+
+                                                      
+						
+
+                                                
+                                                 <div class="side_by_side" >
+												 <input type="radio" name="show" value="show_aggreg_part" <?php if($this->criteria['show']=="show_aggreg_part"){ echo "checked='checked'";} ?> /> Show# Participants Trained &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="show" value="show_aggregfac"  <?php if($this->criteria['show']=="show_aggregfac"){ echo "checked='checked'";} ?>/> Show# Facilities
+                                                        &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                     <span class="required">*</span> 
+                                                     <?php //echo 'This is the thing you dnt do in school '.$this->criteria['aggregate_method']; ?>
+                                                        <input type="radio" name="aggregate_method" value="agrregate_data" <?php if($this->criteria['aggregate_method']=="agrregate_data"){ echo "checked='checked'";} ?>/> View Aggregate Data &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <input type="radio" name="aggregate_method" value="aggregate_facilities"  <?php if($this->criteria['aggregate_method']=="aggregate_facilities"){ echo "checked='checked'";} ?>/> View Aggregate # Facilities&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <input type="radio" name="aggregate_method" value="aggregate_unifacilities" <?php if($this->criteria['aggregate_method']=="aggregate_unifacilities"){ echo "checked='checked'";} ?>/> View Unique Facilities
+                                                 </div>
+                                                </fieldset>
+                                                    <br/>
+							<div class="clear pad20">&nbsp;</div>
+						<div class="pad20 clear"></div>
+						<div class="mainformholder" style="height : 100px;">
+							<div  style="float : right;" >
+								<input type="submit" name="go" value="<?php tp('Preview');?> &raquo;" class="tsbutton green large">
+							</div>
+							<div class="clear pad20">&nbsp;</div>
+						</div>
+						<div class="clear pad20">&nbsp;</div>
+                                                
+					</form>
+                                       
+                                        </div>
+<?php
+ //print_r($this->tocktack);
+ 
+if (isset($this->output)) {
+	if (count ($this->output) == 0){
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+				<table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->output as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+					<?php 
+					if(!empty($this->criteria['final_total'])){
+					echo '<tfoot>';
+					echo '<tr>';
+					foreach($this->criteria['final_total'] as $total){
+					echo '<td>'.$total.'</td>';
+					
+					}
+					echo '</tr>';
+					echo '</tfoot>';
+					}
+				
+					?>
+					
+				</table>
+				<input type="button" name="go" value="<?php tp('Download');?> &raquo;" class="tsbutton green large" onclick="window.open('<?php
+$_GET['csv'] = 1;
+$url = $_SERVER['REQUEST_URI'] . "&csv=1";
+#foreach ($_GET as $key=>$value){
+#	$url .= $key . "=" . $value . "&";
+#}
+echo $url;  ?>')">
+<?php
+	}
+}
+?>
+					<div class="clear" style=""></div>
+				</div>
+				<div class="clear" style=""></div>
+			</div>   
+			<div class="clear" style="height : 100px;"></div>
+			<div class="clear" style=""></div>
+							
+	
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		
+	</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,131 @@
+
+ <div id="accordion">
+  <h3>Coverage</h3>
+  <div>
+      <ul>
+          <li> <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/cummhwtrained'; ?>" 
+         id="cummhwtrained"
+         class="<?php echo $fileID == 'cummhwtrained' ? 'active': ''?>">
+          Trained HWs
+      </a>
+          </li>
+          <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/percentfacswithtrainedhw'; ?>"
+         id="percentfacswithtrainedhw"
+         class="<?php echo $fileID == 'percentfacswithtrainedhw' ? 'active': ''?>">
+          Facilities with Trained HWs
+      </a></li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/percentfacsproviding'; ?>"
+         id="percentfacsproviding"
+         class="<?php echo $fileID == 'percentfacsproviding' ? 'active': ''?>">
+          Facilities Providing FP
+      </a>
+      </li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/providingovertime'; ?>"
+         id="providingovertime"
+         class="<?php echo $fileID == 'providingovertime' ? 'active': ''?>">
+          Facilities Providing FP Over Time
+      </a>
+      </li>
+      <li>
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/facswithhwproviding'; ?>"
+         id="facswithhwproviding"
+         class="<?php echo $fileID == 'facswithhwproviding' ? 'active': ''?>">
+          Facilities with Trained HWs Providing FP
+      </a>
+      </li>
+      <li>
+      
+      <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/coverage/coverageovertime'; ?>"
+         id="coverageovertime"
+         class="<?php echo $fileID == 'coverageovertime' ? 'active': ''?>">
+          Facilities with Trained HWs Providing FP Over Time
+      </a>
+      </li>
+      </ul>
+  </div>
+  
+  <h3>Consumption</h3>
+  <div>
+      <ul>
+          <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/consumption/consumption'; ?>"
+         id="consumption"
+         class="<?php echo $fileID == 'consumption' ? 'active': ''?>">
+              Commodity Consumption
+      </a></li>
+      </ul>
+  </div>
+  
+  <h3>Stock Outs</h3>
+  <div>
+      <ul>
+          <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/percentstockoutwithtrainedhw'; ?>"
+         id="percentstockoutwithtrainedhw"
+         class="<?php echo $fileID == 'percentstockoutwithtrainedhw' ? 'active': ''?>">
+          Stock Outs at Facilities with Trained HWs
+      </a></li>
+      
+      <li> <a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/percentfacsprovidingbutstockedout'; ?>"
+         id="percentfacsprovidingbutstockedout"
+         class="<?php echo $fileID == 'percentfacsprovidingbutstockedout' ? 'active': ''?>">
+          Stock Outs at Facilities Providing FP
+      </a></li>
+      
+      <li><a href="<?php  echo Settings::$COUNTRY_BASE_URL.'/stockout/stockouts'; ?>"
+         id="stockouts"
+         class="<?php echo $fileID == 'stockouts' ? 'active': ''?>">
+          Stock Outs at Facilities Providing FP Over Time
+      </a></li>
+      </ul>
+  </div>
+  
+</div>
+                                        
+                                        
+<style> 
+    .active{
+        background: #eeeeee; text-decoration: none;
+    }
+    
+    #accordion { max-width: 130px; }
+    
+    .ui-accordion-header{
+        padding: 5px 10px;
+        background: #008C00;
+        color:#fff;
+       
+        
+    }
+    .ui-widget-content ul{
+        margin:0 !important;
+         font-size: 13px !important;
+    }
+    .ui-widget-content ul li{
+        
+       border-bottom: 1px dotted white;
+        
+    }
+    .ui-widget-content a{
+        display: block; 
+        padding-bottom:5px;
+        padding:1px 5px 1px 10px !important;
+        text-decoration: none;
+        padding-bottom: 5px !important;
+        padding-top:5px !important;
+        
+        /*border-bottom: 1px solid #222222;*/
+    }
+    .ui-widget-content a:hover{
+        color:#fff;  background: #2AA92A; text-decoration: none;
+        
+    }
+    .ui-accordion-header-icon{display: none;}
+    .ui-accordion-content {
+        padding: 1em 0 !important; 
+        border: 0 !important; 
+        height: 100% !important;
+        background:#fed636;
+    }
+</style>
