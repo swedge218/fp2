@@ -135,8 +135,12 @@ if ( $this->getSanParam('download') )
                 
                  $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
                  $status = ValidationContainer::instance();
-            $filename = ($_FILES['upload']['tmp_name']);
-		if ( $filename ){
+                 $filename = "";
+                 $stat = "";
+                 if(isset($_FILES['upload']['tmp_name'])){
+                    $filename = ($_FILES['upload']['tmp_name']);
+                 }
+		if ( $filename!="" ){
 			$rows = $this->_excel_parser($filename,1);
                        
                         $json = json_encode($rows);

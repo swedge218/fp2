@@ -179,7 +179,7 @@ class Coverage {
                         $alias = CacheManager::PERCENT_FACS_TRAINED_FP;
                     else if($training_type == 'larc')
                         $alias = CacheManager::PERCENT_FACS_TRAINED_LARC;
-                    
+
                     //check if to save month national data
                     if(!$cacheValue && $freshVisit){ //fresh in month    
                         $dataArray = array(
@@ -192,7 +192,9 @@ class Coverage {
                     }
                     else if($updateMode){
                         $dataArray = array('value' => json_encode($output));
+
                         $where = "'alias=$alias'";
+
                         $cacheManager->updateIndicator($dataArray, $where);
                     }
                     else{
@@ -511,7 +513,9 @@ class Coverage {
                     }
                     else if($updateMode){
                         $dataArray = array('value' => json_encode($output));
+
                         $where = "'alias=$alias'";
+
                         $cacheManager->updateIndicator($dataArray, $where);
                     }
                     else{ //inner if

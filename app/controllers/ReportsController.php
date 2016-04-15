@@ -1280,18 +1280,9 @@ echo $sql . "<br>";
                 $minimum_month = $parts [1];
                 $minimum_day = $parts [2];;
                 
-                
-                 
-                $defaultTrainingEndDateStart = $minimum_month."/".$minimum_day."/".$minimum_year;
-                $defaultTrainingEndDateEnd = $maximum_month."/".$maximum_day."/".$maximum_year;
-		if ($this->getSanParam ( 'start-year' ))
-		$criteria ['start-year'] = $this->getSanParam ( 'start-year' );
-		if ($this->getSanParam ( 'start-month' ))
-		$criteria ['start-month'] = $this->getSanParam ( 'start-month' );
-		if ($this->getSanParam ( 'start-day' ))
-		$criteria ['start-day'] = $this->getSanParam ( 'start-day' );
-		if ($this->view->mode == 'search') {
-			$sql = "SELECT MAX(training_end_date) as \"start\" FROM training WHERE is_deleted=0 ";
+
+                $sql = "SELECT MAX(training_end_date) as \"start\" FROM training WHERE is_deleted=0 ";
+
 			$rowArray = $db->fetchAll ( $sql );
 			$end_default = $rowArray [0] ['start'];
 			$parts = explode ( '-', $end_default );
@@ -1303,6 +1294,17 @@ echo $sql . "<br>";
                 $maximum_year = $parts[0];
                 $maximum_month = $parts[1];
                 $maximum_day = $parts[2];
+                                 
+                $defaultTrainingEndDateStart = $minimum_month."/".$minimum_day."/".$minimum_year;
+                $defaultTrainingEndDateEnd = $maximum_month."/".$maximum_day."/".$maximum_year;
+		if ($this->getSanParam ( 'start-year' ))
+		$criteria ['start-year'] = $this->getSanParam ( 'start-year' );
+		if ($this->getSanParam ( 'start-month' ))
+		$criteria ['start-month'] = $this->getSanParam ( 'start-month' );
+		if ($this->getSanParam ( 'start-day' ))
+		$criteria ['start-day'] = $this->getSanParam ( 'start-day' );
+		if ($this->view->mode == 'search') {
+			
                 
                 $defaultTrainingEndDateStart = $minimum_month."/".$minimum_day."/".$minimum_year;
                 $defaultTrainingEndDateEnd = $maximum_month."/".$maximum_day."/".$maximum_year;
@@ -1440,12 +1442,20 @@ echo $sql . "<br>";
 		// row creation dates - explaination: server might be in NYC and client in Africa, server needs to check for trainings created at the day selected, minus the time difference (or plus it), accomplished by hidden input field storing clients javascript time. testing this (bugfix)
 		$criteria['date_added'] = array();
 		$userTime = $this->getSanParam('date_localtime') ? strtotime($this->getSanParam('date_localtime')) : time();
-		if ( $criteria['creation_dates'][0] && !empty($criteria['creation_dates'][0]) ) {
+
+              if(isset($criteria['creation_dates'][0])){
+                    if ( $criteria['creation_dates'][0] && !empty($criteria['creation_dates'][0]) ) {
+
 			$difference = time() - $userTime;
 			$date1 = strtotime( $criteria['creation_dates'][0]);
 			$criteria['date_added'][0] = date( 'Y-m-d H:i:s', $date1 + $difference ); // keep the original date in same format for template
 		}
-		if ( $criteria['creation_dates'][1] && !empty($criteria['creation_dates'][1]) ) {
+      }
+                
+                
+		if(isset($criteria['creation_dates'][1])){
+                    if ( $criteria['creation_dates'][1] && !empty($criteria['creation_dates'][1]) ) {
+
 			$difference = time() - $userTime;
 			$date2 = strtotime( $criteria['creation_dates'][1]);
 			$date2 = strtotime("+1 day", $date2); // 11:59
@@ -1520,48 +1530,48 @@ echo $sql . "<br>";
 		} // end missing fields report
 
 		// defaults
-		if (! $criteria ['go']) {
+		if (! isset($criteria ['go'])) {
 			$criteria ['showTrainingTitle'] = 1;
 		}
 
 		// run report
-		if ($criteria ['go']) {
+		if (isset($criteria ['go'])) {
 
 			$sql = 'SELECT ';
 
-			if ($criteria ['doCount']) {
+			if (isset($criteria ['doCount'])) {
 				$sql .= ' COUNT(pt.person_id) as "cnt" ';
 			} else {
 				$sql .= ' DISTINCT pt.id as "id", ptc.pcnt, pt.training_start_date, pt.training_end_date, pt.has_known_participants  ';
 			}
 
-			if ($criteria ['showTrainingTitle']) {
+			if (isset($criteria ['showTrainingTitle'])) {
 				$sql .= ', training_title ';
 			}
 			
 			
 
-			if ($criteria ['showLocation']) {
+			if (isset($criteria ['showLocation'])) {
 				$sql .= ', pt.training_location_name ';
 			}
 
-			if ($criteria ['showOrganizer']) {
+			if (isset($criteria ['showOrganizer'])) {
 				$sql .= ', torg.training_organizer_phrase ';
 			}
 
-			if ($criteria ['showMechanism'] && $display_training_partner) {
+			if (isset($criteria ['showMechanism'] , $display_training_partner)) {
 				$sql .= ', organizer_partners.mechanism_id ';
 			}
 
-			if ($criteria ['showLevel']) {
+			if (isset($criteria ['showLevel'])) {
 				$sql .= ', tlev.training_level_phrase ';
 			}
 
-			if ($criteria ['showCategory']) {
+			if (isset($criteria ['showCategory'])) {
 				$sql .= ', tcat.training_category_phrase ';
 			}
 
-			if ($criteria ['showPepfar'] || $criteria ['training_pepfar_id'] || $criteria ['training_pepfar_id'] === '0') {
+			if (isset($criteria ['showPepfar']) || isset($criteria ['training_pepfar_id']) || $criteria ['training_pepfar_id'] === '0') {
 				if ($criteria ['doCount']) {
 					$sql .= ', tpep.pepfar_category_phrase ';
 				} else {
@@ -1569,11 +1579,11 @@ echo $sql . "<br>";
 				}
 			}
 
-			if ($criteria ['showMethod']) {
+			if (isset($criteria ['showMethod'])) {
 				$sql .= ', tmeth.training_method_phrase ';
 			}
 
-			if ($criteria ['showTopic']) {
+			if (isset($criteria ['showTopic'])) {
 				if ($criteria ['doCount']) {
 					$sql .= ', ttopic.training_topic_phrase ';
 				} else {
@@ -1581,74 +1591,75 @@ echo $sql . "<br>";
 				}
 			}
 
-			if ($criteria ['showTot']) {
+			if (isset($criteria ['showTot'])) {
 				$sql .= ", IF(is_tot,'" . t ( 'Yes' ) . "','" . t ( 'No' ) . "') AS is_tot";
 			}
 
-			if ($criteria ['showRefresher']) {
+			if (isset($criteria ['showRefresher'])) {
 				$sql .= ", IF(is_refresher,'" . t ( 'Yes' ) . "','" . t ( 'No' ) . "') AS is_refresher";
 			}
 
-			if ($criteria ['showSecondaryLanguage']) {
+			if (isset($criteria ['showSecondaryLanguage'])) {
 				$sql .= ', tlos.language_phrase as "secondary_language_phrase" ';
 			}
-			if ($criteria ['showPrimaryLanguage']) {
+			if (isset($criteria ['showPrimaryLanguage'])) {
 				$sql .= ', tlop.language_phrase as "primary_language_phrase" ';
 			}
-			if ($criteria ['showGotComment']) {
+			if (isset($criteria ['showGotComment'])) {
 				$sql .= ", pt.got_comments";
 			}
-			if ($criteria ['showGotCurric']) {
+			if (isset($criteria ['showGotCurric'])) {
 				$sql .= ', tgotc.training_got_curriculum_phrase ';
 			}
 
-			if ($criteria ['showFunding']) {
-				if ($criteria ['doCount']) {
+			if (isset($criteria ['showFunding'])) {
+				if (isset($criteria ['doCount'])) {
 					$sql .= ', tfund.funding_phrase ';
 				} else {
 					$sql .= ', GROUP_CONCAT(DISTINCT tfund.funding_phrase ORDER BY funding_phrase) as "funding_phrase" ';
 				}
 			}
-			if ( $criteria['showCustom1'] ) {
-				$sql .= ', tqc.custom1_phrase ';
-			} // todo custom2-4
-			if ( $criteria['showCreatedBy'] ) {
+
+//			if (isset( $criteria['showCustom1']) ) {
+//				$sql .= ', tqc.custom1_phrase ';
+//			} // todo custom2-4
+			if ( isset($criteria['showCreatedBy']) && !empty($criteria['showCreatedby']) ) {
 				$sql .= ", CONCAT(user.first_name, CONCAT(' ', user.last_name)) as created_by_user ";
 			}
-			if ( $criteria['showCreationDate'] ) {
+			if (isset($criteria['showCreationDate']) && !empty($criteria['showCreationDate']) ) {
 				$sql .= ", DATE_FORMAT(pt.timestamp_created, '%Y-%m-%d') as created_date  ";
 			}
-			if ($criteria ['showGender']) {
+			if (isset($criteria ['showGender']) && !empty($criteria['showGender'])) {
 				$sql .= ', gender ';
 			}
-			if ($criteria ['showAge']) {
+			if (isset($criteria ['showAge']) && !empty($criteria['showAge'])) {
 				$sql .= ', age ';
 			}
-			if ($criteria ['showActive']) {
+			if (isset($criteria ['showActive']) && !empty($criteria['showActive'])) {
 				$sql .= ', pt.active ';
 			}
-			if ( $criteria['showViewingLoc'] ) {
+			if (isset( $criteria['showViewingLoc']) && !empty($criteria['showViewingLoc']) ) {
 				$sql .= ', location_phrase, GROUP_CONCAT(DISTINCT location_phrase ORDER BY location_phrase) as "location_phrases" ';
 			}
-			if ( $criteria['showCustom1'] ) {
-				$sql .= ', tqc.custom1_phrase ';
-			}
-			if ( $criteria['showCustom2'] ) {
-				$sql .= ', tqc2.custom2_phrase';
-			}
-			if ( $criteria['showCustom3'] ) {
-				$sql .= ', pt.custom_3';
-			}
-			if ( $criteria['showCustom4'] ) {
-				$sql .= ', pt.custom_4';
-			}
-			if (($criteria['doCount'] && $criteria ['showQualPrim']) || ($criteria['doName'] && $criteria ['showQualPrim'])) {
+//			if ( isset($criteria['showCustom1']) ) {
+//				$sql .= ', tqc.custom1_phrase ';
+//			}
+//			if ( isset( $criteria['showCustom2'] )) {
+//				$sql .= ', tqc2.custom2_phrase';
+//			}
+//			if (isset( $criteria['showCustom3']) ) {
+//				$sql .= ', pt.custom_3';
+//			}
+//			if ( isset($criteria['showCustom4']) ) {
+//				$sql .= ', pt.custom_4';
+//			}
+			if (isset($criteria['doCount'] , $criteria ['showQualPrim']) || isset($criteria['doName'] , $criteria ['showQualPrim'])) {
 				$sql .= ', pq.qualification_phrase ';
 			}
-			if (($criteria['doCount'] && $criteria ['showQualSecond']) || ($criteria['doName'] && $criteria ['showQualSecond'])) {
+			if ( isset($criteria['doCount'] , $criteria ['showQualSecond']) || isset($criteria['doName'] , $criteria ['showQualSecond'])) {
 				$sql .= ', pqs.qualification_phrase AS qualification_secondary_phrase';
 			}
-                       if($geoLocationWhere!=""){
+                       if(isset($geoLocationWhere) && $geoLocationWhere!=""){
                             $sql .=", pt.location_id";
                         }
 
@@ -1659,7 +1670,7 @@ echo $sql . "<br>";
 			//if we're doing a participant count, then LEFT JOIN with the participants
 			//otherwise just select the core training info
 
-			if ($criteria ['doCount'] || $criteria ['doName']) {
+			if (isset($criteria ['doCount'] )|| isset($criteria ['doName']) ) {
 				$sql .= ' FROM (SELECT training.*, pers.person_id as "person_id", tto.training_title_phrase AS training_title, training_location.training_location_name,training_location.location_id, primary_qualification_option_id, pers.location_phrase as location_phrase'.
 				'         FROM training ' .
 				'         LEFT JOIN training_title_option tto ON (`training`.training_title_option_id = tto.id)' .
@@ -1680,64 +1691,66 @@ echo $sql . "<br>";
 				'  WHERE training.is_deleted=0) as pt ';
 				$sql .= " LEFT JOIN (SELECT COUNT(id) as `pcnt`,training_id FROM person_to_training GROUP BY training_id) as ptc ON ptc.training_id = pt.id ";
 			}
-			if ($criteria ['doName']) {
+
+			if (isset($criteria ['doName'])) {
 				$sql .= " LEFT JOIN (SELECT COUNT(id) as `pcnt`,training_id FROM person_to_training GROUP BY training_id) as ptc ON ptc.training_id = pt.id ";
 			}
-			if (!($criteria['doCount'] || $criteria['doName']) && ($criteria['showViewingLoc'] || $criteria['person_to_training_viewing_loc_option_id'])) {
-				$sql .= ' LEFT JOIN person_to_training ON person_id = person_to_training.person_id AND person_to_training.training_id = pt.id ';
+			if (!(isset($criteria['doCount']) || isset($criteria['doName'])) && (isset($criteria['showViewingLoc']) || isset($criteria['person_to_training_viewing_loc_option_id']))) {
+				$sql .= ' LEFT JOIN person_to_training ON pt.person_id = person_to_training.person_id AND person_to_training.training_id = pt.id ';
 				$sql .= ' LEFT JOIN person_to_training_viewing_loc_option ON person_to_training.viewing_location_option_id = person_to_training_viewing_loc_option.id ';
 			}
 
-			if ($criteria ['showOrganizer'] or $criteria ['training_organizer_id'] || $criteria ['showMechanism']  || $criteria ['mechanism_id']) {
+			if (isset($criteria ['showOrganizer']) or isset($criteria ['training_organizer_id']) || isset($criteria ['showMechanism'])  || isset($criteria ['mechanism_id'])) {
 				$sql .= '	LEFT JOIN training_organizer_option as torg ON torg.id = pt.training_organizer_option_id ';
 			}
 
-			if ($criteria ['showMechanism'] || $criteria ['mechanism_id'] && $display_training_partner) {
+			if (isset($criteria ['showMechanism']) || isset($criteria ['mechanism_id']) && isset( $display_training_partner)) {
 				$sql .= ' LEFT JOIN organizer_partners ON organizer_partners.organizer_id = torg.id';
 			}
 
-			if ($criteria ['showLevel'] || $criteria ['training_level_id']) {
+			if (isset($criteria ['showLevel'] ) || isset($criteria ['training_level_id'])) {
 				$sql .= '	JOIN training_level_option as tlev ON tlev.id = pt.training_level_option_id ';
 			}
 
-			if ($criteria ['showMethod'] || $criteria ['training_method_id']) {
+			if (isset($criteria ['showMethod']) || isset($criteria ['training_method_id'])) {
 				$sql .= ' JOIN training_method_option as tmeth ON tmeth.id = pt.training_method_option_id ';
 			}
 
-			if ($criteria ['showPepfar'] || $criteria ['training_pepfar_id'] || $criteria ['training_pepfar_id'] === '0') {
+			if (isset($criteria ['showPepfar']) || isset($criteria ['training_pepfar_id']) ||  $criteria ['training_pepfar_id'] === '0') {
 				$sql .= '	LEFT JOIN (SELECT training_id, ttpco.training_pepfar_categories_option_id, pepfar_category_phrase FROM training_to_training_pepfar_categories_option as ttpco JOIN training_pepfar_categories_option as tpco ON ttpco.training_pepfar_categories_option_id = tpco.id) as tpep ON tpep.training_id = pt.id ';
 			}
 
-			if ($criteria ['showTopic'] || $criteria ['training_topic_id']) {
+			if (isset($criteria ['showTopic']) || isset($criteria ['training_topic_id'])) {
 				$sql .= '	LEFT JOIN (SELECT training_id, ttto.training_topic_option_id, training_topic_phrase FROM training_to_training_topic_option as ttto JOIN training_topic_option as tto ON ttto.training_topic_option_id = tto.id) as ttopic ON ttopic.training_id = pt.id ';
 			}
 
-			if ($criteria ['showPrimaryLanguage'] || $criteria ['training_primary_language_option_id']) {
+			if (isset($criteria ['showPrimaryLanguage']) || isset($criteria ['training_primary_language_option_id'])) {
 				$sql .= ' LEFT JOIN trainer_language_option as tlop ON tlop.id = pt.training_primary_language_option_id ';
 			}
 
-			if ($criteria ['showSecondaryLanguage'] || $criteria ['training_secondary_language_option_id']) {
+			if (isset($criteria ['showSecondaryLanguage']) || isset($criteria ['training_secondary_language_option_id'])) {
 				$sql .= ' LEFT JOIN trainer_language_option as tlos ON tlos.id = pt.training_secondary_language_option_id ';
 			}
 
-			if ($criteria ['showFunding'] || (intval ( $criteria ['funding_min'] ) or intval ( $criteria ['funding_max'] ))) {
+			if (isset($criteria ['showFunding']) || (intval ( $criteria ['funding_min'] ) or intval ( $criteria ['funding_max'] ))) {
 				$sql .= '	LEFT JOIN (SELECT training_id, ttfo.training_funding_option_id, funding_phrase, ttfo.funding_amount FROM training_to_training_funding_option as ttfo JOIN training_funding_option as tfo ON ttfo.training_funding_option_id = tfo.id) as tfund ON tfund.training_id = pt.id ';
 			}
 
-			if ($criteria ['showGotCurric'] || $criteria ['training_got_curric_id']) {
+			if (isset($criteria ['showGotCurric']) || isset($criteria ['training_got_curric_id'])) {
 				$sql .= '	LEFT JOIN training_got_curriculum_option as tgotc ON tgotc.id = pt.training_got_curriculum_option_id';
 			}
 
-			if ($criteria ['showCategory'] or ! empty ( $criteria ['training_category_id'] )) {
+			if (isset($criteria ['showCategory']) or ! empty ( $criteria ['training_category_id'] )) {
 				$sql .= '
 				LEFT JOIN training_category_option_to_training_title_option tcotto ON (tcotto.training_title_option_id = pt.training_title_option_id)
 				LEFT JOIN training_category_option tcat ON (tcotto.training_category_option_id = tcat.id)
 				';
 			}
-			if ( $criteria['showCustom1'] || $criteria ['custom_1_id'] ) {
+
+			if (isset( $criteria['showCustom1']) || isset($criteria ['custom_1_id'] )) {
 				$sql .= ' LEFT JOIN training_custom_1_option as tqc ON pt.training_custom_1_option_id = tqc.id  ';
 			}
-			if ( $criteria['showCustom2'] || $criteria ['custom_2_id'] ) {
+			if ( isset($criteria['showCustom2']) || isset($criteria ['custom_2_id'] )) {
 				$sql .= ' LEFT JOIN training_custom_2_option as tqc2 ON pt.training_custom_2_option_id = tqc2.id  ';
 			}
 			#not multi opt fields yet - no join required
@@ -1748,12 +1761,12 @@ echo $sql . "<br>";
 			#	//$sql .= ' LEFT JOIN training_custom_4_option as tqc ON pt.training_custom_4_option_id = tqc4.id  ';
 			#}
 
-			if ( $criteria['showCreatedBy'] || $criteria ['created_by'] ) {
+			if ( isset($criteria['showCreatedBy'] ) || isset($criteria ['created_by']) ) {
 				$sql .= ' LEFT JOIN user ON user.id = pt.created_by  ';
 			}
 
-			if ($criteria['showGender'] || $criteria['showAge'] || $criteria['training_gender'] || $criteria['age_min'] || $criteria['age_max']) {
-				$personAlias  = ($criteria['doCount'] || $criteria['doName']) ? 'pt.person_id'  : 'person_id';
+			if ( isset($criteria['showGender']) || isset($criteria['showAge']) || isset($criteria['training_gender']) || isset($criteria['age_min']) || isset($criteria['age_max'])) {
+				$personAlias  = ($criteria['doCount'] || $criteria['doName']) ? 'pt.person_id'  : 'pt.person_id';
 
 				$sql .= " LEFT JOIN person_to_training as ptt on ptt.training_id = pt.id AND $personAlias = ptt.person_id AND pt.is_deleted = 0 ";
 				$sql .= ' LEFT JOIN (SELECT id as pid, gender
@@ -1761,7 +1774,8 @@ echo $sql . "<br>";
 								FROM person where is_deleted = 0) as perssexage ON perssexage.pid = ptt.person_id ';
 			}
 
-			if ( ($criteria['doCount'] || $criteria['doName']) && ($criteria ['showQualPrim'] || $criteria ['showQualSecond'] || $criteria ['qualification_id']  || $criteria ['qualification_secondary_id']) ) {
+
+			if (( isset($criteria['doCount']) || isset($criteria['doName'])) && ( isset($criteria ['showQualPrim']) || isset($criteria ['showQualSecond']) || isset($criteria ['qualification_id'])  || isset($criteria ['qualification_secondary_id'])) ) {
 				// primary qualifications
 				$sql .= 'LEFT JOIN person_qualification_option as pq ON (
 							(pt.primary_qualification_option_id = pq.id AND pq.parent_id IS NULL)
@@ -1786,7 +1800,7 @@ echo $sql . "<br>";
 				$where []= " pt.training_organizer_option_id in ($site_orgs) ";
 
 			// criteria
-			if ($criteria ['training_participants_type']) {
+			if (isset($criteria ['training_participants_type'])) {
 				if ($criteria ['training_participants_type'] == 'has_known_participants') {
 					$where [] = ' pt.has_known_participants = 1 ';
 				}
@@ -1800,15 +1814,16 @@ echo $sql . "<br>";
 			if ($this->_is_not_filter_all($criteria['training_title_option_id']) && ($criteria ['training_title_option_id'] or $criteria ['training_title_option_id'] === '0')) {
 				$where [] = 'pt.training_title_option_id in (' . $this->_sql_implode($criteria ['training_title_option_id']) . ')';
 			}
-			if ($criteria ['training_location_id']) {
+
+			if (isset($criteria ['training_location_id']) && !empty($criteria['training_location_id'])) {
 				$where [] = ' pt.training_location_id = \'' . $criteria ['training_location_id'] . '\'';
 			}
 
-			if ($this->_is_not_filter_all($criteria['training_organizer_id']) && $criteria ['training_organizer_id'] or $criteria ['training_organizer_id'] === '0') {
+			if ($this->_is_not_filter_all($criteria['training_organizer_id']) && isset($criteria ['training_organizer_id']) or $criteria ['training_organizer_id'] === '0') {
 				$where [] = ' pt.training_organizer_option_id in (' . $this->_sql_implode($criteria ['training_organizer_id']) . ')';
 			}
 
-			if ($criteria ['mechanism_id'] or $criteria ['mechanism_id'] === '0' && $display_training_partner) {
+			if (isset($criteria ['mechanism_id']) or $criteria ['mechanism_id'] === '0' && $display_training_partner) {
 				$where [] = ' organizer_partners.mechanism_id = \'' . $criteria ['mechanism_id'] . '\'';
 			}
 
@@ -1816,23 +1831,23 @@ echo $sql . "<br>";
 				$where [] = ' ttopic.training_topic_option_id in (' . $this->_sql_implode($criteria ['training_topic_id']) . ')';
 			}
 
-			if ($criteria ['training_level_id']) {
+			if (isset($criteria ['training_level_id']) && !empty($criteria['training_level_id'])) {
 				$where [] = ' pt.training_level_option_id = \'' . $criteria ['training_level_id'] . '\'';
 			}
 
-			if ($criteria ['training_pepfar_id'] or $criteria ['training_pepfar_id'] === '0') {
+			if (isset($criteria ['training_pepfar_id']) or $criteria ['training_pepfar_id'] === '0') {
 				$where [] = ' tpep.training_pepfar_categories_option_id = \'' . $criteria ['training_pepfar_id'] . '\'';
 			}
 
-			if ($criteria ['training_method_id'] or $criteria ['training_method_id'] === '0') {
+			if (isset($criteria ['training_method_id']) or $criteria ['training_method_id'] === '0') {
 				$where [] = ' tmeth.id = \'' . $criteria ['training_method_id'] . '\'';
 			}
 
-			if ($criteria ['training_primary_language_option_id'] or $criteria ['training_primary_language_option_id'] === '0') {
+			if (isset($criteria ['training_primary_language_option_id']) or $criteria ['training_primary_language_option_id'] === '0') {
 				$where [] = ' pt.training_primary_language_option_id = \'' . $criteria ['training_primary_language_option_id'] . '\'';
 			}
 
-			if ($criteria ['training_secondary_language_option_id'] or $criteria ['training_secondary_language_option_id'] === '0') {
+			if (isset($criteria ['training_secondary_language_option_id']) or $criteria ['training_secondary_language_option_id'] === '0') {
 				$where [] = ' pt.training_secondary_language_option_id = \'' . $criteria ['training_secondary_language_option_id'] . '\'';
 			}
 
@@ -1872,13 +1887,14 @@ echo $sql . "<br>";
 				$where [] = ' pt.region_i_id IN (' . implode ( ',', $criteria ['region_i_id'] ) . ')';
 			}
 */
-                        
+                        if(isset($criteria['end-year'])){
 			if (intval ( $criteria ['end-year'] ) and $criteria ['start-year']) {
 				$startDate = $criteria ['start-year'] . '-' . $criteria ['start-month'] . '-' . $criteria ['start-day'];
 				$endDate = $criteria ['end-year'] . '-' . $criteria ['end-month'] . '-' . $criteria ['end-day'];
 				$where [] = ' training_end_date >= \'' . $startDate . '\'  AND training_end_date <= \'' . $endDate . '\'  ';
 			}
-                        if($geoTrainingLocationWhere!=""){
+                        }
+                        if( isset($geoTrainingLocationWhere) && $geoTrainingLocationWhere!="" ){
                             $where[] = $geoTrainingLocationWhere;
                         }
 
@@ -1893,36 +1909,37 @@ echo $sql . "<br>";
 				$where [] = ' is_tot = ' . $criteria ['is_tot'];
 			}
 
-			if ($criteria ['funding_id'] or $criteria ['funding_id'] === '0') {
+
+			if (isset($criteria ['funding_id']) or $criteria ['funding_id'] === '0') {
 				$where [] = ' tfund.training_funding_option_id = \'' . $criteria ['funding_id'] . '\'';
 			}
 
-			if ($criteria ['training_category_id'] or $criteria ['training_category_id'] === '0') {
+			if (isset($criteria ['training_category_id']) or $criteria ['training_category_id'] === '0') {
 				$where [] = ' tcat.id = \'' . $criteria ['training_category_id'] . '\'';
 			}
 
-			if ($criteria ['training_got_curric_id'] or $criteria ['training_got_curric_id'] === '0') {
+			if ((isset($criteria ['training_got_curric_id']) or $criteria ['training_got_curric_id'] === '0') && !empty($criteria['training_got_curric_id'])) {
 				$where [] = ' tgotc.id = \'' . $criteria ['training_got_curric_id'] . '\'';
 			}
 
-			if ($criteria ['custom_1_id'] or $criteria ['custom_1_id'] === '0') {
+			if ((isset($criteria ['custom_1_id']) or $criteria ['custom_1_id'] === '0') && !empty($criteria['custom_1_id'])) {
 				$where [] = ' pt.training_custom_1_option_id = \'' . $criteria ['custom_1_id'] . '\'';
 			}
-			if ($criteria ['custom_2_id'] or $criteria ['custom_2_id'] === '0') {
+			if ((isset($criteria ['custom_2_id']) or $criteria ['custom_2_id'] === '0') && !empty($criteria['custom_2_id'])) {
 				$where [] = ' pt.training_custom_2_option_id = \'' . $criteria ['custom_2_id'] . '\'';
 			}
-			if ($criteria ['custom_3_id'] or $criteria ['custom_3_id'] === '0') {
+			if ((isset($criteria ['custom_3_id']) or $criteria ['custom_3_id'] === '0')&& !empty($criteria['custom_3_id'])) {
 				$where [] = ' pt.custom_3 = \'' . $criteria ['custom_3_id'] . '\'';
 			}
-			if ($criteria ['custom_4_id'] or $criteria ['custom_4_id'] === '0') {
+			if ((isset($criteria ['custom_4_id']) or $criteria ['custom_4_id'] === '0') && !empty($criteria['custom_4_id'])) {
 				$where [] = ' pt.custom_4 = \'' . $criteria ['custom_4_id'] . '\'';
 			}
 
-			if ($criteria ['created_by'] or $criteria ['created_by'] === '0') {
+			if ((isset($criteria ['created_by']) or $criteria ['created_by'] === '0') && !empty($criteria['created_by'])) {
 				$where [] = ' pt.created_by in (' . $this->_trainsmart_implode($criteria ['created_by']) . ')';
 			}
 
-			if ($criteria ['date_added']) {
+			if (isset($criteria ['date_added'])) {
 				if ( isset( $criteria['date_added'][0] ) && !empty( $criteria['date_added'][0] ) ){
 					$where [] = " pt.timestamp_created >= '".$criteria['date_added'][0]."' ";
 				}
@@ -1930,28 +1947,33 @@ echo $sql . "<br>";
 					$where [] = " pt.timestamp_created <= '".$criteria['date_added'][1]."' ";
 				}
 			}
-			if ($criteria ['training_gender']) {
+
+			if (isset($criteria ['training_gender']) && !empty($criteria['training_gender'])) {
 				$where [] = " gender = '{$criteria['training_gender']}'";
 			}
 
-			if ($criteria ['age_min']) {
+			if (isset($criteria ['age_min']) && !empty($criteria['age_min'])) {
 				$where [] = " age >= {$criteria['age_min']}";
 			}
 
-			if ($criteria ['age_max']) {
+			if (isset($criteria ['age_max'])&& !empty($criteria['age_max'])) {
 				$where [] = " age <= {$criteria['age_max']}";
 			}
 
-			if ($criteria ['person_to_training_viewing_loc_option_id']) {
+			if (isset($criteria ['person_to_training_viewing_loc_option_id']) && !empty($criteria['person_to_training_viewing_loc_option_id'])) {
 				$where [] = 'person_to_training.viewing_location_option_id = ' . $criteria['person_to_training_viewing_loc_option_id'];
 			}
-
-			if (($criteria['doCount'] && $criteria ['qualification_id']) || ($criteria['doName'] && $criteria ['qualification_id'])) {
+                        
+                        if(!empty($criteria['qualification_id'])){
+			if (isset($criteria['doCount'] , $criteria ['qualification_id']) || isset($criteria['doName'] , $criteria ['qualification_id'])) {
 				$where [] = ' (pq.id = ' . $criteria ['qualification_id'] . ' OR pqs.parent_id = ' . $criteria ['qualification_id'] . ') ';
 			}
-			if (($criteria['doCount'] && $criteria ['qualification_secondary_id']) || ($criteria['doName'] && $criteria ['qualification_secondary_id'])) {
+                        }
+                        if(!empty($criteria['qualification_secondary_id'])){
+			if (isset($criteria['doCount'] , $criteria ['qualification_secondary_id']) || isset($criteria['doName'] , $criteria ['qualification_secondary_id'])) {
 				$where [] = ' pqs.id = ' . $criteria ['qualification_secondary_id'];
 			}
+                        }
 
 			if ($where)
 				$sql .= ' WHERE ' . implode ( ' AND ', $where );
@@ -2013,6 +2035,7 @@ echo $sql . "<br>";
 			}
                      
 
+                        //print_r($sql);exit;                                        
 			$rowArray = $db->fetchAll ( $sql );
 
 			if ($criteria ['doCount']) {
@@ -2374,18 +2397,19 @@ echo $sql . "<br>";
 					$sql .= ', GROUP_CONCAT(DISTINCT tfund.funding_phrase ORDER BY funding_phrase) as "funding_phrase" ';
 				}
 			}
-			if ( $criteria['showCustom1'] ) {
-				$sql .= ', tqc.custom1_phrase ';
-			}
-			if ( $criteria['showCustom2'] ) {
-				$sql .= ', tqc2.custom2_phrase ';
-			}
-			if ( $criteria['showCustom3'] ) {
-				$sql .= ', pt.custom_3 ';
-			}
-			if ( $criteria['showCustom4'] ) {
-				$sql .= ', pt.custom_4 ';
-			}
+
+//			if (isset( $criteria['showCustom1'] )) {
+//				$sql .= ', tqc.custom1_phrase ';
+//			}
+//			if ( isset($criteria['showCustom2'] )) {
+//				$sql .= ', tqc2.custom2_phrase ';
+//			}
+//			if (isset( $criteria['showCustom3'] )) {
+//				$sql .= ', pt.custom_3 ';
+//			}
+//			if ( isset($criteria['showCustom4']) ) {
+//				$sql .= ', pt.custom_4 ';
+//			}
 
 			$num_locs = $this->setting('num_location_tiers');
 			list($field_name,$location_sub_query) = Location::subquery($num_locs, $location_tier, $location_id, true);
@@ -6677,10 +6701,11 @@ r
 			if ( $criteria ['showGotComment'] ){ $sql .= ", pt.got_comments"; }
 			if ( $criteria ['showGotCurric'] ) { $sql .= ', tgotc.training_got_curriculum_phrase '; }
 			if ( $criteria ['showFunding'] ) {   $sql .= ', GROUP_CONCAT(DISTINCT tfund.funding_phrase ORDER BY funding_phrase) as "funding_phrase" '; }
-			if ( $criteria ['showCustom1'] ) {   $sql .= ', tqc.custom1_phrase '; }
-			if ( $criteria ['showCustom2'] ) {   $sql .= ', tqc.custom2_phrase '; }
-			if ( $criteria ['showCustom3'] ) {   $sql .= ', pt.custom_3'; }
-			if ( $criteria ['showCustom4'] ) {   $sql .= ', pt.custom_4'; }
+
+//			if ( isset($criteria ['showCustom1']) ) {   $sql .= ', tqc.custom1_phrase '; }
+//			if ( isset($criteria ['showCustom2']) ) {   $sql .= ', tqc.custom2_phrase '; }
+//			if ( isset($criteria ['showCustom3']) ) {   $sql .= ', pt.custom_3'; }
+//			if ( isset($criteria ['showCustom4']) ) {   $sql .= ', pt.custom_4'; }
 			//if ( $criteria ['showCustom5'] ) {   $sql .= ', pt.custom_5'; }
 
 			list($dontcare, $location_tier, $location_id) = $this->getLocationCriteriaValues($criteria);
@@ -9945,7 +9970,8 @@ r
     $headers = array();
     $heading = array();
     $outdetails = array();
-    $summary_details = array();
+
+    //$summary_details = array();
     $title_array = array();
 $title_value = array();
                 if($facilities_new==""){
@@ -9956,7 +9982,7 @@ $data['error'] = "You need to select a facility";
 }else{
     $data['error'] = "";
     
-    $summary_details = array($larc_trained,$fp_trained);
+   // $summary_details = array($larc_trained,$fp_trained);
 $csql = "SELECT * FROM commodity_name_option WHERE commodity_type='fp' OR commodity_type='larc' ORDER BY commodity_name ASC";
                 $commodity_name = $db->fetchAll($csql);
                // $this->viewAssignEscaped ( 'commodity_name_option', $commodity_name );
@@ -10230,7 +10256,8 @@ if($this->getSanParam('go')){
     $headers = array();
     $heading = array();
     $outdetails = array();
-    $summary_details = array();
+
+    //$summary_details = array();
     $title_array = array();
 $title_value = array();
 $error [] = "You need to select a facility";
@@ -10241,7 +10268,8 @@ $error [] = "You need to select a facility";
    //print_r($summary);       exit;      
    //$larc_trained = $summary[0]['larctrained'];
                // $fp_trained = $summary[0]['fptrained'];
-                $summary_details = array($larc_trained,$fp_trained);
+
+                //$summary_details = array($larc_trained,$fp_trained);
 $csql = "SELECT * FROM commodity_name_option WHERE commodity_type='fp' OR commodity_type='larc' ORDER BY commodity_name ASC";
                 $commodity_name = $db->fetchAll($csql);
                // $this->viewAssignEscaped ( 'commodity_name_option', $commodity_name );
@@ -10430,7 +10458,9 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
 		$this->viewAssignEscaped ( 'qualifications', $qualificationsArray );
                 $sql = "SELECT COUNT(*) FROM facility";
                 $rowArray = $db->fetchAll($sql);
-                $number = $rowArray['COUNT(*)'];
+
+                $details_facility = array();
+                //$number = $rowArray['COUNT(*)'];
 		//facilities list
 		$csql = "SELECT id,facility_name as name,location_id as parent_id,tier FROM facility_location_view ORDER BY facility_name ASC";
                 $facilitiesArray = $db->fetchAll($csql);
@@ -10487,8 +10517,12 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
                 * */
                 $facility = array();
                 $facility_location = explode("_",$facilities_new);
+
+                if(isset($facility_location[3])){
                 $facility[] = $facility_location[3];
                 $details = $this->facility_location_summary_details($facility_location[3]);
+                }
+               //$details = $this->facility_location_summary_details($facility_location[3]);
                // print_r($details);exit;
                
                 $error = array();
@@ -10499,7 +10533,8 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
     $headers = array();
     $heading = array();
     $outdetails = array();
-    $summary_details = array();
+
+    //$summary_details = array();
     $title_array = array();
 $title_value = array();
 $error [] = "You need to select a facility";
@@ -10510,7 +10545,8 @@ $error [] = "You need to select a facility";
    //print_r($summary);       exit;      
    //$larc_trained = $summary[0]['larctrained'];
                // $fp_trained = $summary[0]['fptrained'];
-                $summary_details = array($larc_trained,$fp_trained);
+
+               // $summary_details = array($larc_trained,$fp_trained);
 $csql = "SELECT * FROM commodity_name_option WHERE commodity_type='fp' OR commodity_type='larc' ORDER BY commodity_name ASC";
                 $commodity_name = $db->fetchAll($csql);
                // $this->viewAssignEscaped ( 'commodity_name_option', $commodity_name );
@@ -10754,50 +10790,46 @@ public function trainingrepdemoAction(){
 return $this->trainingrepAction();
 	
 }
-public function trainingresultAction(){
-    if ($this->getRequest()->isXmlHttpRequest()){
-  $this->_countrySettings = array();
+
+public function alldataAction(){
+    $this->_countrySettings = array();
 		$this->_countrySettings = System::getAll();
                 
-                    $reports = new Report();
+                 $request = $this->getRequest()->getMethod();
+if($this->getSanParam('go') || $this->getSanParam('download') ){
+  
+  if($request!="POST"){
+      $this->_redirect('reports/alldata');
+      //$this->_forward ( 'facilitysummary' );
+      
+  }  
+} 
+//print_r($this->_getAllParams ());exit;
+                $reports = new Report();
 		$this->view->assign ( 'mode', 'search' );
                 $helper = new Helper2();
 		require_once ('models/table/TrainingLocation.php');
 		require_once('views/helpers/TrainingViewHelper.php');
                  $training = new Training();
-                // echo $training->trainingEndDateLimit("min");
-                 //exit;
-                 $minimum_end_date = explode("-",$training->trainingEndDateLimit("min"));
-                 $maximum_end_date = explode("-",$training->trainingEndDateLimit("max"));
-                // print_r($minimum_end_date);
-                // echo '<br/>';
-                 //print_r($maximum_end_date);
-                 //exit;
-                 $userLocations = array();
-             
                 
-                $userLocations = Location::getUserLocationWithRole();
-                
-            // Helper2::jLog(print_r($userLocations,true));//exit;
-                 $minimum_year = $minimum_end_date[0];
-                 $minimum_month = $minimum_end_date[1];
-                 $minimum_day = $minimum_end_date[2];
-                 
-                 
-                 
-                 $maximum_year = $maximum_end_date[0];
-                 $maximum_month = $maximum_end_date[1];
-                 $maximum_day = $maximum_end_date[2];
-                 
-                 $defaultTrainingEndDateStart = $minimum_month."/".$minimum_day."/".$minimum_year;
-                 $defaultTrainingEndDateEnd = $maximum_month."/".$maximum_day."/".$maximum_year;
-                 
 		$criteria = array ();
+                $criteria['stock_out'] = "";
+                $criteria['providing'] = array();
+                $criteria['national_report'] = "";
+                $criteria['province_id'] = "";
+                $criteria['district_id'] = "";
+                $criteria['region_c_id'] = "";
+                $criteria['facility_id'] = "";
+                $criteria['consumption'] = array();
+                $quickLocation = new Location();
+                
 		$where = array ();
 		$display_training_partner = ( isset($this->_countrySettings
 ['display_training_partner']) && $this->_countrySettings['display_training_partner'] == 1 ) 
 ? true : false;
-
+                $trainingLocation = new TrainingLocation();
+                $allTrainingIDs = $trainingLocation->getTrainingPlusLocation();
+                $this->viewAssignEscaped ( 'trainingIDs', $allTrainingIDs );
 		//find the first date in the database
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter ();
 		$qualificationsArray = OptionList::suggestionList ( 
@@ -10805,7 +10837,7 @@ public function trainingresultAction(){
 		$this->viewAssignEscaped ( 'qualifications', $qualificationsArray );
                 $sql = "SELECT COUNT(*) FROM facility";
                 $rowArray = $db->fetchAll($sql);
-                $number = $rowArray['COUNT(*)'];
+                //$number = $rowArray['COUNT(*)'];
 		//facilities list
 		$csql = "SELECT id,facility_name as name,location_id as parent_id,tier FROM facility_location_view ORDER BY facility_name ASC";
                 $facilitiesArray = $db->fetchAll($csql);
@@ -10856,6 +10888,9 @@ public function trainingresultAction(){
                 $commodity_name = $db->fetchAll($csql);
                 $this->viewAssignEscaped ( 'commodity_name_option', $commodity_name );
                 
+                $imploded = "31,32,38";
+                $commodityStockOut = $this->selectStockOutsCommodity($imploded);
+                $this->viewAssignEscaped('stock_out_commodity_name_option',$commodityStockOut);
                 
 		$courseArray = TrainingTitleOption::suggestionList ( false, 10000 );
 		$this->viewAssignEscaped ( 'courses', $courseArray );
@@ -10868,7 +10903,185 @@ public function trainingresultAction(){
                 $output = array();
                 
                 
-                $locationName =  Location::getUserLocationName();
+                $locationName =  $quickLocation->getUserLocationName();
+                
+                //-----------------------------------------the query is here now.----------------------------------------------//
+                $agrregate_method = $this->getSanParam('aggregate_method');
+                if($agrregate_method=="view_part_names"){
+                $zone = $this->getSanParam('province_id');
+                $state  = $this->getSanParam('district_id');
+                $localgovernment  = $this->getSanParam('region_c_id');
+                
+                }else{
+                $zone = $this->getSanParam('aggreg_province_id');
+                $state  = $this->getSanParam('aggreg_district_id');
+                $localgovernment  = $this->getSanParam('aggreg_region_c_id'); 
+                }
+                
+                
+                $zone = $reports->formatSelection($zone);
+                $state = $reports->formatSelection($state);
+                $localgovernment = $reports->formatSelection($localgovernment);
+                //$LGA = $localgovernment;
+               // print_r($localgovernment);
+               
+                
+                
+                //print_r($localgovernment);exit;
+                //print_r($LGA);exit;
+                //print_r($localgovernment);echo '<br/><br/>';
+               //$localgovernment = $reports->removeSelected($this->getSanParam('region_c_id'));
+                //print_r($localgovernment); exit;
+               // $facility  = $this->getSanParam('facility_id');
+                $facilities_new  = array();
+                $facilities_new  = $this->getSanParam('facility_id');
+                $facilities_new = $reports->removeSelected($facilities_new);
+                $facility = array();
+                if(isset($facilities_new) && is_array($facilities_new)){
+                foreach($facilities_new as $fac){
+                $facility_location = explode("_",$fac);
+                $facility[] = $facility_location[3];
+                }
+                }
+                $facility = $reports->formatSelection($facility);
+                $training_type = $this->getSanParam('training_type');
+                 $training_type = $reports->formatSelection($training_type);
+                
+                $training_type2 = $this->getSanParam('cumu');
+                $training_type2 = $reports->formatSelection($training_type2); 
+                $stock_out = $this->getSanParam('stock_out');
+                
+                 $preview = $this->getSanParam('go');
+                $locations = array();
+                                
+                $date_format = "yyyy-mm-dd";
+       
+
+
+//$status->setStatusMessage($stat);
+$this->viewAssignEscaped('criteria',$criteria);
+}
+public function allQueriesDataLoad(){
+    
+}
+public function trainingresultAction(){
+    if ($this->getRequest()->isXmlHttpRequest()){
+  $this->_countrySettings = array();
+		$this->_countrySettings = System::getAll();
+                
+                    $reports = new Report();
+		$this->view->assign ( 'mode', 'search' );
+                $helper = new Helper2();
+		require_once ('models/table/TrainingLocation.php');
+		require_once('views/helpers/TrainingViewHelper.php');
+                 $training = new Training();
+                // echo $training->trainingEndDateLimit("min");
+                 //exit;
+                 $minimum_end_date = explode("-",$training->trainingEndDateLimit("min"));
+                 $maximum_end_date = explode("-",$training->trainingEndDateLimit("max"));
+                // print_r($minimum_end_date);
+                // echo '<br/>';
+                 //print_r($maximum_end_date);
+                 //exit;
+                 $userLocations = array();
+
+                 $quickLocation = new Location();
+                
+                $userLocations = $quickLocation->getUserLocationWithRole();
+                
+            // Helper2::jLog(print_r($userLocations,true));//exit;
+                 $minimum_year = $minimum_end_date[0];
+                 $minimum_month = $minimum_end_date[1];
+                 $minimum_day = $minimum_end_date[2];
+                 
+                 
+                 
+                 $maximum_year = $maximum_end_date[0];
+                 $maximum_month = $maximum_end_date[1];
+                 $maximum_day = $maximum_end_date[2];
+                 
+                 $defaultTrainingEndDateStart = $minimum_month."/".$minimum_day."/".$minimum_year;
+                 $defaultTrainingEndDateEnd = $maximum_month."/".$maximum_day."/".$maximum_year;
+                 
+		$criteria = array ();
+		$where = array ();
+		$display_training_partner = ( isset($this->_countrySettings
+['display_training_partner']) && $this->_countrySettings['display_training_partner'] == 1 ) 
+? true : false;
+
+		//find the first date in the database
+		$db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+		$qualificationsArray = OptionList::suggestionList ( 
+'person_qualification_option', array('qualification_phrase','id'), false, 30 );
+		$this->viewAssignEscaped ( 'qualifications', $qualificationsArray );
+                $sql = "SELECT COUNT(*) FROM facility";
+                $rowArray = $db->fetchAll($sql);
+
+                //$number = $rowArray['COUNT(*)'];
+
+		//facilities list
+		$csql = "SELECT id,facility_name as name,location_id as parent_id,tier FROM facility_location_view ORDER BY facility_name ASC";
+                $facilitiesArray = $db->fetchAll($csql);
+                $size = sizeof($facilitiesArray);
+                for($v=0; $v<$size; $v++){
+                    $facilitiesArray[$v]['tier'] = 4;
+                    $facilitiesArray[$v]['is_default'] = 0;
+                    $facilitiesArray[$v]['is_good'] = 1;
+                }
+                //print_r($facilitiesArray);exit;
+		$this->viewAssignEscaped ( 'facilities', $facilitiesArray );
+                //exit;
+                $locationsPerUserGeo = array();
+                $locations = Location::getAll("1");
+                
+                $locationsPerUserGeo = $quickLocation->getAll("");
+                for($v=0; $v<$size; $v++){
+                    $id = $facilitiesArray[$v]['id'];
+                    //$id = 2592 + $v;
+                    $locations[$id] = $facilitiesArray[$v];
+                    $locationsPerUserGeo[$id] = $facilitiesArray[$v];
+                }
+                
+                foreach($locations as $location){
+                  // print_r($location);echo '<br/><br/>';
+                    
+                }
+                $this->viewAssignEscaped('locations', $locations);
+                $this->viewAssignEscaped('locationsPerGeo',$locationsPerUserGeo);
+               //exit;
+               //print_r($locations); exit;
+		
+		//course
+                $tsql = "SELECT * FROM `training_title_option` WHERE is_deleted='0' ORDER BY `training_title_phrase`  ASC";
+                
+                $trainingtypes = $db->fetchAll($tsql);
+                $this->viewAssignEscaped ( 'trainingtypes', $trainingtypes );
+				$training_type_not_set = array();
+                foreach($trainingtypes as $training){
+				$training_type_not_set[] = $training['id'];
+				}
+                 $tosql = "SELECT * FROM `training_organizer_option` WHERE is_deleted='0'  ORDER BY `training_organizer_phrase`ASC";
+                
+                $trainingorg = $db->fetchAll($tosql);
+                $this->viewAssignEscaped ( 'trainingorganizer', $trainingorg );
+                
+                $csql = "SELECT * FROM commodity_name_option ORDER BY commodity_name ASC";
+                $commodity_name = $db->fetchAll($csql);
+                $this->viewAssignEscaped ( 'commodity_name_option', $commodity_name );
+                
+                
+		$courseArray = TrainingTitleOption::suggestionList ( false, 10000 );
+		$this->viewAssignEscaped ( 'courses', $courseArray );
+		//location
+		// location drop-down
+		$tlocations = TrainingLocation::selectAllLocations ($this->setting
+('num_location_tiers'));
+		$this->viewAssignEscaped ( 'tlocations', $tlocations );
+		
+                $output = array();
+                
+                
+                $locationName =  $quickLocation->getUserLocationName();
                 
                 //-----------------------------------------the query is here now.----------------------------------------------//
                 $agrregate_method = $this->getSanParam('aggregate_method');
@@ -11626,9 +11839,12 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
                  //print_r($maximum_end_date);
                  //exit;
                  $userLocations = array();
-             
-                
-                $userLocations = Location::getUserLocationWithRole();
+
+                  $quickLocation = new Location();
+               $outSideLocationPart = 0;
+               $perLocation = 0;
+                $userLocations = $quickLocation->getUserLocationWithRole();
+
              
             // Helper2::jLog(print_r($userLocations,true));//exit;
                  $minimum_year = $minimum_end_date[0];
@@ -11657,7 +11873,9 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
 		$this->viewAssignEscaped ( 'qualifications', $qualificationsArray );
                 $sql = "SELECT COUNT(*) FROM facility";
                 $rowArray = $db->fetchAll($sql);
-                $number = $rowArray['COUNT(*)'];
+
+                //$number = $rowArray['COUNT(*)'];
+
 		//facilities list
 		$csql = "SELECT id,facility_name as name,location_id as parent_id,tier FROM facility_location_view ORDER BY facility_name ASC";
                 $facilitiesArray = $db->fetchAll($csql);
@@ -11719,8 +11937,7 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
 		
                 $output = array();
                 
-                
-                $locationName =  Location::getUserLocationName();
+                $locationName =  $quickLocation->getUserLocationName();
                 
                 //-----------------------------------------the query is here now.----------------------------------------------//
                 $agrregate_method = $this->getSanParam('aggregate_method');
@@ -11750,14 +11967,18 @@ if($this->getSanParam('go') || $this->getSanParam('download') ){
                //$localgovernment = $reports->removeSelected($this->getSanParam('region_c_id'));
                 //print_r($localgovernment); exit;
                // $facility  = $this->getSanParam('facility_id');
+
+                $facilities_new  = array();
                 $facilities_new  = $this->getSanParam('facility_id');
                 $facilities_new = $reports->removeSelected($facilities_new);
                 $facility = array();
+                if(isset($facilities_new) && is_array($facilities_new)){
                 foreach($facilities_new as $fac){
                 $facility_location = explode("_",$fac);
                 $facility[] = $facility_location[3];
                 }
-                
+
+                }
                 $facility = $reports->formatSelection($facility);
                 $training_type = $this->getSanParam('training_type');
                  $training_type = $reports->formatSelection($training_type);
@@ -11875,10 +12096,14 @@ else{
             
               
 $consump_loc = array();
+
+if(isset($locations)){
      foreach($locations as $loc){
         $consump_loc[$loc] = ""; 
          
      }    
+}
+
      
      if(!isset($locations) || empty($locations)){
          $locations = $helper->getLocationTierIDs("1");
@@ -11901,14 +12126,39 @@ $consump_loc = array();
                 
                 $trainingEndDatesStart = explode("/",$trainingEndDateStartValue);
                 $trainingEndDatesEnd = explode("/",$trainingEndDateEndValue);
+
+                $start_day = "";
+                $start_month = "";
+                $start_year = "";
+                if(isset($trainingEndDatesStart[1])){
+                    $start_day = $this->check_length_add_one($trainingEndDatesStart[1]);
+                }
+                if(isset($trainingEndDatesStart[0])){
+                    $start_month = $this->check_length_add_one($trainingEndDatesStart[0]);
+                }
+                if(isset($trainingEndDatesStart[2])){
+                    $start_year = $trainingEndDatesStart[2];
+                }
                 
-                $start_day = $this->check_length_add_one($trainingEndDatesStart[1]);
-                $start_month = $this->check_length_add_one($trainingEndDatesStart[0]);
-                $start_year = $trainingEndDatesStart[2];
                 
-                $end_day = $this->check_length_add_one($trainingEndDatesEnd[1]);
-                $end_month = $this->check_length_add_one($trainingEndDatesEnd[0]);
-                $end_year = $trainingEndDatesEnd[2];
+                $end_day = "";
+                $end_month = "";
+                $end_year = "";
+                 if(isset($trainingEndDatesEnd[1])){
+                   $end_day = $this->check_length_add_one($trainingEndDatesEnd[1]);
+                }
+                if(isset($trainingEndDatesEnd[0])){
+                    $end_month = $this->check_length_add_one($trainingEndDatesEnd[0]);
+                }
+                if(isset($trainingEndDatesEnd[2])){
+                    $end_year = $trainingEndDatesEnd[2];
+                }
+                
+                
+                
+//                $end_day = $this->check_length_add_one($trainingEndDatesEnd[1]);
+//                $end_month = $this->check_length_add_one($trainingEndDatesEnd[0]);
+//                $end_year = $trainingEndDatesEnd[2];
                
                 $dobStartValue = $this->getSanParam('dobStart');
                 $dobEndValue = $this->getSanParam('dobEnd');
@@ -11919,13 +12169,39 @@ $consump_loc = array();
                 $dobStartDatesValue = explode("/",$dobStartValue);
                 $dobEndDatesValue = explode("/",$dobEndValue);
                 
-                $dob_start_day = $this->check_length_add_one($dobStartDatesValue[1]);
-                $dob_start_month = $this->check_length_add_one($dobStartDatesValue[0]);
-                $dob_start_year = $dobStartDatesValue[2];
+                $dob_start_day  = "";
+                $dob_start_month = "";
+                $dob_start_year = "";
                 
-                $dob_end_day = $this->check_length_add_one($dobEndDatesValue[1]);
-                $dob_end_month = $this->check_length_add_one($dobEndDatesValue[0]);
-                $dob_end_year = $dobEndDatesValue[2];
+                if(isset($dobStartDatesValue[1])){
+                    $dob_start_day = $this->check_length_add_one($dobStartDatesValue[1]);
+                }
+                if(isset($dobStartDatesValue[0])){
+                    $dob_start_month = $this->check_length_add_one($dobStartDatesValue[0]);
+                }
+                if(isset($dobStartDatesValue[2])){
+                    $dob_start_year = $dobStartDatesValue[2];
+                }
+                
+//                $dob_start_day = $this->check_length_add_one($dobStartDatesValue[1]);
+//                $dob_start_month = $this->check_length_add_one($dobStartDatesValue[0]);
+//                $dob_start_year = $dobStartDatesValue[2];
+                $dob_end_day  = "";
+                $dob_end_month = "";
+                $dob_end_year = "";
+                if(isset($dobEndDatesValue[1])){
+                   $dob_end_day = $this->check_length_add_one($dobEndDatesValue[1]);
+                }
+                if(isset($dobEndDatesValue[0])){
+                    $dob_end_month = $this->check_length_add_one($dobEndDatesValue[0]);
+                }
+                if(isset($dobEndDatesValue[2])){
+                    $dob_end_year = $dobEndDatesValue[2];
+                }
+                
+//                $dob_end_day = $this->check_length_add_one($dobEndDatesValue[1]);
+//                $dob_end_month = $this->check_length_add_one($dobEndDatesValue[0]);
+//                $dob_end_year = $dobEndDatesValue[2];
                
                 
                 $period = $this->getSanParam('period');
@@ -11977,6 +12253,15 @@ $consump_loc = array();
               }
               //echo $dob_query;exit;
    // echo 'The size of the locations is what you will see now '.$sizeof($locations);
+
+              $has_result = "false";
+              $agrreg = 0;
+              $total_participants = 0;
+              $total_trainings = 0;
+              $fac_with_type = "";
+              $headers = "";
+              
+              
     if($agrregate_method=="view_individual_train"){
               $training_organizer = implode(",",$trainingorganizer);
                  $trainingtypes = implode(",",$training_type);
@@ -12033,7 +12318,8 @@ $consump_loc = array();
              }
              $total_trainings = sizeof($records);
           }
-          else if($agrregate_method=="view_aggregate_train"){
+else if($agrregate_method=="view_aggregate_train"){
+
               $start_month_name = $this->return_the_month_name($start_month);
                     $start_month_name = substr($start_month_name,0,3);
                $end_month_name = $this->return_the_month_name($end_month);
@@ -12068,7 +12354,9 @@ $consump_loc = array();
           }
   //print_r($locations); exit;
           
-         else if($agrregate_method=="view_aggregate_part"){
+
+else if($agrregate_method=="view_aggregate_part"){
+
              
          $agrreg = true;
           
@@ -12352,7 +12640,10 @@ else if($agrregate_method=="view_part_names"){
               $genders = $persons['gender'];
               $location_id = $persons['location_id'];
               //Helper2::jLog($location_id.PHP_EOL);
-              
+
+              $perLocation = 0;
+              $outSideLocationPart = 0;
+
               if(!empty($userLocations)){
                   if(!in_array($location_id,$userLocations)){
                       $outSideLocationPart = $outSideLocationPart + 1;
@@ -13395,6 +13686,14 @@ $this->viewAssignEscaped('criteria',$criteria);
                               return $sum = $res[0]['sums'];
            
        }
+
+      public function selectStockOutsCommodity($imploded){
+         $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+         $sql = "SELECT * FROM `commodity_name_option` WHERE `id` IN ($imploded)";
+         $res = $db->fetchAll($sql);
+         return $res;
+      }
+
 	   public function get_consumption_for_unique_fac($start_date,$end_date,$facility_id,$name_id,$location){
            $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
            $sum = 0;
@@ -13669,7 +13968,13 @@ return $mons[$id];
           $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
     $sql = "SELECT * FROM facility_location_view WHERE `id`='$facility_id'";
    $all_sql = $db->fetchAll($sql);
-    return $all_sql[0];
+
+   if(isset($all_sql[0])){
+       return $all_sql[0];
+   }else{
+       return $all_sql_tmp = array();
+   }
+    
           
       }
 public function get_name_category($name_id,$getter="system_training_type"){

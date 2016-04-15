@@ -24,7 +24,9 @@ class FacilityController extends ReportFilterHelpers {
 			$this->doNoAccessError ();
 			
 			// we extend these controllers, lets redirect to their URL
-		if (strstr ( $_SERVER ['HTTP_REFERER'], '/site/' ) && strstr ( $_SERVER ['REQUEST_URI'], '/facility' ))
+
+                if(isset($_SERVER['HTTP_REFERER'])){
+                    if (strstr ( $_SERVER ['HTTP_REFERER'], '/site/' ) && strstr ( $_SERVER ['REQUEST_URI'], '/facility' ))
 			$this->_redirect ( str_replace ( '/facility/', '/site/', 'http://' . $_SERVER ['SERVER_NAME'] . $_SERVER ['REQUEST_URI'] ) );
 	}
 	public function indexAction() {
@@ -180,7 +182,11 @@ class FacilityController extends ReportFilterHelpers {
 			$status->setStatusMessage ( t ( 'The facility could not be saved.' ) );
 		} else {
 			$location_id = null; // save location
+<<<<<<< HEAD
 			if (($city_id === false) && $values ['is_new_city']) {
+=======
+			if (($city_id === false) && isset($values ['is_new_city'])) {
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 				$location_id = Location::insertIfNotFound ( $values ['facility_city'], $facility_city_parent_id, $this->setting ( 'num_location_tiers' ) );
 				if ($location_id === false)
 					$status->addError ( 'facility_city', t ( 'Could not save that city.' ) );
@@ -336,7 +342,11 @@ class FacilityController extends ReportFilterHelpers {
 		$this->viewAssignEscaped ( 'locations', $locations );
 		require_once 'views/helpers/Location.php';
 		$regions = Location::getCityInfo ( $facilityRow->location_id, $this->setting ( 'num_location_tiers' ) );
+<<<<<<< HEAD
 		$facilityArray ['facility_city'] = $regions [0];
+=======
+		$facilityArray ['facility_city'] = (isset($regions [0]))?$regions[0]:"";
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 		$regions = Location::regionsToHash ( $regions, 'facility' ); // (vals, prefix)
 		$facilityArray = array_merge ( $facilityArray, $regions ); // stash hash values in there so we can set our parent tier ids
 		                                                        
@@ -398,7 +408,11 @@ $heading_date = array();
 $facility_id  = $this->getSanParam ( 'id' );
 if($id!=""){
 
+<<<<<<< HEAD
  $summary_details = array($larc_trained,$fp_trained);
+=======
+ //$summary_details = array($larc_trained,$fp_trained);
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 $csql = "SELECT * FROM commodity_name_option WHERE commodity_type='fp' OR commodity_type='larc' ORDER BY commodity_name ASC";
                 $commodity_name = $db->fetchAll($csql);
 //$outputs[] = $row['commodity_name'];
@@ -824,6 +838,10 @@ array_push($outputs,$out);
 		
 		// locations
 		$this->viewAssignEscaped ( 'locations', Location::getAll (2) );
+<<<<<<< HEAD
+=======
+               
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 	}
          public function get_at_least_one_commodity_out_of_stock($start,$end,$facility_id,$name_id){
            $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
@@ -1124,8 +1142,17 @@ array_push($outputs,$out);
 			$this->doNoAccessError ();
 			
 			// CSV STUFF
+<<<<<<< HEAD
 		$filename = ($_FILES ['upload'] ['tmp_name']);
 		if ($filename) {
+=======
+                $filename = "";
+                if(isset($_FILES['upload']['tmp_name'])){
+                    $filename = ($_FILES ['upload'] ['tmp_name']);
+                }
+		
+		if ($filename!="") {
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 			$trainingLocationObj = new TrainingLocation ();
 			$errs = array ();
 			while ( $row = $this->_csv_get_row ( $filename ) ) {

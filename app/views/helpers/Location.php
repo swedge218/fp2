@@ -22,12 +22,17 @@ function buildId($tier, &$locations, $id) {
 
 function renderFilter(&$locations, $tier, $widget_id, $default_val_id = false, $child_widget_id = false, $is_multiple = false, $readonly = false,$size="10") {
     //if($child_widget_id!=""){
+    //$final_each_valu
 	//print_r($locations); exit;
+        $final_each_value = "";
 	$tieridarray =  array();
 	if(is_array($default_val_id)){
 	foreach ($default_val_id as $default_value){
 	$each_value = explode('_',$default_value);
-	$final_each_value = $each_value[$tier-1];
+
+        if(isset($each_value[$tier-1])){
+        	$final_each_value = $each_value[$tier-1];
+        }
 	array_push($tieridarray,$final_each_value);
 	}
 	
@@ -40,7 +45,10 @@ function renderFilter(&$locations, $tier, $widget_id, $default_val_id = false, $
     }
   }
   if ( !is_array($default_val_id) && strpos($default_val_id, '_')){ // bugfix - print_all_region_filters() might get actual option value="123_123" from some controllers (partnerController)
-    $also_match_id = array_pop(explode('_', $default_val_id));
+
+      $defaultExplode = explode('_', $default_val_id);
+      $also_match_id = array_pop($defaultExplode);
+
   }
   if($is_multiple){
       $size ="10";
@@ -163,6 +171,8 @@ function renderCityAutocomplete($prefix, $container, $data_url, $num_tiers) {
 
 function renderFacilityDropDown($facilities, $selected_index, $readonly)
 {
+
+    $output = "";
   $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
   $sql = 'SELECT DISTINCT
        f.id as id,
@@ -246,15 +256,16 @@ function regionFiltersGetLastID($prefix, $criteria)
 		$prefix .= '_';
 	$selectedID = null;
 
-	if($criteria[$prefix.'province_id']) $selectedID = $criteria[$prefix.'province_id'];
-	if($criteria[$prefix.'district_id']) $selectedID = $criteria[$prefix.'district_id'];
-	if($criteria[$prefix.'region_c_id']) $selectedID = $criteria[$prefix.'region_c_id'];
-	if($criteria[$prefix.'region_d_id']) $selectedID = $criteria[$prefix.'region_d_id'];
-	if($criteria[$prefix.'region_e_id']) $selectedID = $criteria[$prefix.'region_e_id'];
-	if($criteria[$prefix.'region_f_id']) $selectedID = $criteria[$prefix.'region_f_id'];
-	if($criteria[$prefix.'region_g_id']) $selectedID = $criteria[$prefix.'region_g_id'];
-	if($criteria[$prefix.'region_h_id']) $selectedID = $criteria[$prefix.'region_h_id'];
-	if($criteria[$prefix.'region_i_id']) $selectedID = $criteria[$prefix.'region_i_id'];
+
+	if(isset($criteria[$prefix.'province_id'])) $selectedID = $criteria[$prefix.'province_id'];
+	if(isset($criteria[$prefix.'district_id'])) $selectedID = $criteria[$prefix.'district_id'];
+	if(isset($criteria[$prefix.'region_c_id'])) $selectedID = $criteria[$prefix.'region_c_id'];
+	if(isset($criteria[$prefix.'region_d_id'])) $selectedID = $criteria[$prefix.'region_d_id'];
+	if(isset($criteria[$prefix.'region_e_id'])) $selectedID = $criteria[$prefix.'region_e_id'];
+	if(isset($criteria[$prefix.'region_f_id'])) $selectedID = $criteria[$prefix.'region_f_id'];
+	if(isset($criteria[$prefix.'region_g_id'])) $selectedID = $criteria[$prefix.'region_g_id'];
+	if(isset($criteria[$prefix.'region_h_id'])) $selectedID = $criteria[$prefix.'region_h_id'];
+	if(isset($criteria[$prefix.'region_i_id'])) $selectedID = $criteria[$prefix.'region_i_id'];
 
 	if (! $selectedID)
 		return null;

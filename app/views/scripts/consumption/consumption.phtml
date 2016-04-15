@@ -243,6 +243,7 @@ function drawChart11() {
 	var chart11Data = google.visualization.arrayToDataTable([
             ['', ''],
 <?php
+
     if(isset($this->consumption_by_method) && !empty($this->consumption_by_method)) {
         foreach ($this->consumption_by_method as $key=>$row){
                    $consumption = $row['consumption'];
@@ -262,6 +263,7 @@ function drawChart11() {
                    }
     }
            ?>
+
 ]);
 
 	  <?php //echo  " var title_date = 'Monthly Consumption by Method$this->title_date ' " ?>;
@@ -630,11 +632,13 @@ function drawChart13() {
                 foreach($firstConsumption as $location=>$consumption){
          ?>
                         [<?php echo  "'$location', $consumption"; ?>],
+
                 <?php   }   ?>
         ]);
         <?php
                 }
         ?>
+
         
                   var title_data = <?php echo "'Consumption of $this->method in selected location, $this->date'"; ?>;
 
@@ -679,6 +683,7 @@ function drawChart13() {
         <?php 
                 //if(isset($this->consumption_overtime) && !empty($this->consumption_overtime)) 
                     //return;
+
                 if(isset($this->consumption_bsmandlocation)){
                     $locationNames = '';
                     reset($this->consumption_bsmandlocation);

@@ -69,7 +69,7 @@ class Zend_Loader
 
 		// autodiscover the path from the class name
 		$file = str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
-                
+
 		if (!empty($dirs)) {
 			// use the autodiscovered path
 			$dirPath = dirname($file);

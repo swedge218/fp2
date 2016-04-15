@@ -1233,7 +1233,9 @@ $countParticipant = 0;
 
 		// row values
 		$this->view->assign ( 'row', $rowRay );
-                 $this->updateCacheTraining();
+
+                // $this->updateCacheTraining();
+
 }
 
 
@@ -1274,7 +1276,8 @@ $countParticipant = 0;
               
                
 	
-
+                $locationName = "";
+                $personInJurisdiction = "0";
 		//find the first date in the database
 		$db = Zend_Db_Table_Abstract::getDefaultAdapter ();
 		$qualificationsArray = OptionList::suggestionList ( 
@@ -1282,7 +1285,8 @@ $countParticipant = 0;
 		$this->view->assign ( 'qualifications', $qualificationsArray );
                 $sql = "SELECT COUNT(*) FROM facility";
                 $rowArray = $db->fetchAll($sql);
-                $number = $rowArray['COUNT(*)'];
+
+                //$number = $rowArray['COUNT(*)'];
                 
                 //training level list
                 $trainingLevelResult = $training->getTrainingLevel();
@@ -2099,7 +2103,8 @@ $countParticipant = 0;
                
 		$customColDefs = array();
                 
-$countParticipant = 0;
+
+                $countParticipant = 0;
 		if ($training_id) {
                     $countParticipant = PersonToTraining::getParticipantsCount($training_id);
                     $locationName = Location::getUserLocationName();
@@ -2159,7 +2164,7 @@ $countParticipant = 0;
 			$persons = array ();
 		}
 
-               
+
 
 		if (! $this->setting ( 'display_middle_name' )) {
                     //TP: The space at the back of the index value ID, is meant to enlarge the HTML view of it
@@ -2376,7 +2381,9 @@ $countParticipant = 0;
 		$this->view->assign ( 'row', $rowRay );
                 $this->view->assign('base_url',Settings::$COUNTRY_BASE_URL);
                 //Helper2::jLog("This is the log of the link ".Settings::$COUNTRY_BASE_URL);
-                 $this->updateCacheTraining();
+               
+                 //$this->updateCacheTraining();
+                 
 	}
 
 	/**
@@ -2619,9 +2626,13 @@ $countParticipant = 0;
 		
                 if( ! $this->hasACL('import_training')  && !$this->hasACL('edit_course'))
 			$this->doNoAccessError ();
-		
-		$filename = ($_FILES['upload']['tmp_name']);
-		if ( $filename ){
+
+		$filename = "";
+        if(isset($_FILES['upload']['tmp_name'])){
+            $filename = ($_FILES['upload']['tmp_name']);
+        }
+        
+		if ( $filename!="" ){
 			
 			require_once('models/table/TrainingLocation.php');
 			require_once('models/table/Person.php');
@@ -2789,6 +2800,9 @@ $countParticipant = 0;
                                    $id = $trainingloc->insertIfNotFound($LocationDefaultName, $stateLocationid);
                                    $values['training_location_id'] = $id;
                                 }
+
+                               // echo 
+                                $values['timestamp_updated'] = date("Y-m-d H:i:s",time());
                                 
                                 /*TP: Training parsing ends here*/
                                 
@@ -2822,6 +2836,8 @@ $countParticipant = 0;
                                                                         
                                                                 $certification = $rows[$i][14];
                                                                $values_person['facility_id'] = 0;
+
+                                                               $values_person =  date("Y-m-d H:i:s",time());
                                                                      
                                                                 $facility_name = strtolower(trim($rows[$i][9]));                                                               
                                                                 $values_person['birthdate'] = trim($rows[$i][4]);
@@ -2900,7 +2916,9 @@ $countParticipant = 0;
 			
 			if($training_id)
 			 $stat .='<br><a href='. Settings::$COUNTRY_BASE_URL . '/training/view/id/' . $training_id . '>View new training ' . $to_fix . '</a>';
-			$this->updateCacheTraining();
+
+			//$this->updateCacheTraining();
+
 			$status->setStatusMessage($stat);
 			$this->view->assign('status',$status);
 			
@@ -2910,6 +2928,9 @@ $countParticipant = 0;
         public function updateCacheTraining(){
                   $coverage = new Coverage();
                   $coverage->updateCache();
+
+                   //echo 'Hello';exit;
+
                   $stockout = new Stockout();
                   $stockout->updateCache();
         } 

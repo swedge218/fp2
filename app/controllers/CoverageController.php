@@ -163,7 +163,11 @@ class CoverageController extends ReportFilterHelpers {
             $coverage = new Coverage();
             $helper = new Helper2();
 	    
+<<<<<<< HEAD
 	    //$this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
+=======
+	    $this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
             
             //get the parameters
             list($geoList, $tierValue) = $this->buildParameters();
@@ -177,7 +181,17 @@ class CoverageController extends ReportFilterHelpers {
                 $fp_coverage = $coverage->fetchPercentFacsProviding('fp', $geoList, $tierValue, false);
                 $larc_coverage = $coverage->fetchPercentFacsProviding('larc', $geoList, $tierValue, false);
                 $inj_coverage = $coverage->fetchPercentFacsProviding('injectables', $geoList, $tierValue, false);
+<<<<<<< HEAD
             }           
+=======
+            }
+            
+    //            var_dump($fp_coverage);
+    //            echo '<br/><br/>';
+    //            var_dump($larc_coverage); 
+    //            echo '<br/><br/>';
+    //            var_dump($inj_coverage); exit;            
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 
 
             $this->view->assign('fp_data',$fp_coverage);
@@ -204,7 +218,11 @@ class CoverageController extends ReportFilterHelpers {
 	    
             //$ids = $helper->getTierLocationsIds(1); var_dump($ids); exit;
             
+<<<<<<< HEAD
 	    //$this->view->assign('title', $this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
+=======
+	    $this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
             
             //get the parameters
             list($geoList, $tierValue) = $this->buildParameters();                

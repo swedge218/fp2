@@ -102,7 +102,6 @@ class ConsumptionController extends ReportFilterHelpers {
             }
         }
         else{ //ALL: when ALL commodity and/or no geo option selected
-            //echo 'inside all'; exit;
             $consByCommodity = $consOverTime = array();
           if( !isset($_POST["region_c_id"]) && !isset($_POST["district_id"]) && !isset($_POST["province_id"]) ) { 
                 $consByCommodity = $cons->fetchConsumptiomPerCommodity($commodityID, $geoList, $tierValue);

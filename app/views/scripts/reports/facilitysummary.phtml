@@ -180,7 +180,7 @@ select, input[type="text"] {
                                     <div class="col-md-11">
 					<div id="contentheader">
 						<h2><?php tp('Facility Summary Query');?></h2><br>
-                                                   <?php if($this->criteria['details_facility']['facility_name']!="" ){
+                                                   <?php if(array_key_exists('facility_name',$this->criteria['details_facility'])){
                                                    ?><h3><?php tp('Facility Summary of '.$this->criteria['details_facility']['facility_name'].'');?></h3>
                                                    <?php }?>
                                                    <br/>

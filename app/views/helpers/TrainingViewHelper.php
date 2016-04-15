@@ -71,9 +71,11 @@ function allowed_org_access_full_list (&$itechthis) {
 // return a comma seperated list of organizers allowed in this site (site rollup feature)
 function allowed_organizer_in_this_site(&$itechthis)
 {
+    $COUNTRY = "";
 	// determine site
 	$parts = explode('.', $_SERVER['SERVER_NAME']); // same style as globals.php
-	$me = $GLOBALS->$COUNTRY ? $GLOBALS->$COUNTRY : $parts[0];
+      
+	$me = isset($GLOBALS->$COUNTRY) ? $GLOBALS->$COUNTRY : $parts[0];
 
 	// get child sites
 	$db = Zend_Db_Table_Abstract::getDefaultAdapter ();

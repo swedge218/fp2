@@ -24,11 +24,11 @@ class IndexController extends ReportFilterHelpers  {
                 $this->helper = new Helper2();
     	}
 
-        public function init(){
+		public function init(){
 	        $burl = Settings::$COUNTRY_BASE_URL;
 	        if (substr($burl, -1) != '/' && substr($burl, -1) != '\\')
 	            $this->baseUrl = $burl . '/';
-	}
+	    }
 	
         public function indexAction(){
             //fetch consumption by method

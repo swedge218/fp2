@@ -6,8 +6,13 @@
     <input type="text" size="70" name="training_location_name" id="locationName" required value="<?php if(isset($this->rowLocation)) echo $this->rowLocation['training_location_name']; ?>" <?php echo $this->viewonly; ?>>
   </div>
 
-  <?php region_filters_dropdown($this, $this->locations, $this->rowLocation,false,false,false,'',true); ?>
-
+  <?php 
+  if(isset($this->rowLocation)){
+  region_filters_dropdown($this, $this->locations, $this->rowLocation,false,false,false,'',true);
+  }else{
+    region_filters_dropdown($this, $this->locations, $this->locations,false,false,false,'',true);
+  }
+?>
  
 
 </form>

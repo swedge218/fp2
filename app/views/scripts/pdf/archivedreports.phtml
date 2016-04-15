@@ -69,9 +69,11 @@ h2,h3{
                                      <?php 
                                                     // print_r($this->criteria['error']);
                                      if(isset($_POST['go'])){
+                                         if(isset($this->criteria['error'])){
                                                      foreach($this->criteria['error'] as $error){
                                                          echo '<h3 align="center" style="color:red;"><b>* '.$error.'</b></h3>';
                                                      }
+                                         }
                                      }
                                                      ?>
                                     </div>

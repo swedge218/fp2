@@ -55,6 +55,12 @@ public static function isReferenced($id) {
     
     return $tableObj->fetchRow($select);
   }
+
+  public function getTrainingPlusLocation(){
+      $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+      $sql = "SELECT `training`.`id`,`tl`.`location_id` FROM `training` LEFT JOIN `training_location` as `tl` on `training_location_id`=`tl`.`id` ";
+      return $db->fetchAll($sql);
+  }
   
 	/**
    * Insert new training location and return id if not found.  Return id if found.
