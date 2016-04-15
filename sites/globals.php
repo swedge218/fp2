@@ -9,13 +9,14 @@
 
 ini_set('max_execution_time','300');
 ini_set('memory_limit', '1024M');
-ini_set("error_log", "C:/www/trainsmart/php_error.log");
+ini_set("error_log", "C:/wamp64/www/trainsmart/php_error.log");
 
 define('space',  " ");
 
 
 class Globals {
-	public static $BASE_PATH = '/wamp64/www/trainsmart/';
+
+	public static $BASE_PATH = 'C:/wamp64/www/trainsmart/';
 	public static $WEB_FOLDER = 'html';
 	public static $COUNTRY = 'test';
 
@@ -23,7 +24,9 @@ class Globals {
 
 		require_once('settings.php');
 		// PATH_SEPARATOR =  ; for windows, : for *nix
-		
+
+		//echo '<a href="'.Globals::$BASE_PATH.'ZendFramework'.DIRECTORY_SEPARATOR.'library'.'">Go</a>';//exit;
+
 		$iReturn = ini_set( 'include_path',
 					(Globals::$BASE_PATH).PATH_SEPARATOR.
 					(Globals::$BASE_PATH).'app'.PATH_SEPARATOR.

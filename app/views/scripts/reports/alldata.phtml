@@ -1,0 +1,1122 @@
+<?php
+//echo $_POST['download'];exit;
+	if (isset ($_POST['csv'])&& $_POST['csv']=="1"){
+
+		$data = array();
+		
+		$_row = array();
+		foreach ($this->headers as $key=>$value){
+			$_row[] = $value;
+		}
+		$data[] = $_row;
+		
+		foreach ($this->output as $row){
+			$_row = array();
+			foreach ($row as $key=>$value){
+				$_row[] = $value;
+			}
+			$data[] = $_row;
+		}
+		
+
+
+		$delimiter = ',';
+		$enclosure = '"';
+		$encloseAll = false;
+		$nullToMysqlNull = false;
+	
+		$delimiter_esc = preg_quote($delimiter, '/');
+		$enclosure_esc = preg_quote($enclosure, '/');
+	
+		$output = array();
+if(isset($this->criteria['total_participants'])){
+                                    $output[] = "Total Participants: ".$this->criteria['total_participants']."";
+                                }  else if(isset($this->criteria['total_training'])) {
+                                    $output[] = "Total Trainings: ".$this->criteria['total_training']."";
+                                } 
+		foreach ($data as $row){
+			$outputrow = array();
+			foreach ($row as $field){
+				if ($field === null && $nullToMysqlNull) {
+					$outputrow[] = 'NULL';
+					continue;
+				}
+		
+				// Enclose fields containing $delimiter, $enclosure or whitespace
+				if ( $encloseAll || preg_match( "/(?:${delimiter_esc}|${enclosure_esc}|\s)/", $field ) ) {
+					$outputrow[] = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $field) . $enclosure;
+				}
+				else {
+					$outputrow[] = $field;
+				}
+			}
+                        //$output[] = "Total Participants: ".$this->criteria['total_participants']."";
+                      
+                              
+			$output[] = implode($delimiter,$outputrow);
+		}
+		$output = implode("\n", $output);
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=training-data-" . date("d.m.Y.H.m.s") . ".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $output;
+		exit;
+	}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Training Reports');?></title>
+		
+                <?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+     
+
+
+
+<script src="../js/datepicker/jquery.plugin.js"></script>
+<script src="../js/datepicker/jquery.datepick.js"></script>
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script>
+   
+ $(function() {
+	$("#StartDate").datepicker({
+            changeMonth: true,
+      changeYear: true
+        });
+       // $('#EndDate').datepick();
+        $("#EndDate" ).datepicker({
+            changeMonth: true,
+      changeYear: true
+        });
+	
+});
+
+
+
+</script>
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+<link href="../js/datepicker/jquery.datepick.css" rel="stylesheet"/>
+
+  
+  
+                <link rel="stylesheet" href="../jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+<!--    <script type="text/javascript" src="../jqwidgets/scripts/jquery-1.11.1.min.js"></script>-->
+    <script type="text/javascript" src="../jqwidgets/scripts/demos.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxcombobox.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxpanel.js"></script>
+    <script type="text/javascript" src="../jqwidgets/jqwidgets/jqxcheckbox.js"></script>
+    <input type="hidden" value='<?php echo json_encode($this->trainingIDs); ?>' id="trainingIDHidden" />
+     <script type="text/javascript">
+         
+           
+            
+                
+            $(document).ready(function () {
+                 
+                
+                 $("#region_c_id").on('change', function (event) {
+                     check_buttons();
+                 });
+                 $("#province_id").on('change', function (event) {
+                     check_buttons();
+                 });
+                
+                $("#district_id").on('change', function (event) {
+                    check_buttons();
+                     var trainingIdsForm = new Array();
+                    var district_id = $("#district_id").val().toString();
+                    var allIDs = district_id.split(",");
+                    var data = new Array();
+                    $.each(allIDs, function( index, value ) {
+                     var stateCode = value.toString().split("_");
+                     data[index] = stateCode[1];
+                            //alert(value);
+                        });
+                        
+                 
+                 var trainingIDHidden = $("#trainingIDHidden").val();
+                 var trainingObject  = JSON.parse(trainingIDHidden);
+                 //alert(typeof(trainingObject));
+                 //alert(typeof(data));
+                 $.each( trainingObject, function( key, value ) {
+                    var location_id = value.location_id;
+                    var id = value.id;
+                    
+                    
+                    
+                     $.each( data, function( keys, values ) {
+                         if(values===location_id){
+                            // trainingIdsForm[] = id;
+                             trainingIdsForm.push(id);
+                            // continue;
+                         }
+                     });
+                    });
+                   // alert("location id ");
+                   
+                   
+                   var countries = trainingIdsForm;
+                // Create a jqxComboBox
+                $("#jqxComboBox").jqxComboBox({source: countries, multiSelect: true, width: 200, height: 25});           
+//                $("#jqxComboBox").jqxComboBox('selectItem', '681');
+//                $("#jqxComboBox").jqxComboBox('selectItem', '710');
+                $("#arrow").jqxButton({  });
+                $("#arrow").click(function () {
+                    $("#jqxComboBox").jqxComboBox({ showArrow: false });
+                });
+                // trigger selection changes.
+                $("#jqxComboBox").on('change', function (event) {
+                    var items = $("#jqxComboBox").jqxComboBox('getSelectedItems');
+                    var selectedItems = "Selected Items: ";
+                    $.each(items, function (index) {
+                        selectedItems += this.label;
+                        if (items.length - 1 != index) {
+                            selectedItems += ", ";
+                        }
+                    });
+                    $("#log").text(selectedItems);
+                });
+                
+                
+                });
+               
+//                $.each( trainingIdsForm, function( key, value ) {
+//                    alert(value);
+//                });
+                
+                var countries = new Array("");
+                // Create a jqxComboBox
+                $("#jqxComboBox").jqxComboBox({source: countries, multiSelect: true, width: 200, height: 25});           
+//                $("#jqxComboBox").jqxComboBox('selectItem', '681');
+//                $("#jqxComboBox").jqxComboBox('selectItem', '710');
+                $("#arrow").jqxButton({  });
+                $("#arrow").click(function () {
+                    $("#jqxComboBox").jqxComboBox({ showArrow: false });
+                });
+                // trigger selection changes.
+                $("#jqxComboBox").on('change', function (event) {
+                    var items = $("#jqxComboBox").jqxComboBox('getSelectedItems');
+                    var selectedItems = "Selected Items: ";
+                    $.each(items, function (index) {
+                        selectedItems += this.label;
+                        if (items.length - 1 != index) {
+                            selectedItems += ", ";
+                        }
+                    });
+                    $("#log").text(selectedItems);
+                });
+                
+                
+        
+            });
+        </script>
+   
+    
+<?php 
+if( isset($this->criteria['aggregate_method']) && $this->criteria['aggregate_method']=="view_part_names"){
+    ?>
+    <script type="text/javascript" charset="utf-8">
+                    
+			$(document).ready(function() {
+                      
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers",
+                                         "order": [[ 0, "asc" ]],
+                                         "aaSorting": [[0, 'asc']]
+				});
+                                
+                               dialogs = $( "#dialog-certification-message" ).dialog({
+                                  autoOpen: false,
+                                  modal: true,
+                                  draggable: false,
+                                  resizable: false,
+                                      });  
+                                
+			} );
+                        
+                       
+		</script>
+<?php 
+}else{
+    
+
+?>
+		<script type="text/javascript" charset="utf-8">
+                    
+			$(document).ready(function() {
+                      
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers",
+                                         "order": [[ 0, "desc" ]],
+                                         "aaSorting": [[0, 'desc']]
+				});
+                                
+                                dialogs = $( "#dialog-certification-message" ).dialog({
+                                  autoOpen: false,
+                                  modal: true,
+                                  draggable: false,
+                                  resizable: false,
+                                      }); 
+                                check_buttons();
+			} );
+                        
+                       
+		</script>
+<?php } ?>
+    
+ 
+	</head>
+    <style type="text/css">
+        h4,h3, .row{
+            font-size: 13px !important;
+        }
+        .datepicker{
+            width:45% !important;
+        }
+        .infodiv{
+            float:right !important;
+            left: 0 !important;
+        }
+        #StartDate,#EndDate{
+            border:2px solid !important;
+        }
+        .col-md-11 {
+
+    margin-left: 60px !important;
+}
+.ui-datepicker-calendar thead{
+    background:#fff !important;
+    color:#000 !important;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    color: #FFF;
+    background: #71AE70 none repeat-x scroll 50% 50%;
+    font-weight: normal;
+}
+
+
+#pageHolder{
+    min-width:0px !important;
+}
+
+        #trainingtype{
+            max-width:190px !important;
+        }
+        #facility_id, #aggreg_facility_id{
+            max-width:200px !important;
+            min-width:200px !important;
+        }
+        .center{
+            text-align: center !important;
+            margin: 0 auto !important;
+        }
+        .mclass{
+    min-height:100px;
+   
+    
+}
+select, input[type="text"] {
+    color: black !important;
+}
+
+.datepick select{
+    color:white !important;
+} 
+.datepick-ctrl a{
+    text-decoration:none !important;
+    color:#fff;
+}
+div#dialog-certification-message {
+    min-height: 50px !important;
+}
+#dialog-certification-message{
+    display:none;
+   }
+   legend{
+       padding-left:10px !important;
+   }
+        </style>
+        <script type="text/javascript">
+          
+            function checkDateRange(){
+                var StartMonth = $("#StartMonth").val();
+                var StartYear =  $("#StartYear").val();
+                var EndMonth =   $("#EndMonth").val();
+                var EndYear =    $("#EndYear").val();
+                //alert(StartDate+" end date is "+EndDate);
+                if(EndYear!="" || EndMonth!="" || StartYear!="" || StartMonth!=""){
+                    
+                   // forms.duration.disabled = true;
+                    $("#12_months").prop("disabled",true);
+                    $("#6_months").prop("disabled",true);
+                    $("#3_months").prop("disabled",true);
+                    $("#one_month").prop("disabled",true);
+                }else{
+                   // forms.duration.disabled = false;
+                    $("#12_months").prop("disabled",false);
+                    $("#6_months").prop("disabled",false);
+                    $("#3_months").prop("disabled",false);
+                    $("#one_month").prop("disabled",false);
+                }
+                
+            }
+            
+            function checkMonthDuration(){
+                var duration = forms.duration.value;
+                if(duration!=""){
+                   $("#StartMonth").prop("disabled",true);
+                   $("#StartYear").prop("disabled",true);
+                   $("#EndMonth").prop("disabled",true);
+                   $("#EndYear").prop("disabled",true);
+               }
+            }
+            function checkDuration(){
+               var period =  forms.period.value;
+               if(period=="monthly"){
+                   $("#StartMonth").prop("disabled",true);
+                   $("#StartYear").prop("disabled",true);
+                   $("#EndMonth").prop("disabled",true);
+                   $("#EndYear").prop("disabled",true);
+                   
+                   $("#12_months").prop("disabled",false);
+                    $("#6_months").prop("disabled",false);
+                    $("#3_months").prop("disabled",false);
+                    $("#one_month").prop("disabled",false);
+               }else if(period=="annual"){
+                   $("#StartMonth").prop("disabled",true);
+                   $("#StartYear").prop("disabled",false);
+                   $("#EndMonth").prop("disabled",true);
+                   $("#EndYear").prop("disabled",false);
+                   
+                    $("#12_months").prop("disabled",true);
+                    $("#6_months").prop("disabled",true);
+                    $("#3_months").prop("disabled",true);
+                    $("#one_month").prop("disabled",true);
+                   
+               }else{
+                    $("#12_months").prop("disabled",false);
+                    $("#6_months").prop("disabled",false);
+                    $("#3_months").prop("disabled",false);
+                    $("#one_month").prop("disabled",false);
+                    
+                    
+                    $("#StartMonth").prop("disabled",false);
+                   $("#StartYear").prop("disabled",false);
+                   $("#EndMonth").prop("disabled",false);
+                   $("#EndYear").prop("disabled",false);
+                    
+               }
+            }
+            function check_buttons(){
+               var val =   forms.aggregate_method.value;
+                if(val=="facility_training"){
+                   document.getElementById("facility_id").disabled = false;
+                   //training not disabled
+                    $("#jqxComboBox").jqxComboBox({disabled:false});
+                }
+                else if(val=="facility_geog"){
+                     document.getElementById("facility_id").disabled = false;
+                      $("#jqxComboBox").jqxComboBox({disabled:true});
+                      //training disabled    
+            }
+                else{
+                   document.getElementById("facility_id").disabled = true;
+                    $("#jqxComboBox").jqxComboBox({disabled:true});
+                 }
+            }
+            </script>
+           <style type="text/css">
+             
+
+
+/* HTML5 Boilerplate accessible hidden styles */
+[type="radio"] {
+  border: 0; 
+  clip: rect(0 0 0 0); 
+  height: 1px; margin: -1px; 
+  overflow: hidden; 
+  padding: 0; 
+  position: absolute; 
+  width: 1px;
+}
+
+/* One radio button per line */
+label {
+  
+  cursor: pointer;
+  line-height: 2.5;
+  font-size: 0.99em;
+}
+
+[type="radio"] + span {
+  /*display: block;*/
+}
+
+/* the basic, unchecked style */
+[type="radio"] + span:before {
+  content: '';
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.25em;
+  border-radius: 1em;
+  border: 0.125em solid #fff;
+  box-shadow: 0 0 0 0.15em #000;
+  margin-right: 0.75em;
+  transition: 0.5s ease all;
+}
+
+/* the checked style using the :checked pseudo class */
+[type="radio"]:checked + span:before {
+  background: green;
+  box-shadow: 0 0 0 0.45em #000;
+}
+
+/* never forget focus styling */
+[type="radio"]:focus + span:after {
+  
+}
+#geoSelectionMenuAggregate{
+    display:none;
+    visibility:none;
+}
+
+#content{
+   
+    margin: 0 auto;
+}
+
+         </style>
+    <script>
+ function submitForm(){
+     
+     document.getElementById("trainingDataForm").submit();
+     return true;
+ }    
+ 
+ 
+ $(function() {
+$('#submitTrainingData').click(function() {
+    $.ajax({
+            type: "POST",
+            url: "<?php echo $this->base_url;?>/reports/trainingresult",
+            data: $("#trainingDataForm").serialize(),
+            beforeSend: function() {
+             //alert("before");
+             $(".ui-dialog").show();
+               document.getElementById("dialog-certification-message").style.display = "block";
+               
+              
+                 
+             $('.ui-dialog-titlebar').hide();
+               dialogCert = $( "#dialog-certification-message" ).dialog();
+               $('#dialog-certification-message').dialog('open');
+               },
+            success: function(data) {
+             //alert("successful");
+           //alert(data);
+           
+             var responseData =   jQuery.parseJSON(data);
+             var locationName = responseData['locationName'];
+             
+             
+             document.getElementById("data").innerHTML = "Populating...";
+             var  headers = $.map(responseData.headers, function(el) { return el });
+             
+             
+          
+      
+             var aggregate_method = responseData['aggregate_method'];
+             var totalTraining = responseData['total_training'];
+             var alert = responseData['alert'];
+             
+             var locationTotal = responseData['locationNumber'];
+             
+             var totalParticipants = responseData['total_participants'];
+             //var perLocations = perLocation['perLocation'];
+             //var agreggate_participants = perLocation['agreggate_participants'];
+             //alert(locationName);
+            //lert(agreggate_participants);
+             var dataMessage = "";
+           
+           if(aggregate_method=="view_aggregate_part" || aggregate_method=="view_part_names"){
+                if(aggregate_method=="view_part_names"){
+                    if(locationName=="all geography"){
+                        dataMessage = "<h3 align='left'><b><i>Total Participants :  "+totalParticipants+"</i></b></h3><h4 align='left'><i>"+alert+"</i></h4>";
+                    }else{
+                        dataMessage = "<h3 align='left'><b><i>Total Participants :  "+locationTotal+"</i></b></h3><h4 align='left'><i>"+alert+"</i></h4>";
+                    }
+                }else{
+                    dataMessage = "<h3 align='left'><b><i>Total Participants :  "+totalParticipants+"</i></b></h3>";
+                }
+             }else{
+               dataMessage = "<h3 align='left'><b><i>Total Trainings :  "+totalTraining+"</i></b></h3>";
+             }
+             
+             
+             headers = headers.toString();
+             var headersArray = headers.split(",");
+             var outputArray = jQuery.parseJSON(responseData.output);
+         
+          var responseTable  = dataMessage;
+              responseTable += '<table cellpadding="0" cellspacing="0" border="0" class="display tablegrids" id="" style="width:100%">\n\n\
+                                    <thead>\n<tr>\n';
+
+    jQuery.each( headersArray, function( key, value ) {
+       responseTable += '<th>'+value+'</th>';
+});
+    responseTable += '\n</tr>\n</thead>\n<tbody>\n';
+  
+     jQuery.each( outputArray, function( key, value ) {
+      
+      var individualResponseTableData = value.toString();
+     
+      var individualResponseTableDataArray = individualResponseTableData.split(","); 
+      responseTable  += '<tr>\n';
+      jQuery.each( individualResponseTableDataArray, function( key, result ) {
+          result = result.replace("@", ",");
+          responseTable  += '<td>'+result+'</td>\n';
+      })
+      responseTable  += '</tr>';
+});
+
+    responseTable += '</tbody>\n</table>\n';
+    document.getElementById("resultTable").innerHTML = "";
+    document.getElementById("resultTable").innerHTML = responseTable;
+    document.getElementById("downloadLink").innerHTML = '<input type="hidden" name="csv" value="1" /><span style="float:right !important;"><button type="submit" class="btn-link"  id="submitfinally" name="download" onClick="return submitForm();">Download</button></span><br/>';      
+    document.getElementById("csvdownload").innerHTML = '<input type="hidden" name="csv" value="1" />'; 
+    document.getElementById("csvid").value = 1;
+                oTable = $('.tablegrids').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+               
+                 dialogCert = $( "#dialog-certification-message" ).dialog();
+               $('#dialog-certification-message').dialog('close');
+             $('.ui-dialog-titlebar').show();
+             document.getElementById("data").innerHTML = "Fetching...";
+     
+   },
+            error: function(jqXHR, textStatus, errorThrown){
+              console.log(" The following error occured: "+ textStatus, errorThrown );
+              alert(" The following error occured: "+ textStatus+" "+ errorThrown);
+               dialogCert = $( "#dialog-certification-message" ).dialog();
+               $('#dialog-certification-message').dialog('close');
+             $('.ui-dialog-titlebar').show();
+             document.getElementById("data").innerHTML = "Fetching...";
+            }
+
+        })
+    
+      
+});
+ });
+ 
+</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+         <div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+                
+                        <div id="content">
+	<body class="yui-skin-sam" onload="check_buttons()" >
+		<div id="dialog-certification-message" title="" >
+ 
+           <p style="text-align:center;v-align:middle;padding:10px !important" id="data">Fetching data...</p>
+          </div>
+                        <div clas="row">
+				<div id="subcontent">
+                                    <div class="row">
+					<div id="contentheader">
+						<h2><?php tp('All Queries');?></h2><br>
+					</div>
+                                    </div>
+					
+                                        <div class="row">
+                                         <?php 
+                                                    // print_r($this->criteria['error']);
+                                         if(isset($criteria['error'])){
+                                                     foreach($this->criteria['error'] as $error){
+                                                         echo '<h3 align="center" style="color:red;"><b>* '.$error.'</b></h3>';
+                                                     }
+                                         }
+                                                     ?>
+					<form  action="" method="post" name="forms" id="trainingDataForm" >
+						
+					<input type="hidden" name="process" id="process" value="1">
+					
+
+</div>
+                                        <div class="row">	
+                                                <div  class="col-md-11" style="margin:0 auto !important;min-width:200px;padding-left:4.3% !important;">
+                                                 
+                                                    <?php
+                                                    if(!isset($this->criteria['aggregate_method']) || $this->criteria['aggregate_method']==""){
+                                                        $this->criteria['aggregate_method'] = "aggreg_data";
+                                                    }
+                                                     ////echo 'This is the thing you dnt do in school '.$this->criteria['aggregate_method']; ?>
+                                                    <p style="width:88% !important; margin:0 auto !important;">
+                                                    <label for="aggreg_data"><input type="radio" name="aggregate_method" onClick="check_buttons();" value="aggreg_data" id="aggreg_data" <?php if($this->criteria['aggregate_method']=="aggreg_data"){ echo "checked='checked'";} ?>/>  <span>Show aggregate data for the lowest selected geographies&nbsp;</span></label>  &nbsp;&nbsp;&nbsp;
+                                                    <label for="facility_geog"> <input type="radio" name="aggregate_method" onclick="check_buttons();" id="facility_geog" value="facility_geog" <?php if($this->criteria['aggregate_method']=="facility_geog"){ echo "checked='checked'";} ?>/><span> Show facility data for selected geographies</span></label>&nbsp; &nbsp;&nbsp;  
+                                                    <label for="facility_training"> <input type="radio" name="aggregate_method" onclick="check_buttons()" value="facility_training"  id="facility_training" <?php if($this->criteria['aggregate_method']=="facility_training"){ echo "checked='checked'";} ?>/><span> Show facility data for selected training IDs &nbsp;</span></label>      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    </p>
+                                                 
+                                                </div>
+                                                       </div> 
+                                        <div class="row">
+                                            <div  class="col-md-11" style="border:1px solid black; padding-bottom:3px; margin: 0 auto !important;margin-left:4.6% !important;">
+                                                
+                                                <div class="row">
+                                                    <fieldset>
+                                                        <legend>Select Geography</legend>
+                                                        <div class="row">
+                                                            <div class="col-md-12" >
+                                                                <div class="row" >
+                                                                    <div class="col-md-1">
+                                                                 <div id="infobutton" class="infobutton" style="padding-left:10px !important;">
+                                                                                <span class="infowrap"><i class="fa fa-info-circle"></i></span>
+                                                                                <div id="" class="infodiv" >
+                                                                                   Select at least one geography
+                                                                                </div>
+                                                                 </div>
+                                                                 </div>
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                    <div class="row" style="margin-left:45px !important;">
+                                                        <div class="col-md-1" >
+                                                           
+							<p align="center"><span class="required"></span> National Report</p>
+							
+							<p align="center"><select name="national_report">
+                                                                
+                                                                <option value="">--choose--</option>
+                                                                <option value="0" <?php if($this->criteria['national_report']=="0"){ echo 'selected="selected"'; }?>>National Report</option>
+                                                            </select></p>
+                                                        </div>
+<div class="col-md-2" >
+							<p align="center">Zone</p>
+							
+						<p align="center">	<?php renderFilter($this->locationsPerGeo, 1, 'province_id', $this->criteria['province_id'], 'district_id', true,false,'10'); ?></p>
+</div>
+							<div class="col-md-2" style="min-width:200px">
+	
+							<p align="center">State</p>
+							
+							<p align="center"><?php renderFilter($this->locationsPerGeo, 2, 'district_id', $this->criteria['district_id'], 'region_c_id', true,false,'10'); ?></p>
+                                                        </div>
+							<div class="col-md-2" style="min-width:200px">
+	
+							<p align="center">LGA</p>
+							
+							<p align="center"><?php renderFilter($this->locationsPerGeo, 3, 'region_c_id', $this->criteria['region_c_id'],'facility_id', true, false,'10'); ?></p>
+							
+                                                        </div>
+                                                        <div class="col-md-2" style="min-width:200px">
+							<p align="center"><?php echo t('Training ID'); ?></p>
+							
+							<p align="center"> 
+                                                            
+                                                        
+                                                        <div style="margin-top: 5px;" id='jqxComboBox'></div>
+                                                        </div>
+
+							<!-- TA:17: 09/04/2014 START-->
+<?php ?><div class="col-md-3" style="min-width:200px" >
+                                                        <p align="center">Facility</p>
+							<p align="center">
+<?php renderFilter($this->locationsPerGeo, 4, 'facility_id', $this->criteria['facility_id'],'', true, false,'10'); ?></p>
+</div></div>
+                                                    </fieldset>         
+                                                  
+                                            </div>
+                                        </div>
+                                        
+                                       
+                                        
+                                            <div class="col-md-11" style="padding-top:20px !important;padding-bottom:20px !important;margin:0 auto !important;margin-left:4.6% !important;">
+                                                <div class="row">
+                                                    <div class="col-md-5" style="border:1px solid !important; min-height:278px !important;">
+                                                        
+                                                        <div class="row">
+                                                            <fieldset>
+                                                        <legend>Select Training Information</legend>
+                                                        <div class="row">
+                                                            <div class="col-md-1" >
+                                                                 <div id="infobutton" class="infobutton" style="padding-left:10px !important;">
+                                                                                <span class="infowrap"><i class="fa fa-info-circle"></i></span>
+                                                                                <div id="" class="infodiv" >
+                                                                                   Select at Training Information to choose what training information you wish to view in the output data
+                                                                                </div>
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                        <div clas="row">
+                                                    <div class="col-md-7" style="min-width:200px !important;">
+							<p align="center"><?php echo t('Training Type'); ?></p>
+							
+							<p align="center"><select name="training_type[]" id="trainingtype" multiple size="10" >
+<?php
+echo "<option value=''  >--choose--</option>";
+	foreach ($this->trainingtypes as $item){
+            if(in_array($item['id'],$this->criteria['training_type'])){
+                $selected = "selected='selected'";
+            }else{
+                $selected = "";
+            }
+		echo "<option value=\"" . $item['id'] . "\" ".$selected." title='".$item['training_title_phrase']."'>" . $item['training_title_phrase'] . "</option>\n";
+	}
+?>
+							</select></p></div>
+                                                        
+                                                    
+							<div class="col-md-4" style="min-width:200px !important;">
+
+							<p align="center"><?php echo 'Training Organizer'; ?></p>
+							
+							<p align="center">
+                               <select name="trainingorganizer[]" id="trainingorganizer"  multiple size="10" style="width:180px">
+	<?php
+         echo "<option value='' >--choose--</option>";
+		foreach ($this->trainingorganizer as $item){
+                   if(in_array($item['id'],$this->criteria['trainingorganizer'])){
+                $selected = "selected='selected'";
+            }else{
+                $selected = "";
+            }
+			echo "<option value=\"" . $item['id'] . "\" ".$selected." title='".$item['training_organizer_phrase']."'>" . $item['training_organizer_phrase'] . "</option>\n";
+		}
+	?>
+							</select></p></div>
+                                                        </div>
+                                                        </fieldset>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6 pull-right" style="border:1px solid black;min-height:278px !important; ">
+                                                        <div clas="row">
+                                                        <fieldset>
+                                                            <legend>Select Commodity Information</legend>
+                                                            <div class="row">
+                                                            <div class="col-md-1" >
+                                                                 <div id="infobutton" class="infobutton">
+                                                                                <span class="infowrap"><i class="fa fa-info-circle"></i></span>
+                                                                                <div id="" class="infodiv" style="float:left !important;right:0 !important;">
+                                                                                   Select Commodity Information to choose what consumption and stock-out information you wish to view in the output data
+                                                                                </div>
+                                                               </div>
+                                                            </div>
+                                                        </div>
+                                                            <div class="row">
+                                                        <div class="col-md-5" style="min-width:200px !important;" >
+                                                            <p align="center"><?php echo t('Consumption'); ?></p>
+				                           <p align="center"><select name="consumption[]"  multiple="multiple" size="10" >
+	
+                                                        <?php
+                                                      //  $this->commodity_name_option = array_unique($this->commodity_name_option);
+        echo "<option value='' disabled>--choose--</option>";
+        $exist  = array();
+		foreach ($this->commodity_name_option as $item){
+                    
+                    if(!in_array($item['id'],$exist)){
+                        
+                    if(in_array($item['id'], $this->criteria['consumption'])){
+                       $selected = "selected='selected'"; 
+                    }else{
+                        $selected = "";
+                    }
+                     $dnt_show = array("31","32","38","37","36");
+            if(!in_array($item['id'],$dnt_show)){
+			echo "<option value=\"" . $item['id'] . "\"  ".$selected." title='".$item['commodity_name']."'>" . $item['commodity_name'] . "</option>\n";
+		}
+                $exist[] = $item['id'];
+                    }
+                }
+	?>
+							</select></p><br/>
+                                                        </div>
+                                                        <div class="col-md-2" style="">
+                                                            <p align="center">Providing</p>
+                                                            <p align="center">
+                                                                <select name="providing[]"  multiple >
+                                  <option value="" disabled>--choose--</option>
+                                
+                                  <option value="fp" <?php  if(in_array("fp",$this->criteria['providing'])){echo 'selected="selected"';}?>>Any FP</option>
+                                  <option value="larc" <?php  if(in_array("larc",$this->criteria['providing'])){echo 'selected="selected"';}?>>Any LARC</option>
+                              </select>
+                                                            </p>							
+                                                      
+                                                       
+
+						</div>
+                                                        <div class="col-md-5" style="min-width:200px !important;">
+                                                            <p align="center">Stock Outs</p>
+                                                            <p align="center">   <select name="stock_out[]"  multiple style="max-width: 200px !important;word-wrap:break-word !important;"> 
+                                                                <option value="">--choose</option>
+                                                               <?php
+                   
+		foreach ($this->stock_out_commodity_name_option as $item){
+                    
+                
+                    if(in_array($item['id'], $this->criteria['stock_out'])){
+                       $selected = "selected='selected'"; 
+                    }else{
+                        $selected = "";
+                    }
+                 
+			echo "<option value=\"" . $item['id'] . "\"  ".$selected." title='".$item['commodity_name']."'>" . $item['commodity_name'] . "</option>\n";
+		
+                }
+	?>
+		
+                                                                </select>    </p>               
+														   
+                                                        </div>
+                                                            </div>
+                                                        </fieldset>
+                                                            
+                                                    </div>	
+                                                    </div>
+
+                                                        </div>
+                                                            
+                                            </div>
+                                            
+                                            
+                                             <div  class="col-md-11" style="border:1px solid black; padding-top:5px;margin:0 auto !important;margin-left:4.6% !important; ">
+                                                <div class="row">
+                                                    <fieldset>
+                                                        <legend style="margin-bottom:1px !important;text-align:center !important;">Select Time Period and Date Range</legend>
+                                                    <div>
+                                                        
+                                                    <div class="col-md-3" style="min-width:200px;border-right:1px solid !important;min-height:90px !important;padding-top:15px !important;">
+							<p align="center" class="center">Time Period Display</p>
+							
+                                                        <p align="center" class="center">
+                                                    <p class="center"><label for="monthly">  <input type="radio" name="period" value="monthly" id="monthly" onclick="checkDuration();"> &nbsp;&nbsp;<span>Monthly</span></label>&nbsp;&nbsp;&nbsp;
+                                                    <label for="annual"><input type="radio" name="period" value="annual" id="annual" onclick="checkDuration();"> &nbsp;&nbsp;<span>Annual</span></label>&nbsp;&nbsp;&nbsp;
+                                                    <label for="total"><input type="radio" name="period" value="total" id="total" onclick="checkDuration();"> &nbsp;&nbsp;<span>Total</span></label></p>
+                                                     
+                                                </p>
+                                                    </div>
+							<div class="col-md-3" style="min-width:200px;border-right:1px solid !important;min-height:90px !important;padding-top:15px !important;">
+	
+							<p align="center" class="center">Date Range</p>
+                                                       
+<!--                                                        <p>from &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  to</p>
+							-->
+                                                        <p align="center" class="center">
+                                                            <input type="text" name="StartMonth" id="StartMonth" placeholder="mm"   Onkeyup="checkDateRange();" maxlength="2" size="2"/>&nbsp;
+                                                            <input type="text" name="StartYear" id="StartYear" placeholder="yyyy"   onkeyup="checkDateRange();" maxlength="4" size="4"/>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+							
+                                                            <span>&nbsp;&nbsp;to &nbsp;&nbsp;</span>
+                                                            <input type="text" id="EndMonth" name="EndMonth" placeholder="mm" onChange="checkDateRange();"  Onkeyup="checkDateRange();" maxlength="2" size="2"/>&nbsp;
+                                                            <input type="text" id="EndYear" name="EndYear" placeholder="yyyy" onChange="checkDateRange();"  onkeyup="checkDateRange();" maxlength="4" size="4"/>
+                                                        </p>                  
+                                                                            
+                                                        </div>
+							<div class="col-md-6" style="min-width:200px;min-height:90px !important;padding-top:15px !important;" >
+                                                <p align="center" class="center"></p>
+							
+						<p align="center" class="center">
+                                                    <p class="center">
+                                                        <div id="infobutton" class="infobutton" style="padding-left:10px !important;">
+                                                                                <span class="infowrap"><i class="fa fa-info-circle"></i></span>
+                                                                                <div id="" class="infodiv" >
+                                                                                   The last month for which data is available on the dashboard is December 2015
+                                                                                </div>
+                                                               </div> <br/>
+                                                        <label for="one_month">  <input type="radio" name="duration" value="1" id="one_month" OnClick="checkMonthDuration();"/> &nbsp;&nbsp;<span>Last Month</span></label>&nbsp;&nbsp;&nbsp;
+                                                    <label for="3_months"><input type="radio" name="duration" value="3" id="3_months" Onclick="checkMonthDuration()"/> &nbsp;&nbsp;<span>Last 3 Months</span></label>&nbsp;&nbsp;&nbsp;
+                                                   <label for="6_months"><input type="radio" name="duration" value="6" id="6_months" Onclick="checkMonthDuration()"/> &nbsp;&nbsp;<span>Last 6 Months</span></label>&nbsp;&nbsp;&nbsp;
+                                                  <label for="12_months"><input type="radio" name="duration" value="12"  id="12_months" onclick="checkMonthDuration()"/> &nbsp;&nbsp;<span>Last 12 Months</span></label></p>
+                                                    
+                                                </p>
+                                                
+                                                        </div>
+                                                       
+
+							<!-- TA:17: 09/04/2014 START-->
+                                                       </div>
+                                                    </fieldset>         
+                                                  
+                                            </div>
+                                        </div>
+                                            
+                                        </div>
+                                            </div>
+						
+						<div class="row" style="height : 50px;">
+                                                    <div class="col-md-11">
+							<div  style="margin: 0 auto !important;width:50px !important;"  >
+								<input type="submit" name="go" id="submitTrainingData" value="<?php tp('Fetch');?>" class="submitNoArrow" onclick="return false;"/>
+							</div>
+                                                    </div>
+                                                     
+						</div>
+						
+					
+                                       <div class="row">  
+    <div class="col-md-11">
+ <div id="downloadLink" style="float:right;">
+                                                               <?php 
+                                                               //echo count($this->outputs);exit;
+if (count ($this->output) > 0){
+    $_POST['csv'] = 1;
+$url = $_SERVER['REQUEST_URI'] . "&csv=1";
+    ?>
+    <input type="hidden" name="csv" value="1" />
+    <span style="float:right !important;">
+        <button type="submit" class="btn-link"  name="download" id="submitfinally" onClick="return submitForm();" ><?php tp('Download');?></button></span><br/>
+ <?php   
+}
+?>
+                                                            </div>
+
+<div id="resultTable">
+<?php
+if (isset($this->output)) {
+	if (count ($this->output) == 0){
+            
+           
+                                    
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+              
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+                
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+                                    <?php if(isset($this->criteria['total_participants'])){
+                                        
+                                                 if(!$this->perLocation['agreggate_participants']){
+                                            if($this->perLocation['locationName']=="all geography"){
+                                                 echo "<h3 align='left'><b><i>Total Participants :  ".$this->criteria['total_participants']."</i></b></h3>";
+                                    echo "<h4 align='left'><i>".$this->alert."</i></h4>";
+                                            } else {
+                                     echo "<h3 align='left'><b><i>Total Participants :  ".$this->perLocation['perLocation']."</i></b></h3>";
+                                    echo "<h4 align='left'><i>".$this->alert."</i></h4>";
+                                    
+                                                 }
+                                    
+                                }
+                                else{
+                                  echo "<h3 align='left'><b><i>Total Participants :  ".$this->criteria['total_participants']."</i></b></h3>";
+                                                   
+                                }
+                                } else if(isset($this->criteria['total_training'])) {
+                                    echo "<h3 align='left'><b><i>Total Trainings:  ".$this->criteria['total_training']."</i></b></h3>";
+                                } 
+                                ?>
+                                <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->output as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+                                    <br/>
+                                    <?php
+$url = $_SERVER['REQUEST_URI'] . "&csv=1";
+    ?>
+    <span style="float:right !important;"><button type="submit" class="btn-link"  name="download"><?php tp('Download');?></button></span>
+<?php
+	}
+        ?>
+</div>
+    <?php
+}
+?>
+		</form>			
+				
+                                        </div>
+                                        </div>
+			</div>   
+                </div>
+                        <div class="clear" style="height : 100px;"></div>
+			
+                </div>			
+	
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		
+	</body>
+                            <script src="../js/tp/functions.js"></script>
+                            <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript">
+   function replaceGeoGraphy(aggregateValue){
+      
+      if(aggregateValue=="view_part_names"){
+       document.getElementById("geoSelectionMenu").style.display = 'block';
+       document.getElementById("geoSelectionMenu").style.visibile = 'show';
+       
+       document.getElementById("geoSelectionMenuAggregate").style.display = 'none';
+       document.getElementById("geoSelectionMenuAggregate").style.visibile = 'hidden';
+       //alert("heelo");
+      }else{
+       document.getElementById("geoSelectionMenuAggregate").style.display = 'block';
+       document.getElementById("geoSelectionMenuAggregate").style.visibile = 'show';
+       
+       document.getElementById("geoSelectionMenu").style.display = 'none';
+       document.getElementById("geoSelectionMenu").style.visibile = 'hidden';
+       //alert("hello");
+       
+ }
+}
+   
+    </script>
+</html>
+
+
+
+
+
+

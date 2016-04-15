@@ -170,6 +170,7 @@ class Location extends ITechTable
 				//check that the hierarchy works
 				//if the parent is more than one tier higher, then no good unless the middle region is off
 				$is_good = true;
+
                                 /**
                                  * TP replaced the folowing line 
                                  * $parent_tier = (!$row['parent_id'] ? 0: $indexed[$row['parent_id']]['tier']);
@@ -177,7 +178,7 @@ class Location extends ITechTable
                                  * 
                                  * It tests if the row has a parent id index i.e. if it is a child
                                  * If it is, then it checks the parent value exists.
-                                 * We had cases when parent values did not exist especially for tier 4 loctions
+                                 * We had cases when parent values did not exist especially for tier 4 locations
                                  * and this gave errors
                                  */
                                 $parent_tier = (!$row['parent_id'] ? 0: $indexed[$row['parent_id']]['tier']);
@@ -191,6 +192,7 @@ class Location extends ITechTable
 //                                    }
 //                                }
                                 
+
 				if ( $row['tier'] > 1 && !$parent_tier) {
 					$is_good = false;
 				} else if ( (($parent_tier + 1) != $row['tier']) ) {
@@ -789,6 +791,9 @@ class Location extends ITechTable
       $location_name = array("3","2","1");
       $geogLocation = array();
       //$location_name = array();
+
+      $tier = 0;
+
      if($user->isUserAnLga()){
                        $tier = 1;
                        $appender = " Local Government";

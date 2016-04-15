@@ -15,6 +15,7 @@ $navMain = array( // directory => array of nav items
     'index' => t('Home'), // file => label (use "index" for root)
   ));
 
+
 if ( $this->isLoggedIn() ) {
 
 	if ( $this->hasACL('in_service')) {
@@ -253,8 +254,13 @@ $navMain['menu']['import'] = t('Import DHS Data');
 
 $firstName = 'guest';
 $loginoutLink =  '<a href="'.(Settings::$COUNTRY_BASE_URL).'/user/login">'.t("login").'</a>';
+<<<<<<< HEAD
 if ( $this->isLoggedIn() ) $firstName = $this->identity->first_name;
 if ( $this->isLoggedIn() ) $loginoutLink = '<a href="'.(Settings::$COUNTRY_BASE_URL).'/user/logout">'.t("logout").'</a>';
+=======
+if ( method_exists($this, 'isLoggedIn') ) $firstName = $this->identity->first_name;
+if ( method_exists($this, 'isLoggedIn') ) $loginoutLink = '<a href="'.(Settings::$COUNTRY_BASE_URL).'/user/logout">'.t("logout").'</a>';
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
 
 // custom inline CSS
 if(isset(Settings::$CSS)) {

@@ -79,7 +79,7 @@ public function getCommodityNameId($alias){
            return $value;
        }
        public function removeSelected($geog){
-          
+          if(isset($geog[0]) ){
            
            $size = sizeof($geog);
            $geography = array();
@@ -90,6 +90,9 @@ public function getCommodityNameId($alias){
                  return $geog;  
                }
            }
+          }else{
+              return $geog;
+          }
        }
     //TP: Getting the monthly date range
     public function getMonthlyDateRange($start_month,$start_year,$end_month,$end_year){
@@ -139,14 +142,22 @@ public function getCommodityNameId($alias){
         
     }
     public function formatSelection($geog){
+        $geog = array();
+        if(isset($geog[0])){
         if($geog[0]=="" || $geog[0]==" "){
                    //print_r($localgovernment);
-                    $geog = array_slice($geog, 1);
+            if(is_array(($geog))){
+                $geog = array_slice($geog, 1);
+            }else{
+                $geog = array();
+            }
+                    
                    // print_r($localgovernment);
                      if(sizeof($geog)==1){
                         $geog = array();
                     }
                 }
+        }
                 return $geog;
     }
     public function explodeGeogArray($geo,$tier){
@@ -172,9 +183,9 @@ public function getCommodityNameId($alias){
                if($key2){
                   array_splice($geography,$key2,1); 
                }
-               $geosize = sizeof($goegraphy);
+               $geosize = sizeof($geography);
                if($geosize<=0){
-                   $goegraphy = array();
+                   $geography = array();
                }
                
                

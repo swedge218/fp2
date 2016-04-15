@@ -73,8 +73,14 @@ class CacheManager {
     }
     
     public function updateIndicator($dataArray, $where){
+
+//        print_r($dataArray);
+//        print_r($where);
+//        exit;
         $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+        //echo $where;exit;
         $db->update('data_cache', $dataArray, $where);
+       // print $data->__toString();
     }
     
     public function findIndicator(){

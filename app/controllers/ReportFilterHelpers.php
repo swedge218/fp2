@@ -240,7 +240,7 @@ class ReportFilterHelpers extends ITechController {
           $zone = $this->getSanParam('province_id');
             $state  = $this->getSanParam('district_id');
             $localgovernment  = $this->getSanParam('region_c_id');
-            
+
             $criteria = array();
             $criteria['province_id'] = $zone;
             $criteria['district_id'] = $state;

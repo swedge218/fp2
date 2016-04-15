@@ -152,7 +152,9 @@
 											<?php }?>
 											
 											<?php
-											echo DropDown::render_report_filter('training_organizer','showOrganizer',(@$this->translation['Training Organizer']),$this->organizers,'training_organizer_phrase',$this->criteria['training_organizer_id'],$this->criteria['showOrganizer'],false,false,($this->expand_lists?true:false));
+
+                                            $quickDropDown = new DropDown();
+											echo $quickDropDown->render_report_filter('training_organizer','showOrganizer',(@$this->translation['Training Organizer']),$this->organizers,'training_organizer_phrase',$this->criteria['training_organizer_id'],$this->criteria['showOrganizer'],false,false,($this->expand_lists?true:false));
 											?>
 											<?php if ( ! isset($this->setting['display_training_partner']) ) { $this->setting['display_training_partner'] = false; } ?>
 											<?php if ($this->setting['display_training_partner'] ) { ?>

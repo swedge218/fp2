@@ -966,6 +966,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
     {
         // check to see if name => class mapping exists for helper/filter
         $classLoaded = '_' . $type . 'Loaded';
+
         $classAccess = '_set' . ucfirst($type) . 'Class'; 
         
         /* TP modified the following line
@@ -979,8 +980,7 @@ abstract class Zend_View_Abstract implements Zend_View_Interface
          */
         if (array_key_exists($name, $this->$classLoaded)) {  
             return $this->$classLoaded[$name];
-        }
-        
+        }    
 
         // only look for "$Name.php"
         $file = ucfirst($name) . '.php';

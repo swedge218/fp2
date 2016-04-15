@@ -616,7 +616,10 @@ return $clear;
 				}
 
 				if ($strrpos = strrpos ( $facility_id, '_' )) {
-					$facility_id = array_pop(explode('_', $facility_id));
+
+                    $facilityExplode = explode('_', $facility_id);
+					$facility_id = array_pop($facilityExplode);
+
 				}
 
 				//find by name
@@ -641,7 +644,8 @@ return $clear;
 			$criteria = $this->_getAllParams ();
 			require_once 'views/helpers/Location.php';
 			$home_city_parent_id = regionFiltersGetLastID('home', $criteria);
-			if ( $criteria['home_city'] && !$criteria[ 'is_new_home_city' ] ) {
+
+			if ( isset($criteria['home_city']) && !isset($criteria[ 'is_new_home_city' ]) ) {
 				$city_id = Location::verifyHierarchy ( $criteria['home_city'], $home_city_parent_id, $this->setting('num_location_tiers') );
 				if ( $city_id === false ) {
 					$status->addError ( 'home_city', t ( "That city does not appear to be located in the chosen region. If you want to create a new city, check the new city box." ) );
@@ -667,14 +671,22 @@ return $clear;
 				if ( $city_id ) {
 					$personrow->home_location_id = $city_id;
 				} else {
-				$home_location_id = Location::verifyHierarchy ( $criteria['home_city'], $home_city_parent_id, $this->setting('num_location_tiers') );
 
-					if ( $home_location_id)
+                                    if(isset($criteria['home_city'])){
+                                        $home_location_id = Location::verifyHierarchy ( $criteria['home_city'], $home_city_parent_id, $this->setting('num_location_tiers') );
+
+                                    }
+				
+					if ( isset($home_location_id))
+
 					$personrow->home_location_id = $home_location_id;
 				}
 				//these are transitionary database fields, will go away soon
 				//  $personrow->home_district_id = null;
 				//  $personrow->home_province_id = null;
+
+                                $personrow->timestamp_updated = date("Y-m-d H:i:s",time());
+
 				if (!$personrow->home_city)
 					$personrow->home_city = ''; // bugfix, field cannot be null.
 
@@ -939,7 +951,8 @@ return $clear;
 						}
 					}
 
-					TrainingRecommend::saveRecommendedforPerson ( $person_id, $this->getSanParam ( 'training_recommend' ) );
+                    $trainingRecommend = new Trainingrecommend();
+					$trainingRecommend->saveRecommendedforPerson ( $person_id, $this->getSanParam ( 'training_recommend' ) );
 
 					if ($this->_getParam ( 'redirectUrl' )) {
 						$status->redirect = $this->_getParam ( 'redirectUrl' );
@@ -1092,11 +1105,12 @@ return $clear;
 		$this->viewAssignEscaped ( 'occupationalcats', $occupationalsArray );
 
 		// get recommended trainings class topics
-		$training_recommend = TrainingRecommend::getRecommendedTrainingTopics ( $personArray ['primary_qualification_option_id_parent'] );
+        $trainingRecommend = new TrainingRecommend();
+		$training_recommend = $trainingRecommend->getRecommendedTrainingTopics ( $personArray ['primary_qualification_option_id_parent'] );
 		$this->viewAssignEscaped ( 'training_recommend', $training_recommend );
 
 		// get saved recommended trainings class titles
-		$training_recommend_saved = TrainingRecommend::getRecommendedforPerson ( $person_id );
+		$training_recommend_saved = $trainingRecommend->getRecommendedforPerson ( $person_id );
 		$this->viewAssignEscaped ( 'training_recommend_saved', $training_recommend_saved );
 
 		//$classes = TrainingRecommend::getRecommendedClassesforPerson ( $person_id );
@@ -1225,6 +1239,9 @@ return $clear;
 			$this->doNoAccessError ();
 		}
 $reports = new Report();
+
+$locationWhereQuery = "";
+
                 $user = new User();
                 $new_locations = array();
                 $newLocation = "";

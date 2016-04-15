@@ -268,7 +268,7 @@ echo "<option value='' disabled>--choose--</option>";
 
                                                         <div class="queryquestion">Stock Out</div><br/>
 							
-							<div class="queryquestion"><select name="stock_out" style="width:200px;"> 
+                                                        <div class="queryquestion"><select name="stock_out[]" style="width:200px;" multiple> 
                                                                 <option value="" d>--choose</option>
                                                                 <option value="38" <?php if($this->criteria['stock_out']=="38") echo 'selected="selected"';?> title="Stocked Out of Implant">Stocked Out of Implant</option>
                                                                 <option value="31" <?php if($this->criteria['stock_out']=="31") echo 'selected="selected"';?> title="Stocked Out of emergency contraception">Stocked Out of emergency contraception</option>

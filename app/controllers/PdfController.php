@@ -1649,6 +1649,8 @@ if($this->getSanParam('go')){
              $minYear = $minDateArray[0];
              $minMonth = $minDateArray[1];
              $minDay = $minDateArray[2];
+
+             $error = array();
                  //-----------------------------------------the query is here now.----------------------------------------------//
                 $zone = $this->getSanParam('province_id');
                 $state  = $this->getSanParam('district_id');
@@ -1656,7 +1658,10 @@ if($this->getSanParam('go')){
                 
                 $startDateValue = $this->getSanParam('StartDate');
                 $endDateValue = $this->getSanParam('EndDate');
-       
+
+                $headers = "";
+                $outputs = "";
+
                 
                 $genDatesStart = array();
                 $genDatesEnd = array();
@@ -1664,6 +1669,7 @@ if($this->getSanParam('go')){
                 $genDatesStart = explode("/", $startDateValue);
                 $genDatesEnd = explode("/",$endDateValue);
                 
+<<<<<<< HEAD
                 $startDay = $report->check_length_add_one($genDatesStart[1]);
                 $startMonth = $report->check_length_add_one($genDatesStart[0]);
                 $startYear = $genDatesStart[2];
@@ -1671,6 +1677,46 @@ if($this->getSanParam('go')){
                 $endDay = $report->check_length_add_one($genDatesEnd[1]);
                 $endMonth = $report->check_length_add_one($genDatesEnd[0]);
                 $endYear = $genDatesEnd[2];
+=======
+                $startDay = "";
+                $startMonth = "";
+                $startYear = "";
+                
+                if(isset($genDatesStart[1])){
+                    $startDay = $report->check_length_add_one($genDatesStart[1]);
+                }
+                
+                if(isset($genDatesStart[0])){
+                    $startMonth = $report->check_length_add_one($genDatesStart[0]);
+                }
+                
+                if(isset($genDatesEnd[2])){
+                    $startYear = $genDatesStart[2];
+                }
+                
+//                $startMonth = $report->check_length_add_one($genDatesStart[0]);
+//                $startYear = $genDatesStart[2];
+               
+                $endDay = "";
+                $endMonth = "";
+                $endYear = "";
+                
+                 if(isset($genDatesEnd[1])){
+                    $endDay = $report->check_length_add_one($genDatesEnd[1]);
+                }
+                
+                if(isset($genDatesEnd[0])){
+                    $endMonth = $report->check_length_add_one($genDatesEnd[0]);
+                }
+                
+                if(isset($genDatesEnd[2])){
+                    $endYear = $genDatesEnd[2];
+                }
+                
+//                $endDay = $report->check_length_add_one($genDatesEnd[1]);
+//                $endMonth = $report->check_length_add_one($genDatesEnd[0]);
+//                $endYear = $genDatesEnd[2];
+>>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
                 
                 /*
                 $startDay = $report->check_length_add_one($this->getSanParam('start-day'));
