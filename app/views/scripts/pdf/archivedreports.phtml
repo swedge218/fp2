@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('PDF Archival');?></title>
+		<link href="../js/datepicker/jquery.datepick.css" rel="stylesheet"/>
+                <?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+                <script src="../js/datepicker/jquery.plugin.js"></script>
+<script src="../js/datepicker/jquery.datepick.js"></script>
+
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" />
+
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+			} );
+		</script>
+	</head>
+    <style type="text/css">
+        
+        select{
+            
+      
+           
+        }
+   
+tr{
+    cursor:default !important;
+}
+h2,h3{
+            font-size: 16px !important;
+        }
+        select, input[type="text"] {
+    color: black !important;
+}
+        </style>
+        <script>
+ $(function() {
+	$('#StartDate').datepick();
+        $('#EndDate').datepick();
+        
+       
+});
+</script>
+	<body class="yui-skin-sam" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			<div id="content">
+                             <div clas="row">
+				<div id="subcontent">
+                                    <div class="row">
+					<div id="contentheader">
+						<h2><?php tp('Archived PDF Reports');?></h2><br>
+                                                   
+                                        </div>
+					</div>
+                                    <div class="row">
+                                     <?php 
+                                                    // print_r($this->criteria['error']);
+                                     if(isset($_POST['go'])){
+                                         if(isset($this->criteria['error'])){
+                                                     foreach($this->criteria['error'] as $error){
+                                                         echo '<h3 align="center" style="color:red;"><b>* '.$error.'</b></h3>';
+                                                     }
+                                         }
+                                     }
+                                                     ?>
+                                    </div>
+					<div class="pad20 clear"></div>
+					<form  action="" method="post">
+						
+					<input type="hidden" name="process" id="process" value="1">
+					<br/>
+
+    <div class="row">
+    	<div class="col-md-11" style="border:1px solid black;  margin:0 auto;padding-bottom:3px;padding-left:10px; " >
+            <div class="row">
+            <div class="col-md-2" >
+							<p align="center"><span class="required"></span> National Report</p>
+							
+							<p align="center"><select name="national_report">
+                                                                
+                                                                <option value="">--choose--</option>
+                                                                <option value="0" <?php if($this->criteria['national_report']=="0"){ echo 'selected="selected"'; }?>>National Report</option>
+                                                            </select></p>
+                                                        </div>
+							<div class="col-md-2" >
+
+							<p align="center"><span class="required">*</span> Zone</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 1, 'province_id', $this->criteria['province_id'], 'district_id', true,false,"10"); ?></p>
+                                                        </div>
+							<div class="col-md-3" >
+	
+							<p align="center"><span class="required">*</span> State</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 2, 'district_id', $this->criteria['district_id'], 'region_c_id', true,false,"10"); ?></p>
+                                                        </div>
+							<div class="col-md-3" >
+	
+							<p align="center"><span class="required"></span> LGA</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 3, 'region_c_id', $this->criteria['region_c_id'],'facility_id', true, false,"10"); ?></p>
+                                                        </div>
+							
+<div class="col-md-2" >
+
+                                                         
+							<p align="center"><?php echo t('Date Range'); ?></p>
+							
+							<p align="center"><input type="text"  value="<?php echo $this->criteria['StartDate']; ?>" id="StartDate" name="StartDate" style="width:100% !important"/></p>
+                                                        
+                                                           <p align="center"> to &nbsp;</p>   
+                                                           <p align="center"><input type="text"  value="<?php echo $this->criteria['EndDate']; ?>" id="EndDate" name="EndDate" style="width:100% !important"/></p>
+                                                             
+
+						</div>      </div>
+						
+    </div>
+							<!-- TA:17: 09/04/2014 START-->
+    </div>
+
+							
+							<div class="row" style="height : 30px;">
+                                                             <div class="col-md-11">
+							<div  style="float : right;" >
+								<input type="submit" name="go" value="<?php tp('Preview');?>" class="submitNoArrow" />
+							</div>
+							
+                                                             </div>
+						</div>
+						
+</form>
+
+
+                                  
+                                    
+                                    
+                                   
+                                   
+                                        <div class="col-md-11" style="margin:0 auto;">
+                                        <?php
+ //print_r($this->tocktack);
+
+if (isset($this->outputs)) {
+	if (count ($this->outputs) == 0){
+            echo 
+            '<br/>
+            <h2><b>Archived PDF Reports</b></h2>';
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				
+                                    <h2><b>Archived PDF Reports</b></h2>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->outputs as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+				
+<?php
+	}
+}
+?>
+                                    </div>
+                                    </div>
+					<div class="clear" style=""></div>
+				</div>
+				<div class="clear" style=""></div>
+			</div> 
+                        </div>
+			<div class="clear" style="height : 100px;"></div>
+			<div class="clear" style=""></div>
+				
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+

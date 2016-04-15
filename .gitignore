@@ -1,0 +1,6 @@
+/.settings
+/.project
+*.log
+/nbproject/
+/.idea
+/.vagrant

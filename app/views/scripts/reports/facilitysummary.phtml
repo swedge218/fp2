@@ -1,0 +1,461 @@
+<?php
+	if (isset ($_POST['download'])){
+
+		$data = array();
+		
+		$_row = array();
+                $data[] = array("","Facility Summary of ".$this->criteria['details_facility']['facility_name']."","");
+                $data[] = array("Geo Zone","".$this->criteria['details_facility']['geo_zone']."");
+                $data[] = array("State","".$this->criteria['details_facility']['state']."");
+                $data[] = array("Local Government","".$this->criteria['details_facility']['lga']."");
+                $data[] = array("");
+                $data[]  = array("","HR Summary: Total number of health workers trained","");
+                $data[] = "";
+                  foreach ($this->heading as $key=>$value){
+			$_row[] = $value;
+		}
+		$data[] = $_row;
+		
+		foreach ($this->outdetails as $row){
+			$_row = array();
+			foreach ($row as $key=>$value){
+				$_row[] = $value;
+			}
+			$data[] = $_row;
+		}
+		//print_r($this->summary);echo '<br/><br/>';
+               // print_r($this->summary_details);exit;
+ $sizer = sizeof($this->summary_details);
+ $data[] = "";
+                                    for($u=0;$u<$sizer;$u++){
+                                        $titles = $this->summary[$u];
+                                        $values = $this->summary_details[$u];
+                                    $data[] =  array("Health Workers trained in ".$titles.": ".$values,"");  
+                                    //array_push($data,$hw_summary);
+                                    }
+                
+                $data[] = "";
+                $data[] = array("","Commodity Summary: Monthly consumption by method for last 12 months","");
+                $data[] = "";
+                $_row = array();
+              foreach ($this->headers as $key=>$value){
+			$_row[] = $value;
+		}
+		$data[] = $_row;
+		
+		foreach ($this->output as $row){
+			$_row = array();
+			foreach ($row as $key=>$value){
+				$_row[] = $value;
+			}
+			$data[] = $_row;
+		}
+                
+                $data[] = "";
+                $data[] = array("","Stock Out Summary: Stock outs over last 12 months","");
+                $data[] = "";
+                $_row = array();
+                foreach ($this->headers as $key=>$value){
+			$_row[] = $value;
+		}
+		$data[] = $_row;
+		
+		foreach ($this->outputs as $row){
+			$_row = array();
+			foreach ($row as $key=>$value){
+				$_row[] = $value;
+			}
+			$data[] = $_row;
+		}
+		
+               // print_r($data);exit;
+		$delimiter = ',';
+		$enclosure = '"';
+		$encloseAll = false;
+		$nullToMysqlNull = false;
+	
+		$delimiter_esc = preg_quote($delimiter, '/');
+		$enclosure_esc = preg_quote($enclosure, '/');
+	
+		$output = array();
+
+		foreach ($data as $row){
+			$outputrow = array();
+			foreach ($row as $field){
+				if ($field === null && $nullToMysqlNull) {
+					$outputrow[] = 'NULL';
+					continue;
+				}
+		
+				// Enclose fields containing $delimiter, $enclosure or whitespace
+				if ( $encloseAll || preg_match( "/(?:${delimiter_esc}|${enclosure_esc}|\s)/", $field ) ) {
+					$outputrow[] = $enclosure . str_replace($enclosure, $enclosure . $enclosure, $field) . $enclosure;
+				}
+				else {
+					$outputrow[] = $field;
+				}
+			}
+                        
+                        
+                        
+			$output[] = implode($delimiter,$outputrow);
+		}
+		$output = implode("\n", $output);
+
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=facility-summary::Commodity-Summary:Monthly-consumption-by-method-for-last-12-months" . date("d.m.Y.H.m.s") . ".csv");
+		header("Pragma: no-cache");
+		header("Expires: 0");
+		echo $output;
+		exit;
+	}
+        
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Facility Summary Report');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css" />
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				/* Init the table */
+				oTable = $('.tablegrid').dataTable({
+					"bJQueryUI": true,
+					"sPaginationType": "full_numbers"
+				});
+			} );
+		</script>
+	</head>
+    <style type="text/css">
+        #content {
+    
+  
+    margin: 0 auto;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    color: #FFF;
+    background: #71AE70 none repeat-x scroll 50% 50%;
+    font-weight: normal;
+}
+        .col-md-11 {
+
+    margin-left: 60px !important;
+}
+select, input[type="text"] {
+    color: black !important;
+}
+        h4,h3,h2, .row{
+            font-size: 13px !important;
+            text-align:left;
+        }
+        
+#pageHolder{
+    min-width:0px !important;
+}
+#facility_id{
+    min-width:75% !important;
+}
+        </style>
+        <div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+              
+            
+			<div id="content">
+                            
+	<body class="yui-skin-sam" >
+		
+				<div id="subcontent">
+                                    <div class="row">
+                                        
+                                    <div class="row">
+                                    <div class="col-md-11">
+					<div id="contentheader">
+						<h2><?php tp('Facility Summary Query');?></h2><br>
+                                                   <?php if(array_key_exists('facility_name',$this->criteria['details_facility'])){
+                                                   ?><h3><?php tp('Facility Summary of '.$this->criteria['details_facility']['facility_name'].'');?></h3>
+                                                   <?php }?>
+                                                   <br/>
+					</div>
+                                    
+                                    </div>
+                                     <div class="col-md-11">
+                                     <?php 
+                                                    // print_r($this->criteria['error']);
+                                     if(isset($_POST['go'])){
+                                                     foreach($this->criteria['error'] as $error){
+                                                         echo '<h3 align="center" style="color:red;"><b>* '.$error.'</b></h3>';
+                                                     }
+                                     }
+                                                     ?>
+                                     </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-11" style="border:1px solid black;">
+                                            <div class="row">
+					<form  action="" method="post">
+						
+					<input type="hidden" name="process" id="process" value="1">
+					
+
+							<div class="col-md-2">
+
+							<p align="center"><span class="required">*</span> Zone</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 1, 'province_id', $this->criteria['province_id'], 'district_id', false,false,"10"); ?></p>
+                                                        </div>
+							<div class="col-md-2">
+	
+							<p align="center"><span class="required">*</span> State</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 2, 'district_id', $this->criteria['district_id'], 'region_c_id', false,false,"10"); ?></p>
+                                                        </div>
+							<div class="col-md-2">
+	
+							<p align="center"><span class="required">*</span> LGA</p>
+							
+							<p align="center"><?php renderFilter($this->locations, 3, 'region_c_id', $this->criteria['region_c_id'],'facility_id', false, false,"10"); ?></p>
+                                                        </div>
+							
+
+							<!-- TA:17: 09/04/2014 START-->
+<div class="col-md-6">
+                                                        <p align="center"><span class="required">*</span> Facility</p>
+							<p align="center">
+<?php renderFilter($this->locations, 4, 'facility_id', $this->criteria['facility_id'],'', false, false,'10'); ?></p>
+</div>
+                                                        </div>
+                                        </div></div>
+                                    <div class="row">
+
+							<div class="col-md-11">
+							<div class="mainformholder" style="height : 100px;">
+							<div  style="float : right;" >
+								<input type="submit" name="go" value="<?php tp('Preview');?>" class="submitNoArrow" />
+							</div>
+                                                        </div>
+                                                        </div>
+						</div>
+						
+<br/>
+<div class="row">
+<?php 
+if (count ($this->outputs) > 0){
+    $_POST['csv'] = 1;
+$url = $_SERVER['REQUEST_URI'] . "&csv=1";
+    ?>
+    <input type="hidden" name="csv" value="1" />
+    <span style="float:right !important;">
+        <button type="submit" class="btn-link"  name="download"><?php tp('Download');?></button></span><br/>
+ <?php   
+}
+?>
+
+<div class="col-md-11">
+                                        <?php
+ //print_r($this->tocktack);
+
+if (isset($this->outdetails)) {
+	if (count ($this->outdetails) == 0){
+           echo ' <br>
+                                    <h2><b>HR Summary: Total number of health workers trained</b></h2>';
+            
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+<br>
+                                    <h2><b>HR Summary: Total number of health workers trained</b></h2>
+				
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->heading as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->outdetails as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+                                    <?php 
+                                    $size = sizeof($this->summary_details);
+                                    for($r=0;$r<$size;$r++){
+                                        $title = $this->summary[$r];
+                                        $value = $this->summary_details[$r];
+                                     echo  '<h2><b>Health Workers trained in '.$title.': '.$value.'</b></h2>';  
+                                    }
+                                    ?>
+                              <br/><br/>     
+                                    
+                                    
+				
+<?php
+	}
+}
+?>
+                                        
+</div>                   
+                                        
+                                        
+            <div class="col-md-11">                       
+<?php
+ //print_r($this->tocktack);
+
+if (isset($this->output)) {
+	if (count ($this->output) == 0){
+           echo '  <br/><h2><b>Commodity Summary: Monthly consumption by method for last 12 months</b></h2>';
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+                                    <h2><b>Commodity Summary: Monthly consumption by method for last 12 months</b></h2>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->output as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table>
+				
+<?php
+	}
+}
+?>
+                                    
+                                    
+                                    </div>
+                                   
+                                    <div class="col-md-11">
+                                        
+                                        <?php
+ //print_r($this->tocktack);
+
+if (isset($this->outputs)) {
+	if (count ($this->outputs) == 0){
+            echo 
+            '<br/>
+            <h2><b>Stock Out Summary: Stock outs over last 12 months</b></h2>';
+		echo "				<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"display tablegrid\" id=\"\" style=\"width:100%\">\n";
+		echo "					<thead>\n";
+		echo "						<tr>\n";
+		echo "							<th>".t('Output')."</th>\n";
+		echo "						</tr>\n";
+		echo "					</thead>\n";
+		echo "					<tbody>\n";
+		echo "						<tr>\n";
+		echo "							<td>".t("Your search criteria returned no results")."</td>\n";
+		echo "						</tr>\n";
+		echo "					</tbody>\n";
+		echo "				</table>\n";
+	} else {
+?>
+
+				<br>
+                                    <h2><b>Stock Out Summary: Stock outs over last 12 months</b></h2>
+                                    <table cellpadding="0" cellspacing="0" border="0" class="display tablegrid" id="" style="width:100%">
+					<thead>
+						<tr>
+<?php
+		foreach ($this->headers as $key=>$value){
+			echo "							<th>" . $value . "</th>\n";
+		}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+		foreach ($this->outputs as $row){
+			echo "						<tr style=\"cursor : pointer;\" class=\"GradeA\">\n";
+			foreach ($row as $key=>$value){
+				echo "				   			<td>" . $value . "</td>\n";
+			}
+			echo "						</tr>\n";
+		}
+?>
+					</tbody>
+				</table><br/>
+                                <?php
+		$url = $_SERVER['REQUEST_URI'] . "&csv=1";
+    ?>
+    <span style="float:right !important;"><button type="submit" class="btn-link"  name="download"><?php tp('Download Excel version');?></button></span>
+ <?php   
+	}
+}
+?></form>
+                                    </div>
+                                    </div>
+					
+				</div>
+                                            </div>
+				
+			</div>  
+        		
+				
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		
+	</body>
+</html>
+
+
+
+
+
+

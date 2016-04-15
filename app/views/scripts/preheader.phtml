@@ -1,0 +1,327 @@
+<?php
+/*
+* Created on Mar 7, 2008
+*
+*	Built for itechweb
+*	Fuse IQ -- todd@fuseiq.com
+*
+*/
+function no_soft_space_str($v){
+	return str_replace(' ', '&nbsp;', $v);
+}
+
+if ( $this->isLoggedIn() ) {
+	if ($this->hasACL('pre_service')){
+		$navMain = array( // directory => array of nav items
+		'dash/dash' => array(
+		'index' => t('Home'), // file => label (use "index" for root)
+		));
+	} else {
+		$navMain = array( // directory => array of nav items
+		'index/index' => array(
+		'index' => t('Home'), // file => label (use "index" for root)
+		));
+	}
+
+	// INSTITUTION LINK
+	if ( $this->hasACL('edit_people') && $this->hasACL('edit_studenttutorinst')){
+		$navMain['institution'] = array(
+				//TA: added 7/25/2014 : automatic label changes
+		'index' => $this->translation['ps institution'], 
+		'institution'	=> t('View/Edit ') . $this->translation['ps institution'],
+		'institutionadd' =>	t('Add ') . $this->translation['ps institution'],
+		);
+	} else {
+		$navMain['institution'] = array(
+		'index' => $this->translation['ps institution'],
+		'institution'	=> t('View institution'),
+		);
+	}
+
+	// COHORT LINK
+	if ( $this->hasACL('edit_people')	){
+		$navMain['cohort'] = array(
+		'index' => t('Cohorts'),
+		'../cohort/cohortsearch'	=> t('View/Edit Cohort'),
+		'../cohort/cohortadd' =>	t('Add Cohort'),
+		);
+	} else {
+		$navMain['cohort'] = array(
+		'index' => t('Cohort'),
+		'search'	=> t('View Person'),
+		);
+	}
+
+	// PEOPLE LINK
+	if ( $this->hasACL('edit_people') && $this->hasACL('edit_studenttutorinst')){
+		$navMain['people'] = array(
+		'index' => t('People'),
+		'people' => t('View/Edit Person'),
+		'../peopleadd/peopleadd' => t('Add Person'),
+		);
+	} else {
+		$navMain['people'] = array(
+		'index' => t('People'),
+		'people' => t('View Person'),
+		);
+	}
+
+	// FACILITY LINK
+	if ( $this->hasACL('edit_course') or $this->hasACL('edit_people') or $this->hasACL('view_people') ) {
+		$navMain['psfacility'] = array(
+		'index' => t('Facilities')
+		);
+
+                
+                $auth = Zend_Auth::getInstance();
+if ($auth->hasIdentity()) {
+    // Identity exists; get it
+    $identity = $auth->getIdentity();
+  // $identify = $identity;
+   
+    
+    foreach($identity as $identify){
+       $details_user[] = $identify;
+    }
+    //print_r($details_user);
+    $user = $details_user[0];
+     
+}
+ $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
+
+		$sql = "SELECT  role,province_id,district_id,region_c_id FROM user WHERE id ='".$user."'";
+		$result = $db->fetchAll($sql);
+               $role = $result[0]['role'];
+
+		if (	$this->hasACL('edit_people')	) {
+			$navMain['psfacility']['search']	= t('View/Edit').' '.t('Facility');
+		} else if ($this->hasACL('view_people')) {
+			$navMain['psfacility']['search']	= t('View').' '.t('Facility');
+		}
+
+                if (	$this->hasACL('edit_people') && $role="1" ) {
+			$navMain['psfacility']['add']	= t('Add').' '.t('Facility');
+		}
+
+		if (	$this->hasACL('edit_course') ) {
+			$navMain['psfacility']['searchLocation']	= t('View/Edit').' '.t('Training').' '.t('Location');
+		} else if ($this->hasACL('view_course')) {
+			$navMain['psfacility']['searchLocation']	= t('View').' '.t('Training').' '.t('Location');
+		}
+		if (	$this->hasACL('edit_course')) {
+			$navMain['psfacility']['addLocation']	= t('Add').' '.t('Training').' '.t('Location');
+		}
+
+	}
+
+	// REPORT LINK
+	if ( $this->hasACL('view_create_reports')) {
+		//TA: added 7/25/2014 : automatic label changes
+		$navMain['reports'] = array('index' => t('Reports'));
+		/*$navMain['reports']['psStudentsTrained']			= t('Student Reports');
+		$navMain['reports']['psCourseByName']				= t('Course Reports');
+		$navMain['reports']['psCohortByParticipantCount']	= t('Cohort Reports');
+		$navMain['reports']['psInstitutionInformation']		= $this->translation['ps institution']. t(' Reports');
+		$navMain['reports']['psTutorByName']				= $this->translation['ps tutor']. t(' Reports');
+
+        */
+                $navMain['reports']['trainingrep'] = t('Training Data');
+                         $navMain['reports']['facilitysummary']				= t('Facility  Data');
+       $user = new User();                    //TP checking if the user is a user with an LGA ROLE
+
+$navMain['reports']['archivedreports']				= t('Archived PDF Reports');
+
+	}
+
+         $navMain['menu'] = array('index' => t('info'));
+         $navMain['menu']['definitionspage'] = t('Definitions');
+          $navMain['menu']['rrate'] = t('Reporting Rates');
+              $navMain['menu']['info'] = t('DHS Result');
+             
+         $user = new User();         
+if($user->is_user_an_admin()){
+$navMain['menu']['import'] = t('Import DHS Data');
+}
+
+	// PRE-SERVICE LINK
+	if ($this->hasACL('in_service')) {
+		$navMain['index'] = array(
+		'index' => t('In-service')
+		);
+	}
+
+	$navMain['user'] = array(
+	'index' => t('My Account'),
+	);
+
+	if ( $this->hasACL('edit_country_options')) {
+		$navMain['user']['../admin/country-settings'] = t('Country Setup');
+		$navMain['user']['../admin/training-settings'] = t('Training Settings');
+		$navMain['user']['../admin/people-settings'] = t('People Settings');
+		$navMain['user']['../admin/facilities-settings'] = t('Facility Settings');
+	}
+	if ( $this->hasACL('add_edit_users')) {
+		$navMain['user']['add'] = t('Add New User');
+		$navMain['user']['search'] = t('Edit User');
+	}
+        
+        $user = new User(); 
+	if ( ($this->hasACL('edit_country_options') || $this->hasACL('use_offline_app')) && $user->is_user_an_admin()){
+		//$navMain['user'][''] = '---------------';
+		//$navMain['user']['../desktop/create'] = no_soft_space_str( t('Create App Now') );
+		//$navMain['user']['../desktop/download'] = no_soft_space_str( t('Download Application') );
+		//$navMain['user']['../desktop/download-dotnet'] = no_soft_space_str( t('Get Required .NET') );
+		//$navMain['user']['../sync/upload'] = t('Upload Data');
+	}
+	if (( $this->hasACL('admin_preservice')) || ( $this->hasACL('pre_service'))) {
+		$navMain['user']['../'] = '---------------';
+		$navMain['user']['../admin/preservice-labels'] = t('PS Field labels');
+		$navMain['user']['../admin/preservice-classes'] = t('PS Classes');
+		$navMain['user']['../admin/preservice-cadres'] = t('PS Cadres');
+		$navMain['user']['../admin/preservice-degrees'] = t('PS Degrees');
+		$navMain['user']['../admin/preservice-funding'] = t('PS Funding');
+		$navMain['user']['../admin/preservice-institutiontypes'] = t('PS Institution Types');
+		$navMain['user']['../admin/preservice-joindropreasons'] = t('PS Join & Drop Reasons');
+		$navMain['user']['../admin/preservice-languages'] = t('PS Languages');
+		$navMain['user']['../admin/preservice-nationalities'] = t('PS Nationalities');
+		$navMain['user']['../admin/preservice-sponsors'] = t('PS Sponsors');
+		//$navMain['user']['../admin/preservice-studenttypes'] = t('PS Student Types'); //TA: removed 7/28/2014: not using any more
+		$navMain['user']['../admin/preservice-tutortypes'] = t('PS Tutor Types');
+		$navMain['user']['../admin/preservice-coursetypes'] = t('PS Course Types');
+		$navMain['user']['../admin/preservice-religion'] = t('PS Religions');
+	}
+} else {
+	$navMain = array( // directory => array of nav items
+	'select/select' => array(
+	'index' => t('Home'), // file => label (use "index" for root)
+	));
+}
+
+
+$firstName = 'guest';
+$loginoutLink =	'<a href="'.(Settings::$COUNTRY_BASE_URL).'/user/login">'.t("login").'</a>';
+if ( $this->isLoggedIn() ) $firstName = $this->identity->first_name;
+if ( $this->isLoggedIn() ) $loginoutLink = '<a href="'.(Settings::$COUNTRY_BASE_URL).'/user/logout">'.t("logout").'</a>';
+
+// custom inline CSS
+if(isset(Settings::$CSS)) {
+	echo '<style>' . Settings::$CSS . '</style>';
+}
+
+?>
+
+
+<!-- login links -->
+<a href="<?php echo Settings::$COUNTRY_BASE_URL;?>"><img src="<?php
+	$url_parts = explode('.', $_SERVER['HTTP_HOST']);
+	$engender = false;
+	if ( isset($this->setting['logo_id']) ) {
+		echo Settings::$COUNTRY_BASE_URL.'/images/indexhome.png';
+	} else if ( @$url_parts[0] == 'eventsmart' OR @$url_parts[1] == 'eventsmart' ) {
+		echo Settings::$COUNTRY_BASE_URL.'/images/engenderhealth-logo-v2.gif';
+		$engender = true;
+	} else {
+		switch ( strtolower(Settings::$COUNTRY_NAME) ) {
+			case 'haiti':
+			echo Settings::$COUNTRY_BASE_URL.'/images/haiti_flag.jpg';
+			break;
+			case 'tanzaniapartners':
+			echo Settings::$COUNTRY_BASE_URL.'/images/tanzanian_flag.png';
+			break;
+			case 'tanzanianacp':
+			echo Settings::$COUNTRY_BASE_URL.'/images/tanzanian_flag.png';
+			break;
+			default:
+			echo Settings::$COUNTRY_BASE_URL.'/images/header.gif';
+			break;
+		}
+	}
+
+?>" id="headerImg" alt="banner" /></a>
+<div style="color:#99CC7E; float:left; padding-top:20px; vertical-align:middle;"><span style="font-size : 20px; font-weight : bold;">PRE-SERVICE</span></div>
+<div style="float:right;">
+	<div id="headerLinks">
+		<?php print t('Welcome');?>, <?php echo $firstName;?> <span class="pipe">|</span> <?php echo	$loginoutLink;?>&nbsp;
+
+		<!-- switch language -->
+		<div style="margin-top:70px; text-align:right; ">
+			<?php
+			if(count($this->languages_enabled) > 1) {
+				foreach( $this->languages_enabled as $lang_opt) {
+					$opts []= '<a href="'.Settings::$COUNTRY_BASE_URL.'/index/language?opt='.urlencode($lang_opt).'">'.t($this->languages[$lang_opt]).'</a>';
+				}
+				print implode ('&nbsp;|&nbsp;', $opts);
+			}
+			?>
+		</div>
+
+	</div>
+
+</div><div class="clear"></div>
+
+	<!-- main navigation -->
+	<div id="navMain">
+		<?php
+		// Detect page
+		$parsed_url = parse_url(Settings::$COUNTRY_BASE_URL);
+		$pathFront = @$parsed_url['path'];
+		if ( $pathFront ){
+			$path = str_replace($pathFront,'',$_SERVER['REQUEST_URI']);
+		} else {
+			$path = $_SERVER['REQUEST_URI'];
+		}
+		// Sean Smith: Added filter out double slashes (handles improper config in globals.php, and other unforseeables)
+		$path = str_replace("//",'/',$path);
+		$path = str_replace("\\",'/',$path);
+		$path = explode('/',$path);
+
+		foreach($navMain as $dir => $navRay) {
+			$class = array();
+			//if($dir == 'index') { $class[] = 'first'; $dir = '';	}  // special CSS // old line
+			//TP new line by Techie planet
+			if($dir == 'index') { $class[] = 'first'; 	}  // special CSS
+			if($dir == 'dash/dash')  { $class[] = 'first'; }           // special CSS
+			if($dir == 'dash/dash' && $path[1] == 'dash'){ $class[] = 'active'; }
+ 
+			// add "active" class
+			if(empty($path[1]) || /*empty($dir) ||*/ $path[1] == $dir) { $class[] = 'active'; } // commenting out always on highlight of 'home'
+
+			echo '
+			<div class="flydown'.'" '.($dir == 'user'? 'style="float:right;"':'').' onmouseover="fadeShow(this,\''.$dir.'\');" onmouseout="fadeOut(this,\''.$dir.'\');">
+			';
+			
+			$href = Settings::$COUNTRY_BASE_URL.'/'.$dir;
+			if($dir == 'reports'){ $href = ''; }
+			
+			//echo '<a href="'.$href.'"'.(!empty($class) ? ' class="'.implode(' ', $class).'"' : '').' id="nav'.$dir.'">' . $navRay['index'] . '</a>';
+				
+				  if($dir == 'dash/dash' || $dir=='index' || $dir=='user') {
+                          echo '<a href="'.Settings::$COUNTRY_BASE_URL.'/'.$dir.'" id="nav'.$dir.'">' . $navRay['index'] . '</a>';  
+                        }
+				  else{
+                         echo '<a href="#" id="nav'.$dir.'">' . $navRay['index'] . '</a>';   
+                        }
+			// Fly-down menu items
+			if(count($navRay) > 1) {
+				echo '<div class="flydownItems">';
+				foreach($navRay as $file => $label) {
+					if( strstr($file, '->') ){
+						$fragments = explode('->', $file);
+						echo '<a '.(strlen($file)?'href="'.Settings::$COUNTRY_BASE_URL.'/'.$fragments[0].'/'.$fragments[1].'"':'').' >'.$label.'</a>';
+					} else {
+						if($file != 'index') {
+							echo '<a '.(strlen($file) ? 'href="'.Settings::$COUNTRY_BASE_URL.'/'.$dir.'/'.$file.'"' : '').' >'.$label.'</a>';
+						}
+					}
+				}
+				echo '</div>';
+			}
+			echo '</div>';
+		}
+
+		?>
+	</div>
+
+	<style>
+		label.error { float: right; color: red; padding-left: .2em; vertical-align: top; }
+	</style>

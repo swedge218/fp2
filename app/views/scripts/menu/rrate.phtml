@@ -1,0 +1,133 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Info');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+               
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+
+<link rel="stylesheet" href="views/helpers/jquery-ui.css" />
+<script src="views/helpers/jquery-1.9.1.js"></script>
+<script src="views/helpers/jquery-ui.js"></script>
+<style type="text/css">
+   
+    #accordion {
+        width:50%;
+        float:left;
+        margin-left:50px;
+       color:green;
+ 
+    }
+    .accordion1{
+        width:100%;
+    }
+    #accordion p{
+        text-align:left;
+    }
+    #accordion h3{
+        color:green;       
+        background:#DEEBE6;
+        
+    }
+    .tab{
+        padding-right:60%;
+    }
+    .tableft{
+        padding-left:10%;
+        width:60%;
+        float:left;
+        text-align: left;
+        
+    }
+    .tabstateleft{
+       width:60%;
+    
+       text-align:left;
+    }
+  
+    .tabright{
+        width:30%;
+        float:right;
+        text-align:right;
+        
+    }
+    #accordion :hover{
+        
+    }
+    .ui-accordion .ui-accordion-content{
+        width:90% !important;
+        margin: 0 auto;
+    }
+     body{
+                        font-size: 12px !important;
+                    }
+</style>		
+                
+             <script>
+$(function () {
+$("#accordion").accordion({
+event: "click",
+heightStyle: "content",
+collapsible: true,
+activate: 0,
+active:false,
+autoHeight: false
+
+});
+$("div.accordion1").accordion({
+event: "click",
+heightStyle: "content",
+collapsible: true,
+activate: 0,
+active:false,
+autoHeight: false
+});
+
+$("div.accordion2").accordion({
+event: "click",
+heightStyle: "fill",
+height:"100px",
+collapsible: false,
+activate: 0,
+active:false,
+autoHeight: false
+});
+});
+</script>
+
+  
+	</head>
+    
+        
+	<body class="yui-skin-sam" onload="toggle_it();" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			
+				<div id="subcontent">
+					<div id="contentheader">
+						 <h2 algin="">Reporting Rates <?php echo $this->date_format; ?></h2>  <br/>
+					</div>
+                                   </div>
+                  
+				
+			   
+			
+							
+	
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+

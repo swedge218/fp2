@@ -1,0 +1,43 @@
+<div class="fieldIndentNoMargin"><?php tp('Class History');?></div>
+<div id="classInfo"  class="itechTable"></div>
+      <a href="#" onclick="submitThenRedirect('<?php echo $this->base_url;?>/person/assign-training/id/<?php echo $this->person['id'];?>'); return false;"><?php tp('Assign this person to a class');?></a>
+
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+//YAHOO.util.Event.onDOMReady(function() {
+
+var classInfoData = [
+    ];
+
+    var formatTrainingViewUrl = function(elCell, oRecord, oColumn, sData) {
+    if ( oRecord.getData("training_id") == null )
+      return;
+
+  if ( (sData == null) || (sData.length == 0) )
+    sData = '&nbsp;&nbsp;&nbsp;';
+    elCell.innerHTML = "<a href='<?php echo $this->base_url;?>/training/view/id/" + oRecord.getData("training_id") + "' >" + sData + "</a>";
+}
+var classColumnDefs = [
+    {key:"training_id", label: "ID", sortable:false, resizeable:true,
+                  formatter: formatTrainingViewUrl},
+    {key:"training_end_date", label: "<?php tp('End Date');?>", sortable:true, resizeable:true},
+    {key:"training_title", label: "<?php tp('Name');?>", sortable:true, resizeable:true},
+    //TA:17:20 fix bug  
+    <?php if($this->setting['display_training_topic']){?>
+    {key:"topics", label: "<?php tp('Topics(s)');?>", sortable:true, resizeable:true},
+    <?php }?>
+    {key:"training_location_name", label: "<?php tp('Location');?>", sortable:true, resizeable:true},
+    
+    {key:"certification", label: "<?php tp('Certification');?>", sortable:true, resizeable:true},
+    {key:"training_organizer_phrase", label: "<?php tp('Training Organizer');?>", sortable:true, resizeable:true}
+    
+    
+    
+];
+
+  var taction = '<?php echo $this->base_url;?>/training/listByParticipant/id/<?php echo $this->person['id'];?>/outputType/json';
+  makeJSONDataTable("classInfo", null, taction, classColumnDefs);
+//});
+//--><!]]
+</script>
+<p><?php //echo "$this->base_url/training/listByParticipant/id/" . $this->person['id'] . "/outputType/json"; ?></p>

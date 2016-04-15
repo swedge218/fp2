@@ -1,0 +1,895 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#homecontent {
+	background: url("images/content-bg.png") repeat-x scroll 0 0 #FAFAFA;
+	position: relative;
+}
+
+#homecontent-mid {
+	background: url("images/bg-stage.png") repeat-y scroll right top #FFFFFF;
+	min-height: 100%;
+	outline: medium none;
+	top: -40px;
+}
+
+#homebanner {
+	background: url("images/bg-stage-shade.png") repeat-x scroll 0 0
+		transparent;
+	padding-right: 20px;
+	position: relative;
+}
+
+.rounded {
+	border-radius: 10px 10px 10px 10px;
+}
+
+.sliderdiv {
+	background: none repeat scroll 0 0 FFFFFF;
+	float: left;
+}
+
+.main-search {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+.nav-buttons {
+	background: none repeat scroll 0 0 #FFFFFF;
+	float: left;
+	overflow: hidden;
+}
+
+</style>
+
+<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+	rel="stylesheet" type="text/css">
+
+<?php
+require_once('views/helpers/ScriptContainer.php');
+print ScriptContainer::$instance->renderCSSHead();
+print ScriptContainer::$instance->renderJSHead();
+?>
+
+
+      <link rel="stylesheet" type="text/css"
+	href="https://google-developers.appspot.---com/_static/f7a896e076/css/screen-docs.css" />
+<link rel="stylesheet"
+	href="//www.google.com/cse/style/look/default.css" type="text/css" />
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Open+Sans:300,400"
+	type="text/css">
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/prettify-bundle.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script id="jqueryui"
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+	defer async></script>
+<script
+	src="//www.google.com/jsapi?key=AIzaSyCZfHRnq7tigC-COeQRmoa9Cxr0vbrK6xw"></script>
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+<script
+	src="https://google-developers.appspot.com/_static/f7a896e076/js/framebox.js"></script>
+
+
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+
+    
+
+<script>
+    
+        var textChecker = '';
+    
+        $(document).ready(function(){           
+            textChecker = setInterval(function(){ 
+                console.log('timer fired');
+                var elArray = document.forms["pdfForm"].getElementsByTagName('input');
+                
+                var found = false;
+                for(var i=0; i<elArray.length; i++){
+                    var el = elArray[i];
+                    if(el.type == 'text'  && el.value == ''){
+                        console.log(elArray[i]);
+                        found = true;
+                    }
+                }
+                
+                if(found == false){
+                    console.log('clearing');
+                    clear();
+                    //call ajax handler
+                    sendChartsData();
+                }
+            },1000);
+        });
+        
+        function clear(){
+            clearInterval(textChecker);
+        }
+    
+        function sendChartsData(){
+            var url = './createpdf';
+            var tw_hidden = document.getElementById('tw_hidden').value;
+            var mm_hidden = document.getElementById('mm_hidden').value;
+            var mc_hidden = document.getElementById('mc_hidden').value;
+            var fptps_hidden = document.getElementById('fptps_hidden').value;
+            var larctps_hidden = document.getElementById('larctps_hidden').value;
+            var fpprov_hidden = document.getElementById('fpprov_hidden').value;
+            var larcprov_hidden = document.getElementById('larcprov_hidden').value;
+            var larcso_hidden = document.getElementById('larcso_hidden').value;
+            var fpso_hidden = document.getElementById('fpso_hidden').value;
+            var folder_name = document.getElementById("folder_name").value; 
+            var report_id = document.getElementById("report_id").value;
+            var larc_difference = document.getElementById("larc_difference").value;
+            var methodmixValuesId = document.getElementById("methodmixValuesId").value;
+            
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {generate:true,tw_hidden:tw_hidden,mm_hidden:mm_hidden,mc_hidden:mc_hidden,
+                        fptps_hidden:fptps_hidden,larctps_hidden:larctps_hidden,
+                        fpprov_hidden:fpprov_hidden, larcprov_hidden:larcprov_hidden,
+                        larcso_hidden:larcso_hidden, fpso_hidden:fpso_hidden,folder_name:folder_name,
+                        report_id:report_id,methodmixValuesId:methodmixValuesId,larc_difference:larc_difference},
+                success: function(response){
+                    //reload the page
+                     alert(response);
+                    console.log('ajax success: ' + response);
+                },
+                error: function(e){
+                    
+                },
+                complete: function(response, status){
+                    console.log('ajax complete');
+                }
+                
+            });
+        }
+        
+        
+      function getImgData(chartContainer) {
+        //var chartArea = chartContainer.getElementsByTagName('iframe')[0].
+          //contentDocument.getElementById('chartArea');
+        var chartArea =
+           chartContainer.getElementsByTagName('svg')[0].parentNode;
+        var svg = chartArea.innerHTML;        
+        var doc = chartContainer.ownerDocument;
+        var canvas = doc.createElement('canvas');
+        canvas.setAttribute('width', chartArea.offsetWidth);
+        canvas.setAttribute('height', chartArea.offsetHeight);
+                
+        canvas.setAttribute(
+            'style',
+            'position: absolute; ' +
+            'top: ' + (-chartArea.offsetHeight * 2) + 'px;' +
+            'left: ' + (-chartArea.offsetWidth * 2) + 'px;');
+        doc.body.appendChild(canvas);
+        canvg(canvas, svg);
+        var imgData = canvas.toDataURL("image/png");
+        canvas.parentNode.removeChild(canvas);
+        return imgData;
+      }
+      
+      function saveAsImg(chartContainer) {
+        var imgData = getImgData(chartContainer);
+        
+        // Replacing the mime-type will force the browser to trigger a download
+        // rather than displaying the image in the browser window.
+        window.location = imgData.replace("image/png", "image/octet-stream");
+      }
+      
+      function toImg(chartContainer, imgContainer) { 
+        var doc = chartContainer.ownerDocument;
+        var img = doc.createElement('img');
+        img.src = imgData = getImgData(chartContainer);
+        document.getElementById("chart_html").value = imgData;
+        while (imgContainer.firstChild) {
+          imgContainer.removeChild(imgContainer.firstChild);
+        }
+        imgContainer.appendChild(img);
+      }
+
+
+      function setImgData(hiddenField, chartContainer) { 
+        var doc = chartContainer.ownerDocument;
+        var imgData = getImgData(chartContainer);
+        document.getElementById(hiddenField).value = imgData;
+      }
+
+
+      
+
+    </script>
+
+
+
+
+
+
+</head>
+<body class="yui-skin-sam">
+
+	<div id="pageHolder">
+
+		<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+		<div id="content">
+
+                    <?php
+                    $folder_name = $this->folder_name;
+                    $reportId = $this->report_id;
+                    $info = $this->info;
+                    if($info!="" && !empty($info)){
+                        echo '<h3>'.$info.'</h3>';
+                    }
+                    //print_r($this->consumption_by_method);
+                    ?>
+			<!-------   /////////////////////////// get data ////////////////////// -->
+
+			<div>
+			
+			<!-------   /////////////////////////// load scripts ////////////////////// -->
+                        <div class="nav-buttons">
+				<?php require_once('views/scripts/dashboard/displayScripts.phtml');?>
+			</div>
+<?php 
+$sum = 0;
+foreach($this->consumption_by_method as $key=>$row){
+    if($key==1 || $key==0){
+        $row['consumption'] = $row['consumption']/10;
+    }
+    $sum = $sum + $row['consumption'];
+}
+
+foreach($this->consumption_by_method as $key=>$row){
+   if($key==1 || $key==0){
+        $row['consumption'] = $row['consumption']/10;
+    }
+  $consumptionPercent[]  =  round($row['consumption']/ $sum * 100,1);
+}
+$consumptionPercentValues = implode(",",$consumptionPercent);
+print_r($consumptionPercent);
+
+?>
+			<!-------   /////////////////////////// charts ////////////////////// -->
+
+
+			<body class="docs slim framebox_body">
+                            <form name="pdfForm" id="pdfForm" method="post"> 
+				<div id="allCharts" class="container">
+				<div id="toprow" class="container">
+						<div id="homecontent" class="container">
+							<div id="homecontent-mid" class="row rounded">
+								<div id="homebanner" class="rounded">
+                                                                    <input type="hidden" id="folder_name" value="<?php echo $folder_name; ?>" name="folder_name" />
+                                                                    <input type="hidden" id="report_id" value="<?php echo $reportId; ?>" name="report_id" />
+                                                                    <input type="hidden" id="methodmixValuesId" name="methodMix" value =" <?php echo $consumptionPercentValues; ?>"/> 
+                                                                    <input type="hidden" id="larc_difference" name="larc_difference" value="<?php echo number_format($this->larc_diff); ?>" />
+                                                                    <!--1 $ 2-->
+                                                                        <div class="sliderdiv">
+                                                                                <!--1-->
+                                                                                <!--<div id="chart11_div" style="width: 700px; height: 300px;"></div>-->
+                                                                                <input type="text" name="tw_hidden" id="tw_hidden" value="" />
+                                                                                <div id="tw_div"></div>
+                                                                                <br/><br/>
+                                                                                
+                                                                                <!--2-->
+                                                                                <input type="text" name="mm_hidden" id="mm_hidden" value="" />
+                                                                                <div id="mm_div"></div> 
+                                                                                <br/><br/>
+                                                                                
+                                                                                <!--3-->
+                                                                                <input type="text" name="mc_hidden" id="mc_hidden" value="" />
+                                                                                <div id="mc_div"></div>
+                                                                        </div>
+                                                                    
+                                                                        <!--4 & 5-->
+                                                                        <div class="sliderdiv">
+
+                                                                            <br/><br/>
+                                                                            <input type="text" name="fptps_hidden" id="fptps_hidden" value="" />
+                                                                             <div id="fptps_div"></div>   
+                                                                             
+                                                                             <br/><br/>
+                                                                             <input type="text" name="larctps_hidden" id="larctps_hidden" value="" />
+                                                                             <div id="larctps_div"></div> 
+                                                                        </div>
+                                                                    
+                                                                    
+                                                                        <!--6 & 7-->
+                                                                        <div class="sliderdiv">
+                                                                                <!--<div id="chart11_div" style="width: 700px; height: 300px;"></div>-->
+                                                                                <input type="text" name="fpprov_hidden" id="fpprov_hidden" value="" />
+                                                                                <div id="fpprov_div"></div>
+
+                                                                                <br/><br/>
+                                                                                <input type="text" name="larcprov_hidden" id="larcprov_hidden" value="" />
+                                                                                <div id="larcprov_div"></div>    
+                                                                        </div>
+                                                                    
+                                                                    
+                                                                        <!--7 $ 8-->
+                                                                        <div class="sliderdiv">
+                                                                                <input type="text" name="larcso_hidden" id="larcso_hidden" value="" />
+                                                                                <div id="larcso_div"></div>
+
+                                                                                <br/><br/>
+                                                                                <input type="text" name="fpso_hidden" id="fpso_hidden" value="" />
+                                                                                 <div id="fpso_div"></div>    
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        <!--9 & 10-->
+                                                                        <div class="sliderdiv">
+                                                                                <!--<div id="chart11_div" style="width: 700px; height: 300px;"></div>-->
+                                                                                <!--<input type="text" name="chart9_hidden" id="chart9_hidden" value="" />-->
+                                                                                <div id="chart9_div"></div>
+
+                                                                                <br/><br/>
+                                                                                <!--<input type="text" name="chart10_hidden" id="chart10_hidden" value="" />-->
+                                                                                 <div id="chart10_div"></div>    
+                                                                        </div>
+                                                                        
+                                                                        
+                                                                        <!--11 & 12-->
+                                                                        <div class="sliderdiv">
+                                                                                <!--<div id="chart11_div" style="width: 700px; height: 300px;"></div>-->
+                                                                                <!--<input type="text" name="chart11_hidden" id="chart11_hidden" value="" />-->
+                                                                                <div id="chart11_div"></div>
+
+                                                                                <br/><br/>
+                                                                                <!--<input type="text" name="chart12_hidden" id="chart12_hidden" value="" />-->
+                                                                                 <div id="chart12_div"></div>    
+                                                                        </div>
+                                                                        
+                                                                        <input type="submit" name="generate" value="GENERATE" />
+                                                                        
+								</div>
+							</div>
+						</div>			
+					</div>
+
+				<div class="clear"></div>
+				<div class="hrGrey"></div>
+				<div class="clear"></div>
+
+				
+				</div>
+                            </form>
+
+                        </div>
+
+		<div class="clear"></div>
+		<div class="hrGrey"></div>
+		<div class="clear"></div>
+		
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+		
+        google.load("visualization", "1", {packages:["corechart", "treemap", "geochart"]});
+        google.setOnLoadCallback(drawCharts);
+
+      function drawCharts(){
+        drawTrainedWorkersChart();
+        drawMethodMix();
+        drawMonthlyConsumption();
+        drawFPPercentFacsTrainedPerState();
+        drawLARCPercentFacsTrainedPerState();
+        drawFPFacsProviding();
+        drawLARCFacsProviding();
+        drawLarcTrainedLarcSO();
+        drawFPTrainedFPSO();
+      }
+
+      
+      function drawTrainedWorkersChart() {
+      
+        
+      
+      var chartData = google.visualization.arrayToDataTable([
+        ['', '', { role: 'annotation' }],
+        <?php
+                 foreach($this->cumm_data as $key=> $value) {
+                     $fp = $value['fp'];
+                     $larc = $value['larc'];
+                    //echo "['FP trained HWs', 'stroke-color: #703593', '', " . $value['fp'] . ", 'stroke-color: #000000', " . $this->fp_diff . "],";
+                    //echo "['LARC trained HWs', 'stroke-color: #703593', '', " . $value['larc'] . ", 'stroke-color: #000000', " . $this->larc_diff . "],";
+?>
+                   [<?php echo  "'FP trained HWs',$fp,$fp"; ?>],
+                   [<?php echo "'LARC trained HWs',$larc,$larc"; ?>],
+                <?php  }
+        ?>
+    ]);             
+    
+    //var view = new google.visualization.DataView(chartData);
+    
+ 
+        var chartOptions = {
+                  width: 600,
+                  height: 400,
+                  titleTextStyle: { fontSize: 16 },
+                  is3D:true,
+                  annotations: {alwaysOutside: true},
+                  bar: {groupWidth: "50%"},
+                  fontSize:16,
+                  //vAxis: {format: '#', minValue: 4}, 
+                   
+                    vAxis: {min: 0,max:2500,gridlines: {count: 5},viewWindow:{max:2500,min:0}},
+                  legend: 'none',
+                  gridlines: {count: 5}
+                  //colors: ['blue', 'white'],
+                  //chartArea: {width: '50%', left: 80},//new 
+                  //bar: { width: '50%' },
+                  
+        };
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('tw_div'));
+     google.visualization.events.addListener(chart, 'ready', function(){
+            document.getElementById("tw_hidden").value = chart.getImageURI();
+     });
+     var formatter = new google.visualization.NumberFormat(
+  { groupingSymbol:','});
+  var formating = new google.visualization.NumberFormat(
+  {pattern:'###,###,##0'});
+  
+formatter.format(chartData, 1);
+formating.format(chartData, 1);
+
+formatter.format(chartData, 2);
+formating.format(chartData, 2);
+
+
+     chart.draw(chartData, chartOptions);
+ }
+ 
+ 
+ function drawMethodMix() {
+
+	  // Create and populate the data table.
+          //,{ role: 'style' }
+	var chartData = google.visualization.arrayToDataTable([
+            ['', ''],
+        <?php
+             foreach ($this->consumption_by_method as $key=>$row){
+                        $consumption = $row['consumption'];
+                        $malecondoms = 0;
+                        $method = $row['method'];
+                        $color = 'blue';
+                      
+                        
+                        if($key == 1 || $key== 0){
+                            //$malecondoms = $consumption;
+                            $consumption = round($consumption/10,0);
+                            
+                            //$method = $row['method'] . '';
+                        } 
+                        
+                ?>
+                        [<?php echo  "'$method', $consumption"; ?>],
+                <?php
+                        }
+                ?>
+        ]);
+
+
+               var chartOptions = {  
+                   width: 1050,
+                   height: 600,
+                   fontSize:16,
+               };
+   
+        var chart = new google.visualization.PieChart(document.getElementById('mm_div'));
+        google.visualization.events.addListener(chart, 'ready', function(){
+            document.getElementById("mm_hidden").value = chart.getImageURI();
+        });
+        chart.draw(chartData, chartOptions);
+  }
+
+
+    function drawMonthlyConsumption() {
+        //console.log('inside 13');         
+        var chartData = google.visualization.arrayToDataTable([
+                            ['Month', 'Injectables', 'Implants'],
+            <?php 
+                if(!empty($this->consumption_overtime)){
+                    foreach ($this->consumption_overtime as $key=>$commValues){ 
+                        $month = $key; 
+                        $injectables = $commValues["Injectables"];
+                        $implants = $commValues["Implants"];
+                         $annotationImpants = "Implants: $implants";
+                        $annotationInjectables = "Injectables: $injectables";
+            ?>         
+                <?php 
+                        $consString ='';
+                ?>
+                    [<?php echo "'$month',$injectables,$implants"; ?>],
+                     
+            <?php
+                    }//end foreach
+                } //end if
+            ?>
+       ]);
+       
+       var formatter = new google.visualization.NumberFormat(
+  {negativeColor: 'red', negativeParens: true, groupingSymbol:','});
+
+
+var formating = new google.visualization.NumberFormat(
+  {pattern:'###,###,##0'});
+
+formatter.format(chartData, 1);
+formating.format(chartData, 1);
+
+formatter.format(chartData, 2);
+formating.format(chartData, 2);
+
+
+       var view = new google.visualization.DataView(chartData);  
+view.setColumns([0, 
+                    1,{ calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation",},
+                      
+                    2,{ calc: "stringify",
+                         sourceColumn: 2,
+                         type: "string",
+                         role: "annotation" },
+                   ]);
+                 
+                   
+        <?php echo  " var title_data = 'Consumption of FP Commodities, $this->start_date to $this->end_date ' " ?>;
+                
+        var chartOptions = {
+                      width: 900,
+                      height: 400,
+                      fontSize:16,
+                     
+                     annotations: {
+     
+    alwaysOutside: true
+  },displayAnnotations:true,
+		      titleTextStyle: { fontSize: 15 },
+		      vAxis: {format: '#', minValue: 4},
+		      legend: {fontSize: 14},
+                      pointSize: 10,
+                      pointShape: 'circle'
+		      //chartArea: {width: '65%', height: '70%', top: 55}
+		      //is3D:true
+		};
+                
+
+          var chart = new google.visualization.LineChart(document.getElementById('mc_div'));
+          google.visualization.events.addListener(chart, 'ready', function(){
+                document.getElementById("mc_hidden").value = chart.getImageURI();
+            });
+          chart.draw(view, chartOptions);
+    }
+    
+    
+    function drawFPPercentFacsTrainedPerState() {
+       
+        var chartData = google.visualization.arrayToDataTable([
+			['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+            
+            <?php 
+                $percentData = $this->fp_percent_per_state;
+                reset($percentData); $firstKey = key($percentData); 
+                end($percentData); $lastKey = key($percentData); 
+                reset($percentData); 
+                $color = '';
+                foreach ($percentData as $key=>$row){ 
+                    $location = $row['location']; $percent = round($row['percent']*100,1); 
+                    $annotation = $percent . '%';
+                    if($firstKey == $key) $color = 'black';
+                    else if ($lastKey == $key) $color = 'green';
+                    else $color = 'red';
+            ?>
+                    [<?php echo "'$location'";  ?>, <?php echo $percent; ?>, <?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+            <?php 
+                } 
+            ?>
+       ]);
+                
+        var chartOptions = {
+                      width: 600,
+                      height: 400,
+                      fontSize:16,
+		      titleTextStyle: { fontSize: 15 },
+		      vAxis: {format: '#\'%\'', minValue: 4},
+		      //chartArea: {height: '80%', top: 55},
+                      annotations: {
+     
+    alwaysOutside: true
+  },
+                      legend: 'none',
+                      bar: {groupWidth: "50%"}
+		};
+
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('fptps_div'));
+	  google.visualization.events.addListener(chart, 'ready', function(){
+                document.getElementById('fptps_hidden').value = chart.getImageURI();
+            });
+	  chart.draw(chartData, chartOptions);
+
+    }
+    
+    
+    function drawLARCPercentFacsTrainedPerState() {
+       
+        var chartData = google.visualization.arrayToDataTable([
+			['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+            
+            <?php 
+                $percentData = $this->larc_percent_per_state;
+                reset($percentData); $firstKey = key($percentData); 
+                end($percentData); $lastKey = key($percentData); 
+                reset($percentData); 
+                $color = '';
+                foreach ($percentData as $key=>$row){ 
+                    $location = $row['location']; $percent = round($row['percent']*100,1); 
+                    $annotation = $percent . '%';
+                    if($firstKey == $key) $color = 'black';
+                    else if ($lastKey == $key) $color = 'green';
+                    else $color = 'red';
+            ?>
+                    [<?php echo "'$location'";  ?>, <?php echo $percent; ?>, <?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+            <?php 
+                } 
+            ?>
+       ]);
+                
+        var chartOptions = {
+                      width: 600,
+                      height: 400,
+                      fontSize:16,
+		      titleTextStyle: { fontSize: 15 },
+		      vAxis: {format: '#\'%\'', minValue: 4},
+		      //chartArea: {height: '50%', top: 55},
+                      legend: 'none',
+                      annotations: {
+     
+    alwaysOutside: true
+  },
+                      bar: {groupWidth: "50%"}
+		};
+
+
+          var chart = new google.visualization.ColumnChart(document.getElementById('larctps_div'));
+	  google.visualization.events.addListener(chart, 'ready', function(){
+                document.getElementById('larctps_hidden').value = chart.getImageURI();
+            });
+	  chart.draw(chartData, chartOptions);
+    }
+    
+    
+    function drawFPFacsProviding() {
+	  // Create and populate the data table.
+	  var chartData = google.visualization.arrayToDataTable([
+
+           ['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+
+                <?php
+                        $percentData = $this->fp_providing_per_state;
+                        reset($percentData); 
+                        $firstKey = key($percentData); 
+                        end($percentData); $lastKey = key($percentData); 
+                        reset($percentData); 
+                        $color = '';
+                        foreach ($percentData as $key=>$row){ 
+                            $location = $row['location']; $percent = $row['percent']; 
+                            $color = $firstKey == $key ? 'black' : '';
+
+                            $location = $row['location']; $percent = round($row['percent']*100,1); 
+                            $annotation = $percent . '%';
+                            if($firstKey == $key) $color = 'black';
+                            else if ($lastKey == $key) $color = 'green';
+                            else $color = 'red';
+                ?>
+                            [<?php echo "'$location'";  ?>, <?php echo $percent; ?>,<?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+                <?php
+                        }
+                ?>
+
+            ]);
+
+	  var chartOptions = {
+                      width: 600,
+                      height: 400,
+                      fontSize:16,
+		      titleTextStyle: { fontSize: 15 },
+		      vAxis: {format: '#\'%\'', minValue: 4},
+		      legend: 'none',
+                      annotations: {
+     
+    alwaysOutside: true
+  },
+                       bar: {groupWidth: "50%"}
+		      //chartArea: {height: '50%', top: 55},
+		};
+
+	  var chart = new google.visualization.ColumnChart(document.getElementById('fpprov_div'));	            
+          google.visualization.events.addListener(chart, 'ready', function(){
+                document.getElementById('fpprov_hidden').value = chart.getImageURI();
+            });
+	  chart.draw(chartData, chartOptions);
+    }
+    
+    
+    
+    function drawLARCFacsProviding() {
+	  // Create and populate the data table.
+	  var chartData = google.visualization.arrayToDataTable([
+
+           ['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+
+                <?php
+                        $percentData = $this->larc_providing_per_state;
+                        reset($percentData); 
+                        $firstKey = key($percentData); 
+                        end($percentData); $lastKey = key($percentData); 
+                        reset($percentData); 
+                        $color = '';
+                        foreach ($percentData as $key=>$row){ 
+                            //$location = $row['location']; $percent = $row['percent']; 
+                            //$color = $firstKey == $key ? 'black' : '';
+
+                            $location = $row['location']; $percent = round($row['percent']*100,1); 
+                            $annotation = $percent . '%';
+                            if($firstKey == $key) $color = 'black';
+                            else if ($lastKey == $key) $color = 'green';
+                            else $color = 'red';
+                ?>
+                            [<?php echo "'$location'";  ?>, <?php echo $percent; ?>,<?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+                <?php
+                        }
+                ?>
+
+            ]);
+
+	  var chartOptions = {
+                      width: 600,
+                      height: 400,
+		      titleTextStyle: { fontSize: 15 },
+		      vAxis: {format: '#\'%\'', minValue: 4},
+		      legend: 'none',
+                      fontSize:16,
+                      annotations: {
+     
+    alwaysOutside: true
+  },
+                       bar: {groupWidth: "50%"}
+		      //chartArea: {height: '50%', top: 55},
+		};
+
+	  var chart = new google.visualization.ColumnChart(document.getElementById('larcprov_div'));	            
+          google.visualization.events.addListener(chart, 'ready', function(){
+                document.getElementById('larcprov_hidden').value = chart.getImageURI();
+            });
+	  chart.draw(chartData, chartOptions);
+    }
+
+
+    function drawLarcTrainedLarcSO() {
+	  // Create and populate the data table.
+	  var chartData = google.visualization.arrayToDataTable([
+
+            ['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+
+            <?php
+                        $percentData = $this->larc_stockout_per_state;
+                        reset($percentData); $firstKey = key($percentData); 
+                        end($percentData); $lastKey = key($percentData); 
+                        reset($percentData); 
+                        $color = '';
+                        foreach ($percentData as $key=>$row){
+                            $location = $row['location']; $percent = round($row['percent']*100,1); 
+                            $annotation = $percent . '%';
+                            if($firstKey == $key) $color = 'black';
+                            else if ($lastKey == $key) $color = 'green';
+                            else $color = 'red';
+                    ?>
+                        [<?php echo "'$location'";  ?>, <?php echo $percent; ?>,<?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+                    <?php
+                        }
+                    ?>
+
+            ]);
+
+                      var chartOptions = {
+                                  width: 600,
+                                  height: 400,
+                                  titleTextStyle: { fontSize: 15 },
+                                  //hAxis: {title: 'Percentage'},
+                                  //hAxis: {format: '##.##%'},
+                                   bar: {groupWidth: "50%"},
+                                   fontSize:16,
+                                   annotations: {
+     
+    alwaysOutside: true
+  },
+                                  vAxis: {format:'#\'%\'', minValue: 4},
+                                  legend:{position: 'none'},
+                            };
+
+
+                      var chart = new google.visualization.ColumnChart(document.getElementById('larcso_div'));
+                      google.visualization.events.addListener(chart, 'ready', function(){
+                            document.getElementById('larcso_hidden').value = chart.getImageURI();
+                       });
+                      chart.draw(chartData, chartOptions);
+             }
+             
+             
+             
+             
+        function drawFPTrainedFPSO() {
+	  // Create and populate the data table.
+	  var chartData = google.visualization.arrayToDataTable([
+
+            ['Location', 'Percent', { role: 'style' }, { role: 'annotation' }],
+
+            <?php
+                        $percentData = $this->fp_stockout_per_state;
+                        reset($percentData); $firstKey = key($percentData); 
+                        end($percentData); $lastKey = key($percentData); 
+                        reset($percentData); 
+                        $color = '';
+                        foreach ($percentData as $key=>$row){
+                            $location = $row['location']; $percent = round($row['percent']*100,1); 
+                            $annotation = $percent . '%';
+                            if($firstKey == $key) $color = 'black';
+                            else if ($lastKey == $key) $color = 'green';
+                            else $color = 'red';
+                    ?>
+                        [<?php echo "'$location'";  ?>, <?php echo $percent; ?>,<?php echo "'$color'"; ?>, <?php echo "'$annotation'"; ?>],
+                    <?php
+                        }
+                    ?>
+
+            ]);
+
+                      var chartOptions = {
+                                  width: 600,
+                                  height: 400,
+                                  titleTextStyle: { fontSize: 15 },
+                                  //hAxis: {title: 'Percentage'},
+                                  //hAxis: {format: '##.##%'},
+                                   bar: {groupWidth: "50%"},
+                                   fontSize:16,
+                                   annotations: {
+     
+    alwaysOutside: true
+  },
+                                  vAxis: {format:'#\'%\'', minValue: 4},
+                                  legend:{position: 'none'},
+                            };
+
+
+                      var chart = new google.visualization.ColumnChart(document.getElementById('fpso_div'));
+                      google.visualization.events.addListener(chart, 'ready', function(){
+                            document.getElementById('fpso_hidden').value = chart.getImageURI();
+                       });
+                      chart.draw(chartData, chartOptions);
+        }
+</script>
+
+
+<script>
+  devsite.github.Link.convertAnchors();
+  window.prettyPrint();
+</script>	
+
+  <div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+
+
+
+</body>
+
+</html>

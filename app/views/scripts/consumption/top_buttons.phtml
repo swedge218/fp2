@@ -1,0 +1,96 @@
+<script>
+    function checkSelection(){
+        //alert('filter');
+        var commodityIndex = document.getElementById('comm_id').selectedIndex;
+        
+        if(commodityIndex == 0){
+            var regionBox = document.getElementById("region_c_id"); //lga
+            var districtBox = document.getElementById("district_id"); //state
+            var provinceBox = document.getElementById("province_id"); //zone
+            
+            var regionValues = getSelectedValues(regionBox);
+            var districtValues = getSelectedValues(districtBox);
+            var provinceValues = getSelectedValues(provinceBox);
+            
+            if(regionValues.length > 1 || districtValues.length > 1 || provinceValues.length > 1){
+                alert ('Only one (1) location allowed when filtering ALL commodities');
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    function getSelectedValues(multipleSelectBox){
+        var selected = new Array();
+        for (var i = 0; i < multipleSelectBox.options.length; i++) {
+             if(multipleSelectBox.options[i].selected){
+                //alert(multipleSelectBox.options[i].value);
+                selected.push(multipleSelectBox.options[i].value);
+            }
+        }
+        return selected;
+    }
+</script>
+
+<?php //require_once('../../html/js/singlelocationselect.js');?>
+
+<form name="dashboardForm" id="consumptionForm" method="post" onsubmit="return checkCommoditySelection();"> 
+
+<?php 
+require_once('views/helpers/Location.php');
+//require_once('views/helpers/ConsumptionLocation.php');
+require_once('views/helpers/ScriptContainer.php');
+
+$current_view = '/'.$path[1].'/'. $path[2]; 
+?>
+
+<?php  //file_put_contents('c:\wamp\logs\php_debug.log', 'top_buttons 1 >'.PHP_EOL, FILE_APPEND | LOCK_EX);	ob_start();   
+       //var_dump("current_view=", $current_view, "END");
+       //$result = ob_get_clean(); file_put_contents('c:\wamp\logs\php_debug.log', $result .PHP_EOL, FILE_APPEND | LOCK_EX); 
+
+?>
+
+<p3>
+    <div>
+        <?php 
+            $commsHtml = '';
+            $selected = '';
+            foreach($this->comms as $comm){
+                if((int)$comm['id'] == (int)$this->commodityID){
+                    $selected = 'selected="selected"';
+                }
+                $commsHtml .= '<option value="'. $comm['id'] . '" ' . $selected . '>' . ucfirst(strtolower($comm['commodity_name'])) . '</option>';
+                $selected = '';
+            }
+        ?>
+        <label>Commodity: </label>
+        <select id="comm_id" name="comm_id">
+                <!--<option value="0">--Choose--</option>-->
+                <option value="0">ALL</option>
+                <?php echo $commsHtml ?>
+        </select>
+    </div>
+    <br/>
+    
+    <div>
+        <?php region_filters_dropdown_db($this, $this->locations, $this->criteria, true, true); ?>
+        <p>
+            <strong>Maximum of six (6) locations allowed per filter</strong><br/>
+            <strong>Only one (1) location allowed when filtering ALL commodities</strong>
+        </p>
+    </div>
+    
+    <br/>
+    <input type="submit" value="Filter" class="dbbutton dbbutton_leftmenu" onclick="return checkSelection();">
+    
+</p3>
+
+
+ </form>
+
+
+					
+
+
+

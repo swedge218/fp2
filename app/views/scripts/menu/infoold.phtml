@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Info');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+               
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+
+		
+                <script type="text/javascript" charset="utf-8" src="views/helpers/jquery.js">
+			
+		</script>
+                <style>
+                    body{
+                        font-size: 12px;
+                    }
+Table.GridOne {
+	padding: 1px;
+	margin: 0;
+	width:95%;
+	border-collapse: collapse;	
+        margin: 0 auto;
+	
+}
+
+Table.GridOne Td {	
+	padding:1px;
+	border: 1px solid #0000;
+	border-collapse: collapse;
+}
+.drnw,.drne,.drse,.drss,.drsw,.drnc{
+    background:#009900; /*#006600;*/
+    color:white;
+    
+}
+.drnw:hover,.drne:hover,.drse:hover,.drss:hover,.drsw:hover,.drnc:hover{
+    background:lightgreen;
+    
+}
+.drnw a,.drne a,.drse a,.drss a.drsw a,.drnc a, .drsw a, .drss a{
+   color:white;
+    
+}
+.drnw a:hover,.drne a:hover,.drse a:hover,.drss a:hover.drsw a:hover,.drnc a:hover, .drsw a:hover, .drss a:hover{
+   color:blue;
+    
+}
+
+#primary_nav_wrap
+{
+	margin-top:15px
+}
+
+#primary_nav_wrap ul
+{
+	list-style:none;
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul a
+{
+	display:block;
+	color:#333;
+	text-decoration:none;
+	font-weight:700;
+	font-size:12px;
+	line-height:32px;
+	padding:0 15px;
+	font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+}
+
+#primary_nav_wrap ul li
+{
+	position:relative;
+	float:left;
+	margin:0;
+	padding:0
+}
+
+#primary_nav_wrap ul li.current-menu-item
+{
+	background:#ddd
+}
+
+#primary_nav_wrap ul li:hover
+{
+	background:#f6f6f6
+}
+
+#primary_nav_wrap ul ul
+{
+	display:none;
+	position:absolute;
+	top:100%;
+	left:0;
+	background:#fff;
+	padding:0
+}
+
+#primary_nav_wrap ul ul li
+{
+	float:none;
+	width:150px
+}
+
+#primary_nav_wrap ul ul a
+{
+	line-height:120%;
+        width:150px;
+	padding:10px 15px
+}
+
+#primary_nav_wrap ul ul ul
+{
+	top:20%;
+	/*left:;*/
+}
+
+
+
+#primary_nav_wrap ul li:hover > ul
+{
+	display:block;
+        float:right;
+        margin-left:150px;
+        margin-top:-34px;
+}
+#primary_nav_wrap ul ul ul:hover {
+	display:block;
+        float:right;
+        margin-right:-150px;
+       
+}
+nav{
+    width:150px;
+    
+}
+#primary_nav_wrap ul ul li:hover > ul
+{
+	display:block;
+        float:right;
+        
+}
+nav ul li a{
+    width:150px;
+    border: 1px solid;
+    background:khaki;
+    
+}
+nav ul ul{
+    position:relative;
+}
+
+td{
+  padding:8em; 
+}
+#togglenc, #togglene, #togglenw, #togglese, #toggless, #togglesw{
+    display:block;
+    text-align:center;
+    margin: 0 auto;
+    
+}
+
+</style>
+
+  <script>
+    $(function() {
+       $('#hide').click(function() {
+                $('.john').hide();                
+       });
+
+	   $('#show').click(function() {
+                $('.john').show();                
+       });
+	   $('#toggle').click(function() {
+                $('.knowledge').toggle();                
+       });
+       $('#toggleunmet').click(function() {
+                $('.unmet').toggle();                
+       });
+       
+	    $('#togglenc').click(function() {
+                $('.nc').toggle(); 
+				$('.drnc').show();
+				
+       });
+	   $('#togglene').click(function() {
+                $('.ne').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#togglenw').click(function() {
+                $('.nw').toggle(); 
+				$('.drnw').show();
+				
+       });
+	   $('#togglese').click(function() {
+                $('.se').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#toggless').click(function() {
+                $('.ss').toggle(); 
+				$('.drne').show();
+				
+       });
+	   $('#togglesw').click(function() {
+                $('.sw').toggle(); 
+				$('.drne').show();
+				
+       });
+        $('#togglecpr').click(function() {
+                $('.cpr').toggle(); 
+				
+				
+       });
+    });
+    </script>
+                <style type="text/css">
+           /*         body{
+  margin      : 0;
+  padding     : 1.5em;
+  font-family : Georgia,Utopia,Charter,serif;
+}
+*/
+
+
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old){
+  width     : 2em;
+  margin    : 0;
+  padding   : 0;
+  font-size : 1em;
+  opacity   : 0;
+}
+
+input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -2em;
+  line-height  : 1.5em;
+}
+
+input[type=checkbox]:not(old) + label > span,
+input[type=radio   ]:not(old) + label > span{
+  display          : inline-block;
+  width            : 1.075em;
+  height           : 1.075em;
+  margin           : 0.25em 0.5em 0.25em 0.25em;
+  border           : 0.0625em solid rgb(192,192,192);
+  /*border-radius    : 0.35em;*/
+  background       : rgb(224,224,224);
+  background-image :    -moz-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :     -ms-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :      -o-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  background-image :         linear-gradient(rgb(240,240,240),rgb(224,224,224));
+  vertical-align   : bottom;
+}
+
+input[type=checkbox]:not(old):checked + label > span,
+input[type=radio   ]:not(old):checked + label > span{
+  background-image :    -moz-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :     -ms-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :      -o-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image : -webkit-linear-gradient(rgb(224,224,224),rgb(240,240,240));
+  background-image :         linear-gradient(rgb(224,224,224),rgb(240,240,240));
+}
+
+input[type=checkbox]:not(old):checked + label > span:before{
+  content     : '✓';
+  display     : block;
+  width       : 1.075em;
+  color       : rgb(153,204,102);
+  font-size   : 0.875em;
+  line-height : 1.075em;
+  text-align  : center;
+  text-shadow : 0 0 0.0714em rgb(115,153,77);
+  font-weight : bold;
+}
+
+input[type=radio]:not(old):checked +  label > span > span{
+  display          : block;
+  width            : 1.575em;
+  height           : 1.575em;
+  margin           : 0.125em;
+  border           : 0.0625em solid rgb(115,153,77);
+  /*border-radius    : 0.325em;*/
+  background       : rgb(153,204,102);
+  background-image :    -moz-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :     -ms-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :      -o-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image : -webkit-linear-gradient(rgb(179,217,140),rgb(153,204,102));
+  background-image :         linear-gradient(rgb(179,217,140),rgb(153,204,102));
+}
+
+                    
+                </style>
+	</head>
+   <?php  $json_array = $this->json_array; ?>
+        
+	<body class="yui-skin-sam" onload="toggle_it();" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			
+				<div id="subcontent">
+					<div id="contentheader">
+						 <h2 algin="">Nigeria’s DHS 2013 Indicators</h2>  <br/>
+					</div>
+                                    
+					<div class="clear" style=""></div>
+				</div>
+                         
+<span style="width:50%;margin: 0 auto; margin-left:30%;" align="center"> <input type="checkbox"  id="togglecpr" style="cursor:pointer;" title="Toggle CPR" align="right" checked="checked" /><label for="togglecpr""><span></span>  CPR</label>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  id="toggle" style="cursor:pointer;" title="Toggle Knowledge" align="right" checked="checked"/><label for="toggle"><span></span>  Knowledge</label></span>
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox"  id="toggleunmet" style="cursor:pointer;" title="Toggle Unmet Need" align="right" checked="checked"/><label for="toggleunmet"><span></span> Unmet Need </label></span>
+                                       
+<table border="1" class="GridOne">
+    
+                                        <thead style="text-align:center;">
+                                            <caption>Table 1:  Awareness and use of contraceptives in Nigeria</caption>
+                                            <tr  style="text-align:center;">
+                                                <th rowspan="3">Zone</th>
+                                                <th rowspan="3">State</th>
+                                          <th colspan="16" class="cpr">CPR </th>  
+                                            <th rowspan="3" class="unmet">Unmet need among currently<br/> married women aged 15-49</th>
+                                            <th colspan="4" class="knowledge">Knowledge </th>
+                                            </tr>
+                                            <tr  style="text-align:center;">
+                                             <th colspan="16" class="cpr">Currently married women aged 15 - 49</th>
+                                            <th colspan="2" class="knowledge">Women</th>
+                                            <th colspan="2" class="knowledge">Men</th>
+                                            </tr>
+                                            <tr  style="text-align:center;" >
+                                                <th class="cpr">CPR</th>
+                                                <th class="cpr">Any Modern Method</th>
+                                                <th class="cpr">Female Sterilization</th>
+                                                <th class="cpr">Pill</th>
+                                                <th class="cpr">IUD</th>
+                                                <th class="cpr">Injectables</th>
+                                                <th class="cpr">Implants</th>
+                                                <th class="cpr">Male Condoms</th>
+                                                <th class="cpr">LAM</th>
+                                                <th class="cpr">Standard days method</th>
+                                                <th class="cpr">Other</th>
+                                                <th class="cpr">Any <br/>other Traditional Method</th>
+                                                <th class="cpr">Rhythm</th>
+                                                <th class="cpr">Withdrawal</th>
+                                                <th class="cpr">Other</th>
+                                                <th class="cpr">Not Currently Using</th>
+                                                <th class="knowledge">Heard of Any Method</th>
+                                                <th class="knowledge">Heard of Any Modern Method</th>
+                                                <th class="knowledge">Heard of Any Method</th>
+                                                <th class="knowledge">Heard of Any Modern Method</th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            
+                                            <tr style="text-align:right;" style="text-align:right;">
+                                                <td style="text-align:left;">National</td>
+                                                <td style="text-align:left;">Total</td>
+                                                <td class="cpr"><?php echo $json_array[5][2]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][3]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][4]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][5]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][6]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][7]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][8]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][9]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][10]; ?></td>
+                                                
+                                                <td class="cpr"><?php echo $json_array[5][11]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][12]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][13]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][14]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][15]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][16]; ?></td>
+                                                <td class="cpr"><?php echo $json_array[5][17]; ?></td>
+                                                <td class="unmet"><?php echo $json_array[5][18]; ?></td>
+                                                <td class="knowledge"><?php echo $json_array[5][19]; ?></td>
+                                                <td class="knowledge"><?php echo $json_array[5][20]; ?></td>
+                                                <td class="knowledge"><?php echo $json_array[5][21]; ?></td>
+                                                <td class="knowledge"><?php echo $json_array[5][22]; ?></td>
+                                                                               
+                                                
+                                            </tr>
+					<?php 
+                                        $css_class = array("north central"=>"nc","north east"=>"ne","north west"=>"nw","south east"=>"se","south west"=>"sw","south south"=>"ss");
+                                            
+                                        $sizeof = sizeof($json_array);
+                                            $category = array();
+                                            for($i=6;$i<$sizeof;$i++){
+                                                echo '<tr style="text-align:right;" style="text-align:right;">';
+                                                $zone = strtolower(trim($json_array[$i][0]));
+                                               $zoneoriginal = trim($json_array[$i][0]);
+                                                $class = $css_class[$zone];
+                                               // echo $zone; echo $class; continue
+                                                if(!in_array($class,$category)){
+                                                  echo '<td class="dr'.$class.'" align="center" style="text-align:left;" for="toggle'.$class.'" colspan="23" style="text-align:center;display:block;"><a  id="toggle'.$class.'" style="cursor:pointer;" title="Toggle '.$zoneoriginal.' Region"><b>'.$zoneoriginal.' +</b></a></td>
+                                                ';  
+                                                  array_push($category,$class);
+                                                }
+                                                echo '</tr>';
+                                                echo '<tr style="text-align:right;" class="'.$class.'" >';
+                                               echo ' <td style="text-align:left;">'.$json_array[$i][0].'</td>
+                                                <td style="text-align:left;">'.$json_array[$i][1].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][2].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][3].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][4].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][5].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][6].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][7].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][8].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][9].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][10].'</td>
+                                                
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][11].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][12].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][13].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][14].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][15].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][16].'</td>
+                                                <td class="cpr" cellpadding="1px">'.$json_array[$i][17].'</td>
+                                                <td class="unmet" cellpadding="1px">'.$json_array[$i][18].'</td>
+                                                <td class="knowledge" cellpadding="1px">'.$json_array[$i][19].'</td>
+                                                <td class="knowledge" cellpadding="1px">'.$json_array[$i][20].'</td>
+                                                <td class="knowledge" cellpadding="1px">'.$json_array[$i][21].'</td>
+                                                <td class="knowledge" cellpadding="1px">'.$json_array[$i][22].'</td>
+                                                
+                                                </tr>';
+                                            }
+                                            ?>
+                                            		
+                                            
+                                        </tbody>
+                                    </table>
+				<div class="clear" style=""></div>
+			   
+			
+							
+	
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>

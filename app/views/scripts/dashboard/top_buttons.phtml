@@ -1,0 +1,75 @@
+<script>
+    function checkSingleSelection(){
+        //alert('filter');
+        var regionBox = document.getElementById("region_c_id"); //lga
+        var districtBox = document.getElementById("district_id"); //state
+        var provinceBox = document.getElementById("province_id"); //zone
+
+        var regionValues = getSelectedValues(regionBox);
+        var districtValues = getSelectedValues(districtBox);
+        var provinceValues = getSelectedValues(provinceBox);
+
+        if(regionValues.length > 1 || districtValues.length > 1 || provinceValues.length > 1){
+            alert ('Only one (1) location allowed per filter');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function getSelectedValues(multipleSelectBox){
+        var selected = new Array();
+        for (var i = 0; i < multipleSelectBox.options.length; i++) {
+             if(multipleSelectBox.options[i].selected){
+                //alert(multipleSelectBox.options[i].value);
+                selected.push(multipleSelectBox.options[i].value);
+            }
+        }
+        return selected;
+    }
+</script>
+
+<form name="dashboardForm" id="dashboardForm" method="post"> 
+
+<?php 
+require_once('views/helpers/Location.php');
+require_once('views/helpers/ScriptContainer.php');
+
+$current_view = '/'.$path[1].'/'. $path[2]; 
+?>
+
+<?php  //file_put_contents('c:\wamp\logs\php_debug.log', 'top_buttons 1 >'.PHP_EOL, FILE_APPEND | LOCK_EX);	ob_start();   
+	   //var_dump("current_view=", $current_view, "END");
+	   //$result = ob_get_clean(); file_put_contents('c:\wamp\logs\php_debug.log', $result .PHP_EOL, FILE_APPEND | LOCK_EX); 
+?>
+
+<p3>
+
+    <div>
+        <?php region_filters_dropdown_db($this, $this->locations, $this->criteria, true, true); ?>
+        <?php if(!isset($singleSelection) ) { ?>
+            <p><strong>Maximum of six (6) locations allowed per filter</strong></p>
+        <?php } else { ?>
+            <p><strong>Only one (1) location allowed per filter</strong></p>
+        <?php } ?>
+    </div>
+    <br/>
+    
+    <div>
+        <?php if(!isset($singleSelection)) { ?>
+            <input type="submit" value="Filter" class="dbbutton dbbutton_leftmenu">
+        <?php } else { ?>
+            <input type="submit" value="Filter" class="dbbutton dbbutton_leftmenu" onclick="return checkSingleSelection();">
+        <?php } ?>
+    </div>
+
+</p3>
+
+
+ </form>
+
+
+					
+
+
+

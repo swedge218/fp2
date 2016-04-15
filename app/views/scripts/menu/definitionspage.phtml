@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title><?php echo $this->translation['Application Name'];?> | <?php tp('Definitions Page');?></title>
+		<?php
+		require_once('views/helpers/Location.php');
+		require_once('views/helpers/ScriptContainer.php');
+		print ScriptContainer::$instance->renderCSSHead();
+		print ScriptContainer::$instance->renderJSHead();
+
+		?>
+<style type="text/css">
+    ul{
+        list-type-style:bullet !important;
+    }
+    .alignment{
+        width:90%;
+        margin-left:5%;
+    }
+    .body{
+        width:96%;
+        margin: 0 auto;
+        
+    }
+    body{
+        font-size: 15px;
+    }
+</style>
+	
+	</head>
+   
+	<body class="yui-skin-sam" >
+		<div id="pageHolder">
+			<div id="header"><?php require_once('views/scripts/header.phtml');?></div>
+			<div id="content">
+				<div id="subcontent">
+					<div id="contentheader">
+                                            <div  style="width:85%; margin: 0 auto"><h2><?php tp('Definitions Page');?></h2></div><br>
+                                                   
+                                                   <br/>
+					</div>
+                                    <div class="body">
+                                       <fieldset>
+                                        <div>
+                                             
+                                  <h3><b>INFORMATION ON THE DASHBOARD</b></h3><br/>
+<p><i>This page provides detailed definitions on the indicators found throughout the dashboard. This information can also be viewed for a specific chart by hovering over the (i) button next to that specific chart. </i></p><br/>
+<h4><b>DEFINITIONS</b></h4><br/>
+                                    </div>
+<div class="alignment">
+<p><b>2015 Target # HWs to be Trained in LARC:</b> <br/>National target for the number of HWs to be trained in LARC by 2015.Source: FMOH.</p><br/>
+<p><b>Birth Date:</b> <br/>Birth date for training participant, entered as dd/mm/yy. Source: HR Database.</p><br/>
+<p><b>Certification: </b> <br/>Health workers may be certified as competent to provide the service for which they were trained following the actual training session. </p><br/>
+<p><b>Contraceptives Logistics Management System (CLMS) Training: </b><br/>Training on reporting and requisitioning for FP commodities. Source: HR Database. </p><br/>
+<p><b>Consumption:</b> <br/>Consumption of commodities at the facility-level as reported through the HMIS into DHIS-2. Source: DHIS-2. Includes:</p><br/>
+<div class="alignment">
+<ul>
+<li>•	<b>Female Condoms:</b> Total number of female condoms distributed in the health facility that month</li>
+<li>•	<b>Implants:</b> Total number of clients that had contraceptive implants (one-rod and two-rod) inserted that month</li>
+<li>•	<b>Injectables:</b> Total number of clients given injections (DMPA) for family planning that month</li>
+<li>•	<b>IUCDs:</b> Total number of clients that had an IUCD inserted for family planning that month</li>
+<li>•	<b>Male Condoms:</b> Total number of male condoms distributed that month</li>
+<li>•	<b>Oral contraceptive pills:</b>  Total number of oral pill sachets dispensed to clients that month</li>
+<li>•	<b>Sterilization:</b> Total number of clients that had sterilization done for family planning that month</li>
+</ul></div><br/>
+
+
+
+<p><b>Consumption of FP:</b><br/> Consumption is greater than 0 for at least one of the following commodities: female condoms, male condoms, injectables, implants, IUCDs, oral pills, and sterilization. Source: DHIS-2</p><br/>
+<p><b>Consumption of LARC:</b> <br/>Consumption is reported and is greater than 0 for implants and or IUCDs. Source: DHIS-2</p><br/>
+<p><b>Contraceptive Technology Update (CTU) Training: refresher /updates to FP technology training: </b><br/>Source: HR Database.</p><br/>
+<p><b>Facilities providing FP stocked out of FP:</b><br/> Any facility that reported in the current month and that has provided FP at least once in the last six months that has also reported “yes” in the DHIS-2 field “stocked out of FP commodities for 7 consecutive days.” Source: DHIS-2</p><br/>
+<p><b>Facilities providing FP:</b><br/> Any reporting facility that reported consumption of at least one FP commodity in that time period. FP commodities include female condoms, male condoms, injectables, implants, IUCDs, oral pills, and sterilization. When presented as a percentage, this is the percentage of all reporting facilities that provided FP per the above. Source: DHIS-2</p><br/>
+<p><b>Facilities providing implants stocked out of implants:</b><br/> Any facility that reported to DHIS-2 and is stocked out of implants in the current month and that also provided implants at least once in the last six months. Source: DHIS-2</p><br/>
+<p><b>Facilities providing injectables:</b><br/> Any reporting facility that provided at least one injectable in that time period.When presented as a percentage, this is the percentage of all reporting facilities that provided injectables per the above.  Source: DHIS-2</p><br/>
+<p><b>Facilities providing LARC:</b><br/> Any reporting facility that reported consumption for at least one LARC commodity in that time period. LARC commodities include implants and IUCDs. When presented as a percentage, this is the percentage of all reporting facilities that provided LARC per the above. Source: DHIS-2</p><br/>
+<p><b>Facilities with a HW trained in FP:</b><br/> Any reporting facility with at least one health worker trained in "FP Technology," "Contraceptive Technology Update (CTU)," and/or "Injectable Contraceptives for CHEWs." When presented as a percentage, this is the proportion of all reporting facilities with a HW trained in FP. Source: HR Database.</p><br/>
+<p><b>Facilities with a HW trained in LARC:</b><br/> Any reporting facility with at least one health worker "LARC" and/or "Post Partum IUCD." When presented as a percentage, this is the proportion of all reporting facilities with a HW trained in LARC. Source: HR Database.</p><br/>
+<p><b>Facilities with a LARC trained HW stocked out of implants:</b><br/> Any reporting facility that has at least one LARC trained in FP that has also reported “yes” in the DHIS-2 field “stocked out of implants.” Source: HR Database, DHIS-2.</p><br/>
+<p><b>Facilities with an FP trained HW stocked out of FP:</b><br/> Any reporting facility that has at least one HW trained in FP that has also reported “yes” in the DHIS-2 field “stocked out of FP commodities for 7 consecutive days.” Source: HR Database, DHIS-2.</p><br/>
+<p><b>FP Education and Mobilization Training:</b><br/> FP training of community mobilizers. Source: HR Database.</p><br/>
+<p><b>FP Supervision and Mentoring Training:</b><br/>  Any supportive supervision and mentorship following FP training to ensure competency. Source: HR Database.</p><br/>
+<p><b>FP Technology Training:</b><br/> Training on general FP methods including short acting contraceptive service provision and counseling. Source: HR Database.</p><br/>
+<p><b>Gender: </b><br/> Gender (male/female) of training participant. Source: HR Database.</p><br/>
+<p><b>Injectable Contraceptives for CHEWs Training:</b><br/>Training of CHEWs on the provision of Injectables. Source: HR Database.</p><br/>
+<p><b>LARC Training:</b><br/> Training on the provision of one- and two-rod implants and IUCDs. Source: HR Database.</p><br/>
+<p><b>NXT Refresher Training:</b><br/> On-the-job update training on Implanon NXT. Source: HR Database.</p><br/>
+<p><b>Permanent Methods Training:</b><br/>Training on tubal ligation and vasectomies. Source: HR Database.</p><br/>
+<p><b>Post Partum IUCD Training:</b><br/> Training on the provision of IUCDs for post partum clients.Source: HR Database.</p><br/>
+<p><b>Professional Qualification:</b><br/> Cadre of training participant. Source: HR Database.</p><br/>
+<p><b>Reporting Facility:</b><br/> A facility that reported data into DHIS-2 and was marked as “complete”. Source: DHIS-2</p><br/>
+<p><b>Stocked out of emergency contraception:</b><br/> Defined when a facility reports “1” into the DHIS-2 field “stocked out of emergency contraception.” On the Dashboard, facilities stocked out appear as “yes,” facilities not stocked out appear as “no” and facilities that did not report on that field appear as blank. Source: DHIS-2</p><br/>
+<p><b>Stocked out of female condoms:</b><br/> A facility reporting “1” into the DHIS-2 field “stocked out of female condoms.” On the Dashboard, facilities stocked out appear as “yes,” facilities not stocked out appear as “no” and facilities that did not report on that field appear as blank. Source: DHIS-2</p><br/>
+<p><b>Stocked out of FP:</b><br/> A facility reporting “1” into the DHIS-2 field “stocked out of FP commodities for 7 consecutive days.” For this reason, a facility may have stocked out of an FP commodity, such as implants, but for less than 7 days, in which case the value could be “no” for “stocked out of FP” and “yes” for stocked out of implants,” for example. On the Dashboard, facilities stocked out appear as “yes,” facilities not stocked out appear as “no” and facilities that did not report on that field appear as blank. Source: DHIS-2</p><br/>
+<p><b>Stocked out of implants:</b><br/> Defined when a facility reports “1” into the DHIS-2 field “stocked out of implants.” On the Dashboard, facilities stocked out appear as “yes,” facilities not stocked out appear as “no” and facilities that did not report on that field appear as blank. Source: DHIS-2</p><br/>
+<p><b>Total Facilities:</b><br/> All health facilities in the DHIS-2 database for a given geography. Source: DHIS-2</p><br/>
+<p><b>Trained in FP:</b><br/> Any health worker that has received clinical training in FP, including “FP Technology,” “Contraceptive Technology Update (CTU),” and/or “Injectable Contraceptives for CHEWs” in-service trainings. Source: HR Database.</p><br/>
+<p><b>Trained in LARC:</b><br/> Any health worker that has received clinical training in long-acting reversible contraceptives, including "LARC" and/or "Post Partum IUCD" in-service trainings. Source: HR Database.</p><br/>
+<p><b>Training End Date:</b><br/> Date on which training completed. Source: HR Database.</p><br/>
+<p><b>Training Organizer:</b><br/> Organization or entity that organized and conducted the training, irrespective of who funded the training or under which project the training occurred. Source: HR Database.</p><br/>
+<p><b>Training Type:</b><br/> Type of training a health worker received, such as LARC Training, FP Technology Training, etc. Source: HR Database.</p><br/>
+                                </div>
+ <div>
+<h3><b>DATA SOURCES</b></h3><br/>
+<h4><b>DHIS-2</b></h4>
+             </div>
+ <div class="alignment">                           
+<p>The Nigeria Family Planning Dashboard connects to Nigeria’s national Health Management Information System (HMIS) platform, DHIS-2 (<a href="http://dhis2nigeria.org.ng" target="_blank">http://dhis2nigeria.org.ng</a>), which collects commodity information at the facility level. The Dashboard facilitates the direct and automatic transfer of data from DHIS-2 every month, thus allowing data that already exists to be transferred into the system with minimal effort and minimal data entry errors.This data transfer occurs on the 25th of each month, at which point all data for the prior month is uploaded. For example, on March 15th, all data for February is uploaded to the Dashboard from DHIS-2. This corresponds to the DHIS-2 reporting schedule, whereby monthly data should be entered by the 15th of the following month, and accommodates for some late reporting. Because DHIS-2 is updated in real time, there may be slight temporary differences in the data found on DHIS-2 and the data found on the Dashboard at any given time. Full data back ups, including historical data that may have been updated in DHIS-2 at a later date, will occur quarterly in conjunction with scheduled maintenance on the Dashboard.</p><br/>
+<p>In calculating the percentage of facilities providing a service or stocking out, the Family Planning Dashboard charts only include data on facilities that have reported to DHIS-2, meaning their monthly entry was marked “complete” in DHIS-2. Because M&E officers must log a facility entry as complete in the DHIS-2 in order for the facility to be marked as reporting, this occasionally results in discrepancies if some data were entered but the facility was not logged as complete. HISP Nigeria is working to solve this problem. State or LGA-wide consumption data includes all consumption, regardless of reporting status.Queries return all facilities and will indicate reporting, so that users can determine their own parameters with respect to reporting for offline analysis.</p><br/>
+<p>The list of facilities and their geographic components (LGA, State, Zone) are also pulled directly from DHIS-2 and, as a result, the number of facilities included in the Dashboard calculations varies from month to month based on which facilities reported in that month.  The full list of DHIS-2 facilities can be found in the “Facility Data” function of the Queries menu.</p><br/>
+
+<br/>
+ </div>
+     <div>
+<h4><b>Human Resources (HR) Database</b></h4></div>
+ <div class="alignment">
+<p>The main source of HR data for the Dashboard is through a standard Excel FMOH FP Training template submitted by training organizations to the Federal and State Ministries of Health. Training organizations are responsible for sending updated templates immediately following training activities and at the end of each quarter. The State FP Coordinator is then responsible for uploading the HR data into the Dashboard using the “Add New Training” module upon receipt of updated data forms. The template can be automatically uploaded into the Dashboard, or the data collected on this form can be manually entered into the Dashboard. All data collection is subject to data quality checks, such as checking against the DHIS-2 list of facilities, and ensuring health worker qualification, type of training, etc. are selected from a pre-approved list based on FMOH standards, to ensure the correctness and meaningfulness of the data collected.State FP Coordinators are also responsible for updating individual health worker data if, for example, a health worker moves to a different facility either within or outside of the state. Facility data associated with a health worker therefore should represent the health workers current location, not the location where they were trained.</p>
+ </div>
+                                    
+ <br/><div><h4><b>Health Worker Training Targets</b></h4></div>
+ <div class="alignment">
+<p>Health worker training targets are set by the Federal Ministry of Health of Nigeria and should be updated periodically. Currently, the targets are: </p><br/>
+<div class="alignment"><ul>	
+        <li>Year 1 (2013): 12 states – 1,784 health workers trained in LARC</li><br/>
+        <li>	Year 2 (2014): 12 states – 1,784 health workers trained in LARC</li><br/>
+        <li>Year 3 (2015): 13 states – 1,932 health workers trained in LARC</li><br/>
+        <li>Total: 5,500 health workers trained in LARC by 2015</li><br/>
+</ul></div>
+ </div>
+<br/>
+<div>
+<h3><b>SUPPORT</b></h3></div>
+
+<p>If you are experiencing technical problems with the Dashboard, have questions about the HR data or data upload, need a username and password, or have other questions, please contact the Dashboard administrator at support@fpdashboard.ng.</p>
+<br/><p>If you have questions specifically about the DHIS-2 data in the Dashboard, please contact Federal Ministry of Health (PRS Dept) by email at admin@dhis2nigeria.org.ng or by phone at 08036099676, 08033683677, 08065360433, or 08075795894.</p>
+</fieldset>
+                                    </div>
+
+				<div class="clear" style=""></div>
+				</div>
+				<div class="clear" style=""></div>
+			</div>   
+			<div class="clear" style="height : 100px;"></div>
+			<div class="clear" style=""></div>
+				
+			<div id="footer"><?php require_once('views/scripts/footer.phtml');?></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
