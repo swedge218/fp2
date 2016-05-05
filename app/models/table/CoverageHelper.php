@@ -23,10 +23,9 @@ class CoverageHelper {
                     $locationDataArray = array();
                     for($i = $year_amount; $i > 0; $i--) {
                         $endDateWhere = "YEAR(t.training_end_date) <= '" . $year . "'";
-                        $trainingTypeWhere = "tto.system_training_type = '" . $training_type . "'";
+                        $trainingTypeWhere = "tto.system_training_type IN (" . $training_type . ")";
                         $longWhereClause = $endDateWhere . ' AND ' . $trainingTypeWhere . ' AND ' . 
-                                   $tierFieldName . ' IN (' . $geoList . ')';
-//                      
+                                   $tierFieldName . ' IN (' . $geoList . ')';                    
                         
                         $select = $db->select ()
                         ->from ( array ('p' => 'person' ), array ('COUNT(DISTINCT(p.id)) as count'))
@@ -124,7 +123,7 @@ class CoverageHelper {
                              ->group($tierFieldName)
                              ->order(array($tierText));
 
-                //echo $select->__toString(); exit;
+                echo $select->__toString(); exit;
                 
               $result = $db->fetchAll($select);
                

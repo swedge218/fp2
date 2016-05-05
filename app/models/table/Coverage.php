@@ -35,7 +35,7 @@ class Coverage {
         $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
         $output = array ();
         $helper = new Helper2();
-        $trainingTypesArray = array('fp', 'larc');
+        $trainingTypesArray = array('larc', 'fp');
         
         //get the last DHIS2 pull date from commodity table and use the year for year here
         //$latestDate = $helper->getPreviousMonthDates(1);
@@ -53,6 +53,15 @@ class Coverage {
             
             foreach ($trainingTypesArray as $training_type){
                 $trainingTypeWhere = "tto.system_training_type = '" . $training_type . "' AND tto.is_deleted=0";
+//                if($training_type == 'fp') 
+//                    $trainingTypeWhere = "(tto.system_training_type = 'fp' OR tto.system_training_type = 'larc') AND tto.is_deleted=0";
+//                    //$trainingTypeWhere = "(tto.system_training_type = 'fp' AND tto.is_deleted=0) OR (tto.system_training_type = 'larc' AND tto.is_deleted=0)";
+//                else if($training_type == 'larc') 
+//                    $trainingTypeWhere = "tto.system_training_type = '" . $training_type . "' AND tto.is_deleted=0";
+                
+                
+                
+                //$trainingTypeWhere = "tto.system_training_type IN (" . $training_type . ") AND tto.is_deleted=0";
                 $trainingWhere = "t.is_deleted = 0";
                 $longWhereClause = $endDateWhere . ' AND ' . $trainingTypeWhere . ' AND ' . 
                                    $trainingWhere . ' AND ' . $tierFieldName . ' IN (' . $geoList . ')';
@@ -66,13 +75,21 @@ class Coverage {
                         ->where($longWhereClause)
                         ->order(array($tierText));
                 
-                //echo $select->__toString(); exit;
+                //echo $select; exit;
                 //$helper->log($select->__toString());
 
-                $result = $db->fetchAll ( $select );
+                $result = $db->fetchAll( $select );
                 $data = $result [0] ['count'];
 
+                
+                //if($training_type == 'fp')
+                  //  $data = $data + $output[$year]['larc'];
+                
                 $output[$year][$training_type] = $data;
+                
+                //var_dump($output);
+                //echo '<br/><br//>';
+                
             }//end inner loop
             
             $year--;
@@ -97,6 +114,7 @@ class Coverage {
             $tierText = $helper->getLocationTierText($tierValue);
             $tierFieldName = $helper->getTierFieldName($tierText);
             $locationNames = $helper->getLocationNames($geoList);
+            if($training_type == 'fp') $training_type = "'fp','larc'"; else if($training_type == 'larc') $training_type = "'larc'";
             //var_dump($locationNames); exit;
 
             //get the last DHIS2 pull date from commodity table and use the year for year here
@@ -114,7 +132,7 @@ class Coverage {
         
         
         
-        public function fetchPercentFacHWTrained($training_type, $geoList, $tierValue, $freshVisit, $updateMode = false){
+        public function fetchPercentFacHWTrained($training_type, $geoList, $tierValue, $freshVisit, $updateMode = false){            
                 $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
                 $output = array(array('location'=>'National', 'percent'=>0));
                 $helper = new Helper2();
@@ -273,7 +291,7 @@ class Coverage {
      /*
      * Percentage facilities providing FP, LARC and Injectables in the current month
      */
-      public function fetchPercentFacsProviding($commodity_type, $geoList, $tierValue, $freshVisit){
+      public function fetchPercentFacsProviding($commodity_type, $geoList, $tierValue, $freshVisit, $updateMode = false){
             $db = Zend_Db_Table_Abstract::getDefaultAdapter ();
 
             $output = array(array('location'=>'National', 'percent'=>0)); 
@@ -347,6 +365,13 @@ class Coverage {
                             //'timestamp_created' => date('');
                         );
                         $cacheManager->setIndicator($dataArray);
+                    }
+                    else if($updateMode){
+                        $dataArray = array('value' => json_encode($output));
+
+                        $where = "'alias=$alias'";
+
+                        $cacheManager->updateIndicator($dataArray, $where);
                     }
                     else{ //inner if
                         //get month national data and put in first array element
@@ -432,6 +457,7 @@ class Coverage {
 
       //public function fetchPercentFacHWTrainedProvidingDetails($commodity_type, $training_type, &$locationNames, $where, $groupFieldName, $havingName, $geoList, $tierValue){
       public function fetchFacsWithHWProviding($commodity_type, $training_type, $geoList, $tierValue, $freshVisit, $updateMode = false){
+          
                 $db = Zend_Db_Table_Abstract::getDefaultAdapter();
                 
                 $output = array(array('location'=>'National', 'percent'=>0));
@@ -846,6 +872,7 @@ class Coverage {
          //percentfacswithtrainedhw
          $this->fetchPercentFacHWTrained('fp', $geoList, $tierValue, false, true);
          $this->fetchPercentFacHWTrained('larc', $geoList, $tierValue, false, true);
+         
          
          //facswithhwproviding
          $this->fetchFacsWithHWProviding('fp', 'fp', $geoList, $tierValue, false, true );

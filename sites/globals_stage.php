@@ -15,13 +15,13 @@ define('space',  " ");
 
 
 class Globals {
-	public static $BASE_PATH = '/www/trainsmart/';
+	public static $BASE_PATH = 'C:/wamp64/www/trainsmart/';
 	public static $WEB_FOLDER = 'html';
 	public static $COUNTRY = 'test';
 
 	public function __construct() {
 
-		require_once('../../sites/settings_stage.php');
+		require_once('settings.php');
 		// PATH_SEPARATOR =  ; for windows, : for *nix
 		
 		$iReturn = ini_set( 'include_path',

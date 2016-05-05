@@ -32,7 +32,7 @@ class Settings {
     
     public static $DB_SERVER = 'localhost';
 
-    public static $DB_DATABASE = 'fpdtraintp';
+    public static $DB_DATABASE = 'testnodef';
 
     //public static $EMAIL_NAME = "TP ADMIN";
     public static $EMAIL_NAME = "FP Dashboard Admin";

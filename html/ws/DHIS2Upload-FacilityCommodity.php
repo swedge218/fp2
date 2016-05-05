@@ -152,7 +152,7 @@ $db = Zend_Db_Table_Abstract::getDefaultAdapter();
  		print "\n\n ===> UPLOAD PERIOD: " . $periods[$i] . " START\n\n";
  		$DATA_URL = $DATA_URL_START . $periods[$i] . $DATA_URL_END;
 
-                //print '<br/><br/>' . $DATA_URL; exit;
+                print '<br/><br/>' . $DATA_URL; exit;
 
  		upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_COMMODITY_NAMES_MODE, $UPDATE_COMMODITY_DATA_MODE, $COMMODITY_NAMES_IDS_FILE, $db, $commodity_names_out_of_stock_arr);
  		print "\n\n ===> UPLOAD PERIOD: " . $periods[$i] . " END\n####################################################################################\n\n";
@@ -212,7 +212,12 @@ function upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_
         plog('count of json rows: ' . count($data_json_arr["rows"])); 
         echo 'count of json rows: ' . count($data_json_arr["rows"]); 
         
-        //print_r($data_json_arr); 
+        
+        ///////////////////////////////////////////////////////
+         //unset($data_json_arr["metaData"]["ou"]); 
+        //echo '<br/><br/><br/>';
+        //print_r($data_json_arr); exit;
+        ///////////////////////////////////////////////////////
         
         // check if these date already loaded to database before going any further to save time.
         $db_period_count = checkDataLoaded();

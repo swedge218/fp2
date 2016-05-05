@@ -24,19 +24,16 @@ class Settings {
 
 	//public static $COUNTRY_BASE_URL = 'http://techieplanetltd.com/chai/trainsmart/html';
     //public static $COUNTRY_BASE_URL = 'http://63.139.189.115';
-	public static $COUNTRY_BASE_URL = 'http://fpdashboard.ng';
+	public static $COUNTRY_BASE_URL = 'http://fpdashboard';
 
     public static $DB_USERNAME = 'root';
 
-    public static $DB_PWD = 'Network@1';
-
-    
+    public static $DB_PWD = '';
 
     public static $DB_SERVER = 'localhost';
 
 
-
-    public static $DB_DATABASE = 'fpdb_stage';
+    public static $DB_DATABASE = 'testnodef';
 
     
 
@@ -46,8 +43,3 @@ class Settings {
     public static $EMAIL_ADDRESS = "admin@localhost";
 
 }
-
-
-
-
-

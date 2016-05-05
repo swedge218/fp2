@@ -182,7 +182,7 @@ class Location extends ITechTable
                                  * and this gave errors
                                  */
                                 $parent_tier = (!$row['parent_id'] ? 0: $indexed[$row['parent_id']]['tier']);
-                                //$parent_tier = 0;
+//                                $parent_tier = 0;
 //                                if(array_key_exists("parent_id", $row)) {
 //                                    if(array_key_exists($row['parent_id'], $indexed)){
 //                                        $parent_tier = $indexed[$row['parent_id']]['tier'];
@@ -901,4 +901,3 @@ public function formatLocationIdWithTier($tier,$locationId){
 }
  
 }
-

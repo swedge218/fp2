@@ -38,9 +38,7 @@ $PERIOD_LAST_MONTH = 'LAST_MONTH';
 
 //set to lagos timezone and check that we are on the 25th
 date_default_timezone_set('Africa/Lagos');
-//if(date('d') != 25){
-//    echo 'Not yet time for download'; exit;
-//}
+
 $PERIOD_HISTORICAL = isset($_GET['period']) ? $_GET['period'] : '';
 if(empty($PERIOD_HISTORICAL)){
     echo 'No period specified';
@@ -66,7 +64,6 @@ $STOCK_OUT_FEMALE_CONDOMS = "pYhpegHDt4x";
 $STOCK_OUT_EC = "QlroxgXpWTL";
 
 $STOCK_OUT_INDICATORS = array($STOCK_OUT_7DAYS, $STOCK_OUT_IMPLANT, $STOCK_OUT_FEMALE_CONDOMS, $STOCK_OUT_EC);
-
 
 
 //INDEX OF VALUES IN DHIS2 ROWS.
@@ -156,7 +153,7 @@ $db = Zend_Db_Table_Abstract::getDefaultAdapter();
  		print "\n\n ===> UPLOAD PERIOD: " . $periods[$i] . " START\n\n";
  		$DATA_URL = $DATA_URL_START . $periods[$i] . $DATA_URL_END;
 
-                //print '<br/><br/>' . $DATA_URL; exit;
+                print '<br/><br/>' . $DATA_URL; exit;
 
  		upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_COMMODITY_NAMES_MODE, $UPDATE_COMMODITY_DATA_MODE, $COMMODITY_NAMES_IDS_FILE, $db, $commodity_names_out_of_stock_arr);
  		print "\n\n ===> UPLOAD PERIOD: " . $periods[$i] . " END\n####################################################################################\n\n";

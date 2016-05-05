@@ -1,0 +1,28 @@
+2016-04-22 12:48:40 Starting COMM log for 201555
+2016-04-22 12:54:33 Starting COMM log for 201555
+2016-04-22 13:01:48 Starting COMM log for 201603
+2016-04-22 13:01:48 Load data: https://dhis2nigeria.org.ng/dhis/api/analytics.json?dimension=dx:DiXDJRmPwfh;EIHpURrBm7K;G5mKWErswJ0;H8A8xQ9gJ5b;JyiR2cQ6DZT;QlroxgXpWTL;eChiJMwaOqm;ibHR9NQ0bKL;krVqq8Vk5Kw;mvBO08ctlWw;pYhpegHDt4x;vDnxlrIQWUo;w92UxLIRNTl;wNT8GGBpXKL;yJSLjbC9Gnr&dimension=ou:LEVEL-5;s5DPBsdoE8b&filter=pe:201603&hierarchyMeta=true&displayProperty=NAME&ignoreLimit=true
+
+
+2016-04-22 13:01:48 WEB MODE
+2016-04-22 13:04:02 count of json rows: 83434
+2016-04-22 13:18:20 Starting COMM log for 201603
+2016-04-22 13:18:20 Load data: https://dhis2nigeria.org.ng/dhis/api/analytics.json?dimension=dx:DiXDJRmPwfh;EIHpURrBm7K;G5mKWErswJ0;H8A8xQ9gJ5b;JyiR2cQ6DZT;QlroxgXpWTL;eChiJMwaOqm;ibHR9NQ0bKL;krVqq8Vk5Kw;mvBO08ctlWw;pYhpegHDt4x;vDnxlrIQWUo;w92UxLIRNTl;wNT8GGBpXKL;yJSLjbC9Gnr&dimension=ou:LEVEL-5;s5DPBsdoE8b&filter=pe:201603&hierarchyMeta=true&displayProperty=NAME&ignoreLimit=true
+
+
+2016-04-22 13:18:20 WEB MODE
+2016-04-22 13:20:55 count of json rows: 83434
+2016-04-22 13:20:59 Data for this period not present in db
+2016-04-22 13:21:02 The size of the commodity for the period 201603  is 78210
+2016-04-22 13:21:03 Data period: 2016-03-01
+2016-04-22 13:48:28 Starting COMM log for 201603
+2016-04-22 13:48:28 Load data: https://dhis2nigeria.org.ng/dhis/api/analytics.json?dimension=dx:DiXDJRmPwfh;EIHpURrBm7K;G5mKWErswJ0;H8A8xQ9gJ5b;JyiR2cQ6DZT;QlroxgXpWTL;eChiJMwaOqm;ibHR9NQ0bKL;krVqq8Vk5Kw;mvBO08ctlWw;pYhpegHDt4x;vDnxlrIQWUo;w92UxLIRNTl;wNT8GGBpXKL;yJSLjbC9Gnr&dimension=ou:LEVEL-5;s5DPBsdoE8b&filter=pe:201603&hierarchyMeta=true&displayProperty=NAME&ignoreLimit=true
+
+
+2016-04-22 13:48:28 WEB MODE
+2016-04-22 13:50:56 count of json rows: 83434
+2016-04-22 19:30:35 Starting COMM log for 201301
+2016-04-22 19:31:10 Starting COMM log for 201301
+2016-04-22 19:31:11 WEB MODE
+2016-04-22 20:15:20 Starting COMM log for 201301
+2016-04-22 20:15:21 WEB MODE

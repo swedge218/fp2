@@ -1,0 +1,315 @@
+2016-04-29 09:56:36 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 09:58:48 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 11:59:24 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:01:18 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:08:36 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:12:17 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:28:54 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:51:11 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 12:55:03 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 13:04:15 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 13:05:26 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 13:06:13 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 13:07:00 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 13:24:09 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 15:19:06 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 15:19:29 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 15:19:42 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 15:38:38 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 16:17:04 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 16:20:10 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 16:28:52 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-29 17:14:35 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:28:41 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:29:35 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:30:18 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:41:55 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:44:54 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:45:10 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:46:33 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 00:46:58 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 01:01:10 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 09:01:20 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 09:02:17 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 17:11:13 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-04-30 18:27:49 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-03 18:25:17 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-03 22:25:09 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-03 22:27:04 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 02:33:19 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:08:16 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:08:48 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:21:23 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:22:13 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:23:38 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC
+2016-05-04 03:34:56 SELECT
+	`l`.*
+FROM `location` AS `l`
+WHERE
+	(is_deleted = 0)
+ORDER BY
+	`location_name` ASC

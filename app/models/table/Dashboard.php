@@ -108,9 +108,7 @@ class Dashboard {
             else{ //data is cached. Retrieve it
                 $output = json_decode($cacheValue, true);
             }
-            
-            //var_dump($output); exit;
-            
+                        
           return $output;
             
    }//end fetchCoverageSummary

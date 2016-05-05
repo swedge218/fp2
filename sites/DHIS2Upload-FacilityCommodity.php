@@ -276,7 +276,7 @@ function upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_
         // The object contains all facilities in UUID form
         unset($data_json_arr["metaData"]["ou"]); 
         echo '<br/><br/><br/>';
-        //print_r($data_json_arr);
+        print_r($data_json_arr); exit;
       
 	//$date = $data_json_arr ["metaData"] ["pe"] [0];
 	$date_year = substr ( $date, 0, 4 );

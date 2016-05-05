@@ -58,7 +58,7 @@ class CoverageController extends ReportFilterHelpers {
                 $locationNames = $helper->getLocationNames($geoList);
                 $larc_cumm_location = $coverage->fetchCummulativeTrainedWorkersByLocation('larc',3, $geoList, $tierValue);
                 $fp_cumm_location= $coverage->fetchCummulativeTrainedWorkersByLocation('fp',3, $geoList, $tierValue);
-                
+              
                 $this->view->assign('fp_cumm_location', $fp_cumm_location);
                 $this->view->assign('larc_cumm_location', $larc_cumm_location);
                 $this->view->assign('cumm_locations', $helper->getLocationNames($geoList));
@@ -75,6 +75,7 @@ class CoverageController extends ReportFilterHelpers {
             $this->viewAssignEscaped('criteria', $this->getLocationCriteria());
             $this->viewAssignEscaped ('locations', Location::getAll(1));
     }
+    
     //TP: rewrote most part of this method 2/4/2015
 	public function cummhwtrainedAction() {
             $coverage = new Coverage();
@@ -95,7 +96,13 @@ class CoverageController extends ReportFilterHelpers {
                 
                 $locationNames = $helper->getLocationNames($geoList);
                 $larc_cumm_location = $coverage->fetchCummulativeTrainedWorkersByLocation('larc',3, $geoList, $tierValue);
-                $fp_cumm_location= $coverage->fetchCummulativeTrainedWorkersByLocation('fp',3, $geoList, $tierValue);
+                $fp_cumm_location = $coverage->fetchCummulativeTrainedWorkersByLocation('fp',3, $geoList, $tierValue);
+                //var_dump($larc_cumm_location); echo '<br><br>';
+                //var_dump($fp_cumm_location); exit;
+                
+                foreach ($fp_cumm_location as $location=>$locationValues)
+                    foreach($locationValues as $key=>$value)
+                        $fp_cumm_location[$location][$key] += (int)$larc_cumm_location[$location][$key];
                 
                 $this->view->assign('fp_cumm_location', $fp_cumm_location);
                 $this->view->assign('larc_cumm_location', $larc_cumm_location);
@@ -112,8 +119,6 @@ class CoverageController extends ReportFilterHelpers {
             $this->view->assign('cumm_data', $cumm_data);
             $this->viewAssignEscaped('criteria', $this->getLocationCriteria());
             $this->viewAssignEscaped ('locations', Location::getAll(1));
-
-
               
     }
     
@@ -163,11 +168,8 @@ class CoverageController extends ReportFilterHelpers {
             $coverage = new Coverage();
             $helper = new Helper2();
 	    
-<<<<<<< HEAD
 	    //$this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
-=======
-	    $this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
->>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
+
             
             //get the parameters
             list($geoList, $tierValue) = $this->buildParameters();
@@ -181,17 +183,9 @@ class CoverageController extends ReportFilterHelpers {
                 $fp_coverage = $coverage->fetchPercentFacsProviding('fp', $geoList, $tierValue, false);
                 $larc_coverage = $coverage->fetchPercentFacsProviding('larc', $geoList, $tierValue, false);
                 $inj_coverage = $coverage->fetchPercentFacsProviding('injectables', $geoList, $tierValue, false);
-<<<<<<< HEAD
+
             }           
-=======
-            }
-            
-    //            var_dump($fp_coverage);
-    //            echo '<br/><br/>';
-    //            var_dump($larc_coverage); 
-    //            echo '<br/><br/>';
-    //            var_dump($inj_coverage); exit;            
->>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
+
 
 
             $this->view->assign('fp_data',$fp_coverage);
@@ -218,11 +212,7 @@ class CoverageController extends ReportFilterHelpers {
 	    
             //$ids = $helper->getTierLocationsIds(1); var_dump($ids); exit;
             
-<<<<<<< HEAD
 	    //$this->view->assign('title', $this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
-=======
-	    $this->view->assign('title',$this->t['Application Name'].space.t('CHAI').space.t('Dashboard'));
->>>>>>> ee8ec7c6ed01d03b607a0d189f4e9577f7bf71e2
             
             //get the parameters
             list($geoList, $tierValue) = $this->buildParameters();                

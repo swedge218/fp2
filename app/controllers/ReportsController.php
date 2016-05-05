@@ -1460,6 +1460,7 @@ echo $sql . "<br>";
 			$date2 = strtotime( $criteria['creation_dates'][1]);
 			$date2 = strtotime("+1 day", $date2); // 11:59
 			$criteria['date_added'][1] = date ('Y-m-d H:i:s', $date2 + $difference );
+                    }
 		}
 
 		/////////////////////////////////

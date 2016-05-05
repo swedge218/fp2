@@ -38,9 +38,7 @@ $PERIOD_LAST_MONTH = 'LAST_MONTH';
 
 //set to lagos timezone and check that we are on the 25th
 date_default_timezone_set('Africa/Lagos');
-//if(date('d') != 25){
-//    echo 'Not yet time for download'; exit;
-//}
+
 $PERIOD_HISTORICAL = isset($_GET['period']) ? $_GET['period'] : '';
 if(empty($PERIOD_HISTORICAL)){
     echo 'No period specified';
@@ -65,8 +63,7 @@ $STOCK_OUT_IMPLANT = "wNT8GGBpXKL";
 $STOCK_OUT_FEMALE_CONDOMS = "pYhpegHDt4x";
 $STOCK_OUT_EC = "QlroxgXpWTL";
 
-$STOCK_OUT_INDICATORS = array($STOCK_OUT_7DAYS, $STOCK_OUT_IMPLANT, $STOCK_OUT_FEMALE_CONDOMS, $STOCK_OUT_EC);
-
+//$STOCK_OUT_INDICATORS = array($STOCK_OUT_7DAYS, $STOCK_OUT_IMPLANT, $STOCK_OUT_FEMALE_CONDOMS, $STOCK_OUT_EC);
 
 
 //INDEX OF VALUES IN DHIS2 ROWS.
@@ -127,10 +124,7 @@ if(sizeof($options) === 0){
 
 //to run on local PC
 
-if($HOST_SERVER == 'localhost')
-    require_once 'globals.php';
-else
-    require_once 'globals.php';
+require_once '../../sites/globals.php';
 
 $db = Zend_Db_Table_Abstract::getDefaultAdapter();
  
@@ -168,6 +162,7 @@ $db = Zend_Db_Table_Abstract::getDefaultAdapter();
  	$DATA_URL = $DATA_URL_START . $PERIOD_LAST_MONTH . $DATA_URL_END;
        // $DATA_URL = $DATA_URL_START .$DATA_URL_END;
         //echo $data_url;
+
  	upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_COMMODITY_NAMES_MODE, $UPDATE_COMMODITY_DATA_MODE, $COMMODITY_NAMES_IDS_FILE, $db, $commodity_names_out_of_stock_arr);
  	print "\n\n ===> UPLOAD PERIOD: " . $PERIOD_LAST_MONTH . " END\n\n";
        // echo 'It is here';
@@ -212,7 +207,12 @@ function upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_
             $data_json = file_get_contents($DATA_SOURCE_JSON_FILE);
 	
         $data_json_arr = json_decode($data_json, true);
-        //print_r($data_json); exit;
+        
+        //////////////////////////////////////////////////////
+        unset($data_json_arr["metaData"]["ou"]); 
+        echo '<br/><br/><br/>';
+        print_r($data_json_arr); exit;
+        ///////////////////////////////////////////////////////
 
         print('count of json rows: ' . count($data_json_arr["rows"])); 
         //print '<br><br>';
@@ -240,7 +240,7 @@ function upload($DATA_URL, $USERNAME, $PASSWORD, $UPDATE_FACILITY_MODE, $UPDATE_
         * THIS WILL HELP TO STRIP OUT ALL COMMODITIES NOT WATCHED BY THIS SYSTEM
         */
        //$external_id = array("DiXDJRmPwfh","G5mKWErswJ0","H8A8xQ9gJ5b","ibHR9NQ0bKL","JyiR2cQ6DZT","krVqq8Vk5Kw","mvBO08ctlWw","QlroxgXpWTL","vDnxlrIQWUo","w92UxLIRNTl","wNT8GGBpXKL","yJSLjbC9Gnr","pYhpegHDt4x");
-       $external_id = array("pYhpegHDt4x", "QlroxgXpWTL");
+       $external_id = array("mvBO08ctlWw");
                        //WS:"DiXDJRmPwfh","G5mKWErswJ0","H8A8xQ9gJ5b","ibHR9NQ0bKL","JyiR2cQ6DZT","krVqq8Vk5Kw","mvBO08ctlWw","QlroxgXpWTL","vDnxlrIQWUo","w92UxLIRNTl","wNT8GGBpXKL","yJSLjbC9Gnr","Yw92UxLIRNTl"
                                                                                                                                     
        
